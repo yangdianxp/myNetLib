@@ -1,0 +1,6 @@
+syntax = "proto2";
+
+message login_request {
+	required string name = 1;
+	required string passwd = 2;
+}
