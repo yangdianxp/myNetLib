@@ -19,6 +19,8 @@
 #endif
 // @@protoc_insertion_point(includes)
 
+namespace pb {
+}  // namespace pb
 namespace protobuf_proc_2eproto {
 void InitDefaults() {
 }
@@ -47,10 +49,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\nproc.proto\032\013login.proto"
+      "\n\nproc.proto\022\002pb\032\013login.proto"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 25);
+      descriptor, 29);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "proc.proto", &protobuf_RegisterTypes);
   ::protobuf_login_2eproto::AddDescriptors();
@@ -67,8 +69,10 @@ struct StaticDescriptorInitializer {
   }
 } static_descriptor_initializer;
 }  // namespace protobuf_proc_2eproto
+namespace pb {
 
 // @@protoc_insertion_point(namespace_scope)
+}  // namespace pb
 namespace google {
 namespace protobuf {
 }  // namespace protobuf

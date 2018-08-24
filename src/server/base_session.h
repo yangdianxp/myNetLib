@@ -11,7 +11,7 @@ class base_session : public std::enable_shared_from_this<base_session>
 	static const unsigned int msg_body_length = 1024 * 128;
 
 public:
-	base_session(tcp::socket socket);
+	base_session(tcp::socket socket, boost::asio::io_context& io_context);
 	virtual ~base_session();
 
 	void start();
@@ -20,10 +20,13 @@ public:
 private:
 	void do_read_header();
 	void do_read_body();
+	void count_msg();
 
 	tcp::socket m_socket;
-	proto_header msg_header;
-	char msg_body[msg_body_length];
+	proto_header m_msg_header;
+	char m_msg_body[msg_body_length];
+	size_t m_msg_cnt = 0;
+	boost::asio::steady_timer m_msg_timer;
 };
 
 #endif

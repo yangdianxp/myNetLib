@@ -1,2 +1,4 @@
 syntax = "proto2";
+package pb;
+
 import "login.proto";

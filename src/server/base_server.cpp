@@ -4,7 +4,7 @@
 base_server::base_server(boost::asio::io_context& io_context, short port)
 	: m_acceptor(io_context, tcp::endpoint(tcp::v4(), port))
 {
-
+	do_accept();
 }
 
 base_server::~base_server()
@@ -19,7 +19,7 @@ void base_server::do_accept()
 	{
 		if (!ec)
 		{
-			std::make_shared<base_session>(std::move(socket))->start();
+			std::make_shared<base_session>(std::move(socket), m_acceptor.get_io_context())->start();
 		}
 
 		do_accept();

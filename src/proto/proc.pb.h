@@ -44,6 +44,9 @@ struct TableStruct {
 };
 void AddDescriptors();
 }  // namespace protobuf_proc_2eproto
+namespace pb {
+}  // namespace pb
+namespace pb {
 
 // ===================================================================
 
@@ -63,6 +66,7 @@ void AddDescriptors();
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace pb
 
 // @@protoc_insertion_point(global_scope)
 
