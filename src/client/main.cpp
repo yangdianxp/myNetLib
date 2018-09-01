@@ -1,4 +1,6 @@
 #include <iostream>
+#include <set>
+#include <memory>
 #include <boost/asio.hpp>
 
 #include "base_client.h"
@@ -24,7 +26,10 @@ int main(int argc, char* argv[])
 
 		tcp::resolver resolver(io_context);
 		auto endpoints = resolver.resolve(argv[1], argv[2]);
-		base_client c(io_context, endpoints);
+		std::set<std::shared_ptr<base_client>> client_set;
+		client_set.insert(std::make_shared<base_client>(io_context, endpoints, client_set));
+		std::shared_ptr<boost::asio::io_service::work> work
+			= std::make_shared<boost::asio::io_service::work>(io_context);
 		io_context.run();
 	}
 	catch (std::exception& e)

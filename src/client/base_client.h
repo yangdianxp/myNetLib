@@ -8,7 +8,8 @@ class base_client
 	using tcp = boost::asio::ip::tcp;
 public:
 	base_client(boost::asio::io_context& io_context,
-		const tcp::resolver::results_type& endpoints);
+		const tcp::resolver::results_type& endpoints,
+		std::set<std::shared_ptr<base_client>>& client_set);
 	void write();
 
 private:
@@ -18,6 +19,7 @@ private:
 	boost::asio::io_context& m_io_context;
 	tcp::socket m_socket;
 	proto_msg m_login_request;
+	std::set<std::shared_ptr<base_client>>& m_client_set;
 };
 
 #endif

@@ -2,8 +2,11 @@
 #include "base_session.h"
 #include "common.h"
 
-base_session::base_session(tcp::socket socket, boost::asio::io_context& io_context)
-	: m_socket(std::move(socket)), m_msg_timer(io_context, boost::asio::chrono::seconds(1))
+base_session::base_session(tcp::socket socket, boost::asio::io_context& io_context, 
+	std::set<std::shared_ptr<base_session>>& session_set)
+	: m_socket(std::move(socket)), 
+	m_msg_timer(io_context, boost::asio::chrono::seconds(1)), 
+	m_session_set(session_set)
 {
 }
 
@@ -14,7 +17,7 @@ base_session::~base_session()
 
 void base_session::start()
 {
-	m_msg_timer.async_wait(boost::bind(&base_session::count_msg, this));
+	//m_msg_timer.async_wait(boost::bind(&base_session::count_msg, this));
 	do_read_header();
 }
 
@@ -54,6 +57,8 @@ void base_session::do_read_header()
 		}
 		else
 		{
+			printf("do_read_header error!\n");
+			m_session_set.erase(self);
 		}
 	});
 }
@@ -72,6 +77,7 @@ void base_session::do_read_body()
 		}
 		else
 		{
+			m_session_set.erase(self);
 		}
 	});
 }
