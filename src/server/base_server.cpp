@@ -23,7 +23,7 @@ void base_server::do_accept()
 				m_acceptor.get_io_context(), m_session_set);
 			m_session_set.insert(session_ptr);
 			session_ptr->start();
-			printf("m_session_cnt<%zd>\n", ++m_session_cnt);
+			SLOG_DEBUG << "m_session_cnt<" << ++m_session_cnt << ">";
 		}
 
 		do_accept();

@@ -57,7 +57,7 @@ void base_session::do_read_header()
 		}
 		else
 		{
-			printf("do_read_header error!\n");
+			SLOG_ERROR << "do_read_header error!";
 			m_session_set.erase(self);
 		}
 	});
@@ -77,6 +77,7 @@ void base_session::do_read_body()
 		}
 		else
 		{
+			SLOG_ERROR << "do_read_body error!";
 			m_session_set.erase(self);
 		}
 	});
@@ -84,7 +85,7 @@ void base_session::do_read_body()
 
 void base_session::count_msg()
 {
-	printf("m_msg_cnt:%zd, msg len:%zd\n", m_msg_cnt, m_msg_header.length + sizeof(m_msg_header));
+	SLOG_DEBUG << "m_msg_cnt:" << m_msg_cnt << ", msg len:" << m_msg_header.length + sizeof(m_msg_header);
 	m_msg_cnt = 0;
 	m_msg_timer.expires_at(m_msg_timer.expiry() + boost::asio::chrono::seconds(1));
 	m_msg_timer.async_wait(boost::bind(&base_session::count_msg, this));

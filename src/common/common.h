@@ -3,6 +3,7 @@
 
 #include "proc.pb.h"
 #include "msg.h"
+#include "log.h"
 
 
 #endif
