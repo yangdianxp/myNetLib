@@ -63,14 +63,14 @@ BOOST_LOG_ATTRIBUTE_KEYWORD(_scope, "Scope", attrs::named_scope::value_type);
 
 void SLog::InitLog(const std::string& filename)
 {
-	auto asink = logging::add_console_log(std::clog, keywords::format = expr::stream
-		<< expr::format_date_time(_timestamp, "[%Y-%m-%d,%H:%M:%S.%f]")
-		<< " <" << _severity
-		<< ">: " << expr::message);
+	//auto asink = logging::add_console_log(std::clog, keywords::format = expr::stream
+	//	<< expr::format_date_time(_timestamp, "[%Y-%m-%d,%H:%M:%S.%f]")
+	//	<< " <" << _severity
+	//	<< ">: " << expr::message);
 
-	asink->set_filter(expr::attr< severity_levels >("Severity") <= slog_error);
+	//asink->set_filter(expr::attr< severity_levels >("Severity") <= slog_error);
 
-	logging::core::get()->add_sink(asink);
+	//logging::core::get()->add_sink(asink);
 
 	//for (int i = slog_emergency; i <= slog_debug; i++)
 	//{

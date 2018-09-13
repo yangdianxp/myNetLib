@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __LOG_H__
+#define __LOG_H__
+
 #include <string>
 
 #include <boost/log/sources/logger.hpp>
@@ -41,3 +43,5 @@ public:
 #define SLOG_NOTICE BOOST_SLOG(slog_notice)
 #define SLOG_INFO BOOST_SLOG(slog_info)
 #define SLOG_DEBUG BOOST_SLOG(slog_debug)
+
+#endif

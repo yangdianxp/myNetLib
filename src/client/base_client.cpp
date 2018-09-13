@@ -27,11 +27,11 @@ void base_client::do_connect(const tcp::resolver::results_type& endpoints)
 	{
 		if (!ec)
 		{
-			printf("connect succ\n");
+			SLOG_DEBUG << "connect succ";
 			//write();
 		}
 		else {
-			std::cout << "connect error:" << ec.message() << std::endl;
+			SLOG_ERROR << "connect error:" << ec.message();
 		}
 		if (m_client_set.size() < 100000)
 		{
