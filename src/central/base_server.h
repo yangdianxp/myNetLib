@@ -10,7 +10,7 @@ class base_server : public std::enable_shared_from_this<base_server>
 	
 	using tcp = boost::asio::ip::tcp;
 public:
-	base_server(boost::asio::io_context& io_context, short port);
+	base_server(boost::asio::io_service& io_context, short port);
 	virtual ~base_server();
 private:
 	void do_accept();

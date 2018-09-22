@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 		SLog::SetLevel(slog_debug);
 
 		SLOG_INFO << "server start.";
-		boost::asio::io_context io_context;
+		boost::asio::io_service io_context;
 		base_server s(io_context, config_reader.get_local_port());
 
 		io_context.run();

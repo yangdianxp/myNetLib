@@ -2,7 +2,7 @@
 #include "base_session.h"
 #include "common.h"
 
-base_session::base_session(tcp::socket socket, boost::asio::io_context& io_context, 
+base_session::base_session(tcp::socket socket, boost::asio::io_service& io_context,
 	std::set<std::shared_ptr<base_session>>& session_set)
 	: m_socket(std::move(socket)), 
 	m_msg_timer(io_context, boost::asio::chrono::seconds(1)), 

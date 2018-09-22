@@ -11,7 +11,7 @@ class base_session : public std::enable_shared_from_this<base_session>
 	static const unsigned int msg_body_length = 1024 * 128;
 
 public:
-	base_session(tcp::socket socket, boost::asio::io_context& io_context, 
+	base_session(tcp::socket socket, boost::asio::io_service& io_context,
 		std::set<std::shared_ptr<base_session>>& session_set);
 	virtual ~base_session();
 

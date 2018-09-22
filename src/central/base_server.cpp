@@ -1,7 +1,7 @@
 #include "base_server.h"
 
 
-base_server::base_server(boost::asio::io_context& io_context, short port)
+base_server::base_server(boost::asio::io_service& io_context, short port)
 	: m_acceptor(io_context, tcp::endpoint(tcp::v4(), port))
 {
 	do_accept();

@@ -1,5 +1,6 @@
 #ifndef __MSG_H__
 #define __MSG_H__
+#include <cstddef>
 
 struct proto_header
 {
