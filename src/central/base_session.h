@@ -1,6 +1,7 @@
 #ifndef __BASE_SESSION_H__
 #define __BASE_SESSION_H__
 #include <boost/asio.hpp>
+#include <boost/asio/steady_timer.hpp>
 #include <memory>
 #include "common.h"
 
