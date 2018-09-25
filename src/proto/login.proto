@@ -1,7 +1,7 @@
-syntax = "proto2";
+syntax = "proto3";
 package pb;
 
 message login_request {
-	required string name = 1;
-	required string passwd = 2;
+	string name = 1;
+	string passwd = 2;
 }
