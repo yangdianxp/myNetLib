@@ -17,4 +17,4 @@ LINK_DIRECTORIES(./ ../common ../proto)
 
 ADD_EXECUTABLE(central ${SRC_LIST})
 
-TARGET_LINK_LIBRARIES(central common proto boost_system boost_date_time boost_regex boost_filesystem boost_log boost_log_setup boost_thread pthread m stdc++)
+TARGET_LINK_LIBRARIES(central common proto protobuf boost_system boost_date_time boost_regex boost_filesystem boost_thread boost_log_setup boost_log pthread m stdc++)

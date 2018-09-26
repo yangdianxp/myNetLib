@@ -16,4 +16,4 @@ LINK_DIRECTORIES(./ ../proto)
 
 ADD_LIBRARY(common STATIC ${SRC_LIST})
 
-TARGET_LINK_LIBRARIES(common pthread stdc++ m proto)
+TARGET_LINK_LIBRARIES(common pthread stdc++ m proto boost_log_setup boost_log)

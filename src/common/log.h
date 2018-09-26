@@ -8,6 +8,8 @@
 #include <boost/log/attributes/named_scope.hpp>
 #include <boost/log/sources/record_ostream.hpp>
 
+#define BOOST_LOG_DYN_LINK 1
+
 enum severity_levels
 {
 	slog_emergency = 0,                //slog_emerg
