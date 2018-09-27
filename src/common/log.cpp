@@ -13,9 +13,6 @@
 #include <boost/log/attributes/named_scope.hpp>
 #include <boost/log/sources/logger.hpp>
 #include <boost/log/support/date_time.hpp>
-#include <boost/log/trivial.hpp>
-
-#define BOOST_LOG_DYN_LINK
 
 namespace logging = boost::log;
 namespace attrs = boost::log::attributes;

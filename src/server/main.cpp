@@ -7,7 +7,6 @@
 
 int main(int argc, char* argv[])
 {
-	using tcp = boost::asio::ip::tcp;
 	try
 	{
 		config_settings& config_reader = config_settings::instance();

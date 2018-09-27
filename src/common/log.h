@@ -7,8 +7,11 @@
 #include <boost/log/sources/severity_logger.hpp>
 #include <boost/log/attributes/named_scope.hpp>
 #include <boost/log/sources/record_ostream.hpp>
+#include <boost/log/trivial.hpp>
 
-#define BOOST_LOG_DYN_LINK 1
+//#ifndef BOOST_LOG_DYN_LINK
+	//#define BOOST_LOG_DYN_LINK
+//#endif
 
 enum severity_levels
 {

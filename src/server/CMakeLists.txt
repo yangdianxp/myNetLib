@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-PROJECT(central)
+PROJECT(server)
 
 AUX_SOURCE_DIRECTORY(./ SRC_LIST)
 
@@ -16,6 +16,6 @@ ADD_DEFINITIONS(-ggdb -O0 -W -posix -Wall -Wno-deprecated -Wno-unused-parameter 
 INCLUDE_DIRECTORIES(./ ../common ../proto)
 LINK_DIRECTORIES(./ ../common ../proto)
 
-ADD_EXECUTABLE(central ${SRC_LIST})
+ADD_EXECUTABLE(server ${SRC_LIST})
 
-TARGET_LINK_LIBRARIES(central stdc++ m pthread common proto protobuf boost_log_setup boost_log boost_system boost_date_time boost_regex boost_filesystem boost_thread)
+TARGET_LINK_LIBRARIES(server stdc++ m pthread common proto protobuf boost_log_setup boost_log boost_system boost_date_time boost_regex boost_filesystem boost_thread)
