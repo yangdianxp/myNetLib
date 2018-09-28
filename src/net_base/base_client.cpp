@@ -33,7 +33,7 @@ void base_client::do_connect(const tcp::resolver::results_type& endpoints)
 		else {
 			SLOG_ERROR << "connect error:" << ec.message();
 		}
-		if (m_client_set.size() < 100000)
+		if (m_client_set.size() < 4000)
 		{
 			m_client_set.insert(std::make_shared<base_client>(m_io_context, endpoints, m_client_set));
 		}

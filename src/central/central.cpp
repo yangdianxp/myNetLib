@@ -7,11 +7,10 @@
 
 int main(int argc, char* argv[])
 {
-	using tcp = boost::asio::ip::tcp;
 	try
 	{
 		config_settings& config_reader = config_settings::instance();
-		config_reader.load("net.conf");
+		config_reader.load("conf/net.xml");
 		config_reader.print();
 		SLog::InitLog(config_reader.get_log_filename());
 		SLog::SetLevel(slog_debug);
