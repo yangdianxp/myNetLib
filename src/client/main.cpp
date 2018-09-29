@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 		std::string remote_port = std::to_string(config_reader.get_remote_port());
 		auto endpoints = resolver.resolve(remote_ip, remote_port);
 		std::set<std::shared_ptr<base_client>> client_set;
-		client_set.insert(std::make_shared<base_client>(io_context, endpoints, client_set));
+		client_set.insert(std::make_shared<base_client>(io_context, endpoints));
 		std::shared_ptr<boost::asio::io_service::work> work
 			= std::make_shared<boost::asio::io_service::work>(io_context);
 		io_context.run();

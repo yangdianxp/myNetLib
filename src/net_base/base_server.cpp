@@ -40,5 +40,5 @@ void base_server::do_accept()
 		}
 
 		do_accept();
-	});
+	});           
 }

@@ -2,58 +2,120 @@
 
 
 base_client::base_client(boost::asio::io_context& io_context,
-	const tcp::resolver::results_type& endpoints, 
-	std::set<std::shared_ptr<base_client>>& client_set)
-	: m_io_context(io_context),
-	m_socket(io_context), m_client_set(client_set)
+	const tcp::resolver::results_type& endpoints)
+	: m_io_context(io_context), m_socket(io_context)
 {
 	do_connect(endpoints);
 }
 
-void base_client::write()
+void base_client::write(const char *data, int size)
 {
-	m_login_request.cmd = cmd_login_request;
-	pb::login_request login_request_proto;
-	login_request_proto.set_name("yangdian");
-	login_request_proto.set_passwd("123456");
-	m_login_request.serialize_msg(login_request_proto);
-	do_write();
+	boost::asio::async_write(m_socket,
+		boost::asio::buffer(data, size),
+		[this](boost::system::error_code ec, std::size_t /*length*/)
+	{
+		if (!ec)
+		{
+			handle_write_succ();
+		}
+		else
+		{
+			handle_write_error(ec);
+			m_socket.close();
+		}
+	});
+}
+
+void base_client::dispatch(unsigned short cmd)
+{
+
+}
+
+void base_client::do_read_header()
+{
+	boost::asio::async_read(m_socket,
+		boost::asio::buffer(&m_msg_header, msg_header_length),
+		[this](boost::system::error_code ec, std::size_t length)
+	{
+		if (!ec)
+		{
+			if (m_msg_header.check_msg(msg_body_length))
+			{
+				do_read_body();
+			}
+			else {
+				handle_msg_header_error(length);
+			}
+		}
+		else
+		{
+			handle_read_error(ec);
+			m_socket.close();
+		}
+	});
+}
+
+void base_client::do_read_body()
+{
+	boost::asio::async_read(m_socket,
+		boost::asio::buffer(&m_msg_body, m_msg_header.length),
+		[this](boost::system::error_code ec, std::size_t /*length*/)
+	{
+		if (!ec)
+		{
+			dispatch(m_msg_header.cmd);
+			do_read_header();
+		}
+		else
+		{
+			handle_read_error(ec);
+			m_socket.close();
+		}
+	});
+}
+
+void base_client::handle_connect_succ()
+{
+
+}
+
+void base_client::handle_connect_error(boost::system::error_code& ec)
+{
+	SLOG_ERROR << ec.message();
+}
+
+void base_client::handle_write_succ()
+{
+
+}
+
+void base_client::handle_write_error(boost::system::error_code& ec)
+{
+	SLOG_ERROR << ec.message();
+}
+
+void base_client::handle_msg_header_error(int length)
+{
+	SLOG_ERROR << length;
+}
+
+void base_client::handle_read_error(boost::system::error_code& ec)
+{
+	SLOG_ERROR << ec.message();
 }
 
 void base_client::do_connect(const tcp::resolver::results_type& endpoints)
 {
 	boost::asio::async_connect(m_socket, endpoints,
-		[this, &endpoints](boost::system::error_code ec, tcp::endpoint)
+		[this](boost::system::error_code ec, tcp::endpoint)
 	{
 		if (!ec)
 		{
-			SLOG_DEBUG << "connect succ";
-			//write();
+			handle_connect_succ();
+			do_read_header();
 		}
 		else {
-			SLOG_ERROR << "connect error:" << ec.message();
-		}
-		if (m_client_set.size() < 4000)
-		{
-			m_client_set.insert(std::make_shared<base_client>(m_io_context, endpoints, m_client_set));
-		}
-	});
-}
-
-void base_client::do_write()
-{
-	boost::asio::async_write(m_socket,
-		boost::asio::buffer(&m_login_request,
-			m_login_request.size()),
-		[this](boost::system::error_code ec, std::size_t /*length*/)
-	{
-		if (!ec)
-		{
-			do_write();
-		}
-		else
-		{
-			m_socket.close();
+			handle_connect_error(ec);
 		}
 	});
 }
