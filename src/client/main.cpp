@@ -23,7 +23,6 @@ int main(int argc, char* argv[])
 		std::set<std::shared_ptr<base_client>> client_set;
 		auto client = std::make_shared<base_client>(io_context, remote_ip, remote_port);
 		client->set_reconnect_time(3000);
-
 		
 		std::shared_ptr<boost::asio::io_service::work> work
 			= std::make_shared<boost::asio::io_service::work>(io_context);

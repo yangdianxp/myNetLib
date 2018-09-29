@@ -17,7 +17,7 @@ public:
 	virtual ~base_client();
 
 	void write(const char *data, int size);
-	virtual void dispatch(unsigned short cmd);
+	virtual void dispatch(uint16_t cmd, const char* buffer, std::size_t length);
 	virtual void do_read_header();
 	virtual void do_read_body();
 	virtual void handle_connect_succ();
@@ -38,7 +38,6 @@ private:
 		passive_conn = 1,  //被动连接
 		active_conn = 2    //主动连接
 	};
-
 	client_type m_type;
 	boost::asio::io_context& m_io_context;
 	tcp::socket m_socket;

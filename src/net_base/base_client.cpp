@@ -41,7 +41,7 @@ void base_client::write(const char *data, int size)
 	});
 }
 
-void base_client::dispatch(unsigned short cmd)
+void base_client::dispatch(uint16_t cmd, const char* buffer, std::size_t length)
 {
 
 }
@@ -74,11 +74,11 @@ void base_client::do_read_body()
 {
 	boost::asio::async_read(m_socket,
 		boost::asio::buffer(&m_msg_body, m_msg_header.length),
-		[this](boost::system::error_code ec, std::size_t /*length*/)
+		[this](boost::system::error_code ec, std::size_t length)
 	{
 		if (!ec)
 		{
-			dispatch(m_msg_header.cmd);
+			dispatch(m_msg_header.cmd, m_msg_body, length);
 			do_read_header();
 		}
 		else
@@ -156,7 +156,7 @@ void base_client::handle_error()
 
 void base_client::reconnect()
 {
-	SLOG_INFO << "start reconnect";
+	SLOG_DEBUG << "start reconnect";
 	do_connect(m_endpoints);
 }
 
