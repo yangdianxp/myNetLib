@@ -1,9 +1,11 @@
 #ifndef __BASE_CLIENT_H_
 #define __BASE_CLIENT_H_
 #include <boost/asio.hpp>
+#include <boost/bind.hpp>
+#include <boost/enable_shared_from_this.hpp>
 #include "common.h"
 
-class base_client
+class base_client : public std::enable_shared_from_this<base_client>
 {
 	using tcp = boost::asio::ip::tcp;
 	static const unsigned char msg_header_length = sizeof(proto_header);

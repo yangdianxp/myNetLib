@@ -150,7 +150,7 @@ void base_client::handle_error()
 	if (m_reconnect_time > 0)
 	{
 		m_reconnect_timer.expires_from_now(boost::asio::chrono::milliseconds(m_reconnect_time));
-		m_reconnect_timer.async_wait(boost::bind(&base_client::reconnect, this));
+		m_reconnect_timer.async_wait(boost::bind(&base_client::reconnect, shared_from_this()));
 	}
 }
 
