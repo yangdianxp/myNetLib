@@ -16,6 +16,7 @@ void base_server::handle_accept_succ(tcp::socket& socket)
 {
 	auto session_ptr = std::make_shared<base_client>(m_acceptor.get_io_context(),\
 		std::move(socket));
+	m_clients.insert(session_ptr);
 }
 
 void base_server::handle_accept_error(boost::system::error_code& ec)

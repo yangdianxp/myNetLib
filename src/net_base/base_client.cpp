@@ -1,17 +1,26 @@
+#include <boost/bind.hpp>
 #include "base_client.h"
 
-
 base_client::base_client(boost::asio::io_context& io_context,
-	const tcp::resolver::results_type& endpoints)
-	: m_io_context(io_context), m_socket(io_context)
+	std::string remote_ip, std::string remote_port)
+	: m_type(active_conn), m_io_context(io_context), m_socket(io_context),
+	m_reconnect_timer(io_context)
 {
-	do_connect(endpoints);
+	tcp::resolver resolver(io_context);
+	m_endpoints = resolver.resolve(remote_ip, remote_port);
+	do_connect(m_endpoints);
 }
 
 base_client::base_client(boost::asio::io_context& io_context, tcp::socket socket)
-	: m_io_context(io_context), m_socket(std::move(socket))
+	: m_type(passive_conn), m_io_context(io_context), m_socket(std::move(socket)),
+	m_reconnect_timer(io_context)
 {
 	do_read_header();
+}
+
+base_client::~base_client()
+{
+
 }
 
 void base_client::write(const char *data, int size)
@@ -27,7 +36,7 @@ void base_client::write(const char *data, int size)
 		else
 		{
 			handle_write_error(ec);
-			m_socket.close();
+			handle_error();
 		}
 	});
 }
@@ -56,7 +65,7 @@ void base_client::do_read_header()
 		else
 		{
 			handle_read_error(ec);
-			m_socket.close();
+			handle_error();
 		}
 	});
 }
@@ -75,14 +84,14 @@ void base_client::do_read_body()
 		else
 		{
 			handle_read_error(ec);
-			m_socket.close();
+			handle_error();
 		}
 	});
 }
 
 void base_client::handle_connect_succ()
 {
-
+	SLOG_DEBUG << "connect succ";
 }
 
 void base_client::handle_connect_error(boost::system::error_code& ec)
@@ -110,6 +119,14 @@ void base_client::handle_read_error(boost::system::error_code& ec)
 	SLOG_ERROR << ec.message();
 }
 
+void base_client::set_reconnect_time(unsigned int ms)
+{
+	if (m_type == active_conn)
+	{
+		m_reconnect_time = ms;
+	}
+}
+
 void base_client::do_connect(const tcp::resolver::results_type& endpoints)
 {
 	boost::asio::async_connect(m_socket, endpoints,
@@ -122,6 +139,24 @@ void base_client::do_connect(const tcp::resolver::results_type& endpoints)
 		}
 		else {
 			handle_connect_error(ec);
+			handle_error();
 		}
 	});
 }
+
+void base_client::handle_error()
+{
+	m_socket.close();
+	if (m_reconnect_time > 0)
+	{
+		m_reconnect_timer.expires_from_now(boost::asio::chrono::milliseconds(m_reconnect_time));
+		m_reconnect_timer.async_wait(boost::bind(&base_client::reconnect, this));
+	}
+}
+
+void base_client::reconnect()
+{
+	SLOG_INFO << "start reconnect";
+	do_connect(m_endpoints);
+}
+

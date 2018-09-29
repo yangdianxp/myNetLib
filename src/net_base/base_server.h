@@ -18,6 +18,7 @@ public:
 private:
 	void do_accept();
 	tcp::acceptor m_acceptor;
+	std::set<std::shared_ptr<base_client>> m_clients;
 };
 
 #endif
