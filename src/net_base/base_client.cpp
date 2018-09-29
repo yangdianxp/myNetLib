@@ -8,6 +8,12 @@ base_client::base_client(boost::asio::io_context& io_context,
 	do_connect(endpoints);
 }
 
+base_client::base_client(boost::asio::io_context& io_context, tcp::socket socket)
+	: m_io_context(io_context), m_socket(std::move(socket))
+{
+	do_read_header();
+}
+
 void base_client::write(const char *data, int size)
 {
 	boost::asio::async_write(m_socket,

@@ -11,6 +11,7 @@ class base_client
 public:
 	base_client(boost::asio::io_context& io_context,
 		const tcp::resolver::results_type& endpoints);
+	base_client(boost::asio::io_context& io_context, tcp::socket socket);
 	void write(const char *data, int size);
 	virtual void dispatch(unsigned short cmd);
 	virtual void do_read_header();
