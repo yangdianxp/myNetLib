@@ -12,6 +12,9 @@ class base_server : public std::enable_shared_from_this<base_server>
 public:
 	base_server(boost::asio::io_context& io_context, short port);
 	virtual ~base_server();
+
+	virtual void handle_accept_succ(tcp::socket& socket);
+	virtual void handle_accept_error(boost::system::error_code& ec);
 private:
 	void do_accept();
 	tcp::acceptor m_acceptor;

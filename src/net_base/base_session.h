@@ -18,9 +18,10 @@ public:
 	void start();
 	virtual int dispatch();
 	virtual int handle_login_request();
+
+	virtual void do_read_header();
+	virtual void do_read_body();
 private:
-	void do_read_header();
-	void do_read_body();
 	void count_msg();
 
 	tcp::socket m_socket;

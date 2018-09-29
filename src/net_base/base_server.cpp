@@ -12,6 +12,20 @@ base_server::~base_server()
 
 }
 
+void base_server::handle_accept_succ(tcp::socket& socket)
+{
+	auto session_ptr = std::make_shared<base_session>(std::move(socket), \
+		m_acceptor.get_io_context(), m_session_set);
+	m_session_set.insert(session_ptr);
+	session_ptr->start();
+	SLOG_DEBUG << "m_session_cnt<" << ++m_session_cnt << ">";
+}
+
+void base_server::handle_accept_error(boost::system::error_code& ec)
+{
+	SLOG_ERROR << ec.message();
+}
+
 void base_server::do_accept()
 {
 	m_acceptor.async_accept(
@@ -19,11 +33,10 @@ void base_server::do_accept()
 	{
 		if (!ec)
 		{
-			auto session_ptr = std::make_shared<base_session>(std::move(socket),\
-				m_acceptor.get_io_context(), m_session_set);
-			m_session_set.insert(session_ptr);
-			session_ptr->start();
-			SLOG_DEBUG << "m_session_cnt<" << ++m_session_cnt << ">";
+			handle_accept_succ(socket);
+		}
+		else {
+			handle_accept_error(ec);
 		}
 
 		do_accept();
