@@ -29,6 +29,11 @@ public:
 
 	void set_reconnect_time(unsigned int ms);
 
+protected:
+	tcp::socket m_socket;
+	proto_header m_msg_header;
+	char m_msg_body[msg_body_length];
+
 private:
 	void do_connect(const tcp::resolver::results_type& endpoints);
 	void handle_error();
@@ -40,12 +45,9 @@ private:
 	};
 	client_type m_type;
 	boost::asio::io_context& m_io_context;
-	tcp::socket m_socket;
 	tcp::resolver::results_type m_endpoints;
 	boost::asio::steady_timer m_reconnect_timer;
 	int m_reconnect_time = 0;
-	proto_header m_msg_header;
-	char m_msg_body[msg_body_length];
 };
 
 #endif
