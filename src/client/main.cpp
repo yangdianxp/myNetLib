@@ -1,6 +1,5 @@
 #include <iostream>
 #include <set>
-#include <memory>
 #include <boost/asio.hpp>
 
 #include "base_client.h"

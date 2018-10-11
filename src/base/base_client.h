@@ -1,5 +1,5 @@
-#ifndef __BASE_CLIENT_H_
-#define __BASE_CLIENT_H_
+#ifndef __BASE_CLIENT_H__
+#define __BASE_CLIENT_H__
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/enable_shared_from_this.hpp>

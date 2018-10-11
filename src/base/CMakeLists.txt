@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-PROJECT(net_base)
+PROJECT(base)
 
 AUX_SOURCE_DIRECTORY(./ SRC_LIST)
 
@@ -13,6 +13,6 @@ ADD_DEFINITIONS(-ggdb -O0 -W -Wall -Wno-deprecated -Wno-unused-parameter -Wno-un
 
 INCLUDE_DIRECTORIES(./ ../proto ../common)
 
-ADD_LIBRARY(net_base STATIC ${SRC_LIST})
+ADD_LIBRARY(base STATIC ${SRC_LIST})
 
-TARGET_LINK_LIBRARIES(net_base)
+TARGET_LINK_LIBRARIES(base)
