@@ -5,6 +5,7 @@
 #include "proc.pb.h"
 #include "msg.h"
 #include "log.h"
+#include "config_settings.h"
 
 
 #endif

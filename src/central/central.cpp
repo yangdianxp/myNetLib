@@ -2,8 +2,7 @@
 #include <boost/asio.hpp>
 
 #include "common.h"
-#include "base_server.h"
-#include "config_settings.h"
+#include "central_server.h"
 
 int main(int argc, char* argv[])
 {
@@ -17,7 +16,7 @@ int main(int argc, char* argv[])
 
 		SLOG_INFO << "server start.";
 		boost::asio::io_service io_context;
-		base_server s(io_context, config_reader.get_local_port());
+		central_server s(io_context, config_reader.get_local_port());
 
 		io_context.run();
 	}

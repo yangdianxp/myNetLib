@@ -6,8 +6,7 @@
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/foreach.hpp>
 
-#include "config_settings.h"
-#include "log.h"
+#include"common.h"
 namespace pt = boost::property_tree;
 
 config_settings& config_settings::instance()
@@ -57,6 +56,11 @@ void config_settings::print()
 		<< "m_local_port:" << m_local_port << std::endl
 		<< "m_remote_ip:" << m_remote_ip << std::endl
 		<< "m_remote_port:" << m_remote_port;
+}
+
+std::string config_settings::get_local_ip()
+{
+	return m_local_ip;
 }
 
 uint32_t config_settings::get_local_port()

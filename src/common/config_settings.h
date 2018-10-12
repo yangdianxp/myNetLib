@@ -8,6 +8,7 @@ public:
 	static config_settings& instance();
 	void load(const std::string &filename);
 	void print();
+	std::string get_local_ip();
 	uint32_t get_local_port();
 	std::string get_remote_ip();
 	uint32_t get_remote_port();

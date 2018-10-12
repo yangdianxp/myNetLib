@@ -2,3 +2,4 @@ syntax = "proto3";
 package pb;
 
 import "login.proto";
+import "internal.proto";

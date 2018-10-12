@@ -3,16 +3,17 @@
 
 base_client::base_client(boost::asio::io_context& io_context,
 	std::string remote_ip, std::string remote_port)
-	: m_socket(io_context), m_type(active_conn), m_io_context(io_context),
+	: m_socket(io_context), m_conn_type(active_conn), m_io_context(io_context),
 	m_reconnect_timer(io_context)
 {
+	SLOG_INFO << "connect remote_ip:" << remote_ip << " remote_port:" << remote_port;
 	tcp::resolver resolver(io_context);
 	m_endpoints = resolver.resolve(remote_ip, remote_port);
 	do_connect(m_endpoints);
 }
 
 base_client::base_client(boost::asio::io_context& io_context, tcp::socket socket)
-	: m_socket(std::move(socket)), m_type(passive_conn), m_io_context(io_context),
+	: m_socket(std::move(socket)), m_conn_type(passive_conn), m_io_context(io_context),
 	m_reconnect_timer(io_context)
 {
 	do_read_header();
@@ -91,7 +92,7 @@ void base_client::do_read_body()
 
 void base_client::handle_connect_succ()
 {
-	SLOG_DEBUG << "connect succ";
+	SLOG_INFO << "connect succ";
 }
 
 void base_client::handle_connect_error(boost::system::error_code& ec)
@@ -121,7 +122,7 @@ void base_client::handle_read_error(boost::system::error_code& ec)
 
 void base_client::set_reconnect_time(unsigned int ms)
 {
-	if (active_conn == m_type)
+	if (active_conn == m_conn_type)
 	{
 		m_reconnect_time = ms;
 	}
@@ -156,7 +157,7 @@ void base_client::handle_error()
 
 void base_client::reconnect()
 {
-	SLOG_DEBUG << "start reconnect";
+	SLOG_INFO << "start reconnect";
 	do_connect(m_endpoints);
 }
 

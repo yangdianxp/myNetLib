@@ -3,7 +3,6 @@
 #include <boost/asio.hpp>
 
 #include "base_client.h"
-#include "config_settings.h"
 
 int main(int argc, char* argv[])
 {

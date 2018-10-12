@@ -34,16 +34,17 @@ protected:
 	proto_header m_msg_header;
 	char m_msg_body[msg_body_length];
 
+	enum client_type {
+		passive_conn = 1,  //被动连接
+		active_conn = 2    //主动连接
+	};
+	client_type m_conn_type;
+
 private:
 	void do_connect(const tcp::resolver::results_type& endpoints);
 	void handle_error();
 	void reconnect();
 
-	enum client_type {
-		passive_conn = 1,  //被动连接
-		active_conn = 2    //主动连接
-	};
-	client_type m_type;
 	boost::asio::io_context& m_io_context;
 	tcp::resolver::results_type m_endpoints;
 	boost::asio::steady_timer m_reconnect_timer;
