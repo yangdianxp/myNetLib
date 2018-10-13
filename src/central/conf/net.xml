@@ -5,7 +5,9 @@ Distributed under the Boost Software License, Version 1.0.
 See http://www.boost.org/LICENSE_1_0.txt
 -->
 <conf>
-    <log_filename>common.log</log_filename>
-    <local_ip>127.0.0.1</local_ip>
-	  <local_port>20000</local_port>
+  <log_filename>common.log</log_filename>
+  <local_ip>127.0.0.1</local_ip>
+	<local_port>20000</local_port>
+  <!--自己的类型-->
+  <type>gateway</type>
 </conf>

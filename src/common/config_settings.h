@@ -15,11 +15,14 @@ public:
 	std::string get_log_filename();
 private:
 	config_settings();
+
+
 	std::string m_log_filename;
 	std::string m_local_ip;
 	uint32_t m_local_port = 0;
 	std::string m_remote_ip;
 	uint32_t m_remote_port = 0;
+	uint32_t m_type = 0;
 	
 };
 

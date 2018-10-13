@@ -18,5 +18,6 @@ void module::handle_accept_succ(tcp::socket& socket)
 
 void module::init()
 {
-
+	config_settings& config_reader = config_settings::instance();
+	m_type = 
 }
