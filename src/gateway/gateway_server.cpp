@@ -11,5 +11,5 @@ gateway_server::gateway_server(boost::asio::io_context& io_context, short port) 
 	client->set_reconnect_time(3000);
 	client->set_active_type(module_central_type);
 	auto client1 = std::dynamic_pointer_cast<base_client>(client);
-	m_rount.add_client(client1);
+	m_route->add_client(client1);
 }
