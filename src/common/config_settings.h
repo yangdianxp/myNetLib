@@ -13,9 +13,10 @@ public:
 	std::string get_remote_ip();
 	uint32_t get_remote_port();
 	std::string get_log_filename();
+	uint32_t get_type();
 private:
 	config_settings();
-
+	uint32_t convert_type(std::string& str_type);
 
 	std::string m_log_filename;
 	std::string m_local_ip;

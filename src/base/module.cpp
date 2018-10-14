@@ -3,7 +3,7 @@
 module::module(boost::asio::io_context& io_context, short port) :
 	base_server(io_context, port)
 {
-
+	init();
 }
 module::~module()
 {
@@ -19,5 +19,5 @@ void module::handle_accept_succ(tcp::socket& socket)
 void module::init()
 {
 	config_settings& config_reader = config_settings::instance();
-	m_type = 
+	m_type = config_reader.get_type();
 }
