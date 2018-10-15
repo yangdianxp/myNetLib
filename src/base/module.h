@@ -15,6 +15,7 @@ public:
 	virtual void handle_accept_succ(tcp::socket& socket);
 
 	void init();
+	std::shared_ptr<route> get_route();
 	void set_route(std::shared_ptr<route> route);
 protected:
 	/*б╥си╠М*/

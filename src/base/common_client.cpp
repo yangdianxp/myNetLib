@@ -35,3 +35,8 @@ void common_client::set_active_type(uint32_t type)
 {
 	m_active_type = type;
 }
+
+void common_client::set_server(std::shared_ptr<base_server> server)
+{
+	m_server = server;
+}
