@@ -9,7 +9,7 @@ gateway_server::gateway_server(boost::asio::io_context& io_context, short port) 
 	std::string remote_port = std::to_string(config_reader.get_remote_port());
 	std::shared_ptr<common_client> client = std::make_shared<common_client>(get_io_context(), remote_ip, remote_port);
 	client->set_reconnect_time(3000);
-	client->set_active_type(common_client::active_central_type);
+	client->set_active_type(module_central_type);
 	auto client1 = std::dynamic_pointer_cast<base_client>(client);
-	m_rount.add_client(client1);
+	m_route->add_client(client1);
 }

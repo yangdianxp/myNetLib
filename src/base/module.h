@@ -15,9 +15,10 @@ public:
 	virtual void handle_accept_succ(tcp::socket& socket);
 
 	void init();
+	void set_route(std::shared_ptr<route> route);
 protected:
 	/*路由表*/
-	route m_rount;
+	std::shared_ptr<route> m_route;
 private:
 	/*自身模块类型*/
 	uint32_t m_type = module_none_type;
