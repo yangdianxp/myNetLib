@@ -12,7 +12,7 @@ public:
 	common_client(boost::asio::io_context& io_context, tcp::socket socket);
 	virtual ~common_client();
 	void handle_connect_succ();
-	void module_log_on();
+	void module_logon();
 	void set_active_type(uint32_t type);
 	void set_server(std::shared_ptr<base_server>);
 protected:

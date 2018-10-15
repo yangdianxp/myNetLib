@@ -1,5 +1,5 @@
 syntax = "proto3";
-package pb;
+package pb.login;
 
 message login_request {
 	string name = 1;

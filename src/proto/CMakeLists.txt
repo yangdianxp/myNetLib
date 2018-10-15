@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
 PROJECT(proto)
 
-AUX_SOURCE_DIRECTORY(./ SRC_LIST)
+execute_process(COMMAND sh prebuild.sh)
 
+AUX_SOURCE_DIRECTORY(./ SRC_LIST)
 
 SET(CMAKE_C_COMPILER "gcc")
 SET(CMAKE_CXX_COMPILER "g++")

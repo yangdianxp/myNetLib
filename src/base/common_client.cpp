@@ -21,14 +21,15 @@ void common_client::handle_connect_succ()
 	SLOG_INFO << "connect succ";
 	if (m_conn_type == active_conn && m_active_type == module_central_type)
 	{
-		module_log_on();
+		module_logon();
 	}
 }
-void common_client::module_log_on()
+void common_client::module_logon()
 {
 	config_settings& config_reader = config_settings::instance();
-	SLOG_INFO << "log on central, local ip:" << config_reader.get_local_ip() 
+	SLOG_INFO << "logon central, local ip:" << config_reader.get_local_ip() 
 		<< " local port:" << config_reader.get_local_port();
+
 
 }
 void common_client::set_active_type(uint32_t type)

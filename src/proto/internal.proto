@@ -1,7 +1,7 @@
 syntax = "proto3";
-package pb;
+package pb.internal;
 
-message log_on {
+message logon {
 	string ip = 1;
 	int32 port = 2;
 }
