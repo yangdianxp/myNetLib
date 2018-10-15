@@ -17,6 +17,7 @@ public:
 	void init();
 	std::shared_ptr<route> get_route();
 	void set_route(std::shared_ptr<route> route);
+	uint32_t get_type();
 protected:
 	/*Â·ÓÉ±í*/
 	std::shared_ptr<route> m_route;

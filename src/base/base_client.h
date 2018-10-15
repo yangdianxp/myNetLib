@@ -9,7 +9,6 @@ class base_client : public std::enable_shared_from_this<base_client>
 {
 	using tcp = boost::asio::ip::tcp;
 	static const unsigned char msg_header_length = sizeof(proto_header);
-	static const unsigned int msg_body_length = 1024 * 128;
 public:
 	base_client(boost::asio::io_context& io_context,
 		std::string remote_ip, std::string remote_port);
@@ -17,7 +16,7 @@ public:
 	virtual ~base_client();
 
 	void write(const char *data, int size);
-	virtual void dispatch(uint16_t cmd, const char* buffer, std::size_t length);
+	virtual void dispatch(proto_msg& msg);
 	virtual void do_read_header();
 	virtual void do_read_body();
 	virtual void handle_connect_succ();
@@ -31,8 +30,7 @@ public:
 
 protected:
 	tcp::socket m_socket;
-	proto_header m_msg_header;
-	char m_msg_body[msg_body_length];
+	proto_msg m_msg;
 
 	enum client_type {
 		passive_conn = 1,  //被动连接

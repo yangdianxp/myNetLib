@@ -7,7 +7,7 @@ class central_server : public module
 	using tcp = boost::asio::ip::tcp;
 public:
 	central_server(boost::asio::io_context& io_context, short port);
-
+	virtual void handle_accept_succ(tcp::socket& socket);
 private:
 
 };

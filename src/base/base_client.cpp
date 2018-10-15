@@ -42,7 +42,7 @@ void base_client::write(const char *data, int size)
 	});
 }
 
-void base_client::dispatch(uint16_t cmd, const char* buffer, std::size_t length)
+void base_client::dispatch(proto_msg& msg)
 {
 
 }
@@ -50,12 +50,12 @@ void base_client::dispatch(uint16_t cmd, const char* buffer, std::size_t length)
 void base_client::do_read_header()
 {
 	boost::asio::async_read(m_socket,
-		boost::asio::buffer(&m_msg_header, msg_header_length),
+		boost::asio::buffer(&m_msg, msg_header_length),
 		[this](boost::system::error_code ec, std::size_t length)
 	{
 		if (!ec)
 		{
-			if (m_msg_header.check_msg(msg_body_length))
+			if (m_msg.check_msg(proto_msg::msg_data_length))
 			{
 				do_read_body();
 			}
@@ -74,12 +74,12 @@ void base_client::do_read_header()
 void base_client::do_read_body()
 {
 	boost::asio::async_read(m_socket,
-		boost::asio::buffer(&m_msg_body, m_msg_header.length),
-		[this](boost::system::error_code ec, std::size_t length)
+		boost::asio::buffer(m_msg.data, m_msg.m_length),
+		[this](boost::system::error_code ec, std::size_t)
 	{
 		if (!ec)
 		{
-			dispatch(m_msg_header.cmd, m_msg_body, length);
+			dispatch(m_msg);
 			do_read_header();
 		}
 		else

@@ -4,4 +4,5 @@ package pb.internal;
 message logon {
 	string ip = 1;
 	int32 port = 2;
+	int32 type = 3;
 }

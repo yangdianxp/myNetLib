@@ -46,20 +46,23 @@ struct TableStruct {
 void AddDescriptors();
 }  // namespace protobuf_login_2eproto
 namespace pb {
+namespace login {
 class login_request;
 class login_requestDefaultTypeInternal;
 extern login_requestDefaultTypeInternal _login_request_default_instance_;
+}  // namespace login
 }  // namespace pb
 namespace google {
 namespace protobuf {
-template<> ::pb::login_request* Arena::CreateMaybeMessage<::pb::login_request>(Arena*);
+template<> ::pb::login::login_request* Arena::CreateMaybeMessage<::pb::login::login_request>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace pb {
+namespace login {
 
 // ===================================================================
 
-class login_request : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.login_request) */ {
+class login_request : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.login.login_request) */ {
  public:
   login_request();
   virtual ~login_request();
@@ -85,13 +88,6 @@ class login_request : public ::google::protobuf::Message /* @@protoc_insertion_p
     return *this;
   }
   #endif
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _internal_metadata_.unknown_fields();
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return _internal_metadata_.mutable_unknown_fields();
-  }
-
   static const ::google::protobuf::Descriptor* descriptor();
   static const login_request& default_instance();
 
@@ -153,8 +149,7 @@ class login_request : public ::google::protobuf::Message /* @@protoc_insertion_p
 
   // accessors -------------------------------------------------------
 
-  // required string name = 1;
-  bool has_name() const;
+  // string name = 1;
   void clear_name();
   static const int kNameFieldNumber = 1;
   const ::std::string& name() const;
@@ -168,8 +163,7 @@ class login_request : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::std::string* release_name();
   void set_allocated_name(::std::string* name);
 
-  // required string passwd = 2;
-  bool has_passwd() const;
+  // string passwd = 2;
   void clear_passwd();
   static const int kPasswdFieldNumber = 2;
   const ::std::string& passwd() const;
@@ -183,21 +177,13 @@ class login_request : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::std::string* release_passwd();
   void set_allocated_passwd(::std::string* passwd);
 
-  // @@protoc_insertion_point(class_scope:pb.login_request)
+  // @@protoc_insertion_point(class_scope:pb.login.login_request)
  private:
-  void set_has_name();
-  void clear_has_name();
-  void set_has_passwd();
-  void clear_has_passwd();
-
-  // helper for ByteSizeLong()
-  size_t RequiredFieldsByteSizeFallback() const;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::HasBits<1> _has_bits_;
-  mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr name_;
   ::google::protobuf::internal::ArenaStringPtr passwd_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_login_2eproto::TableStruct;
 };
 // ===================================================================
@@ -211,136 +197,110 @@ class login_request : public ::google::protobuf::Message /* @@protoc_insertion_p
 #endif  // __GNUC__
 // login_request
 
-// required string name = 1;
-inline bool login_request::has_name() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void login_request::set_has_name() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void login_request::clear_has_name() {
-  _has_bits_[0] &= ~0x00000001u;
-}
+// string name = 1;
 inline void login_request::clear_name() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_name();
 }
 inline const ::std::string& login_request::name() const {
-  // @@protoc_insertion_point(field_get:pb.login_request.name)
+  // @@protoc_insertion_point(field_get:pb.login.login_request.name)
   return name_.GetNoArena();
 }
 inline void login_request::set_name(const ::std::string& value) {
-  set_has_name();
+  
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:pb.login_request.name)
+  // @@protoc_insertion_point(field_set:pb.login.login_request.name)
 }
 #if LANG_CXX11
 inline void login_request::set_name(::std::string&& value) {
-  set_has_name();
+  
   name_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:pb.login_request.name)
+  // @@protoc_insertion_point(field_set_rvalue:pb.login.login_request.name)
 }
 #endif
 inline void login_request::set_name(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_name();
+  
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:pb.login_request.name)
+  // @@protoc_insertion_point(field_set_char:pb.login.login_request.name)
 }
 inline void login_request::set_name(const char* value, size_t size) {
-  set_has_name();
+  
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:pb.login_request.name)
+  // @@protoc_insertion_point(field_set_pointer:pb.login.login_request.name)
 }
 inline ::std::string* login_request::mutable_name() {
-  set_has_name();
-  // @@protoc_insertion_point(field_mutable:pb.login_request.name)
+  
+  // @@protoc_insertion_point(field_mutable:pb.login.login_request.name)
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* login_request::release_name() {
-  // @@protoc_insertion_point(field_release:pb.login_request.name)
-  if (!has_name()) {
-    return NULL;
-  }
-  clear_has_name();
-  return name_.ReleaseNonDefaultNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_release:pb.login.login_request.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void login_request::set_allocated_name(::std::string* name) {
   if (name != NULL) {
-    set_has_name();
+    
   } else {
-    clear_has_name();
+    
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:pb.login_request.name)
+  // @@protoc_insertion_point(field_set_allocated:pb.login.login_request.name)
 }
 
-// required string passwd = 2;
-inline bool login_request::has_passwd() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void login_request::set_has_passwd() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void login_request::clear_has_passwd() {
-  _has_bits_[0] &= ~0x00000002u;
-}
+// string passwd = 2;
 inline void login_request::clear_passwd() {
   passwd_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_passwd();
 }
 inline const ::std::string& login_request::passwd() const {
-  // @@protoc_insertion_point(field_get:pb.login_request.passwd)
+  // @@protoc_insertion_point(field_get:pb.login.login_request.passwd)
   return passwd_.GetNoArena();
 }
 inline void login_request::set_passwd(const ::std::string& value) {
-  set_has_passwd();
+  
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:pb.login_request.passwd)
+  // @@protoc_insertion_point(field_set:pb.login.login_request.passwd)
 }
 #if LANG_CXX11
 inline void login_request::set_passwd(::std::string&& value) {
-  set_has_passwd();
+  
   passwd_.SetNoArena(
     &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:pb.login_request.passwd)
+  // @@protoc_insertion_point(field_set_rvalue:pb.login.login_request.passwd)
 }
 #endif
 inline void login_request::set_passwd(const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  set_has_passwd();
+  
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:pb.login_request.passwd)
+  // @@protoc_insertion_point(field_set_char:pb.login.login_request.passwd)
 }
 inline void login_request::set_passwd(const char* value, size_t size) {
-  set_has_passwd();
+  
   passwd_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:pb.login_request.passwd)
+  // @@protoc_insertion_point(field_set_pointer:pb.login.login_request.passwd)
 }
 inline ::std::string* login_request::mutable_passwd() {
-  set_has_passwd();
-  // @@protoc_insertion_point(field_mutable:pb.login_request.passwd)
+  
+  // @@protoc_insertion_point(field_mutable:pb.login.login_request.passwd)
   return passwd_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* login_request::release_passwd() {
-  // @@protoc_insertion_point(field_release:pb.login_request.passwd)
-  if (!has_passwd()) {
-    return NULL;
-  }
-  clear_has_passwd();
-  return passwd_.ReleaseNonDefaultNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_release:pb.login.login_request.passwd)
+  
+  return passwd_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void login_request::set_allocated_passwd(::std::string* passwd) {
   if (passwd != NULL) {
-    set_has_passwd();
+    
   } else {
-    clear_has_passwd();
+    
   }
   passwd_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), passwd);
-  // @@protoc_insertion_point(field_set_allocated:pb.login_request.passwd)
+  // @@protoc_insertion_point(field_set_allocated:pb.login.login_request.passwd)
 }
 
 #ifdef __GNUC__
@@ -349,6 +309,7 @@ inline void login_request::set_allocated_passwd(::std::string* passwd) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace login
 }  // namespace pb
 
 // @@protoc_insertion_point(global_scope)

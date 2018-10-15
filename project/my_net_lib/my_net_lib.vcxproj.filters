@@ -82,6 +82,12 @@
     <ClCompile Include="..\..\src\proto\proc.pb.cc">
       <Filter>src\proto</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\proto\internal.pb.cc">
+      <Filter>src\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\central\central_client.cpp">
+      <Filter>src\central</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\base\base_client.h">
@@ -122,6 +128,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\proto\proc.pb.h">
       <Filter>src\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\proto\internal.pb.h">
+      <Filter>src\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\central\central_client.h">
+      <Filter>src\central</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

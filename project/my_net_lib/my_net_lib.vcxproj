@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\src\base\module.cpp" />
     <ClCompile Include="..\..\src\base\route.cpp" />
     <ClCompile Include="..\..\src\central\central.cpp" />
+    <ClCompile Include="..\..\src\central\central_client.cpp" />
     <ClCompile Include="..\..\src\central\central_server.cpp" />
     <ClCompile Include="..\..\src\client\main.cpp" />
     <ClCompile Include="..\..\src\common\config_settings.cpp" />
@@ -32,6 +33,7 @@
     <ClCompile Include="..\..\src\common\msg.cpp" />
     <ClCompile Include="..\..\src\gateway\gateway.cpp" />
     <ClCompile Include="..\..\src\gateway\gateway_server.cpp" />
+    <ClCompile Include="..\..\src\proto\internal.pb.cc" />
     <ClCompile Include="..\..\src\proto\login.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
   </ItemGroup>
@@ -41,12 +43,14 @@
     <ClInclude Include="..\..\src\base\common_client.h" />
     <ClInclude Include="..\..\src\base\module.h" />
     <ClInclude Include="..\..\src\base\route.h" />
+    <ClInclude Include="..\..\src\central\central_client.h" />
     <ClInclude Include="..\..\src\central\central_server.h" />
     <ClInclude Include="..\..\src\common\common.h" />
     <ClInclude Include="..\..\src\common\config_settings.h" />
     <ClInclude Include="..\..\src\common\log.h" />
     <ClInclude Include="..\..\src\common\msg.h" />
     <ClInclude Include="..\..\src\gateway\gateway_server.h" />
+    <ClInclude Include="..\..\src\proto\internal.pb.h" />
     <ClInclude Include="..\..\src\proto\login.pb.h" />
     <ClInclude Include="..\..\src\proto\proc.pb.h" />
   </ItemGroup>
@@ -137,7 +141,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\study\myNetLIbPro\myNetLib\src\common;E:\study\myNetLIbPro\myNetLib\src\base;E:\study\myNetLIbPro\myNetLib\src\proto;D:\code\boost\boost_1_67_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\..\src\common;$(SolutionDir)\..\..\src\base;$(SolutionDir)\..\..\src\proto;D:\code\boost\boost_1_67_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

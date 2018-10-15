@@ -33,3 +33,8 @@ void module::set_route(std::shared_ptr<route> route)
 {
 	m_route = route;
 }
+
+uint32_t module::get_type()
+{
+	return m_type;
+}
