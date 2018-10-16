@@ -9,7 +9,7 @@ struct proto_header
 	union { uint32_t m_mid = 0; };
 	unsigned int m_length = 0;
 
-	bool check_msg(unsigned int max_body_length);
+	bool check_msg();
 };
 
 struct proto_msg : public proto_header

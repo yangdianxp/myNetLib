@@ -55,7 +55,7 @@ void base_client::do_read_header()
 	{
 		if (!ec)
 		{
-			if (m_msg.check_msg(proto_msg::msg_data_length))
+			if (m_msg.check_msg())
 			{
 				do_read_body();
 			}
