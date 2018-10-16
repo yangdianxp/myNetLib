@@ -11,6 +11,8 @@ public:
 	central_client(boost::asio::io_context& io_context, tcp::socket socket);
 
 	void handle_module_logon(proto_msg& msg);
+
+	void init(std::shared_ptr<base_server>);
 };
 
 

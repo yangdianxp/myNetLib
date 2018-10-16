@@ -8,6 +8,7 @@ class gateway_server : public module
 public:
 	gateway_server(boost::asio::io_context& io_context, short port);
 
+	void connect_remote();
 private:
 
 };

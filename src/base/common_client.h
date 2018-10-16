@@ -18,7 +18,7 @@ public:
 	void handle_nothing(proto_msg& msg);
 	void module_logon();
 
-	void init();
+	virtual void init(std::shared_ptr<base_server>);
 	void set_active_type(uint32_t type);
 	void set_server(std::shared_ptr<base_server>);
 protected:

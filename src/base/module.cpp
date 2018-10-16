@@ -13,9 +13,13 @@ module::~module()
 void module::handle_accept_succ(tcp::socket& socket)
 {
 	std::shared_ptr<common_client> client = std::make_shared<common_client>(get_io_context(), std::move(socket));
-	client->set_server(shared_from_this());
-	auto client1 = std::dynamic_pointer_cast<base_client>(client);
-	m_route->add_client(client1);
+	client->init(shared_from_this());
+	m_route->add_client(client);
+}
+
+void module::connect_remote()
+{
+
 }
 
 void module::init()

@@ -16,8 +16,9 @@ int main(int argc, char* argv[])
 
 		SLOG_INFO << "server start.";
 		boost::asio::io_service io_context;
-		gateway_server s(io_context, config_reader.get_local_port());
-
+		std::shared_ptr<gateway_server> server =
+			std::make_shared<gateway_server>(io_context, config_reader.get_local_port());
+		server->connect_remote();
 		io_context.run();
 	}
 	catch (std::exception& e)

@@ -6,7 +6,7 @@
 class route
 {
 public:
-	void add_client(std::shared_ptr<base_client>& client);
+	void add_client(std::shared_ptr<base_client> client);
 private:
 	std::set<std::shared_ptr<base_client>> m_clients;
 };

@@ -54,15 +54,16 @@ void common_client::module_logon()
 /*œ˚œ¢√Ë ˆ*/
 std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_login_request, "client login request" },
-	{ cmd_module_logon, "module login request" }
+	{ cmd_module_logon, "module logon request" }
 };
 
-void common_client::init()
+void common_client::init(std::shared_ptr<base_server> server)
 {
+	set_server(server);
 	for (int i = 0; i < cmd_end; i++)
 	{
-		//std::shared_ptr<common_client> client = std::dynamic_pointer_cast<common_client>(shared_from_this());
-		//m_function_set[i] = std::bind(&common_client::handle_nothing, this, std::placeholders::_1);
+		std::shared_ptr<common_client> client = std::dynamic_pointer_cast<common_client>(shared_from_this());
+		m_function_set[i] = std::bind(&common_client::handle_nothing, client, std::placeholders::_1);
 	}
 }
 void common_client::set_active_type(uint32_t type)

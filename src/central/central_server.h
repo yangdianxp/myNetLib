@@ -8,8 +8,9 @@ class central_server : public module
 public:
 	central_server(boost::asio::io_context& io_context, short port);
 	virtual void handle_accept_succ(tcp::socket& socket);
+	void connect_remote();
 private:
-
+	
 };
 
 
