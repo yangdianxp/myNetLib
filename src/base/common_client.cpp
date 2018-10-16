@@ -61,7 +61,8 @@ void common_client::init()
 {
 	for (int i = 0; i < cmd_end; i++)
 	{
-		m_function_set[i] = std::bind(&common_client::handle_nothing, shared_from_this(), std::placeholders::_1);
+		//std::shared_ptr<common_client> client = std::dynamic_pointer_cast<common_client>(shared_from_this());
+		//m_function_set[i] = std::bind(&common_client::handle_nothing, this, std::placeholders::_1);
 	}
 }
 void common_client::set_active_type(uint32_t type)

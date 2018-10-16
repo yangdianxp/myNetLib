@@ -4,7 +4,8 @@ central_client::central_client(boost::asio::io_context& io_context, \
 	std::string remote_ip, std::string remote_port) :
 	common_client(io_context, remote_ip, remote_port)
 {
-
+	//std::shared_ptr<central_client> client = std::dynamic_pointer_cast<central_client>(shared_from_this());
+	//m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, this, std::placeholders::_1);
 }
 
 central_client::central_client(boost::asio::io_context& io_context, tcp::socket socket) :
@@ -15,6 +16,6 @@ central_client::central_client(boost::asio::io_context& io_context, tcp::socket 
 
 void central_client::handle_module_logon(proto_msg& msg)
 {
-
+	SLOG_DEBUG << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 }
 
