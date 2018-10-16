@@ -12,7 +12,10 @@ public:
 		std::string remote_ip, std::string remote_port);
 	common_client(boost::asio::io_context& io_context, tcp::socket socket);
 	virtual ~common_client();
+
+	virtual void dispatch(proto_msg& msg);
 	void handle_connect_succ();
+	void handle_nothing(proto_msg& msg);
 	void module_logon();
 
 	void init();
@@ -23,6 +26,8 @@ protected:
 	std::shared_ptr<base_server> m_server;
 	/*消息分发函数集*/
 	std::function<void(proto_msg&)> m_function_set[cmd_end];
+	/*消息描述*/
+	static std::map<int, std::string> m_cmd_desc;
 private:
 	/*client主动连接模块的类型*/
 	uint32_t m_active_type = module_none_type;

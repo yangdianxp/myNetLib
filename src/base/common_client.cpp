@@ -16,6 +16,10 @@ common_client::~common_client()
 {
 
 }
+void common_client::dispatch(proto_msg& msg)
+{
+	m_function_set[msg.m_cmd](msg);
+}
 void common_client::handle_connect_succ()
 {
 	SLOG_INFO << "connect succ";
@@ -23,6 +27,10 @@ void common_client::handle_connect_succ()
 	{
 		module_logon();
 	}
+}
+void common_client::handle_nothing(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 }
 void common_client::module_logon()
 {
@@ -43,11 +51,17 @@ void common_client::module_logon()
 	}
 }
 
+/*ÏûÏ¢ÃèÊö*/
+std::map<int, std::string> common_client::m_cmd_desc = {
+	{ cmd_login_request, "client login request" },
+	{ cmd_module_logon, "module login request" }
+};
+
 void common_client::init()
 {
 	for (int i = 0; i < cmd_end; i++)
 	{
-		//m_function_set[i]
+		m_function_set[i] = std::bind(&common_client::handle_nothing, shared_from_this(), std::placeholders::_1);
 	}
 }
 void common_client::set_active_type(uint32_t type)
