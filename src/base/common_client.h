@@ -1,5 +1,6 @@
 #ifndef __COMMON_CLIENT_H__
 #define __COMMON_CLIENT_H__
+#include <functional>
 #include "base_client.h"
 #include "base_server.h"
 
@@ -13,11 +14,15 @@ public:
 	virtual ~common_client();
 	void handle_connect_succ();
 	void module_logon();
+
+	void init();
 	void set_active_type(uint32_t type);
 	void set_server(std::shared_ptr<base_server>);
 protected:
 	/*从属于服务器*/
 	std::shared_ptr<base_server> m_server;
+	/*消息分发函数集*/
+	std::function<void(proto_msg&)> m_function_set[cmd_end];
 private:
 	/*client主动连接模块的类型*/
 	uint32_t m_active_type = module_none_type;

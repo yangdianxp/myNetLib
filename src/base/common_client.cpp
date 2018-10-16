@@ -42,6 +42,14 @@ void common_client::module_logon()
 		write((char *)&msg, msg.size());
 	}
 }
+
+void common_client::init()
+{
+	for (int i = 0; i < cmd_end; i++)
+	{
+		//m_function_set[i]
+	}
+}
 void common_client::set_active_type(uint32_t type)
 {
 	m_active_type = type;
