@@ -1,6 +1,7 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 #include <memory>
+#include <string>
 
 #include "proc.pb.h"
 #include "msg.h"

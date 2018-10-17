@@ -22,13 +22,19 @@ struct proto_msg : public proto_header
 	}
 
 	template<class T>
+	int parse(T& proto)
+	{
+		return proto.ParseFromArray(m_data, m_length);
+	}
+
+	template<class T>
 	int serialize_msg(const T& msg)
 	{
 		int c = msg.ByteSize();
 		if (c < msg_data_length)
 		{
 			m_length = c;
-			msg.SerializeToArray(data, c);
+			msg.SerializeToArray(m_data, c);
 			return c;
 		}
 		return 0;
@@ -37,7 +43,7 @@ struct proto_msg : public proto_header
 	enum {
 		msg_data_length = 1024 * 64
 	};
-	char data[msg_data_length];
+	char m_data[msg_data_length];
 };
 
 enum cmd_enum
