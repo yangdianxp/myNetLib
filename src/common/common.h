@@ -2,6 +2,7 @@
 #define __COMMON_H__
 #include <memory>
 #include <string>
+#include <map>
 
 #include "proc.pb.h"
 #include "msg.h"
@@ -19,6 +20,5 @@ enum g_module_type
 	module_media_type = 16,
 	module_end_type
 };
-
 
 #endif

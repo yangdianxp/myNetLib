@@ -23,9 +23,6 @@
     <Filter Include="src\client\conf">
       <UniqueIdentifier>{624acf31-37cb-4618-a80c-00a2dbb059c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\common">
-      <UniqueIdentifier>{bff80504-be6f-4c55-ab21-66fcb9d258f5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\gateway">
       <UniqueIdentifier>{b7d3efb9-02f6-467a-a20b-954f82e90b4f}</UniqueIdentifier>
     </Filter>
@@ -34,6 +31,9 @@
     </Filter>
     <Filter Include="src\proto">
       <UniqueIdentifier>{eae81fdf-da6f-4422-a2af-cb186de7fa5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{915bf670-d316-4c36-baf3-f475636ee473}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,15 +61,6 @@
     <ClCompile Include="..\..\src\client\main.cpp">
       <Filter>src\client</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\common\config_settings.cpp">
-      <Filter>src\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\common\log.cpp">
-      <Filter>src\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\common\msg.cpp">
-      <Filter>src\common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\gateway\gateway.cpp">
       <Filter>src\gateway</Filter>
     </ClCompile>
@@ -87,6 +78,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\central\central_client.cpp">
       <Filter>src\central</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\config_settings.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\log.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\msg.cpp">
+      <Filter>src\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,18 +108,6 @@
     <ClInclude Include="..\..\src\central\central_server.h">
       <Filter>src\central</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\common\common.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\config_settings.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\log.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\msg.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\gateway\gateway_server.h">
       <Filter>src\gateway</Filter>
     </ClInclude>
@@ -135,6 +123,18 @@
     <ClInclude Include="..\..\src\central\central_client.h">
       <Filter>src\central</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\common\common.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\config_settings.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\log.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\msg.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\base\CMakeLists.txt">
@@ -146,14 +146,14 @@
     <Text Include="..\..\src\client\CMakeLists.txt">
       <Filter>src\client</Filter>
     </Text>
-    <Text Include="..\..\src\common\CMakeLists.txt">
-      <Filter>src\common</Filter>
-    </Text>
     <Text Include="..\..\src\gateway\CMakeLists.txt">
       <Filter>src\gateway</Filter>
     </Text>
     <Text Include="..\..\src\proto\CMakeLists.txt">
       <Filter>src\proto</Filter>
+    </Text>
+    <Text Include="..\..\src\common\CMakeLists.txt">
+      <Filter>src\common</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
