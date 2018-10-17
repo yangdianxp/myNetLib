@@ -36,6 +36,7 @@
     <ClCompile Include="..\..\src\proto\internal.pb.cc" />
     <ClCompile Include="..\..\src\proto\login.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
+    <ClCompile Include="..\..\test\boost_random_test\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\base\base_client.h" />
@@ -61,6 +62,7 @@
     <Text Include="..\..\src\common\CMakeLists.txt" />
     <Text Include="..\..\src\gateway\CMakeLists.txt" />
     <Text Include="..\..\src\proto\CMakeLists.txt" />
+    <Text Include="..\..\test\boost_random_test\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml" />

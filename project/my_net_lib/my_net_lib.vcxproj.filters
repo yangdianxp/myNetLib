@@ -35,6 +35,12 @@
     <Filter Include="src\proto">
       <UniqueIdentifier>{eae81fdf-da6f-4422-a2af-cb186de7fa5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{c73554d5-b1db-44b3-aa58-7366a146d39b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_random_test">
+      <UniqueIdentifier>{4885b798-fea0-42e2-a3ae-55d1f1181c19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\base\base_client.cpp">
@@ -87,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\central\central_client.cpp">
       <Filter>src\central</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_random_test\main.cpp">
+      <Filter>test\boost_random_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +163,9 @@
     </Text>
     <Text Include="..\..\src\proto\CMakeLists.txt">
       <Filter>src\proto</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_random_test\CMakeLists.txt">
+      <Filter>test\boost_random_test</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
