@@ -74,7 +74,7 @@ void base_client::do_read_header()
 void base_client::do_read_body()
 {
 	boost::asio::async_read(m_socket,
-		boost::asio::buffer(m_msg.data, m_msg.m_length),
+		boost::asio::buffer(m_msg.m_data, m_msg.m_length),
 		[this](boost::system::error_code ec, std::size_t)
 	{
 		if (!ec)

@@ -16,6 +16,11 @@ central_client::central_client(boost::asio::io_context& io_context, tcp::socket 
 void central_client::handle_module_logon(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::internal::logon logon;
+	msg.parse(logon);
+	SLOG_INFO << "module ip:" << logon.ip() << ", port:" << logon.port() << ", type:" 
+		<< logon.type() << " " << config_settings::instance().get_module_name(logon.type());
+
 }
 
 void central_client::init(std::shared_ptr<base_server> server)

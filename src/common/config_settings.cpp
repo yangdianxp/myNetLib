@@ -17,7 +17,7 @@ config_settings& config_settings::instance()
 
 config_settings::config_settings()
 {
-
+	init();
 }
 
 void config_settings::load(const std::string &filename)
@@ -60,6 +60,15 @@ void config_settings::print()
 		<< "m_remote_port:" << m_remote_port;
 }
 
+void config_settings::init()
+{
+	m_type_glossary.left.insert(std::make_pair("none", module_none_type));
+	m_type_glossary.left.insert(std::make_pair("gateway", module_gateway_type));
+	m_type_glossary.left.insert(std::make_pair("login", module_login_type));
+	m_type_glossary.left.insert(std::make_pair("central", module_central_type));
+	m_type_glossary.left.insert(std::make_pair("media", module_media_type));
+}
+
 std::string config_settings::get_local_ip()
 {
 	return m_local_ip;
@@ -90,11 +99,28 @@ uint32_t config_settings::get_type()
 	return m_type;
 }
 
+std::string config_settings::get_module_name(uint32_t type)
+{
+	try
+	{
+		return m_type_glossary.right.at(type);
+	}
+	catch (std::exception& e)
+	{
+		SLOG_ERROR << "Exception: " << e.what();
+	}
+	return std::string();
+}
+
 uint32_t config_settings::convert_type(std::string& str_type)
 {
-	static std::map<std::string, uint32_t> type_glossary = {
-		{"none", module_none_type},	{"gateway", module_gateway_type}, {"login", module_login_type},
-		{"central", module_central_type}, {"media", module_media_type}
-	};
-	return type_glossary[str_type];
+	try
+	{
+		return m_type_glossary.left.at(str_type);
+	}
+	catch (std::exception& e)
+	{
+		SLOG_ERROR << "Exception: " << e.what();
+	}
+	return module_none_type;
 }
