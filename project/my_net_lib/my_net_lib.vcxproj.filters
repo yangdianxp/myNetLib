@@ -183,5 +183,6 @@
     <None Include="..\..\src\proto\proc.proto">
       <Filter>src\proto</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
