@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\src\base\common_client.cpp" />
     <ClCompile Include="..\..\src\base\module.cpp" />
     <ClCompile Include="..\..\src\base\route.cpp" />
+    <ClCompile Include="..\..\src\base\unique_code.cpp" />
     <ClCompile Include="..\..\src\central\central.cpp" />
     <ClCompile Include="..\..\src\central\central_client.cpp" />
     <ClCompile Include="..\..\src\central\central_server.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="..\..\src\base\common_client.h" />
     <ClInclude Include="..\..\src\base\module.h" />
     <ClInclude Include="..\..\src\base\route.h" />
+    <ClInclude Include="..\..\src\base\unique_code.h" />
     <ClInclude Include="..\..\src\central\central_client.h" />
     <ClInclude Include="..\..\src\central\central_server.h" />
     <ClInclude Include="..\..\src\common\common.h" />

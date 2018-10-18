@@ -88,6 +88,9 @@
     <ClCompile Include="..\..\src\common\msg.cpp">
       <Filter>src\common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\base\unique_code.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\base\base_client.h">
@@ -134,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\common\msg.h">
       <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\unique_code.h">
+      <Filter>src\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
