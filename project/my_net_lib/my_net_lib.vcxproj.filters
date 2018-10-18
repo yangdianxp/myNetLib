@@ -32,8 +32,16 @@
     <Filter Include="src\proto">
       <UniqueIdentifier>{eae81fdf-da6f-4422-a2af-cb186de7fa5c}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="test">
+      <UniqueIdentifier>{c73554d5-b1db-44b3-aa58-7366a146d39b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_random_test">
+      <UniqueIdentifier>{4885b798-fea0-42e2-a3ae-55d1f1181c19}</UniqueIdentifier>
+=======
     <Filter Include="src\common">
       <UniqueIdentifier>{915bf670-d316-4c36-baf3-f475636ee473}</UniqueIdentifier>
+>>>>>>> 5e62ea3562eca277818f0f5c53fbb03a59ddad56
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +87,10 @@
     <ClCompile Include="..\..\src\central\central_client.cpp">
       <Filter>src\central</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\..\test\boost_random_test\main.cpp">
+      <Filter>test\boost_random_test</Filter>
+=======
     <ClCompile Include="..\..\src\common\config_settings.cpp">
       <Filter>src\common</Filter>
     </ClCompile>
@@ -87,6 +99,7 @@
     </ClCompile>
     <ClCompile Include="..\..\src\common\msg.cpp">
       <Filter>src\common</Filter>
+>>>>>>> 5e62ea3562eca277818f0f5c53fbb03a59ddad56
     </ClCompile>
     <ClCompile Include="..\..\src\base\unique_code.cpp">
       <Filter>src\base</Filter>
@@ -158,8 +171,13 @@
     <Text Include="..\..\src\proto\CMakeLists.txt">
       <Filter>src\proto</Filter>
     </Text>
+<<<<<<< HEAD
+    <Text Include="..\..\test\boost_random_test\CMakeLists.txt">
+      <Filter>test\boost_random_test</Filter>
+=======
     <Text Include="..\..\src\common\CMakeLists.txt">
       <Filter>src\common</Filter>
+>>>>>>> 5e62ea3562eca277818f0f5c53fbb03a59ddad56
     </Text>
   </ItemGroup>
   <ItemGroup>
