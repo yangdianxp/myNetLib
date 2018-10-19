@@ -22,6 +22,8 @@ public:
 protected:
 	/*路由表*/
 	std::shared_ptr<route> m_route;
+	/*自身id*/
+	uint32_t m_id = 0;
 private:
 	/*自身模块类型*/
 	uint32_t m_type = module_none_type;

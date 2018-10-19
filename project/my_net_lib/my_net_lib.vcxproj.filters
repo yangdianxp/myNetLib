@@ -16,6 +16,12 @@
     <Filter Include="src\central">
       <UniqueIdentifier>{9772163f-b977-4602-95de-23c421489010}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\central\conf">
+      <UniqueIdentifier>{4e4841f2-6500-4878-922d-23089ff6e98a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{f33514f8-250f-431f-97c4-e9e25e7bd601}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -26,6 +32,9 @@
     </Text>
     <Text Include="..\..\src\central\CMakeLists.txt">
       <Filter>src\central</Filter>
+    </Text>
+    <Text Include="..\..\src\common\CMakeLists.txt">
+      <Filter>src\common</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +71,15 @@
     <ClCompile Include="..\..\src\central\central_server.cpp">
       <Filter>src\central</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\common\config_settings.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\log.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\msg.cpp">
+      <Filter>src\common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -91,5 +109,22 @@
     <ClInclude Include="..\..\src\central\central_server.h">
       <Filter>src\central</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\common\common.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\config_settings.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\log.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\msg.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\src\central\conf\net.xml">
+      <Filter>src\central\conf</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

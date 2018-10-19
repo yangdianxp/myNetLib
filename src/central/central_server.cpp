@@ -4,7 +4,11 @@
 central_server::central_server(boost::asio::io_context& io_context, short port) :
 	module(io_context, port)
 {
-
+	config_settings& config_reader = config_settings::instance();
+	int mid_begin = config_reader.get_mid_begin();
+	int mid_end = config_reader.get_mid_end();
+	m_unique_mid.init(mid_begin, mid_end);
+	m_id = m_unique_mid.get();
 }
 
 void central_server::handle_accept_succ(tcp::socket& socket)
@@ -17,4 +21,9 @@ void central_server::handle_accept_succ(tcp::socket& socket)
 void central_server::connect_remote()
 {
 
+}
+
+unique_code& central_server::get_unique_mid()
+{
+	return m_unique_mid;
 }

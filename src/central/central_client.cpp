@@ -1,4 +1,5 @@
 #include "central_client.h"
+#include "central_server.h"
 
 central_client::central_client(boost::asio::io_context& io_context, \
 	std::string remote_ip, std::string remote_port) :
@@ -20,7 +21,12 @@ void central_client::handle_module_logon(proto_msg& msg)
 	msg.parse(logon);
 	SLOG_INFO << "module ip:" << logon.ip() << ", port:" << logon.port() << ", type:" 
 		<< logon.type() << " " << config_settings::instance().get_module_name(logon.type());
-
+	std::shared_ptr<central_server> server = std::dynamic_pointer_cast<central_server>(m_server);
+	if (server)
+	{
+		int id = server->get_unique_mid().get();
+		
+	}
 }
 
 void central_client::init(std::shared_ptr<base_server> server)

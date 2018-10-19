@@ -17,6 +17,8 @@ public:
 	uint32_t get_remote_port();
 	std::string get_log_filename();
 	uint32_t get_type();
+	uint32_t get_mid_begin();
+	uint32_t get_mid_end();
 
 	std::string get_module_name(uint32_t type);
 private:
@@ -29,6 +31,8 @@ private:
 	std::string m_remote_ip;
 	uint32_t m_remote_port = 0;
 	uint32_t m_type = 0;
+	uint32_t m_mid_begin = 0;
+	uint32_t m_mid_end = 0;
 
 	boost::bimaps::bimap<boost::bimaps::unordered_set_of<std::string>, boost::bimaps::unordered_set_of<uint32_t>> m_type_glossary;
 	

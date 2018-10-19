@@ -10,4 +10,9 @@ See http://www.boost.org/LICENSE_1_0.txt
 	<local_port>20000</local_port>
   <!--自己的类型-->
   <type>gateway</type>
+  <!--mid范围-->
+  <mid_range>
+    <begin>1</begin>
+    <end>10000</end>
+  </mid_range>
 </conf>

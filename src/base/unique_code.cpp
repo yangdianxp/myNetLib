@@ -16,6 +16,7 @@ void unique_code::init(uint32_t min, uint32_t max)
 	m_max = max;
 	int temp = m_max - m_min;
 	int unit_cnt = temp / bitset_unit_len;
+	m_bitset.clear();
 	for (int i = 0; i <= unit_cnt; i++)
 	{
 		m_bitset.insert(make_pair(i, std::bitset<bitset_unit_len>()));

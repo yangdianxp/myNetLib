@@ -36,6 +36,9 @@ void config_settings::load(const std::string &filename)
 	m_remote_ip = tree.get("conf.remote_ip", "127.0.0.1");
 	m_remote_port = tree.get("conf.remote_port", 0);
 	std::string type = tree.get("conf.type", "none");
+	m_mid_begin = tree.get("conf.mid_range.begin", 1);
+	m_mid_end = tree.get("conf.mid_range.end", 1);
+
 	m_type = convert_type(type);
 
 	// Use the default-value version of get to find the debug level.
@@ -57,7 +60,9 @@ void config_settings::print()
 		<< "m_local_ip:" << m_local_ip << std::endl
 		<< "m_local_port:" << m_local_port << std::endl
 		<< "m_remote_ip:" << m_remote_ip << std::endl
-		<< "m_remote_port:" << m_remote_port;
+		<< "m_remote_port:" << m_remote_port
+		<< "m_type:" << m_type << " " << get_module_name(m_type)
+		<< "m_mid_begin:" << m_mid_begin << " " << "m_mid_end:" << m_mid_end;
 }
 
 void config_settings::init()
@@ -97,6 +102,16 @@ std::string config_settings::get_log_filename()
 uint32_t config_settings::get_type()
 {
 	return m_type;
+}
+
+uint32_t config_settings::get_mid_begin()
+{
+	return m_mid_begin;
+}
+
+uint32_t config_settings::get_mid_end()
+{
+	return m_mid_end;
 }
 
 std::string config_settings::get_module_name(uint32_t type)

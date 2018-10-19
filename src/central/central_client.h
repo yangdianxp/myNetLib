@@ -13,7 +13,6 @@ public:
 	void handle_module_logon(proto_msg& msg);
 	void init(std::shared_ptr<base_server>);
 private:
-
 };
 
 
