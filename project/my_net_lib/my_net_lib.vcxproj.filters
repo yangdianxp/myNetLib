@@ -1,212 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{9e05b404-d6bb-4b15-a38f-ebfe452b9e8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\base">
-      <UniqueIdentifier>{a1b5bef0-c52d-4fbe-b84b-8dd2e354473b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\central">
-      <UniqueIdentifier>{4966bc42-47fa-4aa9-b2a8-1c654d501d90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\central\conf">
-      <UniqueIdentifier>{b5b8a1d9-57d7-42cd-a908-9c2ca9fb6edc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\client">
-      <UniqueIdentifier>{c9fe2162-d1b8-4919-82d2-d37a2d453066}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\client\conf">
-      <UniqueIdentifier>{624acf31-37cb-4618-a80c-00a2dbb059c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\gateway">
-      <UniqueIdentifier>{b7d3efb9-02f6-467a-a20b-954f82e90b4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\gateway\conf">
-      <UniqueIdentifier>{b8869d67-4ad0-4215-980b-ae361f3e1980}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\proto">
-      <UniqueIdentifier>{eae81fdf-da6f-4422-a2af-cb186de7fa5c}</UniqueIdentifier>
-    </Filter>
-<<<<<<< HEAD
-    <Filter Include="test">
-      <UniqueIdentifier>{c73554d5-b1db-44b3-aa58-7366a146d39b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="test\boost_random_test">
-      <UniqueIdentifier>{4885b798-fea0-42e2-a3ae-55d1f1181c19}</UniqueIdentifier>
-=======
-    <Filter Include="src\common">
-      <UniqueIdentifier>{915bf670-d316-4c36-baf3-f475636ee473}</UniqueIdentifier>
->>>>>>> 5e62ea3562eca277818f0f5c53fbb03a59ddad56
+    <Filter Include="base">
+      <UniqueIdentifier>{43916d1a-5584-4a31-b3b8-f3fdb6fc0120}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\base\base_client.cpp">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\base\base_server.cpp">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\base\common_client.cpp">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\base\module.cpp">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\base\route.cpp">
-      <Filter>src\base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\central\central.cpp">
-      <Filter>src\central</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\central\central_server.cpp">
-      <Filter>src\central</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\client\main.cpp">
-      <Filter>src\client</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\gateway\gateway.cpp">
-      <Filter>src\gateway</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\gateway\gateway_server.cpp">
-      <Filter>src\gateway</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\proto\login.pb.cc">
-      <Filter>src\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\proto\proc.pb.cc">
-      <Filter>src\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\proto\internal.pb.cc">
-      <Filter>src\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\central\central_client.cpp">
-      <Filter>src\central</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="..\..\test\boost_random_test\main.cpp">
-      <Filter>test\boost_random_test</Filter>
-=======
-    <ClCompile Include="..\..\src\common\config_settings.cpp">
-      <Filter>src\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\common\log.cpp">
-      <Filter>src\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\common\msg.cpp">
-      <Filter>src\common</Filter>
->>>>>>> 5e62ea3562eca277818f0f5c53fbb03a59ddad56
+      <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\base\unique_code.cpp">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\base\base_client.h">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\base\base_server.h">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\base\common_client.h">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\base\module.h">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\base\route.h">
-      <Filter>src\base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\central\central_server.h">
-      <Filter>src\central</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\gateway\gateway_server.h">
-      <Filter>src\gateway</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\proto\login.pb.h">
-      <Filter>src\proto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\proto\proc.pb.h">
-      <Filter>src\proto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\proto\internal.pb.h">
-      <Filter>src\proto</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\central\central_client.h">
-      <Filter>src\central</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\common.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\config_settings.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\log.h">
-      <Filter>src\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\msg.h">
-      <Filter>src\common</Filter>
+      <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\base\unique_code.h">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\base\CMakeLists.txt">
-      <Filter>src\base</Filter>
+      <Filter>base</Filter>
     </Text>
-    <Text Include="..\..\src\central\CMakeLists.txt">
-      <Filter>src\central</Filter>
-    </Text>
-    <Text Include="..\..\src\client\CMakeLists.txt">
-      <Filter>src\client</Filter>
-    </Text>
-    <Text Include="..\..\src\gateway\CMakeLists.txt">
-      <Filter>src\gateway</Filter>
-    </Text>
-    <Text Include="..\..\src\proto\CMakeLists.txt">
-      <Filter>src\proto</Filter>
-    </Text>
-<<<<<<< HEAD
-    <Text Include="..\..\test\boost_random_test\CMakeLists.txt">
-      <Filter>test\boost_random_test</Filter>
-=======
-    <Text Include="..\..\src\common\CMakeLists.txt">
-      <Filter>src\common</Filter>
->>>>>>> 5e62ea3562eca277818f0f5c53fbb03a59ddad56
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\..\src\central\conf\net.xml">
-      <Filter>src\central\conf</Filter>
-    </Xml>
-    <Xml Include="..\..\src\client\conf\net.xml">
-      <Filter>src\client\conf</Filter>
-    </Xml>
-    <Xml Include="..\..\src\gateway\conf\net.xml">
-      <Filter>src\gateway\conf</Filter>
-    </Xml>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\proto\internal.proto">
-      <Filter>src\proto</Filter>
-    </None>
-    <None Include="..\..\src\proto\login.proto">
-      <Filter>src\proto</Filter>
-    </None>
-    <None Include="..\..\src\proto\prebuild.bat">
-      <Filter>src\proto</Filter>
-    </None>
-    <None Include="..\..\src\proto\prebuild.sh">
-      <Filter>src\proto</Filter>
-    </None>
-    <None Include="..\..\src\proto\proc.proto">
-      <Filter>src\proto</Filter>
-    </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -25,19 +25,6 @@
     <ClCompile Include="..\..\src\base\module.cpp" />
     <ClCompile Include="..\..\src\base\route.cpp" />
     <ClCompile Include="..\..\src\base\unique_code.cpp" />
-    <ClCompile Include="..\..\src\central\central.cpp" />
-    <ClCompile Include="..\..\src\central\central_client.cpp" />
-    <ClCompile Include="..\..\src\central\central_server.cpp" />
-    <ClCompile Include="..\..\src\client\main.cpp" />
-    <ClCompile Include="..\..\src\common\config_settings.cpp" />
-    <ClCompile Include="..\..\src\common\log.cpp" />
-    <ClCompile Include="..\..\src\common\msg.cpp" />
-    <ClCompile Include="..\..\src\gateway\gateway.cpp" />
-    <ClCompile Include="..\..\src\gateway\gateway_server.cpp" />
-    <ClCompile Include="..\..\src\proto\internal.pb.cc" />
-    <ClCompile Include="..\..\src\proto\login.pb.cc" />
-    <ClCompile Include="..\..\src\proto\proc.pb.cc" />
-    <ClCompile Include="..\..\test\boost_random_test\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\base\base_client.h" />
@@ -46,38 +33,9 @@
     <ClInclude Include="..\..\src\base\module.h" />
     <ClInclude Include="..\..\src\base\route.h" />
     <ClInclude Include="..\..\src\base\unique_code.h" />
-    <ClInclude Include="..\..\src\central\central_client.h" />
-    <ClInclude Include="..\..\src\central\central_server.h" />
-    <ClInclude Include="..\..\src\common\common.h" />
-    <ClInclude Include="..\..\src\common\config_settings.h" />
-    <ClInclude Include="..\..\src\common\log.h" />
-    <ClInclude Include="..\..\src\common\msg.h" />
-    <ClInclude Include="..\..\src\gateway\gateway_server.h" />
-    <ClInclude Include="..\..\src\proto\internal.pb.h" />
-    <ClInclude Include="..\..\src\proto\login.pb.h" />
-    <ClInclude Include="..\..\src\proto\proc.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\base\CMakeLists.txt" />
-    <Text Include="..\..\src\central\CMakeLists.txt" />
-    <Text Include="..\..\src\client\CMakeLists.txt" />
-    <Text Include="..\..\src\common\CMakeLists.txt" />
-    <Text Include="..\..\src\gateway\CMakeLists.txt" />
-    <Text Include="..\..\src\proto\CMakeLists.txt" />
-    <Text Include="..\..\test\boost_random_test\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\..\src\central\conf\net.xml" />
-    <Xml Include="..\..\src\client\conf\net.xml" />
-    <Xml Include="..\..\src\gateway\conf\net.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\proto\internal.proto" />
-    <None Include="..\..\src\proto\login.proto" />
-    <None Include="..\..\src\proto\prebuild.bat" />
-    <None Include="..\..\src\proto\prebuild.sh" />
-    <None Include="..\..\src\proto\proc.proto" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
