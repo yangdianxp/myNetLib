@@ -85,14 +85,18 @@ void unique_code::change_index()
 		}
 		return false;
 	};
-	if (fn(it_index, m_bitset.end()))
+	if (!fn(it_index, m_bitset.end()))
 	{
-		return;
+		if (unit_index > 1)
+		{
+			unit_index = 0;
+			if (!fn(m_bitset.begin(), it_index))
+			{
+				m_index = UINT32_MAX;
+			}
+		}
+		else {
+			m_index = UINT32_MAX;
+		}
 	}
-	unit_index = 0;
-	if (fn(m_bitset.begin(), it_index))
-	{
-		return;
-	}
-	m_index = UINT32_MAX;
 }

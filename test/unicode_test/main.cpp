@@ -3,13 +3,13 @@
 
 int main()
 {
-	unique_code my_unique(1, 1001);
-	while (!my_unique.empty())
+	unique_code my_unique(1, 1000);
+	int tmp = 0;
+	while ((tmp = my_unique.get()))
 	{
-		std::cout << my_unique.get() << " ";
+		std::cout << tmp << " ";
 	}
 	std::cout << std::endl;
-	
 
 	return 0;
 }
