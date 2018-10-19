@@ -1,53 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="base">
-      <UniqueIdentifier>{43916d1a-5584-4a31-b3b8-f3fdb6fc0120}</UniqueIdentifier>
+    <Filter Include="test">
+      <UniqueIdentifier>{2de671e5-8b49-4cda-9f97-9dbfb463bbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\unicode_test">
+      <UniqueIdentifier>{1a3499e2-4376-4cca-abd5-8afede5c5700}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\base\base_client.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\base_server.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\common_client.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\module.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\route.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\unique_code.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\base\base_client.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\base_server.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\common_client.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\module.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\route.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\unique_code.h">
-      <Filter>base</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\src\base\CMakeLists.txt">
-      <Filter>base</Filter>
+    <Text Include="..\..\test\unicode_test\CMakeLists.txt">
+      <Filter>test\unicode_test</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\test\unicode_test\unique_code.cpp">
+      <Filter>test\unicode_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\unicode_test\main.cpp">
+      <Filter>test\unicode_test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\test\unicode_test\unique_code.h">
+      <Filter>test\unicode_test</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

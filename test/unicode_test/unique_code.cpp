@@ -14,7 +14,7 @@ void unique_code::init(uint32_t min, uint32_t max)
 {
 	m_min = min;
 	m_max = max;
-	int temp = m_max - m_min + 1;
+	int temp = m_max - m_min;
 	int unit_cnt = temp / bitset_unit_len;
 	for (int i = 0; i <= unit_cnt; i++)
 	{
@@ -45,20 +45,14 @@ void unique_code::del(uint32_t value)
 
 bool unique_code::empty()
 {
-	auto it_end = m_bitset.end();
-	for (auto it = m_bitset.begin(); it != it_end; ++it)
-	{
-		if (!it->second.all())
-		{
-			return false;
-		}
-	}
-	return true;
+	return (m_index == UINT32_MAX);
 }
 
 void unique_code::change_index()
 {
+	std::size_t max_index = m_max - m_min;
 	std::size_t unit_index = m_index / bitset_unit_len;
+	std::size_t unit_max = max_index / bitset_unit_len;
 	auto it_index = m_bitset.find(unit_index);
 	it_index->second.set(m_index % bitset_unit_len);
 	bool is_find = false;
@@ -66,7 +60,18 @@ void unique_code::change_index()
 	{
 		for (auto it = it_begin; it != it_end; ++it, ++unit_index)
 		{
-			if (!it->second.all())
+			if (unit_index == unit_max)
+			{
+				int end = max_index % bitset_unit_len;
+				for (int i = 0; i <= end; ++i)
+				{
+					if (!it->second.test(i))
+					{
+						m_index = unit_index * bitset_unit_len + i;
+						return true;
+					}
+				}
+			} else if (!it->second.all())
 			{
 				for (std::size_t i = 0; i < bitset_unit_len; ++i)
 				{
