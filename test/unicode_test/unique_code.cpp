@@ -35,6 +35,10 @@ uint32_t unique_code::get()
 
 void unique_code::del(uint32_t value)
 {
+	if (value < m_min || value > m_max) 
+	{
+		return;
+	}
 	int index = value - m_min;
 	m_bitset[index / bitset_unit_len].reset(index % bitset_unit_len);
 	if (m_index == UINT32_MAX)
