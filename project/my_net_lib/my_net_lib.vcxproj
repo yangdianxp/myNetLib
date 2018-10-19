@@ -19,13 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\..\src\base\CMakeLists.txt" />
+    <Text Include="..\..\src\central\CMakeLists.txt" />
     <Text Include="..\..\test\unicode_test\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\base\base_client.cpp" />
+    <ClCompile Include="..\..\src\base\base_server.cpp" />
+    <ClCompile Include="..\..\src\base\common_client.cpp" />
+    <ClCompile Include="..\..\src\base\module.cpp" />
+    <ClCompile Include="..\..\src\base\route.cpp" />
+    <ClCompile Include="..\..\src\base\unique_code.cpp" />
+    <ClCompile Include="..\..\src\central\central.cpp" />
+    <ClCompile Include="..\..\src\central\central_client.cpp" />
+    <ClCompile Include="..\..\src\central\central_server.cpp" />
     <ClCompile Include="..\..\test\unicode_test\main.cpp" />
     <ClCompile Include="..\..\test\unicode_test\unique_code.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\base\base_client.h" />
+    <ClInclude Include="..\..\src\base\base_server.h" />
+    <ClInclude Include="..\..\src\base\common_client.h" />
+    <ClInclude Include="..\..\src\base\module.h" />
+    <ClInclude Include="..\..\src\base\route.h" />
+    <ClInclude Include="..\..\src\base\unique_code.h" />
+    <ClInclude Include="..\..\src\central\central_client.h" />
+    <ClInclude Include="..\..\src\central\central_server.h" />
     <ClInclude Include="..\..\test\unicode_test\unique_code.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -7,10 +7,25 @@
     <Filter Include="test\unicode_test">
       <UniqueIdentifier>{1a3499e2-4376-4cca-abd5-8afede5c5700}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{7abd1598-dd23-4456-b880-758a44d1a771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\base">
+      <UniqueIdentifier>{18ff6f96-8261-4674-a435-e6e1c50fce14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\central">
+      <UniqueIdentifier>{9772163f-b977-4602-95de-23c421489010}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
       <Filter>test\unicode_test</Filter>
+    </Text>
+    <Text Include="..\..\src\base\CMakeLists.txt">
+      <Filter>src\base</Filter>
+    </Text>
+    <Text Include="..\..\src\central\CMakeLists.txt">
+      <Filter>src\central</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -20,10 +35,61 @@
     <ClCompile Include="..\..\test\unicode_test\main.cpp">
       <Filter>test\unicode_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\base\base_client.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\base\base_server.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\base\common_client.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\base\module.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\base\route.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\base\unique_code.cpp">
+      <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\central\central.cpp">
+      <Filter>src\central</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\central\central_client.cpp">
+      <Filter>src\central</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\central\central_server.cpp">
+      <Filter>src\central</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
       <Filter>test\unicode_test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\base_client.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\base_server.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\common_client.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\module.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\route.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\unique_code.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\central\central_client.h">
+      <Filter>src\central</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\central\central_server.h">
+      <Filter>src\central</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
