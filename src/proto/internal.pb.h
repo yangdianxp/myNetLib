@@ -38,7 +38,7 @@ namespace protobuf_internal_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[1];
+  static const ::google::protobuf::internal::ParseTable schema[2];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -50,11 +50,15 @@ namespace internal {
 class logon;
 class logonDefaultTypeInternal;
 extern logonDefaultTypeInternal _logon_default_instance_;
+class logon_ack;
+class logon_ackDefaultTypeInternal;
+extern logon_ackDefaultTypeInternal _logon_ack_default_instance_;
 }  // namespace internal
 }  // namespace pb
 namespace google {
 namespace protobuf {
 template<> ::pb::internal::logon* Arena::CreateMaybeMessage<::pb::internal::logon>(Arena*);
+template<> ::pb::internal::logon_ack* Arena::CreateMaybeMessage<::pb::internal::logon_ack>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace pb {
@@ -169,12 +173,122 @@ class logon : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::google::protobuf::int32 port() const;
   void set_port(::google::protobuf::int32 value);
 
+  // int32 type = 3;
+  void clear_type();
+  static const int kTypeFieldNumber = 3;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:pb.internal.logon)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::int32 port_;
+  ::google::protobuf::int32 type_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_internal_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class logon_ack : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.logon_ack) */ {
+ public:
+  logon_ack();
+  virtual ~logon_ack();
+
+  logon_ack(const logon_ack& from);
+
+  inline logon_ack& operator=(const logon_ack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  logon_ack(logon_ack&& from) noexcept
+    : logon_ack() {
+    *this = ::std::move(from);
+  }
+
+  inline logon_ack& operator=(logon_ack&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const logon_ack& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const logon_ack* internal_default_instance() {
+    return reinterpret_cast<const logon_ack*>(
+               &_logon_ack_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(logon_ack* other);
+  friend void swap(logon_ack& a, logon_ack& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline logon_ack* New() const final {
+    return CreateMaybeMessage<logon_ack>(NULL);
+  }
+
+  logon_ack* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<logon_ack>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const logon_ack& from);
+  void MergeFrom(const logon_ack& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(logon_ack* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 id = 1;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  ::google::protobuf::int32 id() const;
+  void set_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.internal.logon_ack)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 id_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
@@ -256,9 +370,43 @@ inline void logon::set_port(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:pb.internal.logon.port)
 }
 
+// int32 type = 3;
+inline void logon::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 logon::type() const {
+  // @@protoc_insertion_point(field_get:pb.internal.logon.type)
+  return type_;
+}
+inline void logon::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.logon.type)
+}
+
+// -------------------------------------------------------------------
+
+// logon_ack
+
+// int32 id = 1;
+inline void logon_ack::clear_id() {
+  id_ = 0;
+}
+inline ::google::protobuf::int32 logon_ack::id() const {
+  // @@protoc_insertion_point(field_get:pb.internal.logon_ack.id)
+  return id_;
+}
+inline void logon_ack::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.logon_ack.id)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

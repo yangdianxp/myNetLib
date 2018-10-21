@@ -5,9 +5,11 @@
 #include <boost/enable_shared_from_this.hpp>
 #include "common.h"
 
+using boost::asio::io_context;
+using boost::asio::ip::tcp;
+
 class base_client : public std::enable_shared_from_this<base_client>
 {
-	using tcp = boost::asio::ip::tcp;
 	static const unsigned char msg_header_length = sizeof(proto_header);
 public:
 	base_client(boost::asio::io_context& io_context,
@@ -37,6 +39,9 @@ protected:
 		active_conn = 2    //主动连接
 	};
 	client_type m_conn_type;
+
+	std::string m_ip;
+	uint32_t m_port;
 
 private:
 	void do_connect(const tcp::resolver::results_type& endpoints);

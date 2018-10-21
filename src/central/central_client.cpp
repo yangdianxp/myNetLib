@@ -19,13 +19,25 @@ void central_client::handle_module_logon(proto_msg& msg)
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 	pb::internal::logon logon;
 	msg.parse(logon);
-	SLOG_INFO << "module ip:" << logon.ip() << ", port:" << logon.port() << ", type:" 
-		<< logon.type() << " " << config_settings::instance().get_module_name(logon.type());
+	m_ip = logon.ip();
+	m_port = logon.port();
+	m_type = logon.type();
+	SLOG_INFO << "module ip:" << m_ip << ", port:" << m_port << ", type:" << m_type << " " 
+		<< config_settings::instance().get_module_name(m_type);
 	std::shared_ptr<central_server> server = std::dynamic_pointer_cast<central_server>(m_server);
 	if (server)
 	{
-		int id = server->get_unique_mid().get();
-		
+		int id = server->get_unique_mid();
+		m_id = id;
+		/*将模块加入到路由表*/
+		std::shared_ptr<route> route = server->get_route();
+		route->add_module(shared_from_this(), id);
+		proto_msg ack_msg(cmd_module_logon_ack);
+		pb::internal::logon_ack ack;
+		ack.set_id(id);
+		ack.set_central_id(server->get_id());
+		ack_msg.serialize_msg(ack);
+		write((const char *)&ack_msg, ack_msg.size());
 	}
 }
 

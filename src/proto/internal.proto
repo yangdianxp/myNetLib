@@ -6,3 +6,8 @@ message logon {
 	int32 port = 2;
 	int32 type = 3;
 }
+
+message logon_ack {
+	int32 id = 1;	//·ÖÅäµÄID
+	int32 central_id = 2;	//centralµÄid
+}

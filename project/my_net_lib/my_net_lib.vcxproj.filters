@@ -22,6 +22,9 @@
     <Filter Include="src\common">
       <UniqueIdentifier>{f33514f8-250f-431f-97c4-e9e25e7bd601}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\proto">
+      <UniqueIdentifier>{9aee7324-be43-4b9b-9c4b-841968218bd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -35,6 +38,9 @@
     </Text>
     <Text Include="..\..\src\common\CMakeLists.txt">
       <Filter>src\common</Filter>
+    </Text>
+    <Text Include="..\..\src\proto\CMakeLists.txt">
+      <Filter>src\proto</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +86,15 @@
     <ClCompile Include="..\..\src\common\msg.cpp">
       <Filter>src\common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\proto\internal.pb.cc">
+      <Filter>src\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\proto\login.pb.cc">
+      <Filter>src\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\proto\proc.pb.cc">
+      <Filter>src\proto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -121,10 +136,36 @@
     <ClInclude Include="..\..\src\common\msg.h">
       <Filter>src\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\proto\internal.pb.h">
+      <Filter>src\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\proto\login.pb.h">
+      <Filter>src\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\proto\proc.pb.h">
+      <Filter>src\proto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
       <Filter>src\central\conf</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\proto\internal.proto">
+      <Filter>src\proto</Filter>
+    </None>
+    <None Include="..\..\src\proto\login.proto">
+      <Filter>src\proto</Filter>
+    </None>
+    <None Include="..\..\src\proto\prebuild.bat">
+      <Filter>src\proto</Filter>
+    </None>
+    <None Include="..\..\src\proto\prebuild.sh">
+      <Filter>src\proto</Filter>
+    </None>
+    <None Include="..\..\src\proto\proc.proto">
+      <Filter>src\proto</Filter>
+    </None>
   </ItemGroup>
 </Project>

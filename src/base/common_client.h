@@ -6,7 +6,6 @@
 
 class common_client : public base_client
 {
-	using tcp = boost::asio::ip::tcp;
 public:
 	common_client(boost::asio::io_context& io_context,
 		std::string remote_ip, std::string remote_port);
@@ -16,6 +15,7 @@ public:
 	virtual void dispatch(proto_msg& msg);
 	void handle_connect_succ();
 	void handle_nothing(proto_msg& msg);
+	void handle_module_logon_ack(proto_msg& msg);
 	void module_logon();
 
 	virtual void init(std::shared_ptr<base_server>);
@@ -28,6 +28,10 @@ protected:
 	std::function<void(proto_msg&)> m_function_set[cmd_end];
 	/*消息描述*/
 	static std::map<int, std::string> m_cmd_desc;
+	/*客户端类型*/
+	uint32_t m_type = 0;
+	/*客户端id, 如果是模块则代表mid, 如果是真正的客户端则代表vid*/
+	uint32_t m_id = 0;
 private:
 	/*client主动连接模块的类型*/
 	uint32_t m_active_type = module_none_type;

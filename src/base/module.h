@@ -7,7 +7,6 @@
 
 class module : public base_server
 {
-	using tcp = boost::asio::ip::tcp;
 public:
 	module(boost::asio::io_context& io_context, short port);
 	virtual ~module();
@@ -19,6 +18,7 @@ public:
 	std::shared_ptr<route> get_route();
 	void set_route(std::shared_ptr<route> route);
 	uint32_t get_type();
+	uint32_t get_id();
 protected:
 	/*Â·ÓÉ±í*/
 	std::shared_ptr<route> m_route;

@@ -22,6 +22,7 @@
     <Text Include="..\..\src\base\CMakeLists.txt" />
     <Text Include="..\..\src\central\CMakeLists.txt" />
     <Text Include="..\..\src\common\CMakeLists.txt" />
+    <Text Include="..\..\src\proto\CMakeLists.txt" />
     <Text Include="..\..\test\unicode_test\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +38,9 @@
     <ClCompile Include="..\..\src\common\config_settings.cpp" />
     <ClCompile Include="..\..\src\common\log.cpp" />
     <ClCompile Include="..\..\src\common\msg.cpp" />
+    <ClCompile Include="..\..\src\proto\internal.pb.cc" />
+    <ClCompile Include="..\..\src\proto\login.pb.cc" />
+    <ClCompile Include="..\..\src\proto\proc.pb.cc" />
     <ClCompile Include="..\..\test\unicode_test\main.cpp" />
     <ClCompile Include="..\..\test\unicode_test\unique_code.cpp" />
   </ItemGroup>
@@ -53,10 +57,20 @@
     <ClInclude Include="..\..\src\common\config_settings.h" />
     <ClInclude Include="..\..\src\common\log.h" />
     <ClInclude Include="..\..\src\common\msg.h" />
+    <ClInclude Include="..\..\src\proto\internal.pb.h" />
+    <ClInclude Include="..\..\src\proto\login.pb.h" />
+    <ClInclude Include="..\..\src\proto\proc.pb.h" />
     <ClInclude Include="..\..\test\unicode_test\unique_code.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\proto\internal.proto" />
+    <None Include="..\..\src\proto\login.proto" />
+    <None Include="..\..\src\proto\prebuild.bat" />
+    <None Include="..\..\src\proto\prebuild.sh" />
+    <None Include="..\..\src\proto\proc.proto" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

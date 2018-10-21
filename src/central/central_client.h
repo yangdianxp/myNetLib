@@ -4,7 +4,6 @@
 
 class central_client : public common_client
 {
-	using tcp = boost::asio::ip::tcp;
 public:
 	central_client(boost::asio::io_context& io_context,
 		std::string remote_ip, std::string remote_port);

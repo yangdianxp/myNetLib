@@ -2,6 +2,7 @@
 #define __CONFIG_SETTINGS_H__
 #include <string>
 #include <boost/bimap/bimap.hpp>
+#include <boost/bimap/set_of.hpp>
 #include <boost/bimap/unordered_set_of.hpp>
 
 class config_settings
@@ -34,7 +35,7 @@ private:
 	uint32_t m_mid_begin = 0;
 	uint32_t m_mid_end = 0;
 
-	boost::bimaps::bimap<boost::bimaps::unordered_set_of<std::string>, boost::bimaps::unordered_set_of<uint32_t>> m_type_glossary;
+	boost::bimaps::bimap<boost::bimaps::set_of<std::string>, boost::bimaps::set_of<uint32_t>> m_type_glossary;
 	
 };
 

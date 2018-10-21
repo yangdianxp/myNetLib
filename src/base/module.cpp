@@ -42,3 +42,8 @@ uint32_t module::get_type()
 {
 	return m_type;
 }
+
+uint32_t module::get_id()
+{
+	return m_id;
+}

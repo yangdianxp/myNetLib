@@ -51,6 +51,7 @@ enum cmd_enum
 	cmd_login_request = 1,
 
 	cmd_module_logon,
+	cmd_module_logon_ack,
 	cmd_end
 };
 

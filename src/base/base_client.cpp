@@ -7,6 +7,8 @@ base_client::base_client(boost::asio::io_context& io_context,
 	m_reconnect_timer(io_context)
 {
 	SLOG_INFO << "connect remote_ip:" << remote_ip << " remote_port:" << remote_port;
+	m_ip = remote_ip;
+	m_port = std::stoi(remote_port);
 	tcp::resolver resolver(io_context);
 	m_endpoints = resolver.resolve(remote_ip, remote_port);
 	do_connect(m_endpoints);

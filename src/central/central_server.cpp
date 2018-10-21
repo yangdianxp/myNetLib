@@ -8,7 +8,7 @@ central_server::central_server(boost::asio::io_context& io_context, short port) 
 	int mid_begin = config_reader.get_mid_begin();
 	int mid_end = config_reader.get_mid_end();
 	m_unique_mid.init(mid_begin, mid_end);
-	m_id = m_unique_mid.get();
+	m_id = get_unique_mid();
 }
 
 void central_server::handle_accept_succ(tcp::socket& socket)
@@ -23,7 +23,7 @@ void central_server::connect_remote()
 
 }
 
-unique_code& central_server::get_unique_mid()
+uint32_t central_server::get_unique_mid()
 {
-	return m_unique_mid;
+	return m_unique_mid.get();
 }
