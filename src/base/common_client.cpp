@@ -43,7 +43,7 @@ void common_client::handle_module_logon_ack(proto_msg& msg)
 	if (server)
 	{
 		std::shared_ptr<route> route = server->get_route();
-		route->add_module(shared_from_this(), ack.central_id());
+		route->add_module(shared_from_this(), module_central_type, ack.central_id());
 	}
 	
 

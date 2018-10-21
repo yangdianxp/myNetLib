@@ -4,24 +4,25 @@
 
 #include <boost/bimap/bimap.hpp>
 #include <boost/bimap/set_of.hpp>
-#include <boost/bimap/list_of.hpp>
-#include <boost/bimap/unordered_multiset_of.hpp>
+#include <boost/bimap/multiset_of.hpp>
 #include "base_client.h"
 
 using boost::bimaps::bimap;
 using boost::bimaps::set_of;
-using boost::bimaps::list_of;
-using boost::bimaps::unordered_multiset_of;
+using boost::bimaps::multiset_of;
 
 class route
 {
-	using bm_type_mid = bimap<set_of<uint32_t>, list_of<std::shared_ptr<base_client>>>;
+	using bm_mid = bimap<set_of<uint32_t>, set_of<std::shared_ptr<base_client>>>;
+	using bm_type_mid = bimap<multiset_of<uint32_t>, set_of<std::shared_ptr<base_client>>>;
 public:
 	void add_client(std::shared_ptr<base_client> client);
-	void add_module(std::shared_ptr<base_client> client, uint32_t mid);
+	void add_module(std::shared_ptr<base_client> client, uint32_t type, uint32_t mid);
+	std::size_t for_each_type(uint32_t type);
 private:
 	std::set<std::shared_ptr<base_client>> m_clients;
-	bm_type_mid m_mid_clients;
+	bm_mid m_mid_clients;
+	bm_type_mid m_type_mid;
 };
 
 #endif

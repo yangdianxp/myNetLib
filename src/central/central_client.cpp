@@ -31,13 +31,14 @@ void central_client::handle_module_logon(proto_msg& msg)
 		m_id = id;
 		/*将模块加入到路由表*/
 		std::shared_ptr<route> route = server->get_route();
-		route->add_module(shared_from_this(), id);
+		route->add_module(shared_from_this(), m_type, id);
+		/*遍历登录模块需要连接的模块*/
 		proto_msg ack_msg(cmd_module_logon_ack);
 		pb::internal::logon_ack ack;
 		ack.set_id(id);
 		ack.set_central_id(server->get_id());
 		ack_msg.serialize_msg(ack);
-		write((const char *)&ack_msg, ack_msg.size());
+		write((char *)&ack_msg, ack_msg.size());
 	}
 }
 
@@ -45,6 +46,9 @@ void central_client::init(std::shared_ptr<base_server> server)
 {
 	common_client::init(server);
 	std::shared_ptr<central_client> client = std::dynamic_pointer_cast<central_client>(shared_from_this());
-	m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, this, std::placeholders::_1);
+	if (client)
+	{
+		m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, client, std::placeholders::_1);
+	}
 }
 
