@@ -15,4 +15,10 @@ See http://www.boost.org/LICENSE_1_0.txt
     <begin>1</begin>
     <end>10000</end>
   </mid_range>
+  <!--gateway要连接的模块类型-->
+  <link_type>
+    <string-array name="gateway">
+      <item>media</item>
+    </string-array>
+  </link_type>
 </conf>

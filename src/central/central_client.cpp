@@ -33,6 +33,8 @@ void central_client::handle_module_logon(proto_msg& msg)
 		std::shared_ptr<route> route = server->get_route();
 		route->add_module(shared_from_this(), m_type, id);
 		/*遍历登录模块需要连接的模块*/
+
+		//route->for_each_type();
 		proto_msg ack_msg(cmd_module_logon_ack);
 		pb::internal::logon_ack ack;
 		ack.set_id(id);
