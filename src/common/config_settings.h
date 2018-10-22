@@ -36,6 +36,8 @@ private:
 	uint32_t m_type = 0;
 	uint32_t m_mid_begin = 0;
 	uint32_t m_mid_end = 0;
+	/*gateway连接的模块类型*/
+	std::vector<uint32_t> m_gateway_link_type;
 
 	bimap<set_of<std::string>, set_of<uint32_t>> m_type_glossary;
 	

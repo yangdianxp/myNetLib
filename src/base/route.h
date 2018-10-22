@@ -1,7 +1,7 @@
 #ifndef __ROUTE_H__
 #define __ROUTE_H__
 #include <set>
-#include <funtional>
+#include <functional>
 #include <boost/bimap/bimap.hpp>
 #include <boost/bimap/set_of.hpp>
 #include <boost/bimap/multiset_of.hpp>

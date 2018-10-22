@@ -38,8 +38,14 @@ void config_settings::load(const std::string &filename)
 	std::string type = tree.get("conf.type", "none");
 	m_mid_begin = tree.get("conf.mid_range.begin", 1);
 	m_mid_end = tree.get("conf.mid_range.end", 1);
-
 	m_type = convert_type(type);
+
+	BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.gateway"))
+	{
+		m_gateway_link_type.push_back(convert_type(v.second.data()));
+	}
+
+	
 
 	// Use the default-value version of get to find the debug level.
 	// Note that the default value is used to deduce the target type.
@@ -60,9 +66,14 @@ void config_settings::print()
 		<< "m_local_ip:" << m_local_ip << std::endl
 		<< "m_local_port:" << m_local_port << std::endl
 		<< "m_remote_ip:" << m_remote_ip << std::endl
-		<< "m_remote_port:" << m_remote_port
-		<< "m_type:" << m_type << " " << get_module_name(m_type)
+		<< "m_remote_port:" << m_remote_port << std::endl
+		<< "m_type:" << m_type << " " << get_module_name(m_type) << std::endl
 		<< "m_mid_begin:" << m_mid_begin << " " << "m_mid_end:" << m_mid_end;
+	auto it_end = m_gateway_link_type.end();
+	for (auto it = m_gateway_link_type.begin(); it != it_end; ++it)
+	{
+		SLOG_INFO << "gateway link type:" << *it;
+	}
 }
 
 void config_settings::init()
