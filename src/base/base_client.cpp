@@ -130,6 +130,16 @@ void base_client::set_reconnect_time(unsigned int ms)
 	}
 }
 
+std::string base_client::get_ip()
+{
+	return m_ip;
+}
+
+uint32_t base_client::get_port()
+{
+	return m_port;
+}
+
 void base_client::do_connect(const tcp::resolver::results_type& endpoints)
 {
 	boost::asio::async_connect(m_socket, endpoints,

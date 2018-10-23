@@ -38,7 +38,7 @@ namespace protobuf_internal_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[2];
+  static const ::google::protobuf::internal::ParseTable schema[3];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -47,6 +47,9 @@ void AddDescriptors();
 }  // namespace protobuf_internal_2eproto
 namespace pb {
 namespace internal {
+class addr;
+class addrDefaultTypeInternal;
+extern addrDefaultTypeInternal _addr_default_instance_;
 class logon;
 class logonDefaultTypeInternal;
 extern logonDefaultTypeInternal _logon_default_instance_;
@@ -57,6 +60,7 @@ extern logon_ackDefaultTypeInternal _logon_ack_default_instance_;
 }  // namespace pb
 namespace google {
 namespace protobuf {
+template<> ::pb::internal::addr* Arena::CreateMaybeMessage<::pb::internal::addr>(Arena*);
 template<> ::pb::internal::logon* Arena::CreateMaybeMessage<::pb::internal::logon>(Arena*);
 template<> ::pb::internal::logon_ack* Arena::CreateMaybeMessage<::pb::internal::logon_ack>(Arena*);
 }  // namespace protobuf
@@ -191,6 +195,124 @@ class logon : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 };
 // -------------------------------------------------------------------
 
+class addr : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.addr) */ {
+ public:
+  addr();
+  virtual ~addr();
+
+  addr(const addr& from);
+
+  inline addr& operator=(const addr& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  addr(addr&& from) noexcept
+    : addr() {
+    *this = ::std::move(from);
+  }
+
+  inline addr& operator=(addr&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const addr& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const addr* internal_default_instance() {
+    return reinterpret_cast<const addr*>(
+               &_addr_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(addr* other);
+  friend void swap(addr& a, addr& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline addr* New() const final {
+    return CreateMaybeMessage<addr>(NULL);
+  }
+
+  addr* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<addr>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const addr& from);
+  void MergeFrom(const addr& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(addr* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string ip = 1;
+  void clear_ip();
+  static const int kIpFieldNumber = 1;
+  const ::std::string& ip() const;
+  void set_ip(const ::std::string& value);
+  #if LANG_CXX11
+  void set_ip(::std::string&& value);
+  #endif
+  void set_ip(const char* value);
+  void set_ip(const char* value, size_t size);
+  ::std::string* mutable_ip();
+  ::std::string* release_ip();
+  void set_allocated_ip(::std::string* ip);
+
+  // int32 port = 2;
+  void clear_port();
+  static const int kPortFieldNumber = 2;
+  ::google::protobuf::int32 port() const;
+  void set_port(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.internal.addr)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr ip_;
+  ::google::protobuf::int32 port_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_internal_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class logon_ack : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.logon_ack) */ {
  public:
   logon_ack();
@@ -226,7 +348,7 @@ class logon_ack : public ::google::protobuf::Message /* @@protoc_insertion_point
                &_logon_ack_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(logon_ack* other);
   friend void swap(logon_ack& a, logon_ack& b) {
@@ -278,17 +400,37 @@ class logon_ack : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // accessors -------------------------------------------------------
 
+  // repeated .pb.internal.addr link_addr = 3;
+  int link_addr_size() const;
+  void clear_link_addr();
+  static const int kLinkAddrFieldNumber = 3;
+  ::pb::internal::addr* mutable_link_addr(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::addr >*
+      mutable_link_addr();
+  const ::pb::internal::addr& link_addr(int index) const;
+  ::pb::internal::addr* add_link_addr();
+  const ::google::protobuf::RepeatedPtrField< ::pb::internal::addr >&
+      link_addr() const;
+
   // int32 id = 1;
   void clear_id();
   static const int kIdFieldNumber = 1;
   ::google::protobuf::int32 id() const;
   void set_id(::google::protobuf::int32 value);
 
+  // int32 central_id = 2;
+  void clear_central_id();
+  static const int kCentralIdFieldNumber = 2;
+  ::google::protobuf::int32 central_id() const;
+  void set_central_id(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:pb.internal.logon_ack)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::addr > link_addr_;
   ::google::protobuf::int32 id_;
+  ::google::protobuf::int32 central_id_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
@@ -386,6 +528,77 @@ inline void logon::set_type(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
+// addr
+
+// string ip = 1;
+inline void addr::clear_ip() {
+  ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& addr::ip() const {
+  // @@protoc_insertion_point(field_get:pb.internal.addr.ip)
+  return ip_.GetNoArena();
+}
+inline void addr::set_ip(const ::std::string& value) {
+  
+  ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:pb.internal.addr.ip)
+}
+#if LANG_CXX11
+inline void addr::set_ip(::std::string&& value) {
+  
+  ip_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:pb.internal.addr.ip)
+}
+#endif
+inline void addr::set_ip(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb.internal.addr.ip)
+}
+inline void addr::set_ip(const char* value, size_t size) {
+  
+  ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:pb.internal.addr.ip)
+}
+inline ::std::string* addr::mutable_ip() {
+  
+  // @@protoc_insertion_point(field_mutable:pb.internal.addr.ip)
+  return ip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* addr::release_ip() {
+  // @@protoc_insertion_point(field_release:pb.internal.addr.ip)
+  
+  return ip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void addr::set_allocated_ip(::std::string* ip) {
+  if (ip != NULL) {
+    
+  } else {
+    
+  }
+  ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip);
+  // @@protoc_insertion_point(field_set_allocated:pb.internal.addr.ip)
+}
+
+// int32 port = 2;
+inline void addr::clear_port() {
+  port_ = 0;
+}
+inline ::google::protobuf::int32 addr::port() const {
+  // @@protoc_insertion_point(field_get:pb.internal.addr.port)
+  return port_;
+}
+inline void addr::set_port(::google::protobuf::int32 value) {
+  
+  port_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.addr.port)
+}
+
+// -------------------------------------------------------------------
+
 // logon_ack
 
 // int32 id = 1;
@@ -402,9 +615,55 @@ inline void logon_ack::set_id(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:pb.internal.logon_ack.id)
 }
 
+// int32 central_id = 2;
+inline void logon_ack::clear_central_id() {
+  central_id_ = 0;
+}
+inline ::google::protobuf::int32 logon_ack::central_id() const {
+  // @@protoc_insertion_point(field_get:pb.internal.logon_ack.central_id)
+  return central_id_;
+}
+inline void logon_ack::set_central_id(::google::protobuf::int32 value) {
+  
+  central_id_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.logon_ack.central_id)
+}
+
+// repeated .pb.internal.addr link_addr = 3;
+inline int logon_ack::link_addr_size() const {
+  return link_addr_.size();
+}
+inline void logon_ack::clear_link_addr() {
+  link_addr_.Clear();
+}
+inline ::pb::internal::addr* logon_ack::mutable_link_addr(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.internal.logon_ack.link_addr)
+  return link_addr_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::pb::internal::addr >*
+logon_ack::mutable_link_addr() {
+  // @@protoc_insertion_point(field_mutable_list:pb.internal.logon_ack.link_addr)
+  return &link_addr_;
+}
+inline const ::pb::internal::addr& logon_ack::link_addr(int index) const {
+  // @@protoc_insertion_point(field_get:pb.internal.logon_ack.link_addr)
+  return link_addr_.Get(index);
+}
+inline ::pb::internal::addr* logon_ack::add_link_addr() {
+  // @@protoc_insertion_point(field_add:pb.internal.logon_ack.link_addr)
+  return link_addr_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::pb::internal::addr >&
+logon_ack::link_addr() const {
+  // @@protoc_insertion_point(field_list:pb.internal.logon_ack.link_addr)
+  return link_addr_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

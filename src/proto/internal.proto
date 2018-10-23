@@ -7,7 +7,14 @@ message logon {
 	int32 type = 3;
 }
 
+message addr
+{
+	string ip = 1;
+	int32 port = 2;
+}
+
 message logon_ack {
 	int32 id = 1;	//分配的ID
 	int32 central_id = 2;	//central的id
+	repeated addr link_addr = 3; //需要连接的模块地址
 }

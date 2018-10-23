@@ -30,6 +30,8 @@ public:
 
 	void set_reconnect_time(unsigned int ms);
 
+	std::string get_ip();
+	uint32_t get_port();
 protected:
 	tcp::socket m_socket;
 	proto_msg m_msg;
