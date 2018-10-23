@@ -40,24 +40,16 @@ void config_settings::load(const std::string &filename)
 	m_mid_end = tree.get("conf.mid_range.end", 1);
 	m_type = convert_type(type);
 
-	BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.gateway"))
-	{
-		m_gateway_link_type.push_back(convert_type(v.second.data()));
+	try {
+		BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.gateway"))
+		{
+			m_gateway_link_type.push_back(convert_type(v.second.data()));
+		}
 	}
-
-	
-
-	// Use the default-value version of get to find the debug level.
-	// Note that the default value is used to deduce the target type.
-	//m_level = tree.get("debug.level", 0);
-
-	// Use get_child to find the node containing the modules, and iterate over
-	// its children. If the path cannot be resolved, get_child throws.
-	// A C++11 for-range loop would also work.
-	//BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("debug.modules")) {
-		// The data function is used to access the data stored in a node.
-	//	m_modules.insert(v.second.data());
-	//}
+	catch (std::exception& e)
+	{
+		SLOG_ERROR << "Exception: " << e.what();
+	}
 }
 
 void config_settings::print()
@@ -72,7 +64,7 @@ void config_settings::print()
 	auto it_end = m_gateway_link_type.end();
 	for (auto it = m_gateway_link_type.begin(); it != it_end; ++it)
 	{
-		SLOG_INFO << "gateway link type:" << *it;
+		SLOG_INFO << "gateway link type:" << *it << " " << get_module_name(*it);
 	}
 }
 
@@ -123,6 +115,11 @@ uint32_t config_settings::get_mid_begin()
 uint32_t config_settings::get_mid_end()
 {
 	return m_mid_end;
+}
+
+std::vector<uint32_t> config_settings::get_gateway_link_type()
+{
+	return m_gateway_link_type;
 }
 
 std::string config_settings::get_module_name(uint32_t type)

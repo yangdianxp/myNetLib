@@ -22,6 +22,7 @@ public:
 	uint32_t get_type();
 	uint32_t get_mid_begin();
 	uint32_t get_mid_end();
+	std::vector<uint32_t> get_gateway_link_type();
 
 	std::string get_module_name(uint32_t type);
 private:
