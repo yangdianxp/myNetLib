@@ -18,10 +18,6 @@ void central_server::handle_accept_succ(tcp::socket& socket)
 	m_route->add_client(client);
 }
 
-void central_server::connect_remote()
-{
-
-}
 
 uint32_t central_server::get_unique_mid()
 {

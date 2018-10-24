@@ -12,7 +12,7 @@ public:
 	virtual ~module();
 
 	virtual void handle_accept_succ(tcp::socket& socket);
-	virtual void connect_remote();
+	virtual void connect_remote(std::string ip, std::string port, uint32_t type);
 
 	void init();
 	std::shared_ptr<route> get_route();

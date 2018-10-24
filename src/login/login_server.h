@@ -8,7 +8,6 @@ class login_server : public module
 public:
 	login_server(boost::asio::io_context& io_context, short port);
 
-	void connect_remote();
 private:
 
 };

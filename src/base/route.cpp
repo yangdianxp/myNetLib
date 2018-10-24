@@ -8,13 +8,13 @@ void route::add_client(std::shared_ptr<base_client> client)
 void route::add_module(std::shared_ptr<base_client> client, uint32_t type, uint32_t mid)
 {
 	m_mid_clients.left.insert(bm_mid::left_value_type(mid, client));
-	m_type_mid.left.insert(bm_type_mid::left_value_type(type, client));
+	m_type_clients.left.insert(bm_type::left_value_type(type, client));
 }
 
 std::size_t route::for_each_type(uint32_t type, std::function<void(std::shared_ptr<base_client>)> fn)
 {
-	auto lower = m_type_mid.left.lower_bound(type);
-	auto upper = m_type_mid.left.upper_bound(type);
+	auto lower = m_type_clients.left.lower_bound(type);
+	auto upper = m_type_clients.left.upper_bound(type);
 	std::size_t cnt = 0;
 	for (auto it = lower; it != upper; ++it, ++cnt)
 	{

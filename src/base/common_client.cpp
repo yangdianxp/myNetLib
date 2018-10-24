@@ -44,9 +44,13 @@ void common_client::handle_module_logon_ack(proto_msg& msg)
 	{
 		std::shared_ptr<route> route = server->get_route();
 		route->add_module(shared_from_this(), module_central_type, ack.central_id());
+		for (int i = 0; i < ack.link_addr_size(); ++i)
+		{
+			const pb::internal::addr& addr = ack.link_addr(i);
+			server->connect_remote(addr.ip(), std::to_string(addr.port()), addr.type());
+		}
 	}
 	
-
 }
 void common_client::module_logon()
 {
@@ -96,4 +100,9 @@ void common_client::set_active_type(uint32_t type)
 void common_client::set_server(std::shared_ptr<base_server> server)
 {
 	m_server = server;
+}
+
+uint32_t common_client::get_type()
+{
+	return m_type;
 }

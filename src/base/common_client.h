@@ -21,6 +21,7 @@ public:
 	virtual void init(std::shared_ptr<base_server>);
 	void set_active_type(uint32_t type);
 	void set_server(std::shared_ptr<base_server>);
+	uint32_t get_type();
 protected:
 	/*从属于服务器*/
 	std::shared_ptr<base_server> m_server;

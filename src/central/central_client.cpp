@@ -47,12 +47,17 @@ void central_client::module_logon_reply()
 		ack.set_id(m_id);
 		ack.set_central_id(server->get_id());
 		/*遍历登录模块需要连接的模块*/
-		auto client = shared_from_this();
-		auto fn = [client, &ack](std::shared_ptr<base_client> client)
+		auto self = shared_from_this();
+		auto fn = [self, &ack](std::shared_ptr<base_client> client)
 		{
-			pb::internal::addr* addr = ack.add_link_addr();
-			addr->set_ip(client->get_ip());
-			addr->set_port(client->get_port());
+			std::shared_ptr<common_client> common = std::dynamic_pointer_cast<common_client>(client);
+			if (common)
+			{
+				pb::internal::addr* addr = ack.add_link_addr();
+				addr->set_ip(common->get_ip());
+				addr->set_port(common->get_port());
+				addr->set_type(common->get_type());
+			}
 		};
 		if (m_type == module_gateway_type)
 		{
@@ -70,7 +75,19 @@ void central_client::module_logon_reply()
 
 void central_client::broadcast_module_logon()
 {
+	std::shared_ptr<central_server> server = std::dynamic_pointer_cast<central_server>(m_server);
+	if (server)
+	{
+		std::shared_ptr<route> route = server->get_route();
+		switch (m_type)
+		{
+		case module_login_type:
+		{
 
+			break;
+		}
+		}
+	}
 }
 
 void central_client::init(std::shared_ptr<base_server> server)
