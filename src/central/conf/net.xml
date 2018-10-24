@@ -18,6 +18,7 @@ See http://www.boost.org/LICENSE_1_0.txt
   <!--gateway要连接的模块类型-->
   <link_type>
     <gateway>
+      <item>login</item>
       <item>media</item>
     </gateway>
   </link_type>

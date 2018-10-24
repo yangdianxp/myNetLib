@@ -25,6 +25,30 @@
     <Filter Include="src\proto">
       <UniqueIdentifier>{9aee7324-be43-4b9b-9c4b-841968218bd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\client">
+      <UniqueIdentifier>{7811208d-b6ad-4d85-808c-92641ef86e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\client\conf">
+      <UniqueIdentifier>{1d320aba-5868-47b2-b29d-58dd633610f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gateway">
+      <UniqueIdentifier>{fbc93249-48cf-437a-92a3-41645c9d697a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gateway\conf">
+      <UniqueIdentifier>{da512358-d9f4-41f5-b03d-44b49bb30038}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\login">
+      <UniqueIdentifier>{34b6cff2-4a09-458f-89fb-dead8003040f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\balance">
+      <UniqueIdentifier>{25321f4e-65cc-45b4-942a-10c2bb6e209c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\media">
+      <UniqueIdentifier>{a4d9b91b-009a-466d-a29a-f37980bb4495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\login\conf">
+      <UniqueIdentifier>{16a0925c-9fb6-4e15-a848-4f09afaf6647}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -41,6 +65,15 @@
     </Text>
     <Text Include="..\..\src\proto\CMakeLists.txt">
       <Filter>src\proto</Filter>
+    </Text>
+    <Text Include="..\..\src\client\CMakeLists.txt">
+      <Filter>src\client</Filter>
+    </Text>
+    <Text Include="..\..\src\gateway\CMakeLists.txt">
+      <Filter>src\gateway</Filter>
+    </Text>
+    <Text Include="..\..\src\login\CMakeLists.txt">
+      <Filter>src\login</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +128,21 @@
     <ClCompile Include="..\..\src\proto\proc.pb.cc">
       <Filter>src\proto</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\client\main.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\gateway\gateway.cpp">
+      <Filter>src\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\gateway\gateway_server.cpp">
+      <Filter>src\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\login\login.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\login\login_server.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -145,10 +193,25 @@
     <ClInclude Include="..\..\src\proto\proc.pb.h">
       <Filter>src\proto</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\gateway\gateway_server.h">
+      <Filter>src\gateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\login\login_server.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
       <Filter>src\central\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\client\conf\net.xml">
+      <Filter>src\client\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\gateway\conf\net.xml">
+      <Filter>src\gateway\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\login\conf\net.xml">
+      <Filter>src\login\conf</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +229,21 @@
     </None>
     <None Include="..\..\src\proto\proc.proto">
       <Filter>src\proto</Filter>
+    </None>
+    <None Include="..\..\src\bkill.sh">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\build.sh">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\ff.sh">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\rebuild.sh">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\config.info">
+      <Filter>src</Filter>
     </None>
   </ItemGroup>
 </Project>

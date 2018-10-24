@@ -62,6 +62,7 @@ void central_client::module_logon_reply()
 				route->for_each_type(*it, fn);
 			}
 		}
+		SLOG_DEBUG << ack.DebugString();
 		ack_msg.serialize_msg(ack);
 		write((char *)&ack_msg, ack_msg.size());
 	}
