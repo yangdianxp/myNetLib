@@ -2,10 +2,10 @@
 #define __CONFIG_SETTINGS_H__
 #include <string>
 #include <boost/bimap/bimap.hpp>
-#include <boost/bimap/set_of.hpp>
+#include <boost/bimap/unordered_set_of.hpp>
 
 using boost::bimaps::bimap;
-using boost::bimaps::set_of;
+using boost::bimaps::unordered_set_of;
 
 class config_settings
 {
@@ -40,7 +40,7 @@ private:
 	/*gateway连接的模块类型*/
 	std::vector<uint32_t> m_gateway_link_type;
 
-	bimap<set_of<std::string>, set_of<uint32_t>> m_type_glossary;
+	bimap<unordered_set_of<std::string>, unordered_set_of<uint32_t>> m_type_glossary;
 	
 };
 
