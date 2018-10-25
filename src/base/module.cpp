@@ -53,3 +53,8 @@ uint32_t module::get_id()
 {
 	return m_id;
 }
+
+void module::set_id(uint32_t id)
+{
+	m_id = id;
+}

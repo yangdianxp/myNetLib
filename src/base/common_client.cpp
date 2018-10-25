@@ -23,9 +23,15 @@ void common_client::dispatch(proto_msg& msg)
 void common_client::handle_connect_succ()
 {
 	SLOG_INFO << "connect succ";
-	if (m_conn_type == active_conn && m_active_type == module_central_type)
+	if (m_conn_type == active_conn)
 	{
-		module_logon();
+		if (m_active_type == module_central_type)
+		{
+			module_logon();
+		}
+		else {
+			
+		}
 	}
 }
 void common_client::handle_nothing(proto_msg& msg)
@@ -36,12 +42,13 @@ void common_client::handle_module_logon_ack(proto_msg& msg)
 {
 	pb::internal::logon_ack ack;
 	msg.parse(ack);
-	m_id = ack.id();
-	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", mid:" << m_id 
-		<< ", central id:" << ack.central_id();
+	m_id = ack.central_id();
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", mid:" << ack.id()
+		<< ", central id:" << m_id;
 	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
 	if (server)
 	{
+		server->set_id(ack.id());
 		std::shared_ptr<route> route = server->get_route();
 		route->add_module(shared_from_this(), module_central_type, ack.central_id());
 		for (int i = 0; i < ack.link_addr_size(); ++i)
@@ -71,11 +78,39 @@ void common_client::module_logon()
 	}
 }
 
+void common_client::handle_broadcast_module_logon(proto_msg& msg)
+{
+	pb::internal::addr addr;
+	msg.parse(addr);
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", ip:"
+		<< addr.ip() << ", port:" << addr.port() << ", type:" << addr.type();
+	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
+	if (server)
+	{
+		server->connect_remote(addr.ip(), std::to_string(addr.port()), addr.type());
+	}
+}
+
+void common_client::register_info()
+{
+	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
+	if (server)
+	{
+		proto_msg msg(cmd_register_info);
+		pb::internal::register_info info;
+		info.set_id(server->get_id());
+		msg.serialize_msg(info);
+		write((char *)&msg, msg.size());
+	}
+}
+
 /*œ˚œ¢√Ë ˆ*/
 std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_login_request, "client login request" },
 	{ cmd_module_logon, "module logon request" },
 	{ cmd_module_logon_ack, "module logon respond" },
+	{ cmd_broadcast_module_logon, "broadcast module logon" },
+	{ cmd_broadcast_module_logon_ack, "broadcast module logon respond" },
 };
 
 void common_client::init(std::shared_ptr<base_server> server)
@@ -89,6 +124,7 @@ void common_client::init(std::shared_ptr<base_server> server)
 			m_function_set[i] = std::bind(&common_client::handle_nothing, client, std::placeholders::_1);
 		}
 		m_function_set[cmd_module_logon_ack] = std::bind(&common_client::handle_module_logon_ack, client, std::placeholders::_1);
+		m_function_set[cmd_broadcast_module_logon] = std::bind(&common_client::handle_broadcast_module_logon, client, std::placeholders::_1);
 	}
 	
 }

@@ -78,14 +78,23 @@ void central_client::broadcast_module_logon()
 	std::shared_ptr<central_server> server = std::dynamic_pointer_cast<central_server>(m_server);
 	if (server)
 	{
+		proto_msg msg(cmd_broadcast_module_logon);
+		pb::internal::addr addr;
+		addr.set_ip(m_ip);
+		addr.set_port(m_port);
+		addr.set_type(m_type);
+		msg.serialize_msg(addr);
+		auto self = shared_from_this();
+		auto fn = [self, &msg](std::shared_ptr<base_client> client)
+		{
+			client->write((char *)&msg, msg.size());
+		};
 		std::shared_ptr<route> route = server->get_route();
 		switch (m_type)
 		{
 		case module_login_type:
-		{
-
+			route->for_each_type(module_gateway_type, fn);
 			break;
-		}
 		}
 	}
 }

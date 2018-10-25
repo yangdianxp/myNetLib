@@ -38,7 +38,7 @@ namespace protobuf_internal_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[3];
+  static const ::google::protobuf::internal::ParseTable schema[4];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -56,6 +56,9 @@ extern logonDefaultTypeInternal _logon_default_instance_;
 class logon_ack;
 class logon_ackDefaultTypeInternal;
 extern logon_ackDefaultTypeInternal _logon_ack_default_instance_;
+class register_info;
+class register_infoDefaultTypeInternal;
+extern register_infoDefaultTypeInternal _register_info_default_instance_;
 }  // namespace internal
 }  // namespace pb
 namespace google {
@@ -63,6 +66,7 @@ namespace protobuf {
 template<> ::pb::internal::addr* Arena::CreateMaybeMessage<::pb::internal::addr>(Arena*);
 template<> ::pb::internal::logon* Arena::CreateMaybeMessage<::pb::internal::logon>(Arena*);
 template<> ::pb::internal::logon_ack* Arena::CreateMaybeMessage<::pb::internal::logon_ack>(Arena*);
+template<> ::pb::internal::register_info* Arena::CreateMaybeMessage<::pb::internal::register_info>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace pb {
@@ -302,12 +306,19 @@ class addr : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::google::protobuf::int32 port() const;
   void set_port(::google::protobuf::int32 value);
 
+  // int32 type = 3;
+  void clear_type();
+  static const int kTypeFieldNumber = 3;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:pb.internal.addr)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::int32 port_;
+  ::google::protobuf::int32 type_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
@@ -431,6 +442,109 @@ class logon_ack : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::RepeatedPtrField< ::pb::internal::addr > link_addr_;
   ::google::protobuf::int32 id_;
   ::google::protobuf::int32 central_id_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_internal_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class register_info : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.register_info) */ {
+ public:
+  register_info();
+  virtual ~register_info();
+
+  register_info(const register_info& from);
+
+  inline register_info& operator=(const register_info& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  register_info(register_info&& from) noexcept
+    : register_info() {
+    *this = ::std::move(from);
+  }
+
+  inline register_info& operator=(register_info&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const register_info& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const register_info* internal_default_instance() {
+    return reinterpret_cast<const register_info*>(
+               &_register_info_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  void Swap(register_info* other);
+  friend void swap(register_info& a, register_info& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline register_info* New() const final {
+    return CreateMaybeMessage<register_info>(NULL);
+  }
+
+  register_info* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<register_info>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const register_info& from);
+  void MergeFrom(const register_info& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(register_info* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 id = 1;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  ::google::protobuf::int32 id() const;
+  void set_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.internal.register_info)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 id_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
@@ -597,6 +711,20 @@ inline void addr::set_port(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:pb.internal.addr.port)
 }
 
+// int32 type = 3;
+inline void addr::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 addr::type() const {
+  // @@protoc_insertion_point(field_get:pb.internal.addr.type)
+  return type_;
+}
+inline void addr::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.addr.type)
+}
+
 // -------------------------------------------------------------------
 
 // logon_ack
@@ -659,9 +787,29 @@ logon_ack::link_addr() const {
   return link_addr_;
 }
 
+// -------------------------------------------------------------------
+
+// register_info
+
+// int32 id = 1;
+inline void register_info::clear_id() {
+  id_ = 0;
+}
+inline ::google::protobuf::int32 register_info::id() const {
+  // @@protoc_insertion_point(field_get:pb.internal.register_info.id)
+  return id_;
+}
+inline void register_info::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.register_info.id)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

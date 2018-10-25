@@ -19,6 +19,7 @@ public:
 	void set_route(std::shared_ptr<route> route);
 	uint32_t get_type();
 	uint32_t get_id();
+	void set_id(uint32_t id);
 protected:
 	/*Â·ÓÉ±í*/
 	std::shared_ptr<route> m_route;

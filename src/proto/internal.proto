@@ -19,3 +19,8 @@ message logon_ack {
 	int32 central_id = 2;	//central的id
 	repeated addr link_addr = 3; //需要连接的模块地址
 }
+
+message register_info
+{
+	int32 id = 1;
+}

@@ -50,8 +50,12 @@ enum cmd_enum
 {
 	cmd_login_request = 1,
 
-	cmd_module_logon,
+	cmd_module_logon,                //登录central服务器
 	cmd_module_logon_ack,
+	cmd_broadcast_module_logon,
+	cmd_broadcast_module_logon_ack,
+	cmd_register_info,					//注册模块信息
+	cmd_register_info_ack,
 	cmd_end
 };
 
