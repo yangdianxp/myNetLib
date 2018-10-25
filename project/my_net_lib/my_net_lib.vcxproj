@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\..\src\balance\CMakeLists.txt" />
     <Text Include="..\..\src\base\CMakeLists.txt" />
     <Text Include="..\..\src\central\CMakeLists.txt" />
     <Text Include="..\..\src\client\CMakeLists.txt" />
@@ -29,6 +30,8 @@
     <Text Include="..\..\test\unicode_test\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\balance\balance.cpp" />
+    <ClCompile Include="..\..\src\balance\balance_server.cpp" />
     <ClCompile Include="..\..\src\base\base_client.cpp" />
     <ClCompile Include="..\..\src\base\base_server.cpp" />
     <ClCompile Include="..\..\src\base\common_client.cpp" />
@@ -53,6 +56,7 @@
     <ClCompile Include="..\..\test\unicode_test\unique_code.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\balance\balance_server.h" />
     <ClInclude Include="..\..\src\base\base_client.h" />
     <ClInclude Include="..\..\src\base\base_server.h" />
     <ClInclude Include="..\..\src\base\common_client.h" />
@@ -73,12 +77,14 @@
     <ClInclude Include="..\..\test\unicode_test\unique_code.h" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="..\..\src\balance\conf\net.xml" />
     <Xml Include="..\..\src\central\conf\net.xml" />
     <Xml Include="..\..\src\client\conf\net.xml" />
     <Xml Include="..\..\src\gateway\conf\net.xml" />
     <Xml Include="..\..\src\login\conf\net.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\balance\laqi.sh" />
     <None Include="..\..\src\bkill.sh" />
     <None Include="..\..\src\build.sh" />
     <None Include="..\..\src\config.info" />

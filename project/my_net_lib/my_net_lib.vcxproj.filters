@@ -49,6 +49,9 @@
     <Filter Include="src\login\conf">
       <UniqueIdentifier>{16a0925c-9fb6-4e15-a848-4f09afaf6647}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\balance\conf">
+      <UniqueIdentifier>{c1501613-103a-4ba7-8afb-94812eb6546f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -74,6 +77,9 @@
     </Text>
     <Text Include="..\..\src\login\CMakeLists.txt">
       <Filter>src\login</Filter>
+    </Text>
+    <Text Include="..\..\src\balance\CMakeLists.txt">
+      <Filter>src\balance</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +149,12 @@
     <ClCompile Include="..\..\src\login\login_server.cpp">
       <Filter>src\login</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\balance\balance.cpp">
+      <Filter>src\balance</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\balance\balance_server.cpp">
+      <Filter>src\balance</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -199,6 +211,9 @@
     <ClInclude Include="..\..\src\login\login_server.h">
       <Filter>src\login</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\balance\balance_server.h">
+      <Filter>src\balance</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
@@ -212,6 +227,9 @@
     </Xml>
     <Xml Include="..\..\src\login\conf\net.xml">
       <Filter>src\login\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\balance\conf\net.xml">
+      <Filter>src\balance\conf</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +262,9 @@
     </None>
     <None Include="..\..\src\config.info">
       <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\balance\laqi.sh">
+      <Filter>src\balance</Filter>
     </None>
   </ItemGroup>
 </Project>

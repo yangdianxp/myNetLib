@@ -95,6 +95,9 @@ void central_client::broadcast_module_logon()
 		case module_login_type:
 			route->for_each_type(module_gateway_type, fn);
 			break;
+		case module_balance_type:
+			route->for_each_type(module_gateway_type, fn);
+			break;
 		}
 	}
 }

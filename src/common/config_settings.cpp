@@ -75,6 +75,7 @@ void config_settings::init()
 	m_type_glossary.left.insert(std::make_pair("login", module_login_type));
 	m_type_glossary.left.insert(std::make_pair("central", module_central_type));
 	m_type_glossary.left.insert(std::make_pair("media", module_media_type));
+	m_type_glossary.left.insert(std::make_pair("balance", module_balance_type));
 }
 
 std::string config_settings::get_local_ip()

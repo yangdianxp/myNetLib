@@ -1,2 +1,2 @@
 #!/bin/sh
-ps -ef | grep -w "central\|client\|gateway\|login"
+ps -ef | grep -w "central\|client\|gateway\|login\|balance"

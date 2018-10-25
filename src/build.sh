@@ -27,3 +27,7 @@ cd login
 cmake .
 make
 cd ..
+cd balance
+cmake .
+make
+cd ..

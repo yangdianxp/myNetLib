@@ -34,3 +34,8 @@ cmake .
 make clean
 make 
 cd ..
+cd balance
+cmake .
+make clean
+make 
+cd ..
