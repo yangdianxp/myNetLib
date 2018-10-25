@@ -30,7 +30,7 @@ void common_client::handle_connect_succ()
 			module_logon();
 		}
 		else {
-			
+			register_info();
 		}
 	}
 }
@@ -43,7 +43,7 @@ void common_client::handle_module_logon_ack(proto_msg& msg)
 	pb::internal::logon_ack ack;
 	msg.parse(ack);
 	m_id = ack.central_id();
-	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", mid:" << ack.id()
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", self mid:" << ack.id()
 		<< ", central id:" << m_id;
 	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
 	if (server)
@@ -99,8 +99,49 @@ void common_client::register_info()
 		proto_msg msg(cmd_register_info);
 		pb::internal::register_info info;
 		info.set_id(server->get_id());
+		info.set_type(server->get_type());
 		msg.serialize_msg(info);
 		write((char *)&msg, msg.size());
+	}
+}
+
+void common_client::handle_register_info(proto_msg& msg)
+{
+	pb::internal::register_info info;
+	msg.parse(info);
+	m_id = info.id();
+	m_type = info.type();
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] 
+		<< " m_id:" << m_id << " m_type:" << m_type << " " << config_settings::instance().get_module_name(m_type);
+	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
+	if (server)
+	{
+		/*将模块加入到路由表*/
+		std::shared_ptr<route> route = server->get_route();
+		route->add_module(shared_from_this(), m_type, m_id);
+		proto_msg ack_msg(cmd_register_info_ack);
+		pb::internal::register_info ack;
+		ack.set_id(server->get_id());
+		ack.set_type(server->get_type());
+		ack_msg.serialize_msg(ack);
+		write((char *)&ack_msg, ack_msg.size());
+	}
+}
+
+void common_client::handle_register_info_ack(proto_msg& msg)
+{
+	pb::internal::register_info info;
+	msg.parse(info);
+	m_id = info.id();
+	m_type = info.type();
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd]
+		<< " m_id:" << m_id << " m_type:" << m_type << " " << config_settings::instance().get_module_name(m_type);
+	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
+	if (server)
+	{
+		/*将模块加入到路由表*/
+		std::shared_ptr<route> route = server->get_route();
+		route->add_module(shared_from_this(), m_type, m_id);
 	}
 }
 
@@ -111,6 +152,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_module_logon_ack, "module logon respond" },
 	{ cmd_broadcast_module_logon, "broadcast module logon" },
 	{ cmd_broadcast_module_logon_ack, "broadcast module logon respond" },
+	{ cmd_register_info, "register module info" },
+	{ cmd_register_info_ack, "register module info respond" },
 };
 
 void common_client::init(std::shared_ptr<base_server> server)
@@ -125,6 +168,8 @@ void common_client::init(std::shared_ptr<base_server> server)
 		}
 		m_function_set[cmd_module_logon_ack] = std::bind(&common_client::handle_module_logon_ack, client, std::placeholders::_1);
 		m_function_set[cmd_broadcast_module_logon] = std::bind(&common_client::handle_broadcast_module_logon, client, std::placeholders::_1);
+		m_function_set[cmd_register_info] = std::bind(&common_client::handle_register_info, client, std::placeholders::_1);
+		m_function_set[cmd_register_info_ack] = std::bind(&common_client::handle_register_info_ack, client, std::placeholders::_1);
 	}
 	
 }

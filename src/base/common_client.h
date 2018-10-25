@@ -19,6 +19,8 @@ public:
 	void module_logon();
 	void handle_broadcast_module_logon(proto_msg& msg);
 	void register_info();
+	void handle_register_info(proto_msg& msg);
+	void handle_register_info_ack(proto_msg& msg);
 
 	virtual void init(std::shared_ptr<base_server>);
 	void set_active_type(uint32_t type);

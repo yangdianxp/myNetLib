@@ -540,11 +540,18 @@ class register_info : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::int32 id() const;
   void set_id(::google::protobuf::int32 value);
 
+  // int32 type = 2;
+  void clear_type();
+  static const int kTypeFieldNumber = 2;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:pb.internal.register_info)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::int32 id_;
+  ::google::protobuf::int32 type_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
@@ -803,6 +810,20 @@ inline void register_info::set_id(::google::protobuf::int32 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:pb.internal.register_info.id)
+}
+
+// int32 type = 2;
+inline void register_info::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 register_info::type() const {
+  // @@protoc_insertion_point(field_get:pb.internal.register_info.type)
+  return type_;
+}
+inline void register_info::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.register_info.type)
 }
 
 #ifdef __GNUC__
