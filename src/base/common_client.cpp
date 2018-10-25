@@ -83,7 +83,8 @@ void common_client::handle_broadcast_module_logon(proto_msg& msg)
 	pb::internal::addr addr;
 	msg.parse(addr);
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", ip:"
-		<< addr.ip() << ", port:" << addr.port() << ", type:" << addr.type();
+		<< addr.ip() << ", port:" << addr.port() << ", type:" << addr.type() << " " 
+		<< config_settings::instance().get_module_name(addr.type());
 	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
 	if (server)
 	{

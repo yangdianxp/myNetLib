@@ -31,3 +31,7 @@ cd balance
 cmake .
 make
 cd ..
+cd media
+cmake .
+make
+cd ..

@@ -22,5 +22,8 @@ See http://www.boost.org/LICENSE_1_0.txt
       <item>media</item>
       <item>balance</item>
     </gateway>
+    <media>
+      <item>balance</item>
+    </media>
   </link_type>
 </conf>

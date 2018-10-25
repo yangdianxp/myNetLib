@@ -50,6 +50,16 @@ void config_settings::load(const std::string &filename)
 	{
 		SLOG_ERROR << "Exception: " << e.what();
 	}
+	try {
+		BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.media"))
+		{
+			m_media_link_type.push_back(convert_type(v.second.data()));
+		}
+	}
+	catch (std::exception& e)
+	{
+		SLOG_ERROR << "Exception: " << e.what();
+	}
 }
 
 void config_settings::print()
@@ -61,10 +71,15 @@ void config_settings::print()
 		<< "m_remote_port:" << m_remote_port << std::endl
 		<< "m_type:" << m_type << " " << get_module_name(m_type) << std::endl
 		<< "m_mid_begin:" << m_mid_begin << " " << "m_mid_end:" << m_mid_end;
-	auto it_end = m_gateway_link_type.end();
-	for (auto it = m_gateway_link_type.begin(); it != it_end; ++it)
+	auto it_end_gateway = m_gateway_link_type.end();
+	for (auto it = m_gateway_link_type.begin(); it != it_end_gateway; ++it)
 	{
 		SLOG_INFO << "gateway link type:" << *it << " " << get_module_name(*it);
+	}
+	auto it_end_media = m_media_link_type.end();
+	for (auto it = m_media_link_type.begin(); it != it_end_media; ++it)
+	{
+		SLOG_INFO << "media link type:" << *it << " " << get_module_name(*it);
 	}
 }
 
@@ -121,6 +136,11 @@ uint32_t config_settings::get_mid_end()
 std::vector<uint32_t> config_settings::get_gateway_link_type()
 {
 	return m_gateway_link_type;
+}
+
+std::vector<uint32_t> config_settings::get_media_link_type()
+{
+	return m_media_link_type;
 }
 
 std::string config_settings::get_module_name(uint32_t type)

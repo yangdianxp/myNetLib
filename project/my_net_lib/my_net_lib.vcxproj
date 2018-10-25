@@ -26,6 +26,7 @@
     <Text Include="..\..\src\common\CMakeLists.txt" />
     <Text Include="..\..\src\gateway\CMakeLists.txt" />
     <Text Include="..\..\src\login\CMakeLists.txt" />
+    <Text Include="..\..\src\media\CMakeLists.txt" />
     <Text Include="..\..\src\proto\CMakeLists.txt" />
     <Text Include="..\..\test\unicode_test\CMakeLists.txt" />
   </ItemGroup>
@@ -49,6 +50,8 @@
     <ClCompile Include="..\..\src\gateway\gateway_server.cpp" />
     <ClCompile Include="..\..\src\login\login.cpp" />
     <ClCompile Include="..\..\src\login\login_server.cpp" />
+    <ClCompile Include="..\..\src\media\media.cpp" />
+    <ClCompile Include="..\..\src\media\media_server.cpp" />
     <ClCompile Include="..\..\src\proto\internal.pb.cc" />
     <ClCompile Include="..\..\src\proto\login.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
@@ -71,6 +74,7 @@
     <ClInclude Include="..\..\src\common\msg.h" />
     <ClInclude Include="..\..\src\gateway\gateway_server.h" />
     <ClInclude Include="..\..\src\login\login_server.h" />
+    <ClInclude Include="..\..\src\media\media_server.h" />
     <ClInclude Include="..\..\src\proto\internal.pb.h" />
     <ClInclude Include="..\..\src\proto\login.pb.h" />
     <ClInclude Include="..\..\src\proto\proc.pb.h" />
@@ -82,6 +86,7 @@
     <Xml Include="..\..\src\client\conf\net.xml" />
     <Xml Include="..\..\src\gateway\conf\net.xml" />
     <Xml Include="..\..\src\login\conf\net.xml" />
+    <Xml Include="..\..\src\media\conf\net.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\balance\laqi.sh" />
@@ -89,6 +94,7 @@
     <None Include="..\..\src\build.sh" />
     <None Include="..\..\src\config.info" />
     <None Include="..\..\src\ff.sh" />
+    <None Include="..\..\src\media\laqi.sh" />
     <None Include="..\..\src\proto\internal.proto" />
     <None Include="..\..\src\proto\login.proto" />
     <None Include="..\..\src\proto\prebuild.bat" />

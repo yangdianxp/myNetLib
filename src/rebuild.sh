@@ -39,3 +39,8 @@ cmake .
 make clean
 make 
 cd ..
+cd media
+cmake .
+make clean
+make 
+cd ..

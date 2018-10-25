@@ -4,4 +4,5 @@ killall client
 killall gateway
 killall login
 killall balance
+killall media
 
