@@ -2,6 +2,7 @@
 #define __CENTRAL_SERVER_H__
 #include "module.h"
 #include "unique_code.h"
+#include "vid_manage.h"
 
 class central_server : public module
 {
@@ -12,6 +13,7 @@ public:
 	uint32_t get_unique_mid();
 private:
 	unique_code m_unique_mid;
+	vid_manage m_vid_manage;
 };
 
 

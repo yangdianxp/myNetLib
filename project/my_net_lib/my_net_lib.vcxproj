@@ -29,6 +29,7 @@
     <Text Include="..\..\src\media\CMakeLists.txt" />
     <Text Include="..\..\src\proto\CMakeLists.txt" />
     <Text Include="..\..\test\unicode_test\CMakeLists.txt" />
+    <Text Include="..\..\test\vid_manage_test\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\balance\balance.cpp" />
@@ -42,11 +43,13 @@
     <ClCompile Include="..\..\src\central\central.cpp" />
     <ClCompile Include="..\..\src\central\central_client.cpp" />
     <ClCompile Include="..\..\src\central\central_server.cpp" />
+    <ClCompile Include="..\..\src\central\vid_manage.cpp" />
     <ClCompile Include="..\..\src\client\main.cpp" />
     <ClCompile Include="..\..\src\common\config_settings.cpp" />
     <ClCompile Include="..\..\src\common\log.cpp" />
     <ClCompile Include="..\..\src\common\msg.cpp" />
     <ClCompile Include="..\..\src\gateway\gateway.cpp" />
+    <ClCompile Include="..\..\src\gateway\gateway_client.cpp" />
     <ClCompile Include="..\..\src\gateway\gateway_server.cpp" />
     <ClCompile Include="..\..\src\login\login.cpp" />
     <ClCompile Include="..\..\src\login\login_server.cpp" />
@@ -57,6 +60,8 @@
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
     <ClCompile Include="..\..\test\unicode_test\main.cpp" />
     <ClCompile Include="..\..\test\unicode_test\unique_code.cpp" />
+    <ClCompile Include="..\..\test\vid_manage_test\main.cpp" />
+    <ClCompile Include="..\..\test\vid_manage_test\vid_manage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\balance\balance_server.h" />
@@ -68,10 +73,12 @@
     <ClInclude Include="..\..\src\base\unique_code.h" />
     <ClInclude Include="..\..\src\central\central_client.h" />
     <ClInclude Include="..\..\src\central\central_server.h" />
+    <ClInclude Include="..\..\src\central\vid_manage.h" />
     <ClInclude Include="..\..\src\common\common.h" />
     <ClInclude Include="..\..\src\common\config_settings.h" />
     <ClInclude Include="..\..\src\common\log.h" />
     <ClInclude Include="..\..\src\common\msg.h" />
+    <ClInclude Include="..\..\src\gateway\gateway_client.h" />
     <ClInclude Include="..\..\src\gateway\gateway_server.h" />
     <ClInclude Include="..\..\src\login\login_server.h" />
     <ClInclude Include="..\..\src\media\media_server.h" />
@@ -79,6 +86,7 @@
     <ClInclude Include="..\..\src\proto\login.pb.h" />
     <ClInclude Include="..\..\src\proto\proc.pb.h" />
     <ClInclude Include="..\..\test\unicode_test\unique_code.h" />
+    <ClInclude Include="..\..\test\vid_manage_test\vid_manage.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\balance\conf\net.xml" />

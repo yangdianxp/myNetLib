@@ -20,6 +20,7 @@ public:
 	uint32_t get_remote_port();
 	std::string get_log_filename();
 	uint32_t get_type();
+	uint32_t get_vid_unit_size();
 	uint32_t get_mid_begin();
 	uint32_t get_mid_end();
 	std::vector<uint32_t> get_gateway_link_type();
@@ -36,6 +37,7 @@ private:
 	std::string m_remote_ip;
 	uint32_t m_remote_port = 0;
 	uint32_t m_type = 0;
+	uint32_t m_vid_unit_size = 0;
 	uint32_t m_mid_begin = 0;
 	uint32_t m_mid_end = 0;
 	/*gateway连接的模块类型*/

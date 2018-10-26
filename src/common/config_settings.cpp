@@ -36,9 +36,13 @@ void config_settings::load(const std::string &filename)
 	m_remote_ip = tree.get("conf.remote_ip", "127.0.0.1");
 	m_remote_port = tree.get("conf.remote_port", 0);
 	std::string type = tree.get("conf.type", "none");
+	m_type = convert_type(type);
+	m_vid_unit_size = tree.get("conf.vid_unit_size", 0);
 	m_mid_begin = tree.get("conf.mid_range.begin", 1);
 	m_mid_end = tree.get("conf.mid_range.end", 1);
-	m_type = convert_type(type);
+
+	
+	
 
 	try {
 		BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.gateway"))
@@ -70,6 +74,7 @@ void config_settings::print()
 		<< "m_remote_ip:" << m_remote_ip << std::endl
 		<< "m_remote_port:" << m_remote_port << std::endl
 		<< "m_type:" << m_type << " " << get_module_name(m_type) << std::endl
+		<< "m_vid_unit_size:" << " " << m_vid_unit_size << std::endl
 		<< "m_mid_begin:" << m_mid_begin << " " << "m_mid_end:" << m_mid_end;
 	auto it_end_gateway = m_gateway_link_type.end();
 	for (auto it = m_gateway_link_type.begin(); it != it_end_gateway; ++it)
@@ -121,6 +126,11 @@ std::string config_settings::get_log_filename()
 uint32_t config_settings::get_type()
 {
 	return m_type;
+}
+
+uint32_t config_settings::get_vid_unit_size()
+{
+	return m_vid_unit_size;
 }
 
 uint32_t config_settings::get_mid_begin()

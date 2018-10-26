@@ -9,6 +9,7 @@ central_server::central_server(boost::asio::io_context& io_context, short port) 
 	int mid_end = config_reader.get_mid_end();
 	m_unique_mid.init(mid_begin, mid_end);
 	m_id = get_unique_mid();
+	m_vid_manage.set_unit_size(config_reader.get_vid_unit_size());
 }
 
 void central_server::handle_accept_succ(tcp::socket& socket)
@@ -17,7 +18,6 @@ void central_server::handle_accept_succ(tcp::socket& socket)
 	client->init(shared_from_this());
 	m_route->add_client(client);
 }
-
 
 uint32_t central_server::get_unique_mid()
 {

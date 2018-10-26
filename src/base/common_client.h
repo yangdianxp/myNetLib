@@ -15,7 +15,7 @@ public:
 	virtual void dispatch(proto_msg& msg);
 	void handle_connect_succ();
 	void handle_nothing(proto_msg& msg);
-	void handle_module_logon_ack(proto_msg& msg);
+	virtual void handle_module_logon_ack(proto_msg& msg);
 	void module_logon();
 	void handle_broadcast_module_logon(proto_msg& msg);
 	void register_info();
