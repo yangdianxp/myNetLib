@@ -41,9 +41,6 @@ void config_settings::load(const std::string &filename)
 	m_mid_begin = tree.get("conf.mid_range.begin", 1);
 	m_mid_end = tree.get("conf.mid_range.end", 1);
 
-	
-	
-
 	try {
 		BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.gateway"))
 		{
@@ -58,6 +55,26 @@ void config_settings::load(const std::string &filename)
 		BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.media"))
 		{
 			m_media_link_type.push_back(convert_type(v.second.data()));
+		}
+	}
+	catch (std::exception& e)
+	{
+		SLOG_ERROR << "Exception: " << e.what();
+	}
+	try {
+		BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.balance"))
+		{
+			m_balance_link_type.push_back(convert_type(v.second.data()));
+		}
+	}
+	catch (std::exception& e)
+	{
+		SLOG_ERROR << "Exception: " << e.what();
+	}
+	try {
+		BOOST_FOREACH(pt::ptree::value_type &v, tree.get_child("conf.link_type.login"))
+		{
+			m_login_link_type.push_back(convert_type(v.second.data()));
 		}
 	}
 	catch (std::exception& e)
@@ -96,6 +113,7 @@ void config_settings::init()
 	m_type_glossary.left.insert(std::make_pair("central", module_central_type));
 	m_type_glossary.left.insert(std::make_pair("media", module_media_type));
 	m_type_glossary.left.insert(std::make_pair("balance", module_balance_type));
+	m_type_glossary.left.insert(std::make_pair("monitor", module_monitor_type));
 }
 
 std::string config_settings::get_local_ip()
@@ -143,14 +161,24 @@ uint32_t config_settings::get_mid_end()
 	return m_mid_end;
 }
 
-std::vector<uint32_t> config_settings::get_gateway_link_type()
+std::vector<uint32_t>& config_settings::get_gateway_link_type()
 {
 	return m_gateway_link_type;
 }
 
-std::vector<uint32_t> config_settings::get_media_link_type()
+std::vector<uint32_t>& config_settings::get_media_link_type()
 {
 	return m_media_link_type;
+}
+
+std::vector<uint32_t> config_settings::get_balance_link_type()
+{
+	return m_balance_link_type;
+}
+
+std::vector<uint32_t> config_settings::get_login_link_type()
+{
+	return m_login_link_type;
 }
 
 std::string config_settings::get_module_name(uint32_t type)

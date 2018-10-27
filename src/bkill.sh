@@ -5,4 +5,5 @@ killall gateway
 killall login
 killall balance
 killall media
+killall monitor
 

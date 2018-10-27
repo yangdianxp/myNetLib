@@ -44,3 +44,8 @@ cmake .
 make clean
 make 
 cd ..
+cd monitor
+cmake .
+make clean
+make 
+cd ..

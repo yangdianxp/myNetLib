@@ -3,3 +3,4 @@ gateway 21000
 login	22000
 balance 23000
 media	24000
+monitor 30000

@@ -17,6 +17,7 @@ enum g_module_type
 	module_login_type,
 	module_central_type,
 	module_balance_type,
+	module_monitor_type,
 
 	module_media_type = 16,
 	module_end_type

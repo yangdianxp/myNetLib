@@ -35,3 +35,7 @@ cd media
 cmake .
 make
 cd ..
+cd monitor
+cmake .
+make
+cd ..

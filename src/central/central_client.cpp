@@ -61,16 +61,18 @@ void central_client::module_logon_reply()
 		};
 		if (m_type == module_gateway_type)
 		{
-			auto it_end = m_gateway_link_type.end();
-			for (auto it = m_gateway_link_type.begin(); it != it_end; ++it)
+			auto gateway_link_type = config_settings::instance().get_gateway_link_type();
+			auto it_end = gateway_link_type.end();
+			for (auto it = gateway_link_type.begin(); it != it_end; ++it)
 			{
 				route->for_each_type(*it, fn);
 			}
 		}
 		else if (m_type >= module_media_type)
 		{
-			auto it_end = m_media_link_type.end();
-			for (auto it = m_media_link_type.begin(); it != it_end; ++it)
+			auto media_link_type = config_settings::instance().get_media_link_type();
+			auto it_end = media_link_type.end();
+			for (auto it = media_link_type.begin(); it != it_end; ++it)
 			{
 				route->for_each_type(*it, fn);
 			}
@@ -139,8 +141,6 @@ void central_client::init(std::shared_ptr<base_server> server)
 {
 	common_client::init(server);
 	config_settings& config_reader = config_settings::instance();
-	m_gateway_link_type = config_reader.get_gateway_link_type();
-	m_media_link_type = config_reader.get_media_link_type();
 	std::shared_ptr<central_client> client = std::dynamic_pointer_cast<central_client>(shared_from_this());
 	if (client)
 	{

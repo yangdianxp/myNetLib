@@ -23,8 +23,10 @@ public:
 	uint32_t get_vid_unit_size();
 	uint32_t get_mid_begin();
 	uint32_t get_mid_end();
-	std::vector<uint32_t> get_gateway_link_type();
-	std::vector<uint32_t> get_media_link_type();
+	std::vector<uint32_t>& get_gateway_link_type();
+	std::vector<uint32_t>& get_media_link_type();
+	std::vector<uint32_t> get_balance_link_type();
+	std::vector<uint32_t> get_login_link_type();
 
 	std::string get_module_name(uint32_t type);
 private:
@@ -44,6 +46,10 @@ private:
 	std::vector<uint32_t> m_gateway_link_type;
 	/*media连接的模块类型*/
 	std::vector<uint32_t> m_media_link_type;
+	/*balance连接的模块类型*/
+	std::vector<uint32_t> m_balance_link_type;
+	/*login连接的模块类型*/
+	std::vector<uint32_t> m_login_link_type;
 
 	bimap<unordered_set_of<std::string>, unordered_set_of<uint32_t>> m_type_glossary;
 	

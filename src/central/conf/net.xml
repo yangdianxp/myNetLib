@@ -22,9 +22,17 @@ See http://www.boost.org/LICENSE_1_0.txt
       <item>login</item>
       <item>media</item>
       <item>balance</item>
+      <item>monitor</item>
     </gateway>
     <media>
       <item>balance</item>
+      <item>monitor</item>
     </media>
+    <balance>
+      <item>monitor</item>
+    </balance>
+    <login>
+      <item>monitor</item>
+    </login>
   </link_type>
 </conf>

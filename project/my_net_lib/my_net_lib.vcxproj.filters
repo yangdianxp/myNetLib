@@ -58,6 +58,12 @@
     <Filter Include="test\vid_manage_test">
       <UniqueIdentifier>{5413fb4e-4288-42b8-8a8e-e5aac73cac74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\monitor">
+      <UniqueIdentifier>{8d1eda86-fb61-4f97-b235-75f6c7272b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\monitor\conf">
+      <UniqueIdentifier>{2ba4d470-88a6-4f2b-8dfa-18e9a68f7222}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -92,6 +98,9 @@
     </Text>
     <Text Include="..\..\test\vid_manage_test\CMakeLists.txt">
       <Filter>test\vid_manage_test</Filter>
+    </Text>
+    <Text Include="..\..\src\monitor\CMakeLists.txt">
+      <Filter>src\monitor</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +194,15 @@
     <ClCompile Include="..\..\src\gateway\gateway_client.cpp">
       <Filter>src\gateway</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\monitor\monitor.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\monitor\monitor_client.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\monitor\monitor_server.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -256,6 +274,12 @@
     <ClInclude Include="..\..\src\gateway\gateway_client.h">
       <Filter>src\gateway</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\monitor\monitor_client.h">
+      <Filter>src\monitor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\monitor\monitor_server.h">
+      <Filter>src\monitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
@@ -275,6 +299,9 @@
     </Xml>
     <Xml Include="..\..\src\media\conf\net.xml">
       <Filter>src\media\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\monitor\conf\net.xml">
+      <Filter>src\monitor\conf</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +349,9 @@
     </None>
     <None Include="..\..\src\gateway\laqi.sh">
       <Filter>src\gateway</Filter>
+    </None>
+    <None Include="..\..\src\monitor\laqi.sh">
+      <Filter>src\monitor</Filter>
     </None>
   </ItemGroup>
 </Project>
