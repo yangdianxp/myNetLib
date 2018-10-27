@@ -22,6 +22,11 @@ void module::connect_remote(std::string ip, std::string port, uint32_t type)
 	SLOG_INFO << "connect ip:" << ip << " port:" << port << " type:" << type << " " 
 		<< config_settings::instance().get_module_name(type);
 	std::shared_ptr<common_client> client = std::make_shared<common_client>(get_io_context(), ip, port);
+	connect_remote_sub(client, type);
+}
+
+void module::connect_remote_sub(std::shared_ptr<common_client> client, uint32_t type)
+{
 	client->set_reconnect_time(3000);
 	client->set_active_type(type);
 	client->init(shared_from_this());

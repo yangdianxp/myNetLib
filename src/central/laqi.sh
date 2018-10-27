@@ -2,5 +2,5 @@
 killall central
 rm logs/*.log
 ./central -f conf/common.json &
-sleep 1
+sleep 0.005
 tail -f logs/*.log

@@ -9,6 +9,7 @@ class gateway_server : public module
 public:
 	gateway_server(boost::asio::io_context& io_context, short port);
 	virtual void handle_accept_succ(tcp::socket& socket);
+	virtual void connect_remote(std::string ip, std::string port, uint32_t type);
 
 private:
 	unique_code m_vid_range;

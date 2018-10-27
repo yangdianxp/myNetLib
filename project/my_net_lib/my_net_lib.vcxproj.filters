@@ -314,5 +314,14 @@
     <None Include="..\..\src\media\laqi.sh">
       <Filter>src\media</Filter>
     </None>
+    <None Include="..\..\src\laqi.sh">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\src\central\laqi.sh">
+      <Filter>src\central</Filter>
+    </None>
+    <None Include="..\..\src\gateway\laqi.sh">
+      <Filter>src\gateway</Filter>
+    </None>
   </ItemGroup>
 </Project>

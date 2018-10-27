@@ -100,8 +100,11 @@
     <None Include="..\..\src\balance\laqi.sh" />
     <None Include="..\..\src\bkill.sh" />
     <None Include="..\..\src\build.sh" />
+    <None Include="..\..\src\central\laqi.sh" />
     <None Include="..\..\src\config.info" />
     <None Include="..\..\src\ff.sh" />
+    <None Include="..\..\src\gateway\laqi.sh" />
+    <None Include="..\..\src\laqi.sh" />
     <None Include="..\..\src\media\laqi.sh" />
     <None Include="..\..\src\proto\internal.proto" />
     <None Include="..\..\src\proto\login.proto" />

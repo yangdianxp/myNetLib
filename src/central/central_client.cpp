@@ -145,7 +145,7 @@ void central_client::init(std::shared_ptr<base_server> server)
 	if (client)
 	{
 		m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, client, std::placeholders::_1);
-
+		m_function_set[cmd_request_vid_range] = std::bind(&central_client::handle_request_vid_range, client, std::placeholders::_1);
 	}
 }
 
