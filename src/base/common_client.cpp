@@ -154,7 +154,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_broadcast_module_logon, "broadcast module logon" },
 	{ cmd_broadcast_module_logon_ack, "broadcast module logon respond" },
 	{ cmd_register_info, "register module info" },
-	{ cmd_register_info_ack, "register module info respond" },
+	{ cmd_request_vid_range, "gateway request vid range" },
+	{ cmd_request_vid_range_ack, "gateway request vid range respond" },
 };
 
 void common_client::init(std::shared_ptr<base_server> server)

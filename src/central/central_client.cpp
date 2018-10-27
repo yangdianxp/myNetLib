@@ -119,6 +119,22 @@ void central_client::broadcast_module_logon()
 	}
 }
 
+void central_client::handle_request_vid_range(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << " m_id:" << m_id;
+	std::shared_ptr<central_server> server = std::dynamic_pointer_cast<central_server>(m_server);
+	if (server)
+	{
+		vid_manage::vid_pair pair = server->get_vid_range(m_id);
+		proto_msg msg(cmd_request_vid_range_ack);
+		pb::internal::vid_range range;
+		range.set_begin(pair.first);
+		range.set_end(pair.second);
+		msg.serialize_msg(range);
+		write((char *)&msg, msg.size());
+	}
+}
+
 void central_client::init(std::shared_ptr<base_server> server)
 {
 	common_client::init(server);
@@ -129,6 +145,7 @@ void central_client::init(std::shared_ptr<base_server> server)
 	if (client)
 	{
 		m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, client, std::placeholders::_1);
+
 	}
 }
 

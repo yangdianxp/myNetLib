@@ -25,3 +25,9 @@ message register_info
 	int32 id = 1;
 	int32 type = 2;
 }
+
+message vid_range
+{
+	int32 begin = 1;
+	int32 end = 2;
+}

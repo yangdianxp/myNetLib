@@ -12,6 +12,7 @@ public:
 	void handle_module_logon(proto_msg& msg);
 	void module_logon_reply();
 	void broadcast_module_logon();
+	void handle_request_vid_range(proto_msg& msg);
 	void init(std::shared_ptr<base_server>);
 private:
 	std::vector<uint32_t> m_gateway_link_type;

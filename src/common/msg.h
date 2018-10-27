@@ -56,6 +56,8 @@ enum cmd_enum
 	cmd_broadcast_module_logon_ack,
 	cmd_register_info,					//注册模块信息
 	cmd_register_info_ack,
+	cmd_request_vid_range,				//gateway请求vid范围
+	cmd_request_vid_range_ack,
 	cmd_end
 };
 

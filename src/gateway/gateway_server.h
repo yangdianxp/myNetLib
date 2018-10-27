@@ -8,6 +8,7 @@ class gateway_server : public module
 	using tcp = boost::asio::ip::tcp;
 public:
 	gateway_server(boost::asio::io_context& io_context, short port);
+	virtual void handle_accept_succ(tcp::socket& socket);
 
 private:
 	unique_code m_vid_range;

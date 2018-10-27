@@ -23,3 +23,8 @@ uint32_t central_server::get_unique_mid()
 {
 	return m_unique_mid.get();
 }
+
+vid_manage::vid_pair central_server::	get_vid_range(std::size_t mid)
+{
+	return m_vid_manage.get(mid);
+}
