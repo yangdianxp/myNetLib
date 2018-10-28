@@ -59,7 +59,9 @@ void central_client::module_logon_reply()
 				addr->set_type(common->get_type());
 			}
 		};
-		if (m_type == module_gateway_type)
+		switch (m_type)
+		{
+		case module_gateway_type:
 		{
 			auto gateway_link_type = config_settings::instance().get_gateway_link_type();
 			auto it_end = gateway_link_type.end();
@@ -67,15 +69,41 @@ void central_client::module_logon_reply()
 			{
 				route->for_each_type(*it, fn);
 			}
+			break;
 		}
-		else if (m_type >= module_media_type)
+		case module_login_type:
 		{
-			auto media_link_type = config_settings::instance().get_media_link_type();
-			auto it_end = media_link_type.end();
-			for (auto it = media_link_type.begin(); it != it_end; ++it)
+			auto login_link_type = config_settings::instance().get_login_link_type();
+			auto it_end = login_link_type.end();
+			for (auto it = login_link_type.begin(); it != it_end; ++it)
 			{
 				route->for_each_type(*it, fn);
 			}
+			break;
+		}
+		case module_balance_type:
+		{
+			auto balance_link_type = config_settings::instance().get_balance_link_type();
+			auto it_end = balance_link_type.end();
+			for (auto it = balance_link_type.begin(); it != it_end; ++it)
+			{
+				route->for_each_type(*it, fn);
+			}
+			break;
+		}
+		default:
+		{
+			if (m_type >= module_media_type)
+			{
+				auto media_link_type = config_settings::instance().get_media_link_type();
+				auto it_end = media_link_type.end();
+				for (auto it = media_link_type.begin(); it != it_end; ++it)
+				{
+					route->for_each_type(*it, fn);
+				}
+			}
+			break;
+		}
 		}
 		SLOG_DEBUG << ack.DebugString();
 		ack_msg.serialize_msg(ack);
@@ -107,7 +135,19 @@ void central_client::broadcast_module_logon()
 			break;
 		case module_balance_type:
 			route->for_each_type(module_gateway_type, fn);
-			route->for_each_type(module_media_type, fn);
+			for (int i = module_media_type; i < module_end_type; ++i)
+			{
+				route->for_each_type(i, fn);
+			}
+			break;
+		case module_monitor_type:
+			route->for_each_type(module_gateway_type, fn);
+			route->for_each_type(module_login_type, fn);
+			route->for_each_type(module_balance_type, fn);
+			for (int i = module_media_type; i < module_end_type; ++i)
+			{
+				route->for_each_type(i, fn);
+			}
 			break;
 		default:
 			{

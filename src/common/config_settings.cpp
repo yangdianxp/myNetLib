@@ -171,12 +171,12 @@ std::vector<uint32_t>& config_settings::get_media_link_type()
 	return m_media_link_type;
 }
 
-std::vector<uint32_t> config_settings::get_balance_link_type()
+std::vector<uint32_t>& config_settings::get_balance_link_type()
 {
 	return m_balance_link_type;
 }
 
-std::vector<uint32_t> config_settings::get_login_link_type()
+std::vector<uint32_t>& config_settings::get_login_link_type()
 {
 	return m_login_link_type;
 }

@@ -64,6 +64,12 @@
     <Filter Include="src\monitor\conf">
       <UniqueIdentifier>{2ba4d470-88a6-4f2b-8dfa-18e9a68f7222}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\boost_log_test">
+      <UniqueIdentifier>{5d27e218-00ea-42f5-b459-a4960ed380a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_log_test\SLog_test">
+      <UniqueIdentifier>{5e717391-92e4-4818-960a-d174732e64a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -101,6 +107,9 @@
     </Text>
     <Text Include="..\..\src\monitor\CMakeLists.txt">
       <Filter>src\monitor</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_log_test\log_study\CMakeLists.txt">
+      <Filter>test\boost_log_test\SLog_test</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +211,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\monitor\monitor_server.cpp">
       <Filter>src\monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_file.cpp">
+      <Filter>test\boost_log_test\SLog_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

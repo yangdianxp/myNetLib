@@ -25,8 +25,8 @@ public:
 	uint32_t get_mid_end();
 	std::vector<uint32_t>& get_gateway_link_type();
 	std::vector<uint32_t>& get_media_link_type();
-	std::vector<uint32_t> get_balance_link_type();
-	std::vector<uint32_t> get_login_link_type();
+	std::vector<uint32_t>& get_balance_link_type();
+	std::vector<uint32_t>& get_login_link_type();
 
 	std::string get_module_name(uint32_t type);
 private:

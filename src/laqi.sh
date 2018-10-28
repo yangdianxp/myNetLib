@@ -14,4 +14,9 @@ killall media
 rm logs/*.log
 ./media -f conf/common.json &
 cd ..
+cd gateway
+killall gateway
+rm logs/*.log
+./gateway -f conf/common.json &
+cd ..
 

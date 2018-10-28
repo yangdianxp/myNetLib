@@ -2,5 +2,5 @@
 killall media
 rm logs/*.log
 ./media -f conf/common.json &
-sleep 1
+sleep 0.01
 tail -f logs/*.log
