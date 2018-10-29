@@ -63,7 +63,7 @@ void central_client::module_logon_reply()
 		{
 		case module_gateway_type:
 		{
-			auto gateway_link_type = config_settings::instance().get_gateway_link_type();
+			auto& gateway_link_type = config_settings::instance().get_gateway_link_type();
 			auto it_end = gateway_link_type.end();
 			for (auto it = gateway_link_type.begin(); it != it_end; ++it)
 			{
@@ -73,7 +73,7 @@ void central_client::module_logon_reply()
 		}
 		case module_login_type:
 		{
-			auto login_link_type = config_settings::instance().get_login_link_type();
+			auto& login_link_type = config_settings::instance().get_login_link_type();
 			auto it_end = login_link_type.end();
 			for (auto it = login_link_type.begin(); it != it_end; ++it)
 			{
@@ -83,7 +83,7 @@ void central_client::module_logon_reply()
 		}
 		case module_balance_type:
 		{
-			auto balance_link_type = config_settings::instance().get_balance_link_type();
+			auto& balance_link_type = config_settings::instance().get_balance_link_type();
 			auto it_end = balance_link_type.end();
 			for (auto it = balance_link_type.begin(); it != it_end; ++it)
 			{
@@ -95,7 +95,7 @@ void central_client::module_logon_reply()
 		{
 			if (m_type >= module_media_type)
 			{
-				auto media_link_type = config_settings::instance().get_media_link_type();
+				auto& media_link_type = config_settings::instance().get_media_link_type();
 				auto it_end = media_link_type.end();
 				for (auto it = media_link_type.begin(); it != it_end; ++it)
 				{
