@@ -212,7 +212,7 @@
     <ClCompile Include="..\..\src\monitor\monitor_server.cpp">
       <Filter>src\monitor</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_file.cpp">
+    <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_logging.cpp">
       <Filter>test\boost_log_test\SLog_test</Filter>
     </ClCompile>
   </ItemGroup>

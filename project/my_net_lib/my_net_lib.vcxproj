@@ -63,7 +63,7 @@
     <ClCompile Include="..\..\src\proto\internal.pb.cc" />
     <ClCompile Include="..\..\src\proto\login.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
-    <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_file.cpp" />
+    <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_logging.cpp" />
     <ClCompile Include="..\..\test\unicode_test\main.cpp" />
     <ClCompile Include="..\..\test\unicode_test\unique_code.cpp" />
     <ClCompile Include="..\..\test\vid_manage_test\main.cpp" />
