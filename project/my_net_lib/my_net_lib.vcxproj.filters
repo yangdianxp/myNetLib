@@ -215,6 +215,9 @@
     <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_logging.cpp">
       <Filter>test\boost_log_test\SLog_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\monitor\cmd_thread.cpp">
+      <Filter>src\monitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -290,6 +293,9 @@
       <Filter>src\monitor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\monitor\monitor_server.h">
+      <Filter>src\monitor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\monitor\cmd_thread.h">
       <Filter>src\monitor</Filter>
     </ClInclude>
   </ItemGroup>

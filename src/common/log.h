@@ -33,7 +33,7 @@ public:
 
 	static boost::log::sources::severity_logger<severity_levels> slg;
 
-	static void InitLog(const std::string& filename);
+	static void InitLog(const std::string& filename, bool console = false);
 
 	static void SetLevel(severity_levels sl);
 };

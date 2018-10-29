@@ -57,6 +57,7 @@
     <ClCompile Include="..\..\src\login\login_server.cpp" />
     <ClCompile Include="..\..\src\media\media.cpp" />
     <ClCompile Include="..\..\src\media\media_server.cpp" />
+    <ClCompile Include="..\..\src\monitor\cmd_thread.cpp" />
     <ClCompile Include="..\..\src\monitor\monitor.cpp" />
     <ClCompile Include="..\..\src\monitor\monitor_client.cpp" />
     <ClCompile Include="..\..\src\monitor\monitor_server.cpp" />
@@ -88,6 +89,7 @@
     <ClInclude Include="..\..\src\gateway\gateway_server.h" />
     <ClInclude Include="..\..\src\login\login_server.h" />
     <ClInclude Include="..\..\src\media\media_server.h" />
+    <ClInclude Include="..\..\src\monitor\cmd_thread.h" />
     <ClInclude Include="..\..\src\monitor\monitor_client.h" />
     <ClInclude Include="..\..\src\monitor\monitor_server.h" />
     <ClInclude Include="..\..\src\proto\internal.pb.h" />
