@@ -12,9 +12,9 @@ public:
 	~cmd_thread();
 
 	void routine();
-	void emit(std::string cmd);
-
+	
 private:
+	void emit(std::string cmd);
 	std::thread m_thread;
 };
 

@@ -44,13 +44,14 @@ protected:
 
 	std::string m_ip;
 	uint32_t m_port;
+protected:
+	boost::asio::io_context& m_io_context;
 
 private:
 	void do_connect(const tcp::resolver::results_type& endpoints);
 	void handle_error();
 	void reconnect();
 
-	boost::asio::io_context& m_io_context;
 	tcp::resolver::results_type m_endpoints;
 	boost::asio::steady_timer m_reconnect_timer;
 	int m_reconnect_time = 0;
