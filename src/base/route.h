@@ -20,6 +20,7 @@ class route
 public:
 	void add_client(std::shared_ptr<base_client> client);
 	void add_module(std::shared_ptr<base_client> client, uint32_t type, uint32_t mid);
+	std::size_t for_each_all(std::function<void(std::shared_ptr<base_client>)> fn);
 	std::size_t for_each_type(uint32_t type, std::function<void(std::shared_ptr<base_client>)> fn);
 private:
 	std::set<std::shared_ptr<base_client>> m_clients;
