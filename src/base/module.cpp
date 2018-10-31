@@ -27,7 +27,7 @@ void module::connect_remote(std::string ip, std::string port, uint32_t type)
 
 void module::connect_remote_sub(std::shared_ptr<common_client> client, uint32_t type)
 {
-	client->set_reconnect_time(3000);
+	//client->set_reconnect_time(3000);
 	client->set_active_type(type);
 	client->init(shared_from_this());
 	m_route->add_client(client);

@@ -15,6 +15,10 @@ void route::delete_client(std::shared_ptr<base_client> client)
 	m_mid_clients.right.erase(client);
 	m_type_clients.right.erase(client);
 }
+void route::delete_client_type(std::shared_ptr<base_client> client)
+{
+	m_type_clients.right.erase(client);
+}
 
 std::size_t route::for_each_all(std::function<void(std::shared_ptr<base_client>)> fn)
 {

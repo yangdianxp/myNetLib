@@ -37,45 +37,37 @@ void common_client::handle_connect_succ()
 void common_client::handle_connect_error(boost::system::error_code& ec)
 {
 	base_client::handle_connect_error(ec);
-	/*如果是被动连接客户端或主动连接客户端，但连接时间为0，则删除*/
-	if (m_conn_type == passive_conn ||
-		(m_conn_type == active_conn && m_reconnect_time == 0))
-	{
-		std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
-		if (server)
-		{
-			auto route = server->get_route();
-			route->delete_client(shared_from_this());
-		}
-	}
+	handle_error_aux();
 }
 void common_client::handle_write_error(boost::system::error_code& ec)
 {
 	base_client::handle_write_error(ec);
-
+	handle_error_aux();
 }
 void common_client::handle_msg_header_error(int length)
 {
 	base_client::handle_msg_header_error(length);
+	handle_error_aux();
 }
 void common_client::handle_read_error(boost::system::error_code& ec)
 {
 	base_client::handle_read_error(ec);
+	handle_error_aux();
 }
 void common_client::handle_error_aux()
 {
-	if (m_conn_type == passive_conn ||
-		(m_conn_type == active_conn && m_reconnect_time == 0))
+	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
+	if (server)
 	{
-		std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
-		if (server)
+		auto route = server->get_route();
+		if (m_conn_type == passive_conn ||
+			(m_conn_type == active_conn && m_reconnect_time == 0))
 		{
-			auto route = server->get_route();
 			route->delete_client(shared_from_this());
 		}
-	}
-	else {
-
+		else {
+			route->delete_client_type(shared_from_this());
+		}
 	}
 }
 void common_client::handle_nothing(proto_msg& msg)
@@ -162,7 +154,8 @@ void common_client::handle_register_info(proto_msg& msg)
 	m_ip = info.ip();
 	m_port = info.port();
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] 
-		<< " m_id:" << m_id << " m_type:" << m_type << " " << config_settings::instance().get_module_name(m_type);
+		<< " m_id:" << m_id << " m_type:" << m_type << " " << config_settings::instance().get_module_name(m_type)
+		<< " ip:" << m_ip << " port:" << m_port;
 	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
 	if (server)
 	{
@@ -189,7 +182,8 @@ void common_client::handle_register_info_ack(proto_msg& msg)
 	m_ip = info.ip();
 	m_port = info.port();
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd]
-		<< " m_id:" << m_id << " m_type:" << m_type << " " << config_settings::instance().get_module_name(m_type);
+		<< " m_id:" << m_id << " m_type:" << m_type << " " << config_settings::instance().get_module_name(m_type)
+		<< " ip:" << m_ip << " port:" << m_port;
 	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
 	if (server)
 	{
