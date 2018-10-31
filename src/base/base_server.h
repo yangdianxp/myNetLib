@@ -12,10 +12,17 @@ public:
 
 	virtual void handle_accept_succ(tcp::socket& socket);
 	virtual void handle_accept_error(boost::system::error_code& ec);
+
+	std::string get_ip();
+	std::size_t get_port();
 protected:
 	boost::asio::io_context& get_io_context();
+	
 private:
 	void do_accept();
+	std::string m_ip;
+	std::size_t m_port;
+
 	tcp::acceptor m_acceptor;
 	std::set<std::shared_ptr<base_client>> m_clients;
 };

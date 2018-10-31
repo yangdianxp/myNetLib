@@ -24,6 +24,8 @@ message register_info
 {
 	int32 id = 1;
 	int32 type = 2;
+	string ip = 3;
+	int32 port = 4;
 }
 
 message vid_range

@@ -14,6 +14,12 @@ public:
 
 	virtual void dispatch(proto_msg& msg);
 	void handle_connect_succ();
+	void handle_connect_error(boost::system::error_code& ec);
+	void handle_write_error(boost::system::error_code& ec);
+	void handle_msg_header_error(int length);
+	void handle_read_error(boost::system::error_code& ec);
+	void handle_error_aux();
+
 	void handle_nothing(proto_msg& msg);
 	virtual void handle_module_logon_ack(proto_msg& msg);
 	void module_logon();
@@ -26,6 +32,7 @@ public:
 	void set_active_type(uint32_t type);
 	void set_server(std::shared_ptr<base_server>);
 	uint32_t get_type();
+	uint32_t get_id();
 protected:
 	/*从属于服务器*/
 	std::shared_ptr<base_server> m_server;

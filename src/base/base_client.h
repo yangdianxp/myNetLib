@@ -41,6 +41,7 @@ protected:
 		active_conn = 2    //主动连接
 	};
 	client_type m_conn_type;
+	int m_reconnect_time = 0;
 
 	std::string m_ip;
 	uint32_t m_port;
@@ -54,7 +55,6 @@ private:
 
 	tcp::resolver::results_type m_endpoints;
 	boost::asio::steady_timer m_reconnect_timer;
-	int m_reconnect_time = 0;
 };
 
 #endif

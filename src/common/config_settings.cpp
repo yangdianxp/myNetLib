@@ -103,6 +103,16 @@ void config_settings::print()
 	{
 		SLOG_INFO << "media link type:" << *it << " " << get_module_name(*it);
 	}
+	auto it_end_balance = m_balance_link_type.end();
+	for (auto it = m_balance_link_type.begin(); it != it_end_balance; ++it)
+	{
+		SLOG_INFO << "balance link type:" << *it << " " << get_module_name(*it);
+	}
+	auto it_end_login = m_login_link_type.end();
+	for (auto it = m_login_link_type.begin(); it != it_end_login; ++it)
+	{
+		SLOG_INFO << "login link type:" << *it << " " << get_module_name(*it);
+	}
 }
 
 void config_settings::init()

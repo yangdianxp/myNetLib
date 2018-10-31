@@ -4,6 +4,8 @@
 base_server::base_server(boost::asio::io_context& io_context, short port)
 	: m_acceptor(io_context, tcp::endpoint(tcp::v4(), port))
 {
+	m_ip = config_settings::instance().get_local_ip();
+	m_port = port;
 	do_accept();
 }
 
@@ -19,6 +21,16 @@ void base_server::handle_accept_succ(tcp::socket& socket)
 void base_server::handle_accept_error(boost::system::error_code& ec)
 {
 	SLOG_ERROR << ec.message();
+}
+
+std::string base_server::get_ip()
+{
+	return m_ip;
+}
+
+std::size_t base_server::get_port()
+{
+	return m_port;
 }
 
 boost::asio::io_context& base_server::get_io_context()
