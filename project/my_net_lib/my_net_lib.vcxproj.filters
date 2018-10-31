@@ -218,6 +218,9 @@
     <ClCompile Include="..\..\src\monitor\cmd_thread.cpp">
       <Filter>src\monitor</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\proto\monitor.pb.cc">
+      <Filter>src\proto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -298,6 +301,9 @@
     <ClInclude Include="..\..\src\monitor\cmd_thread.h">
       <Filter>src\monitor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\proto\monitor.pb.h">
+      <Filter>src\proto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
@@ -370,6 +376,9 @@
     </None>
     <None Include="..\..\src\monitor\laqi.sh">
       <Filter>src\monitor</Filter>
+    </None>
+    <None Include="..\..\src\proto\monitor.proto">
+      <Filter>src\proto</Filter>
     </None>
   </ItemGroup>
 </Project>

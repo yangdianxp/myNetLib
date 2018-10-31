@@ -20,29 +20,19 @@ void cmd_thread::routine()
 	{
 		std::string line;
 		getline(std::cin, line, '\n');
-		// 以换行为结束，允许行内有空格
-		int num = 0;
-		std::stringstream ss1(line);
-		std::string cmd;
-		ss1 >> cmd;
-		std::size_t index = line.find_first_of("0123456789");
-		if (index != std::string::npos)
-		{
-			std::string num_str(line, index);
-			std::stringstream ss(num_str);
-			ss >> num;
-		}
-		
-		std::cout << cmd << " " << num << std::endl;
-		//emit(line);
+		emit(line);
 	}
 }
 
-void cmd_thread::emit(std::string cmd)
+void cmd_thread::emit(std::string str)
 {
 	boost::asio::post(m_io_context, 
-		[this, cmd]() 
+		[this, str]() 
 		{
-			write(cmd.c_str(), cmd.size());
+			proto_msg msg(cmd_monitor_instruction);
+			pb::monitor::cmd cmd;
+			cmd.set_content(str);
+			msg.serialize_msg(cmd);
+			write((char *)&msg, msg.size());
 		});
 }

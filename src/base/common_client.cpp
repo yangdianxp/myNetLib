@@ -156,6 +156,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_register_info, "register module info" },
 	{ cmd_request_vid_range, "gateway request vid range" },
 	{ cmd_request_vid_range_ack, "gateway request vid range respond" },
+	{ cmd_monitor_instruction, "monitor console instruction" },
+	{ cmd_monitor_instruction, "monitor console instruction respond" },
 };
 
 void common_client::init(std::shared_ptr<base_server> server)

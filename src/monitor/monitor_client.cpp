@@ -1,3 +1,4 @@
+#include <sstream>
 #include "monitor_client.h"
 monitor_client::monitor_client(boost::asio::io_context& io_context, \
 	std::string remote_ip, std::string remote_port) :
@@ -12,11 +13,23 @@ monitor_client::monitor_client(boost::asio::io_context& io_context, tcp::socket 
 
 }
 
+void monitor_client::handle_cmd_monitor_instruction(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::monitor::cmd cmd;
+	msg.parse(cmd);
+	std::string content = cmd.content();
+	SLOG_INFO << "content:" << content;
+	std::stringstream ss(content);
+	std::string 
+}
+
 void monitor_client::init(std::shared_ptr<base_server> server)
 {
 	common_client::init(server);
 	std::shared_ptr<monitor_client> client = std::dynamic_pointer_cast<monitor_client>(shared_from_this());
 	if (client)
 	{
+		m_function_set[cmd_monitor_instruction] = std::bind(&monitor_client::handle_cmd_monitor_instruction, client, std::placeholders::_1);
 	}
 }

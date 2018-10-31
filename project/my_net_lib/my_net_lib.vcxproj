@@ -63,6 +63,7 @@
     <ClCompile Include="..\..\src\monitor\monitor_server.cpp" />
     <ClCompile Include="..\..\src\proto\internal.pb.cc" />
     <ClCompile Include="..\..\src\proto\login.pb.cc" />
+    <ClCompile Include="..\..\src\proto\monitor.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
     <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_logging.cpp" />
     <ClCompile Include="..\..\test\unicode_test\main.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="..\..\src\monitor\monitor_server.h" />
     <ClInclude Include="..\..\src\proto\internal.pb.h" />
     <ClInclude Include="..\..\src\proto\login.pb.h" />
+    <ClInclude Include="..\..\src\proto\monitor.pb.h" />
     <ClInclude Include="..\..\src\proto\proc.pb.h" />
     <ClInclude Include="..\..\test\unicode_test\unique_code.h" />
     <ClInclude Include="..\..\test\vid_manage_test\vid_manage.h" />
@@ -120,6 +122,7 @@
     <None Include="..\..\src\monitor\laqi.sh" />
     <None Include="..\..\src\proto\internal.proto" />
     <None Include="..\..\src\proto\login.proto" />
+    <None Include="..\..\src\proto\monitor.proto" />
     <None Include="..\..\src\proto\prebuild.bat" />
     <None Include="..\..\src\proto\prebuild.sh" />
     <None Include="..\..\src\proto\proc.proto" />

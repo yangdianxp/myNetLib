@@ -58,6 +58,9 @@ enum cmd_enum
 	cmd_register_info_ack,
 	cmd_request_vid_range,				//gateway«Î«Ûvid∑∂Œß
 	cmd_request_vid_range_ack,
+
+	cmd_monitor_instruction,			//monitorº‡ ”÷∏¡Ó
+	cmd_monitor_instruction_ack,
 	cmd_end
 };
 
