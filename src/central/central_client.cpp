@@ -14,6 +14,21 @@ central_client::central_client(boost::asio::io_context& io_context, tcp::socket 
 
 }
 
+void central_client::handle_error_aux()
+{
+	auto server = std::dynamic_pointer_cast<central_server>(m_server);
+	if (server)
+	{
+		server->del_unique_mid(m_id);
+		if (m_type == module_gateway_type)
+		{
+			auto& manage = server->get_vid_manage();
+			manage.repay(m_id);
+		}
+	}
+	common_client::handle_error_aux();
+}
+
 void central_client::handle_module_logon(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
@@ -177,6 +192,38 @@ void central_client::handle_request_vid_range(proto_msg& msg)
 	}
 }
 
+void central_client::handle_monitor_vid_manage(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	auto server = std::dynamic_pointer_cast<central_server>(m_server);
+	if (server)
+	{
+		auto& m = server->get_vid_manage();
+		pb::monitor::vid_manage manage;
+		manage.set_index(m.get_index());
+		manage.set_unit_size(m.get_unit_size());
+		auto f1 = [&manage](vid_manage::vid_pair& p)
+		{
+			pb::internal::vid_range* r = manage.add_inventory();
+			r->set_begin(p.first);
+			r->set_end(p.second);
+		};
+		m.for_each_inventory(f1);
+		auto f2 = [&manage](std::pair<const std::size_t, vid_manage::vid_pair>& p)
+		{
+			pb::monitor::mid_vid_range* mr = manage.add_already_assigned();
+			mr->set_mid(p.first);
+			pb::internal::vid_range* r = mr->mutable_range();
+			r->set_begin(p.second.first);
+			r->set_end(p.second.second);
+		};
+		m.for_each_already_assigned(f2);
+		proto_msg msg(cmd_monitor_vid_manage_ack);
+		msg.serialize_msg(manage);
+		write((char *)&msg, msg.size());
+	}
+}
+
 void central_client::init(std::shared_ptr<base_server> server)
 {
 	common_client::init(server);
@@ -186,6 +233,7 @@ void central_client::init(std::shared_ptr<base_server> server)
 	{
 		m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, client, std::placeholders::_1);
 		m_function_set[cmd_request_vid_range] = std::bind(&central_client::handle_request_vid_range, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_vid_manage] = std::bind(&central_client::handle_monitor_vid_manage, client, std::placeholders::_1);
 	}
 }
 

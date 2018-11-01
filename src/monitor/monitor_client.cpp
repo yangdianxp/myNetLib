@@ -19,7 +19,8 @@ void monitor_client::handle_monitor_route_ack(proto_msg& msg)
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 	pb::monitor::module_list info;
 	msg.parse(info);
-	SLOG_INFO << "clients_size:" << info.clients_size() << std::endl
+	SLOG_INFO << std::endl
+		<< "clients_size:" << info.clients_size() << std::endl
 		<< "type_clients_size:" << info.type_clients_size() << std::endl
 		<< "mid_clients_size:" << info.mid_clients_size();
 	for (int i = 0; i < info.mid_clients_size(); ++i)
@@ -27,6 +28,28 @@ void monitor_client::handle_monitor_route_ack(proto_msg& msg)
 		const pb::internal::register_info& r = info.mid_clients(i);
 		SLOG_INFO << i << " mid:" << r.id() << " type:" << config_settings::instance().get_module_name(r.type()) 
 			<< " ip:" << r.ip() << " port:" << r.port();
+	}
+}
+void monitor_client::handle_monitor_vid_manage_ack(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::monitor::vid_manage manage;
+	msg.parse(manage);
+	SLOG_INFO << std::endl
+		<< "index:" << manage.index() << std::endl
+		<< "unit_size:" << manage.unit_size();
+	SLOG_INFO << "inventory_size:" << manage.inventory_size();
+	for (int i = 0; i < manage.inventory_size(); ++i)
+	{
+		const pb::internal::vid_range& r = manage.inventory(i);
+		SLOG_INFO << i << " begin:" << r.begin() << " end:" << r.end();
+	}
+	SLOG_INFO << "already_assigned_size:" << manage.already_assigned_size();
+	for (int i = 0; i < manage.already_assigned_size(); ++i)
+	{
+		const pb::monitor::mid_vid_range& r = manage.already_assigned(i);
+		SLOG_INFO << i << " mid:" << r.mid() << " begin:" << r.range().begin() 
+			<< " end:" << r.range().end();
 	}
 }
 
@@ -55,8 +78,8 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 		SLOG_INFO << std::endl
 			<< "==============help==============" << std::endl
 			<< "list" << std::endl
-			<< "route [id]"
-			<< "vmanage [id]";
+			<< "route [id]" << std::endl
+			<< "vmanage [id] --->just for central";
 	}
 	else if (id < 0)
 	{
@@ -68,22 +91,7 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 	}
 	else if (cmd == "vmanage")
 	{
-		std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
-		if (server)
-		{
-			auto route = server->get_route();
-			std::shared_ptr<monitor_client> client = route->get_client(id);
-			if (client)
-			{
-				if (client->get_type() == module_central_type)
-				{
-					
-				}
-				else {
-					SLOG_WARNING << "module is not central.";
-				}
-			}
-		}
+		handle_monitor_vmanage(id);
 	}
 	else
 	{
@@ -127,6 +135,33 @@ void monitor_client::handle_monitor_route(int id)
 		}
 	}
 }
+void monitor_client::handle_monitor_vmanage(int id)
+{
+	std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		auto client = route->get_client(id);
+		if (client)
+		{
+			auto client1 = std::dynamic_pointer_cast<monitor_client>(client);
+			if (client1)
+			{
+				if (client1->get_type() == module_central_type)
+				{
+					proto_msg msg(cmd_monitor_vid_manage);
+					client1->write((char *)&msg, msg.size());
+				}
+				else {
+					SLOG_WARNING << "module is not central.";
+				}
+			}
+		}
+		else {
+			SLOG_WARNING << "module does not exist.";
+		}
+	}
+}
 
 void monitor_client::init(std::shared_ptr<base_server> server)
 {
@@ -136,5 +171,6 @@ void monitor_client::init(std::shared_ptr<base_server> server)
 	{
 		m_function_set[cmd_monitor_instruction] = std::bind(&monitor_client::handle_cmd_monitor_instruction, client, std::placeholders::_1);
 		m_function_set[cmd_monitor_route_ack] = std::bind(&monitor_client::handle_monitor_route_ack, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_vid_manage_ack] = std::bind(&monitor_client::handle_monitor_vid_manage_ack, client, std::placeholders::_1);
 	}
 }

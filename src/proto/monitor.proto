@@ -13,3 +13,17 @@ message module_list
 	int32 type_clients_size = 2;
 	repeated internal.register_info mid_clients = 3;
 }
+
+message mid_vid_range
+{
+	int32 mid = 1;
+	internal.vid_range range = 2;
+}
+
+message vid_manage
+{
+	int32 index = 1;
+	int32 unit_size = 2;
+	repeated internal.vid_range inventory = 3;
+	repeated mid_vid_range already_assigned = 4;
+}

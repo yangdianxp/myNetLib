@@ -29,6 +29,7 @@
     <Text Include="..\..\src\media\CMakeLists.txt" />
     <Text Include="..\..\src\monitor\CMakeLists.txt" />
     <Text Include="..\..\src\proto\CMakeLists.txt" />
+    <Text Include="..\..\test\boost_bimap_test\CMakeLists.txt" />
     <Text Include="..\..\test\boost_log_test\log_study\CMakeLists.txt" />
     <Text Include="..\..\test\unicode_test\CMakeLists.txt" />
     <Text Include="..\..\test\vid_manage_test\CMakeLists.txt" />
@@ -65,6 +66,7 @@
     <ClCompile Include="..\..\src\proto\login.pb.cc" />
     <ClCompile Include="..\..\src\proto\monitor.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
+    <ClCompile Include="..\..\test\boost_bimap_test\main.cpp" />
     <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_logging.cpp" />
     <ClCompile Include="..\..\test\unicode_test\main.cpp" />
     <ClCompile Include="..\..\test\unicode_test\unique_code.cpp" />

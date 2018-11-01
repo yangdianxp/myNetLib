@@ -18,7 +18,7 @@ public:
 	void handle_write_error(boost::system::error_code& ec);
 	void handle_msg_header_error(int length);
 	void handle_read_error(boost::system::error_code& ec);
-	void handle_error_aux();
+	virtual void handle_error_aux();
 
 	void handle_nothing(proto_msg& msg);
 	virtual void handle_module_logon_ack(proto_msg& msg);

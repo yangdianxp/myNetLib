@@ -33,3 +33,32 @@ void vid_manage::set_unit_size(std::size_t size)
 {
 	m_unit_size = size;
 }
+
+std::size_t vid_manage::get_index()
+{
+	return m_index;
+}
+std::size_t vid_manage::get_unit_size()
+{
+	return m_unit_size;
+}
+std::size_t vid_manage::for_each_inventory(std::function<void(vid_pair&)> fn)
+{
+	int cnt = 0;
+	for (auto n : m_inventory)
+	{
+		fn(n);
+		++cnt;
+	}
+	return cnt;
+}
+std::size_t vid_manage::for_each_already_assigned(std::function<void(std::pair<const std::size_t, vid_pair>&)> fn)
+{
+	int cnt = 0;
+	for (auto n : m_already_assigned)
+	{
+		fn(n);
+		++cnt;
+	}
+	return cnt;
+}

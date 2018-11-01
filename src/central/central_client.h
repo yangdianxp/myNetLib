@@ -9,10 +9,14 @@ public:
 		std::string remote_ip, std::string remote_port);
 	central_client(boost::asio::io_context& io_context, tcp::socket socket);
 
+	virtual void handle_error_aux();
+
 	void handle_module_logon(proto_msg& msg);
 	void module_logon_reply();
 	void broadcast_module_logon();
 	void handle_request_vid_range(proto_msg& msg);
+	
+	void handle_monitor_vid_manage(proto_msg& msg);
 	void init(std::shared_ptr<base_server>);
 private:
 };

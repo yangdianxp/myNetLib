@@ -70,6 +70,9 @@
     <Filter Include="test\boost_log_test\SLog_test">
       <UniqueIdentifier>{5e717391-92e4-4818-960a-d174732e64a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\boost_bimap_test">
+      <UniqueIdentifier>{8b06f385-e6f4-4fad-a5c5-e4f09a7cd7e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -110,6 +113,9 @@
     </Text>
     <Text Include="..\..\test\boost_log_test\log_study\CMakeLists.txt">
       <Filter>test\boost_log_test\SLog_test</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_bimap_test\CMakeLists.txt">
+      <Filter>test\boost_bimap_test</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\proto\monitor.pb.cc">
       <Filter>src\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_bimap_test\main.cpp">
+      <Filter>test\boost_bimap_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
