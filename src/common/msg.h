@@ -61,6 +61,8 @@ enum cmd_enum
 
 	cmd_monitor_instruction,			//monitor监视指令
 	cmd_monitor_instruction_ack,
+	cmd_monitor_route,					//请求路由信息
+	cmd_monitor_route_ack,
 	cmd_end
 };
 

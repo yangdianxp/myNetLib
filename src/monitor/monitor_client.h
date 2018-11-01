@@ -12,6 +12,8 @@ public:
 	void handle_cmd_monitor_instruction(proto_msg& msg);
 	/*控制台命令处理程序*/
 	void monitor_instruction_proc(std::string cmd, int id);
+	void handle_monitor_list();
+	void handle_monitor_route(int id);
 
 	void init(std::shared_ptr<base_server>);
 private:

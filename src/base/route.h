@@ -19,7 +19,8 @@ public:
 	void add_client(std::shared_ptr<base_client> client);
 	void add_module(std::shared_ptr<base_client> client, uint32_t type, uint32_t mid);
 	void delete_client(std::shared_ptr<base_client> client);
-	void delete_client_type(std::shared_ptr<base_client> client);
+	void delete_module(std::shared_ptr<base_client> client);
+	std::shared_ptr<base_client> get_client(std::size_t mid);
 	std::size_t for_each_all(std::function<void(std::shared_ptr<base_client>)> fn);
 	std::size_t for_each_type(uint32_t type, std::function<void(std::shared_ptr<base_client>)> fn);
 private:

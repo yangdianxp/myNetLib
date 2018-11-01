@@ -32,22 +32,61 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 {
 	if (cmd == "list")
 	{
-		std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
-		if (server)
+		handle_monitor_list();
+	}
+	else if (cmd == "help")
+	{
+		SLOG_INFO << "==============help==============" << std::endl
+			<< "list" << std::endl
+			<< "route [id]";
+	}
+	else if (id < 0)
+	{
+		SLOG_WARNING << "id is illegality.";
+	}
+	else if (cmd == "route")
+	{
+		handle_monitor_route(id);
+	}
+	else
+	{
+		SLOG_WARNING << "unsupported commands.";
+	}
+}
+void monitor_client::handle_monitor_list()
+{
+	std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
+	if (server)
+	{
+		auto self = shared_from_this();
+		auto fn = [self](std::shared_ptr<base_client> client)
 		{
-			auto self = shared_from_this();
-			auto fn = [self](std::shared_ptr<base_client> client)
+			std::shared_ptr<monitor_client> monitor = std::dynamic_pointer_cast<monitor_client>(client);
+			if (monitor)
 			{
-				std::shared_ptr<monitor_client> monitor = std::dynamic_pointer_cast<monitor_client>(client);
-				if (monitor)
-				{
-					std::string type = config_settings::instance().get_module_name(monitor->get_type());
-					SLOG_INFO << "id:" << monitor->get_id() << " type:" << type
-						<< " ip:" << monitor->get_ip() << " port:" << monitor->get_port();
-				}
-			};
-			auto route = server->get_route();
-			route->for_each_all(fn);
+				std::string type = config_settings::instance().get_module_name(monitor->get_type());
+				SLOG_INFO << "id:" << monitor->get_id() << " type:" << type
+					<< " ip:" << monitor->get_ip() << " port:" << monitor->get_port();
+			}
+		};
+		auto route = server->get_route();
+		route->for_each_all(fn);
+	}
+}
+void monitor_client::handle_monitor_route(int id)
+{
+	std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		auto client = route->get_client(id);
+		if (client)
+		{
+			proto_msg msg(cmd_monitor_route);
+			client->write((char *)&msg, msg.size());
+		}
+		else {
+			SLOG_WARNING << "module does not exist.";
 		}
 	}
 }

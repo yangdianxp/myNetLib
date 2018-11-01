@@ -66,7 +66,7 @@ void common_client::handle_error_aux()
 			route->delete_client(shared_from_this());
 		}
 		else {
-			route->delete_client_type(shared_from_this());
+			route->delete_module(shared_from_this());
 		}
 	}
 }
@@ -96,6 +96,7 @@ void common_client::handle_module_logon_ack(proto_msg& msg)
 	}
 	
 }
+
 void common_client::module_logon()
 {
 	config_settings& config_reader = config_settings::instance();
@@ -193,6 +194,17 @@ void common_client::handle_register_info_ack(proto_msg& msg)
 	}
 }
 
+void common_client::handle_monitor_route(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	std::shared_ptr<module> server = std::dynamic_pointer_cast<module>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+
+	}
+}
+
 /*œ˚œ¢√Ë ˆ*/
 std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_login_request, "client login request" },
@@ -204,7 +216,9 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_request_vid_range, "gateway request vid range" },
 	{ cmd_request_vid_range_ack, "gateway request vid range respond" },
 	{ cmd_monitor_instruction, "monitor console instruction" },
-	{ cmd_monitor_instruction, "monitor console instruction respond" },
+	{ cmd_monitor_instruction_ack, "monitor console instruction respond" },
+	{ cmd_monitor_route, "monitor request route info" },
+	{ cmd_monitor_route_ack, "monitor request route info respond" },
 };
 
 void common_client::init(std::shared_ptr<base_server> server)
@@ -221,6 +235,8 @@ void common_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_broadcast_module_logon] = std::bind(&common_client::handle_broadcast_module_logon, client, std::placeholders::_1);
 		m_function_set[cmd_register_info] = std::bind(&common_client::handle_register_info, client, std::placeholders::_1);
 		m_function_set[cmd_register_info_ack] = std::bind(&common_client::handle_register_info_ack, client, std::placeholders::_1);
+
+		m_function_set[cmd_monitor_route] = std::bind(&common_client::handle_monitor_route, client, std::placeholders::_1);
 	}
 	
 }

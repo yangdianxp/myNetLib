@@ -28,6 +28,8 @@ public:
 	void handle_register_info(proto_msg& msg);
 	void handle_register_info_ack(proto_msg& msg);
 
+	virtual void handle_monitor_route(proto_msg& msg);
+
 	virtual void init(std::shared_ptr<base_server>);
 	void set_active_type(uint32_t type);
 	void set_server(std::shared_ptr<base_server>);

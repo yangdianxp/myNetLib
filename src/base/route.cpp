@@ -12,14 +12,24 @@ void route::add_module(std::shared_ptr<base_client> client, uint32_t type, uint3
 }
 void route::delete_client(std::shared_ptr<base_client> client)
 {
+	m_clients.erase(client);
 	m_mid_clients.right.erase(client);
 	m_type_clients.right.erase(client);
 }
-void route::delete_client_type(std::shared_ptr<base_client> client)
+void route::delete_module(std::shared_ptr<base_client> client)
 {
+	m_mid_clients.right.erase(client);
 	m_type_clients.right.erase(client);
 }
-
+std::shared_ptr<base_client> route::get_client(std::size_t mid)
+{
+	auto it = m_mid_clients.left.find(mid);
+	if (it != m_mid_clients.left.end())
+	{
+		return it->second;
+	}
+	return std::shared_ptr<base_client>();
+}
 std::size_t route::for_each_all(std::function<void(std::shared_ptr<base_client>)> fn)
 {
 	std::size_t cnt = 0;

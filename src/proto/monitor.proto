@@ -5,3 +5,4 @@ message cmd
 {
 	string content = 1;
 }
+
