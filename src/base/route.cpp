@@ -30,7 +30,7 @@ std::shared_ptr<base_client> route::get_client(std::size_t mid)
 	}
 	return std::shared_ptr<base_client>();
 }
-std::size_t route::for_each_all(std::function<void(std::shared_ptr<base_client>)> fn)
+std::size_t route::for_each_mid(std::function<void(std::shared_ptr<base_client>)> fn)
 {
 	std::size_t cnt = 0;
 	for (auto pair : m_mid_clients.left)
@@ -50,4 +50,13 @@ std::size_t route::for_each_type(uint32_t type, std::function<void(std::shared_p
 		fn(it->second);
 	}
 	return cnt;
+}
+
+std::size_t route::get_clients_size()
+{
+	return m_clients.size();
+}
+std::size_t route::get_type_clients_size()
+{
+	return m_type_clients.size();
 }

@@ -538,6 +538,20 @@ class register_info : public ::google::protobuf::Message /* @@protoc_insertion_p
 
   // accessors -------------------------------------------------------
 
+  // string ip = 3;
+  void clear_ip();
+  static const int kIpFieldNumber = 3;
+  const ::std::string& ip() const;
+  void set_ip(const ::std::string& value);
+  #if LANG_CXX11
+  void set_ip(::std::string&& value);
+  #endif
+  void set_ip(const char* value);
+  void set_ip(const char* value, size_t size);
+  ::std::string* mutable_ip();
+  ::std::string* release_ip();
+  void set_allocated_ip(::std::string* ip);
+
   // int32 id = 1;
   void clear_id();
   static const int kIdFieldNumber = 1;
@@ -550,12 +564,20 @@ class register_info : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::google::protobuf::int32 type() const;
   void set_type(::google::protobuf::int32 value);
 
+  // int32 port = 4;
+  void clear_port();
+  static const int kPortFieldNumber = 4;
+  ::google::protobuf::int32 port() const;
+  void set_port(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:pb.internal.register_info)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::int32 id_;
   ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 port_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
@@ -938,6 +960,73 @@ inline void register_info::set_type(::google::protobuf::int32 value) {
   
   type_ = value;
   // @@protoc_insertion_point(field_set:pb.internal.register_info.type)
+}
+
+// string ip = 3;
+inline void register_info::clear_ip() {
+  ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& register_info::ip() const {
+  // @@protoc_insertion_point(field_get:pb.internal.register_info.ip)
+  return ip_.GetNoArena();
+}
+inline void register_info::set_ip(const ::std::string& value) {
+  
+  ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:pb.internal.register_info.ip)
+}
+#if LANG_CXX11
+inline void register_info::set_ip(::std::string&& value) {
+  
+  ip_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:pb.internal.register_info.ip)
+}
+#endif
+inline void register_info::set_ip(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb.internal.register_info.ip)
+}
+inline void register_info::set_ip(const char* value, size_t size) {
+  
+  ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:pb.internal.register_info.ip)
+}
+inline ::std::string* register_info::mutable_ip() {
+  
+  // @@protoc_insertion_point(field_mutable:pb.internal.register_info.ip)
+  return ip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* register_info::release_ip() {
+  // @@protoc_insertion_point(field_release:pb.internal.register_info.ip)
+  
+  return ip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void register_info::set_allocated_ip(::std::string* ip) {
+  if (ip != NULL) {
+    
+  } else {
+    
+  }
+  ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip);
+  // @@protoc_insertion_point(field_set_allocated:pb.internal.register_info.ip)
+}
+
+// int32 port = 4;
+inline void register_info::clear_port() {
+  port_ = 0;
+}
+inline ::google::protobuf::int32 register_info::port() const {
+  // @@protoc_insertion_point(field_get:pb.internal.register_info.port)
+  return port_;
+}
+inline void register_info::set_port(::google::protobuf::int32 value) {
+  
+  port_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.register_info.port)
 }
 
 // -------------------------------------------------------------------

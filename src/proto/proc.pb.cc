@@ -50,14 +50,15 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\nproc.proto\022\002pb\032\013login.proto\032\016internal."
-      "protob\006proto3"
+      "proto\032\rmonitor.protob\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 53);
+      descriptor, 68);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "proc.proto", &protobuf_RegisterTypes);
   ::protobuf_login_2eproto::AddDescriptors();
   ::protobuf_internal_2eproto::AddDescriptors();
+  ::protobuf_monitor_2eproto::AddDescriptors();
 }
 
 void AddDescriptors() {

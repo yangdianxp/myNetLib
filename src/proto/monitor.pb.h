@@ -30,6 +30,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "internal.pb.h"
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_monitor_2eproto 
 
@@ -38,7 +39,7 @@ namespace protobuf_monitor_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[1];
+  static const ::google::protobuf::internal::ParseTable schema[2];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -50,11 +51,15 @@ namespace monitor {
 class cmd;
 class cmdDefaultTypeInternal;
 extern cmdDefaultTypeInternal _cmd_default_instance_;
+class module_list;
+class module_listDefaultTypeInternal;
+extern module_listDefaultTypeInternal _module_list_default_instance_;
 }  // namespace monitor
 }  // namespace pb
 namespace google {
 namespace protobuf {
 template<> ::pb::monitor::cmd* Arena::CreateMaybeMessage<::pb::monitor::cmd>(Arena*);
+template<> ::pb::monitor::module_list* Arena::CreateMaybeMessage<::pb::monitor::module_list>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace pb {
@@ -171,6 +176,129 @@ class cmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_monitor_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class module_list : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.module_list) */ {
+ public:
+  module_list();
+  virtual ~module_list();
+
+  module_list(const module_list& from);
+
+  inline module_list& operator=(const module_list& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  module_list(module_list&& from) noexcept
+    : module_list() {
+    *this = ::std::move(from);
+  }
+
+  inline module_list& operator=(module_list&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const module_list& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const module_list* internal_default_instance() {
+    return reinterpret_cast<const module_list*>(
+               &_module_list_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(module_list* other);
+  friend void swap(module_list& a, module_list& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline module_list* New() const final {
+    return CreateMaybeMessage<module_list>(NULL);
+  }
+
+  module_list* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<module_list>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const module_list& from);
+  void MergeFrom(const module_list& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(module_list* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .pb.internal.register_info mid_clients = 3;
+  int mid_clients_size() const;
+  void clear_mid_clients();
+  static const int kMidClientsFieldNumber = 3;
+  ::pb::internal::register_info* mutable_mid_clients(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info >*
+      mutable_mid_clients();
+  const ::pb::internal::register_info& mid_clients(int index) const;
+  ::pb::internal::register_info* add_mid_clients();
+  const ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info >&
+      mid_clients() const;
+
+  // int32 clients_size = 1;
+  void clear_clients_size();
+  static const int kClientsSizeFieldNumber = 1;
+  ::google::protobuf::int32 clients_size() const;
+  void set_clients_size(::google::protobuf::int32 value);
+
+  // int32 type_clients_size = 2;
+  void clear_type_clients_size();
+  static const int kTypeClientsSizeFieldNumber = 2;
+  ::google::protobuf::int32 type_clients_size() const;
+  void set_type_clients_size(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.monitor.module_list)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info > mid_clients_;
+  ::google::protobuf::int32 clients_size_;
+  ::google::protobuf::int32 type_clients_size_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_monitor_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -235,9 +363,70 @@ inline void cmd::set_allocated_content(::std::string* content) {
   // @@protoc_insertion_point(field_set_allocated:pb.monitor.cmd.content)
 }
 
+// -------------------------------------------------------------------
+
+// module_list
+
+// int32 clients_size = 1;
+inline void module_list::clear_clients_size() {
+  clients_size_ = 0;
+}
+inline ::google::protobuf::int32 module_list::clients_size() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.module_list.clients_size)
+  return clients_size_;
+}
+inline void module_list::set_clients_size(::google::protobuf::int32 value) {
+  
+  clients_size_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.module_list.clients_size)
+}
+
+// int32 type_clients_size = 2;
+inline void module_list::clear_type_clients_size() {
+  type_clients_size_ = 0;
+}
+inline ::google::protobuf::int32 module_list::type_clients_size() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.module_list.type_clients_size)
+  return type_clients_size_;
+}
+inline void module_list::set_type_clients_size(::google::protobuf::int32 value) {
+  
+  type_clients_size_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.module_list.type_clients_size)
+}
+
+// repeated .pb.internal.register_info mid_clients = 3;
+inline int module_list::mid_clients_size() const {
+  return mid_clients_.size();
+}
+inline ::pb::internal::register_info* module_list::mutable_mid_clients(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.monitor.module_list.mid_clients)
+  return mid_clients_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info >*
+module_list::mutable_mid_clients() {
+  // @@protoc_insertion_point(field_mutable_list:pb.monitor.module_list.mid_clients)
+  return &mid_clients_;
+}
+inline const ::pb::internal::register_info& module_list::mid_clients(int index) const {
+  // @@protoc_insertion_point(field_get:pb.monitor.module_list.mid_clients)
+  return mid_clients_.Get(index);
+}
+inline ::pb::internal::register_info* module_list::add_mid_clients() {
+  // @@protoc_insertion_point(field_add:pb.monitor.module_list.mid_clients)
+  return mid_clients_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info >&
+module_list::mid_clients() const {
+  // @@protoc_insertion_point(field_list:pb.monitor.module_list.mid_clients)
+  return mid_clients_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

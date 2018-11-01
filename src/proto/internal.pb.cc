@@ -165,6 +165,8 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::register_info, id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::register_info, type_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::register_info, ip_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::register_info, port_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::vid_range, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -178,7 +180,7 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 8, -1, sizeof(::pb::internal::addr)},
   { 16, -1, sizeof(::pb::internal::logon_ack)},
   { 24, -1, sizeof(::pb::internal::register_info)},
-  { 31, -1, sizeof(::pb::internal::vid_range)},
+  { 33, -1, sizeof(::pb::internal::vid_range)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -215,12 +217,13 @@ void AddDescriptorsImpl() {
       "\n\004addr\022\n\n\002ip\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\022\014\n\004type"
       "\030\003 \001(\005\"Q\n\tlogon_ack\022\n\n\002id\030\001 \001(\005\022\022\n\ncentr"
       "al_id\030\002 \001(\005\022$\n\tlink_addr\030\003 \003(\0132\021.pb.inte"
-      "rnal.addr\")\n\rregister_info\022\n\n\002id\030\001 \001(\005\022\014"
-      "\n\004type\030\002 \001(\005\"\'\n\tvid_range\022\r\n\005begin\030\001 \001(\005"
-      "\022\013\n\003end\030\002 \001(\005b\006proto3"
+      "rnal.addr\"C\n\rregister_info\022\n\n\002id\030\001 \001(\005\022\014"
+      "\n\004type\030\002 \001(\005\022\n\n\002ip\030\003 \001(\t\022\014\n\004port\030\004 \001(\005\"\'"
+      "\n\tvid_range\022\r\n\005begin\030\001 \001(\005\022\013\n\003end\030\002 \001(\005b"
+      "\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 301);
+      descriptor, 327);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "internal.proto", &protobuf_RegisterTypes);
 }
@@ -1202,6 +1205,8 @@ void register_info::InitAsDefaultInstance() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int register_info::kIdFieldNumber;
 const int register_info::kTypeFieldNumber;
+const int register_info::kIpFieldNumber;
+const int register_info::kPortFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 register_info::register_info()
@@ -1215,16 +1220,21 @@ register_info::register_info(const register_info& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.ip().size() > 0) {
+    ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ip_);
+  }
   ::memcpy(&id_, &from.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&type_) -
-    reinterpret_cast<char*>(&id_)) + sizeof(type_));
+    static_cast<size_t>(reinterpret_cast<char*>(&port_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(port_));
   // @@protoc_insertion_point(copy_constructor:pb.internal.register_info)
 }
 
 void register_info::SharedCtor() {
+  ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&type_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(type_));
+      reinterpret_cast<char*>(&port_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(port_));
 }
 
 register_info::~register_info() {
@@ -1233,6 +1243,7 @@ register_info::~register_info() {
 }
 
 void register_info::SharedDtor() {
+  ip_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void register_info::SetCachedSize(int size) const {
@@ -1255,9 +1266,10 @@ void register_info::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&type_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(type_));
+      reinterpret_cast<char*>(&port_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(port_));
   _internal_metadata_.Clear();
 }
 
@@ -1293,6 +1305,36 @@ bool register_info::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &type_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string ip = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_ip()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->ip().data(), static_cast<int>(this->ip().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "pb.internal.register_info.ip"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 port = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &port_)));
         } else {
           goto handle_unusual;
         }
@@ -1335,6 +1377,21 @@ void register_info::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->type(), output);
   }
 
+  // string ip = 3;
+  if (this->ip().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->ip().data(), static_cast<int>(this->ip().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "pb.internal.register_info.ip");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->ip(), output);
+  }
+
+  // int32 port = 4;
+  if (this->port() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->port(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -1359,6 +1416,22 @@ void register_info::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->type(), target);
   }
 
+  // string ip = 3;
+  if (this->ip().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->ip().data(), static_cast<int>(this->ip().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "pb.internal.register_info.ip");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->ip(), target);
+  }
+
+  // int32 port = 4;
+  if (this->port() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->port(), target);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
@@ -1376,6 +1449,13 @@ size_t register_info::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
+  // string ip = 3;
+  if (this->ip().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->ip());
+  }
+
   // int32 id = 1;
   if (this->id() != 0) {
     total_size += 1 +
@@ -1388,6 +1468,13 @@ size_t register_info::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->type());
+  }
+
+  // int32 port = 4;
+  if (this->port() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->port());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1417,11 +1504,18 @@ void register_info::MergeFrom(const register_info& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.ip().size() > 0) {
+
+    ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ip_);
+  }
   if (from.id() != 0) {
     set_id(from.id());
   }
   if (from.type() != 0) {
     set_type(from.type());
+  }
+  if (from.port() != 0) {
+    set_port(from.port());
   }
 }
 
@@ -1449,8 +1543,11 @@ void register_info::Swap(register_info* other) {
 }
 void register_info::InternalSwap(register_info* other) {
   using std::swap;
+  ip_.Swap(&other->ip_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   swap(id_, other->id_);
   swap(type_, other->type_);
+  swap(port_, other->port_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

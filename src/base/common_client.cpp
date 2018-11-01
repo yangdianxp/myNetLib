@@ -201,7 +201,26 @@ void common_client::handle_monitor_route(proto_msg& msg)
 	if (server)
 	{
 		auto route = server->get_route();
-
+		proto_msg msg(cmd_monitor_route_ack);
+		pb::monitor::module_list info;
+		info.set_clients_size(route->get_clients_size());
+		info.set_type_clients_size(route->get_type_clients_size());
+		auto self = shared_from_this();
+		auto fn = [this, self, &info](std::shared_ptr<base_client> client)
+		{
+			std::shared_ptr<common_client> common = std::dynamic_pointer_cast<common_client>(client);
+			if (common)
+			{
+				pb::internal::register_info* r = info.add_mid_clients();
+				r->set_id(get_id());
+				r->set_type(get_type());
+				r->set_ip(get_ip());
+				r->set_port(get_port());
+			}
+		};
+		route->for_each_mid(fn);
+		msg.serialize_msg(info);
+		write((char *)&msg, msg.size());
 	}
 }
 

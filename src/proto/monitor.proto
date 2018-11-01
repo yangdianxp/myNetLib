@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "internal.proto";
 package pb.monitor;
 
 message cmd
@@ -6,3 +7,9 @@ message cmd
 	string content = 1;
 }
 
+message module_list
+{
+	int32 clients_size = 1;
+	int32 type_clients_size = 2;
+	repeated internal.register_info mid_clients = 3;
+}

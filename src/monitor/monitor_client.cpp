@@ -70,7 +70,7 @@ void monitor_client::handle_monitor_list()
 			}
 		};
 		auto route = server->get_route();
-		route->for_each_all(fn);
+		route->for_each_mid(fn);
 	}
 }
 void monitor_client::handle_monitor_route(int id)
