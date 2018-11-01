@@ -26,6 +26,7 @@ public:
 
 	std::size_t get_clients_size();
 	std::size_t get_type_clients_size();
+	std::size_t get_mid_clients_size();
 private:
 	std::set<std::shared_ptr<base_client>> m_clients;
 	bm_mid m_mid_clients;

@@ -14,6 +14,22 @@ monitor_client::monitor_client(boost::asio::io_context& io_context, tcp::socket 
 
 }
 
+void monitor_client::handle_monitor_route_ack(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::monitor::module_list info;
+	msg.parse(info);
+	SLOG_INFO << "clients_size:" << info.clients_size() << std::endl
+		<< "type_clients_size:" << info.type_clients_size() << std::endl
+		<< "mid_clients_size:" << info.mid_clients_size();
+	for (int i = 0; i < info.mid_clients_size(); ++i)
+	{
+		const pb::internal::register_info& r = info.mid_clients(i);
+		SLOG_INFO << i << " mid:" << r.id() << " type:" << config_settings::instance().get_module_name(r.type()) 
+			<< " ip:" << r.ip() << " port:" << r.port();
+	}
+}
+
 void monitor_client::handle_cmd_monitor_instruction(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
@@ -98,5 +114,6 @@ void monitor_client::init(std::shared_ptr<base_server> server)
 	if (client)
 	{
 		m_function_set[cmd_monitor_instruction] = std::bind(&monitor_client::handle_cmd_monitor_instruction, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_route_ack] = std::bind(&monitor_client::handle_monitor_route_ack, client, std::placeholders::_1);
 	}
 }

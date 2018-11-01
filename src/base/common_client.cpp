@@ -206,16 +206,16 @@ void common_client::handle_monitor_route(proto_msg& msg)
 		info.set_clients_size(route->get_clients_size());
 		info.set_type_clients_size(route->get_type_clients_size());
 		auto self = shared_from_this();
-		auto fn = [this, self, &info](std::shared_ptr<base_client> client)
+		auto fn = [self, &info](std::shared_ptr<base_client> client)
 		{
 			std::shared_ptr<common_client> common = std::dynamic_pointer_cast<common_client>(client);
 			if (common)
 			{
 				pb::internal::register_info* r = info.add_mid_clients();
-				r->set_id(get_id());
-				r->set_type(get_type());
-				r->set_ip(get_ip());
-				r->set_port(get_port());
+				r->set_id(common->get_id());
+				r->set_type(common->get_type());
+				r->set_ip(common->get_ip());
+				r->set_port(common->get_port());
 			}
 		};
 		route->for_each_mid(fn);

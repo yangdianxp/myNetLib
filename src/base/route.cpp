@@ -60,3 +60,7 @@ std::size_t route::get_type_clients_size()
 {
 	return m_type_clients.size();
 }
+std::size_t route::get_mid_clients_size()
+{
+	return m_mid_clients.size();
+}
