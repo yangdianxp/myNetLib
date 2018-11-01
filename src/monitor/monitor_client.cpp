@@ -52,9 +52,11 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 	}
 	else if (cmd == "help")
 	{
-		SLOG_INFO << "==============help==============" << std::endl
+		SLOG_INFO << std::endl
+			<< "==============help==============" << std::endl
 			<< "list" << std::endl
-			<< "route [id]";
+			<< "route [id]"
+			<< "vmanage [id]";
 	}
 	else if (id < 0)
 	{
@@ -63,6 +65,25 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 	else if (cmd == "route")
 	{
 		handle_monitor_route(id);
+	}
+	else if (cmd == "vmanage")
+	{
+		std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
+		if (server)
+		{
+			auto route = server->get_route();
+			std::shared_ptr<monitor_client> client = route->get_client(id);
+			if (client)
+			{
+				if (client->get_type() == module_central_type)
+				{
+					
+				}
+				else {
+					SLOG_WARNING << "module is not central.";
+				}
+			}
+		}
 	}
 	else
 	{

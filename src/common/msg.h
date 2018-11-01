@@ -63,6 +63,8 @@ enum cmd_enum
 	cmd_monitor_instruction_ack,
 	cmd_monitor_route,					//请求路由信息
 	cmd_monitor_route_ack,
+	cmd_monitor_vid_manage,				//请求central的vid管理信息
+	cmd_monitor_vid_manage_ack,
 	cmd_end
 };
 
