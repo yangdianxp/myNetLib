@@ -280,3 +280,12 @@ uint32_t common_client::get_id()
 {
 	return m_id;
 }
+
+void common_client::set_type(uint32_t type)
+{
+	m_type = type;
+}
+void common_client::set_id(uint32_t id)
+{
+	m_id = id;
+}

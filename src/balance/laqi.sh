@@ -1,6 +1,6 @@
 #!/bin/sh
 killall balance
 rm logs/*.log
-./balance -f conf/common.json &
-sleep 0.01
+./balance &
+sleep 0.05
 tail -f logs/*.log

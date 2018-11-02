@@ -48,6 +48,7 @@
     <ClCompile Include="..\..\src\central\central_server.cpp" />
     <ClCompile Include="..\..\src\central\vid_manage.cpp" />
     <ClCompile Include="..\..\src\client\main.cpp" />
+    <ClCompile Include="..\..\src\client\user_client.cpp" />
     <ClCompile Include="..\..\src\common\config_settings.cpp" />
     <ClCompile Include="..\..\src\common\log.cpp" />
     <ClCompile Include="..\..\src\common\msg.cpp" />
@@ -84,6 +85,7 @@
     <ClInclude Include="..\..\src\central\central_client.h" />
     <ClInclude Include="..\..\src\central\central_server.h" />
     <ClInclude Include="..\..\src\central\vid_manage.h" />
+    <ClInclude Include="..\..\src\client\user_client.h" />
     <ClInclude Include="..\..\src\common\common.h" />
     <ClInclude Include="..\..\src\common\config_settings.h" />
     <ClInclude Include="..\..\src\common\log.h" />
@@ -116,6 +118,7 @@
     <None Include="..\..\src\bkill.sh" />
     <None Include="..\..\src\build.sh" />
     <None Include="..\..\src\central\laqi.sh" />
+    <None Include="..\..\src\client\laqi.sh" />
     <None Include="..\..\src\config.info" />
     <None Include="..\..\src\ff.sh" />
     <None Include="..\..\src\gateway\laqi.sh" />

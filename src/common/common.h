@@ -13,6 +13,7 @@
 enum g_module_type
 {
 	module_none_type,
+	module_user_type,
 	module_gateway_type,
 	module_login_type,
 	module_central_type,

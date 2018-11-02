@@ -1,22 +1,27 @@
 #!/bin/sh
+cd central
+killall central
+rm logs/*.log
+./central &
+cd ..
 cd balance
 killall balance
 rm logs/*.log
-./balance -f conf/common.json &
+./balance &
 cd ..
 cd login
 killall login
 rm logs/*.log
-./login -f conf/common.json &
+./login &
 cd ..
 cd media
 killall media
 rm logs/*.log
-./media -f conf/common.json &
+./media &
 cd ..
 cd gateway
 killall gateway
 rm logs/*.log
-./gateway -f conf/common.json &
+./gateway &
 cd ..
 

@@ -230,6 +230,9 @@
     <ClCompile Include="..\..\test\boost_bimap_test\main.cpp">
       <Filter>test\boost_bimap_test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\client\user_client.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -313,6 +316,9 @@
     <ClInclude Include="..\..\src\proto\monitor.pb.h">
       <Filter>src\proto</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\client\user_client.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
@@ -388,6 +394,9 @@
     </None>
     <None Include="..\..\src\proto\monitor.proto">
       <Filter>src\proto</Filter>
+    </None>
+    <None Include="..\..\src\client\laqi.sh">
+      <Filter>src\client</Filter>
     </None>
   </ItemGroup>
 </Project>

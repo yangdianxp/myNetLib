@@ -12,7 +12,6 @@ public:
 	virtual void connect_remote(std::string ip, std::string port, uint32_t type);
 
 private:
-	unique_code m_vid_range;
 };
 
 

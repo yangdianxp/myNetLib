@@ -1,6 +1,6 @@
 #!/bin/sh
-killall central
+killall client
 rm logs/*.log
-./central &
+./client &
 sleep 0.05
 tail -f logs/*.log

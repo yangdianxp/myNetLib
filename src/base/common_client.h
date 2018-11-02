@@ -13,7 +13,7 @@ public:
 	virtual ~common_client();
 
 	virtual void dispatch(proto_msg& msg);
-	void handle_connect_succ();
+	virtual void handle_connect_succ();
 	void handle_connect_error(boost::system::error_code& ec);
 	void handle_write_error(boost::system::error_code& ec);
 	void handle_msg_header_error(int length);
@@ -35,6 +35,8 @@ public:
 	void set_server(std::shared_ptr<base_server>);
 	uint32_t get_type();
 	uint32_t get_id();
+	void set_type(uint32_t type);
+	void set_id(uint32_t id);
 protected:
 	/*从属于服务器*/
 	std::shared_ptr<base_server> m_server;

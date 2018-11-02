@@ -118,6 +118,7 @@ void config_settings::print()
 void config_settings::init()
 {
 	m_type_glossary.left.insert(std::make_pair("none", module_none_type));
+	m_type_glossary.left.insert(std::make_pair("user", module_user_type));
 	m_type_glossary.left.insert(std::make_pair("gateway", module_gateway_type));
 	m_type_glossary.left.insert(std::make_pair("login", module_login_type));
 	m_type_glossary.left.insert(std::make_pair("central", module_central_type));

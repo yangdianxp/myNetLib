@@ -1,6 +1,6 @@
 #!/bin/sh
 killall gateway
 rm logs/*.log
-./gateway -f conf/common.json &
-sleep 0.01
+./gateway &
+sleep 0.05
 tail -f logs/*.log
