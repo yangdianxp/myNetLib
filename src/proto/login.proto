@@ -1,7 +1,0 @@
-syntax = "proto3";
-package pb.login;
-
-message login_request {
-	string name = 1;
-	string passwd = 2;
-}

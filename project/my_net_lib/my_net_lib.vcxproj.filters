@@ -164,9 +164,6 @@
     <ClCompile Include="..\..\src\proto\internal.pb.cc">
       <Filter>src\proto</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\proto\login.pb.cc">
-      <Filter>src\proto</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\proto\proc.pb.cc">
       <Filter>src\proto</Filter>
     </ClCompile>
@@ -277,9 +274,6 @@
     <ClInclude Include="..\..\src\proto\internal.pb.h">
       <Filter>src\proto</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\proto\login.pb.h">
-      <Filter>src\proto</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\proto\proc.pb.h">
       <Filter>src\proto</Filter>
     </ClInclude>
@@ -345,9 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\proto\internal.proto">
-      <Filter>src\proto</Filter>
-    </None>
-    <None Include="..\..\src\proto\login.proto">
       <Filter>src\proto</Filter>
     </None>
     <None Include="..\..\src\proto\prebuild.bat">
