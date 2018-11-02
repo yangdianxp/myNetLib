@@ -59,6 +59,9 @@ enum cmd_enum
 	cmd_request_vid_range,				//gateway请求vid范围
 	cmd_request_vid_range_ack,
 
+	cmd_create_channel,					//创建通道
+	cmd_create_channel_ack,
+
 	cmd_monitor_instruction,			//monitor监视指令
 	cmd_monitor_instruction_ack,
 	cmd_monitor_route,					//请求路由信息

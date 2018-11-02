@@ -1,8 +1,9 @@
 #ifndef __MEDIA_SERVER_H__
 #define __MEDIA_SERVER_H__
-#include "module.h"
+#include "middleware_server.h"
+#include "common_client.h"
 
-class media_server : public module
+class media_server : public middleware_server<common_client>
 {
 	using tcp = boost::asio::ip::tcp;
 public:

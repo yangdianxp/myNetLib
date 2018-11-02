@@ -49,16 +49,16 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\nproc.proto\022\002pb\032\013login.proto\032\016internal."
-      "proto\032\rmonitor.protob\006proto3"
+      "\n\nproc.proto\022\002pb\032\016internal.proto\032\rmonito"
+      "r.proto\032\016external.protob\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 68);
+      descriptor, 71);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "proc.proto", &protobuf_RegisterTypes);
-  ::protobuf_login_2eproto::AddDescriptors();
   ::protobuf_internal_2eproto::AddDescriptors();
   ::protobuf_monitor_2eproto::AddDescriptors();
+  ::protobuf_external_2eproto::AddDescriptors();
 }
 
 void AddDescriptors() {

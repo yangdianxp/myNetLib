@@ -230,6 +230,15 @@
     <ClCompile Include="..\..\src\client\user_client.cpp">
       <Filter>src\client</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\proto\external.pb.cc">
+      <Filter>src\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\balance\balance_client.cpp">
+      <Filter>src\balance</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\balance\balance_route.cpp">
+      <Filter>src\balance</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -313,6 +322,18 @@
     <ClInclude Include="..\..\src\client\user_client.h">
       <Filter>src\client</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\proto\external.pb.h">
+      <Filter>src\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\balance\balance_client.h">
+      <Filter>src\balance</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\base\middleware_server.h">
+      <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\balance\balance_route.h">
+      <Filter>src\balance</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
@@ -388,6 +409,9 @@
     </None>
     <None Include="..\..\src\client\laqi.sh">
       <Filter>src\client</Filter>
+    </None>
+    <None Include="..\..\src\proto\external.proto">
+      <Filter>src\proto</Filter>
     </None>
   </ItemGroup>
 </Project>

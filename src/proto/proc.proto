@@ -3,3 +3,4 @@ package pb;
 
 import "internal.proto";
 import "monitor.proto";
+import "external.proto";

@@ -36,6 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\balance\balance.cpp" />
+    <ClCompile Include="..\..\src\balance\balance_client.cpp" />
+    <ClCompile Include="..\..\src\balance\balance_route.cpp" />
     <ClCompile Include="..\..\src\balance\balance_server.cpp" />
     <ClCompile Include="..\..\src\base\base_client.cpp" />
     <ClCompile Include="..\..\src\base\base_server.cpp" />
@@ -63,6 +65,7 @@
     <ClCompile Include="..\..\src\monitor\monitor.cpp" />
     <ClCompile Include="..\..\src\monitor\monitor_client.cpp" />
     <ClCompile Include="..\..\src\monitor\monitor_server.cpp" />
+    <ClCompile Include="..\..\src\proto\external.pb.cc" />
     <ClCompile Include="..\..\src\proto\internal.pb.cc" />
     <ClCompile Include="..\..\src\proto\monitor.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
@@ -74,10 +77,13 @@
     <ClCompile Include="..\..\test\vid_manage_test\vid_manage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\balance\balance_client.h" />
+    <ClInclude Include="..\..\src\balance\balance_route.h" />
     <ClInclude Include="..\..\src\balance\balance_server.h" />
     <ClInclude Include="..\..\src\base\base_client.h" />
     <ClInclude Include="..\..\src\base\base_server.h" />
     <ClInclude Include="..\..\src\base\common_client.h" />
+    <ClInclude Include="..\..\src\base\middleware_server.h" />
     <ClInclude Include="..\..\src\base\module.h" />
     <ClInclude Include="..\..\src\base\route.h" />
     <ClInclude Include="..\..\src\base\unique_code.h" />
@@ -96,6 +102,7 @@
     <ClInclude Include="..\..\src\monitor\cmd_thread.h" />
     <ClInclude Include="..\..\src\monitor\monitor_client.h" />
     <ClInclude Include="..\..\src\monitor\monitor_server.h" />
+    <ClInclude Include="..\..\src\proto\external.pb.h" />
     <ClInclude Include="..\..\src\proto\internal.pb.h" />
     <ClInclude Include="..\..\src\proto\monitor.pb.h" />
     <ClInclude Include="..\..\src\proto\proc.pb.h" />
@@ -123,6 +130,7 @@
     <None Include="..\..\src\laqi.sh" />
     <None Include="..\..\src\media\laqi.sh" />
     <None Include="..\..\src\monitor\laqi.sh" />
+    <None Include="..\..\src\proto\external.proto" />
     <None Include="..\..\src\proto\internal.proto" />
     <None Include="..\..\src\proto\monitor.proto" />
     <None Include="..\..\src\proto\prebuild.bat" />

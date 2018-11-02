@@ -16,18 +16,21 @@ class route
 	using bm_mid = bimap<unordered_set_of<uint32_t>, unordered_set_of<std::shared_ptr<base_client>>>;
 	using bm_type = bimap<unordered_multiset_of<uint32_t>, unordered_set_of<std::shared_ptr<base_client>>>;
 public:
+	virtual ~route() {};
 	void add_client(std::shared_ptr<base_client> client);
 	void add_module(std::shared_ptr<base_client> client, uint32_t type, uint32_t mid);
 	void delete_client(std::shared_ptr<base_client> client);
 	void delete_module(std::shared_ptr<base_client> client);
 	std::shared_ptr<base_client> get_client(std::size_t mid);
+	/*获取第一个这种类型的模块*/
+	std::shared_ptr<base_client> get_first_client(std::size_t type);
 	std::size_t for_each_mid(std::function<void(std::shared_ptr<base_client>)> fn);
 	std::size_t for_each_type(uint32_t type, std::function<void(std::shared_ptr<base_client>)> fn);
 
 	std::size_t get_clients_size();
 	std::size_t get_type_clients_size();
 	std::size_t get_mid_clients_size();
-private:
+protected:
 	std::set<std::shared_ptr<base_client>> m_clients;
 	bm_mid m_mid_clients;
 	bm_type m_type_clients;

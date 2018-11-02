@@ -1,8 +1,9 @@
 #ifndef __GATEWAY_SERVER_H__
 #define __GATEWAY_SERVER_H__
-#include "module.h"
+#include "middleware_server.h"
+#include "common_client.h"
 
-class login_server : public module
+class login_server : public middleware_server<common_client>
 {
 	using tcp = boost::asio::ip::tcp;
 public:

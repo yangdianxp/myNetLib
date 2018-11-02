@@ -1,15 +1,14 @@
 #ifndef __GATEWAY_SERVER_H__
 #define __GATEWAY_SERVER_H__
-#include "module.h"
+#include "middleware_server.h"
+#include "gateway_client.h"
 #include "unique_code.h"
 
-class gateway_server : public module
+class gateway_server : public middleware_server<gateway_client>
 {
 	using tcp = boost::asio::ip::tcp;
 public:
 	gateway_server(boost::asio::io_context& io_context, short port);
-	virtual void handle_accept_succ(tcp::socket& socket);
-	virtual void connect_remote(std::string ip, std::string port, uint32_t type);
 
 	void set_vid_range(uint32_t min, uint32_t max);
 	void del_vid(uint32_t id);

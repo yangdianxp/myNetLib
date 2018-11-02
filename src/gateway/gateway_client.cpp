@@ -43,6 +43,26 @@ void gateway_client::handle_request_vid_range_ack(proto_msg& msg)
 		server->set_vid_range(range.begin(), range.end());
 	}
 }
+void gateway_client::handle_create_channel(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		pb::external::modify_channel modify;
+		msg.parse(modify);
+		modify.set_vid(m_id);
+		modify.set_src(server->get_id());
+		SLOG_DEBUG << modify.DebugString();
+		msg.serialize_msg(modify);
+		auto client = route->get_first_client(module_balance_type);
+		if (client)
+		{
+			client->write((char *)&msg, msg.size());
+		}
+	}
+}
 
 void gateway_client::init(std::shared_ptr<base_server> server)
 {
@@ -52,5 +72,6 @@ void gateway_client::init(std::shared_ptr<base_server> server)
 	{
 		m_function_set[cmd_module_logon_ack] = std::bind(&gateway_client::handle_module_logon_ack, client, std::placeholders::_1);
 		m_function_set[cmd_request_vid_range_ack] = std::bind(&gateway_client::handle_request_vid_range_ack, client, std::placeholders::_1);
+		m_function_set[cmd_create_channel] = std::bind(&gateway_client::handle_create_channel, client, std::placeholders::_1);
 	}
 }
