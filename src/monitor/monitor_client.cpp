@@ -104,15 +104,11 @@ void monitor_client::handle_monitor_list()
 	if (server)
 	{
 		auto self = shared_from_this();
-		auto fn = [self](std::shared_ptr<base_client> client)
+		auto fn = [self](std::shared_ptr<common_client> client)
 		{
-			std::shared_ptr<monitor_client> monitor = std::dynamic_pointer_cast<monitor_client>(client);
-			if (monitor)
-			{
-				std::string type = config_settings::instance().get_module_name(monitor->get_type());
-				SLOG_INFO << "id:" << monitor->get_id() << " type:" << type
-					<< " ip:" << monitor->get_ip() << " port:" << monitor->get_port();
-			}
+			std::string type = config_settings::instance().get_module_name(client->get_type());
+			SLOG_INFO << "id:" << client->get_id() << " type:" << type
+				<< " ip:" << client->get_ip() << " port:" << client->get_port();
 		};
 		auto route = server->get_route();
 		route->for_each_mid(fn);

@@ -3,10 +3,16 @@ package pb.external;
 
 message modify_channel
 {
+	enum rslt_type
+	{
+		rslt_succ = 0;
+		rslt_fail = 1;
+	}
 	int32 type = 1;
 	int32 tid = 2;
 	int32 uid = 3;
 	int32 vid = 4;
 	int32 src = 5;	//源模块id
 	int32 dst = 6;	//目的模块id
+	int32 rslt = 7;  //结果
 }

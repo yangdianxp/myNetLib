@@ -1,7 +1,7 @@
 #include "module.h"
 
 module::module(boost::asio::io_context& io_context, short port) :
-	base_server(io_context, port), m_route(new route())
+	base_server(io_context, port)
 {
 	init();
 }

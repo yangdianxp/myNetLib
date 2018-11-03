@@ -43,7 +43,8 @@ void central_client::handle_module_logon(proto_msg& msg)
 		m_id = server->get_unique_mid();
 		/*将模块加入到路由表*/
 		std::shared_ptr<route> route = server->get_route();
-		route->add_module(shared_from_this(), m_type, m_id);
+		route->add_module(std::dynamic_pointer_cast<common_client>(shared_from_this()), 
+			m_type, m_id);
 	}
 	SLOG_INFO << "module ip:" << m_ip << ", port:" << m_port << " m_id:" << m_id
 		<< ", type:" << m_type << " " << config_settings::instance().get_module_name(m_type);
@@ -63,16 +64,12 @@ void central_client::module_logon_reply()
 		ack.set_central_id(server->get_id());
 		/*遍历登录模块需要连接的模块*/
 		auto self = shared_from_this();
-		auto fn = [self, &ack](std::shared_ptr<base_client> client)
+		auto fn = [self, &ack](std::shared_ptr<common_client> client)
 		{
-			std::shared_ptr<common_client> common = std::dynamic_pointer_cast<common_client>(client);
-			if (common)
-			{
-				pb::internal::addr* addr = ack.add_link_addr();
-				addr->set_ip(common->get_ip());
-				addr->set_port(common->get_port());
-				addr->set_type(common->get_type());
-			}
+			pb::internal::addr* addr = ack.add_link_addr();
+			addr->set_ip(client->get_ip());
+			addr->set_port(client->get_port());
+			addr->set_type(client->get_type());
 		};
 		switch (m_type)
 		{
@@ -138,7 +135,7 @@ void central_client::broadcast_module_logon()
 		addr.set_type(m_type);
 		msg.serialize_msg(addr);
 		auto self = shared_from_this();
-		auto fn = [self, &msg](std::shared_ptr<base_client> client)
+		auto fn = [self, &msg](std::shared_ptr<common_client> client)
 		{
 			client->write((char *)&msg, msg.size());
 		};

@@ -18,5 +18,6 @@ void user_client::handle_connect_succ()
 	modify.set_tid(1000);
 	modify.set_uid(10000);
 	proto_msg msg(cmd_create_channel);
+	msg.serialize_msg(modify);
 	write((char *)&msg, msg.size());
 }

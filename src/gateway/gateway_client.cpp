@@ -55,11 +55,23 @@ void gateway_client::handle_create_channel(proto_msg& msg)
 		modify.set_vid(m_id);
 		modify.set_src(server->get_id());
 		SLOG_DEBUG << modify.DebugString();
-		msg.serialize_msg(modify);
-		auto client = route->get_first_client(module_balance_type);
-		if (client)
+		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
+		if (!route->find_node(n))
 		{
-			client->write((char *)&msg, msg.size());
+			msg.serialize_msg(modify);
+			route->add_node(std::dynamic_pointer_cast<common_client>(shared_from_this()), node);
+			auto client = route->get_first_client(module_balance_type);
+			if (client)
+			{
+				client->write((char *)&msg, msg.size());
+			}
+		}
+		else {
+			SLOG_WARNING << "this channel already exists. type:" << modify.type() << " tid:" << modify.tid()
+				<< " uid:" << modify.uid() << " vid:" << modify.vid();
+			modify.set_rslt(pb::external::modify_channel::rslt_succ);
+			msg.serialize_msg(modify);
+			write((char *)&msg, msg.size());
 		}
 	}
 }

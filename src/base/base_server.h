@@ -2,8 +2,9 @@
 #define __BASE_SERVER__
 #include <set>
 #include <boost/asio.hpp>
-#include "base_client.h"
+#include "common_client.h"
 
+class common_client;
 class base_server : public std::enable_shared_from_this<base_server>
 {
 public:
@@ -24,7 +25,7 @@ private:
 	std::size_t m_port;
 
 	tcp::acceptor m_acceptor;
-	std::set<std::shared_ptr<base_client>> m_clients;
+	std::set<std::shared_ptr<common_client>> m_clients;
 };
 
 #endif

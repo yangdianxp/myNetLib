@@ -4,6 +4,7 @@
 #include "base_client.h"
 #include "base_server.h"
 
+class base_server;
 class common_client : public base_client
 {
 public:

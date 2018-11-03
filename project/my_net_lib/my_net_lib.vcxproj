@@ -93,6 +93,7 @@
     <ClInclude Include="..\..\src\client\user_client.h" />
     <ClInclude Include="..\..\src\common\common.h" />
     <ClInclude Include="..\..\src\common\config_settings.h" />
+    <ClInclude Include="..\..\src\common\hash_function.h" />
     <ClInclude Include="..\..\src\common\log.h" />
     <ClInclude Include="..\..\src\common\msg.h" />
     <ClInclude Include="..\..\src\gateway\gateway_client.h" />

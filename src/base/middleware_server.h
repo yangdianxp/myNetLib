@@ -2,12 +2,15 @@
 #define __MIDDLEWARE_SERVER_H__
 #include "module.h"
 
-template<typename Client>
+template<typename Client = module, typename Route = route>
 class middleware_server : public module
 {
 public:
 	middleware_server(boost::asio::io_context& io_context, short port) :
-		module(io_context, port) {}
+		module(io_context, port) 
+	{
+		set_route(std::make_shared<Route>());
+	}
 	virtual void handle_accept_succ(tcp::socket& socket)
 	{
 		std::shared_ptr<Client> client = std::make_shared<Client>(get_io_context(), std::move(socket));

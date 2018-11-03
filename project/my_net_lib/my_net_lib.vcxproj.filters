@@ -334,6 +334,9 @@
     <ClInclude Include="..\..\src\balance\balance_route.h">
       <Filter>src\balance</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\common\hash_function.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">

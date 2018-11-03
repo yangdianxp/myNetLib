@@ -63,10 +63,10 @@ void common_client::handle_error_aux()
 		if (m_conn_type == passive_conn ||
 			(m_conn_type == active_conn && m_reconnect_time == 0))
 		{
-			route->delete_client(shared_from_this());
+			route->delete_client(std::dynamic_pointer_cast<common_client>(shared_from_this()));
 		}
 		else {
-			route->delete_module(shared_from_this());
+			route->delete_module(std::dynamic_pointer_cast<common_client>(shared_from_this()));
 		}
 	}
 }
@@ -87,7 +87,8 @@ void common_client::handle_module_logon_ack(proto_msg& msg)
 	{
 		server->set_id(ack.id());
 		std::shared_ptr<route> route = server->get_route();
-		route->add_module(shared_from_this(), module_central_type, ack.central_id());
+		route->add_module(std::dynamic_pointer_cast<common_client>(shared_from_this()), 
+			module_central_type, ack.central_id());
 		for (int i = 0; i < ack.link_addr_size(); ++i)
 		{
 			const pb::internal::addr& addr = ack.link_addr(i);
@@ -162,7 +163,8 @@ void common_client::handle_register_info(proto_msg& msg)
 	{
 		/*将模块加入到路由表*/
 		std::shared_ptr<route> route = server->get_route();
-		route->add_module(shared_from_this(), m_type, m_id);
+		route->add_module(std::dynamic_pointer_cast<common_client>(shared_from_this()), 
+			m_type, m_id);
 		proto_msg ack_msg(cmd_register_info_ack);
 		pb::internal::register_info ack;
 		ack.set_id(server->get_id());
@@ -190,7 +192,8 @@ void common_client::handle_register_info_ack(proto_msg& msg)
 	{
 		/*将模块加入到路由表*/
 		std::shared_ptr<route> route = server->get_route();
-		route->add_module(shared_from_this(), m_type, m_id);
+		route->add_module(std::dynamic_pointer_cast<common_client>(shared_from_this()), 
+			m_type, m_id);
 	}
 }
 
@@ -206,17 +209,13 @@ void common_client::handle_monitor_route(proto_msg& msg)
 		info.set_clients_size(route->get_clients_size());
 		info.set_type_clients_size(route->get_type_clients_size());
 		auto self = shared_from_this();
-		auto fn = [self, &info](std::shared_ptr<base_client> client)
+		auto fn = [self, &info](std::shared_ptr<common_client> client)
 		{
-			std::shared_ptr<common_client> common = std::dynamic_pointer_cast<common_client>(client);
-			if (common)
-			{
-				pb::internal::register_info* r = info.add_mid_clients();
-				r->set_id(common->get_id());
-				r->set_type(common->get_type());
-				r->set_ip(common->get_ip());
-				r->set_port(common->get_port());
-			}
+			pb::internal::register_info* r = info.add_mid_clients();
+			r->set_id(client->get_id());
+			r->set_type(client->get_type());
+			r->set_ip(client->get_ip());
+			r->set_port(client->get_port());
 		};
 		route->for_each_mid(fn);
 		msg.serialize_msg(info);

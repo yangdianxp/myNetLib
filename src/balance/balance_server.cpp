@@ -5,5 +5,4 @@
 balance_server::balance_server(boost::asio::io_context& io_context, short port) :
 	middleware_server(io_context, port)
 {
-	set_route(std::make_shared<balance_route>());
 }
