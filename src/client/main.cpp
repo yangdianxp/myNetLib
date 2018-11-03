@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		std::string remote_port = std::to_string(config_reader.get_remote_port());
 		auto client = std::make_shared<user_client>(io_context, remote_ip, remote_port);
 		client->set_reconnect_time(3000);
+		client->init(std::shared_ptr<base_server>());
 		client->set_active_type(module_user_type);
 		std::shared_ptr<boost::asio::io_service::work> work
 			= std::make_shared<boost::asio::io_service::work>(io_context);

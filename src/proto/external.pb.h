@@ -29,6 +29,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_external_2eproto 
@@ -60,6 +61,28 @@ template<> ::pb::external::modify_channel* Arena::CreateMaybeMessage<::pb::exter
 namespace pb {
 namespace external {
 
+enum modify_channel_rslt_type {
+  modify_channel_rslt_type_rslt_none = 0,
+  modify_channel_rslt_type_rslt_succ = 1,
+  modify_channel_rslt_type_rslt_fail = 2,
+  modify_channel_rslt_type_modify_channel_rslt_type_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  modify_channel_rslt_type_modify_channel_rslt_type_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool modify_channel_rslt_type_IsValid(int value);
+const modify_channel_rslt_type modify_channel_rslt_type_rslt_type_MIN = modify_channel_rslt_type_rslt_none;
+const modify_channel_rslt_type modify_channel_rslt_type_rslt_type_MAX = modify_channel_rslt_type_rslt_fail;
+const int modify_channel_rslt_type_rslt_type_ARRAYSIZE = modify_channel_rslt_type_rslt_type_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* modify_channel_rslt_type_descriptor();
+inline const ::std::string& modify_channel_rslt_type_Name(modify_channel_rslt_type value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    modify_channel_rslt_type_descriptor(), value);
+}
+inline bool modify_channel_rslt_type_Parse(
+    const ::std::string& name, modify_channel_rslt_type* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<modify_channel_rslt_type>(
+    modify_channel_rslt_type_descriptor(), name, value);
+}
 // ===================================================================
 
 class modify_channel : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.external.modify_channel) */ {
@@ -147,6 +170,34 @@ class modify_channel : public ::google::protobuf::Message /* @@protoc_insertion_
 
   // nested types ----------------------------------------------------
 
+  typedef modify_channel_rslt_type rslt_type;
+  static const rslt_type rslt_none =
+    modify_channel_rslt_type_rslt_none;
+  static const rslt_type rslt_succ =
+    modify_channel_rslt_type_rslt_succ;
+  static const rslt_type rslt_fail =
+    modify_channel_rslt_type_rslt_fail;
+  static inline bool rslt_type_IsValid(int value) {
+    return modify_channel_rslt_type_IsValid(value);
+  }
+  static const rslt_type rslt_type_MIN =
+    modify_channel_rslt_type_rslt_type_MIN;
+  static const rslt_type rslt_type_MAX =
+    modify_channel_rslt_type_rslt_type_MAX;
+  static const int rslt_type_ARRAYSIZE =
+    modify_channel_rslt_type_rslt_type_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  rslt_type_descriptor() {
+    return modify_channel_rslt_type_descriptor();
+  }
+  static inline const ::std::string& rslt_type_Name(rslt_type value) {
+    return modify_channel_rslt_type_Name(value);
+  }
+  static inline bool rslt_type_Parse(const ::std::string& name,
+      rslt_type* value) {
+    return modify_channel_rslt_type_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   // int32 type = 1;
@@ -185,6 +236,12 @@ class modify_channel : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::int32 dst() const;
   void set_dst(::google::protobuf::int32 value);
 
+  // int32 rslt = 7;
+  void clear_rslt();
+  static const int kRsltFieldNumber = 7;
+  ::google::protobuf::int32 rslt() const;
+  void set_rslt(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:pb.external.modify_channel)
  private:
 
@@ -195,6 +252,7 @@ class modify_channel : public ::google::protobuf::Message /* @@protoc_insertion_
   ::google::protobuf::int32 vid_;
   ::google::protobuf::int32 src_;
   ::google::protobuf::int32 dst_;
+  ::google::protobuf::int32 rslt_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_external_2eproto::TableStruct;
 };
@@ -293,6 +351,20 @@ inline void modify_channel::set_dst(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:pb.external.modify_channel.dst)
 }
 
+// int32 rslt = 7;
+inline void modify_channel::clear_rslt() {
+  rslt_ = 0;
+}
+inline ::google::protobuf::int32 modify_channel::rslt() const {
+  // @@protoc_insertion_point(field_get:pb.external.modify_channel.rslt)
+  return rslt_;
+}
+inline void modify_channel::set_rslt(::google::protobuf::int32 value) {
+  
+  rslt_ = value;
+  // @@protoc_insertion_point(field_set:pb.external.modify_channel.rslt)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -301,6 +373,18 @@ inline void modify_channel::set_dst(::google::protobuf::int32 value) {
 
 }  // namespace external
 }  // namespace pb
+
+namespace google {
+namespace protobuf {
+
+template <> struct is_proto_enum< ::pb::external::modify_channel_rslt_type> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::pb::external::modify_channel_rslt_type>() {
+  return ::pb::external::modify_channel_rslt_type_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

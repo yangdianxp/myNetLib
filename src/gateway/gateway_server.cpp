@@ -14,7 +14,6 @@ void gateway_server::handle_accept_succ(tcp::socket& socket)
 		client->init(shared_from_this());
 		std::size_t vid = m_vid_range.get();
 		client->set_id(vid);
-		m_route->add_client(client);
 		m_route->add_vid(client, vid);
 	}
 }

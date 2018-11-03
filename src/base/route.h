@@ -36,11 +36,29 @@ public:
 			return hash_val(n.type, n.tid, n.uid, n.vid);
 		}
 	};
+	struct ttnode
+	{
+		std::size_t type;
+		std::size_t tid;
+		ttnode(std::size_t ty, std::size_t t) : type(ty), tid(t) {}
+		bool operator ==(const ttnode& other)const
+		{
+			return (type == other.type && tid == other.tid);
+		}
+	};
+	class ttnode_hash {
+	public:
+		std::size_t operator ()(const ttnode &n)const
+		{
+			return hash_val(n.type, n.tid);
+		}
+	};
 
-	using bm_mid = bimap<unordered_set_of<uint32_t>, unordered_set_of<std::shared_ptr<common_client>>>;
 	using bm_type = bimap<unordered_multiset_of<uint32_t>, unordered_set_of<std::shared_ptr<common_client>>>;
-	using bm_node = bimap<unordered_set_of<node, node_hash>, unordered_set_of<std::shared_ptr<common_client>>>;
+	using bm_node = bimap<unordered_set_of<node, node_hash>, unordered_multiset_of<std::shared_ptr<common_client>>>;
 	using bm_size_t = bimap<unordered_set_of<std::size_t>, unordered_set_of<std::shared_ptr<common_client>>>;
+	using bm_ttnode_node = bimap<unordered_multiset_of<ttnode, ttnode_hash>, unordered_set_of<node, node_hash>>;
+	using bm_size_t_node = bimap<unordered_multiset_of<std::size_t>, unordered_set_of<node, node_hash>>;
 
 	virtual ~route() {};
 	void add_client(std::shared_ptr<common_client> client);
@@ -53,23 +71,31 @@ public:
 	std::size_t for_each_mid(std::function<void(std::shared_ptr<common_client>)> fn);
 	std::size_t for_each_type(uint32_t type, std::function<void(std::shared_ptr<common_client>)> fn);
 
+	std::shared_ptr<common_client> get_vid(std::size_t vid);
 	void add_vid(std::shared_ptr<common_client> client, std::size_t vid);
 	void delete_vid(std::shared_ptr<common_client> client);
-	void add_node(std::shared_ptr<common_client> client, node n);
+	void add_node(std::shared_ptr<common_client> client, node& n);
 	void delete_node(std::shared_ptr<common_client> client);
-	bool find_node(node n);
+	void delete_node(node& n);
+	void delete_node(std::size_t vid);
+	bool find_node(node& n);
+	std::shared_ptr<common_client> get_node(const node& n);
+	std::shared_ptr<common_client> get_ttnode(ttnode& ttn);
+	std::size_t for_each_ttnode(ttnode& ttn, std::function<void(std::shared_ptr<common_client>, const node&)> fn);
 
 	std::size_t get_clients_size();
 	std::size_t get_type_clients_size();
 	std::size_t get_mid_clients_size();
 protected:
-	std::set<std::shared_ptr<common_client>> m_clients;
 	/*内部模块部分*/
-	bm_mid m_mid_clients;
+	std::set<std::shared_ptr<common_client>> m_clients;
+	bm_size_t m_mid_clients;
 	bm_type m_type_clients;
 	/*外部user部分*/
 	bm_size_t m_vid_clients;
 	bm_node m_node_clients;
+	bm_ttnode_node m_ttnode_node;
+	bm_size_t_node m_vid_node;
 };
 
 #endif

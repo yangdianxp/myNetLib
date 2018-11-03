@@ -6,7 +6,12 @@
 struct proto_header
 { 
 	uint32_t m_cmd = 0;
-	union { uint32_t m_mid = 0; };
+	uint32_t m_type = 0;
+	uint32_t m_tid = 0;
+	uint32_t m_uid = 0;
+	union {
+		uint32_t m_mid; uint32_t m_vid;
+	};
 	unsigned int m_length = 0;
 
 	bool check_msg();
@@ -16,6 +21,10 @@ struct proto_msg : public proto_header
 {
 	proto_msg() {}
 	proto_msg(uint32_t cmd) { m_cmd = cmd; }
+	proto_msg(uint32_t cmd, uint32_t type, uint32_t tid, uint32_t uid)
+	{
+		m_cmd = cmd; m_type = type; m_tid = tid; m_uid = uid;
+	}
 
 	size_t size() {
 		return sizeof(proto_header) + m_length;
@@ -61,6 +70,9 @@ enum cmd_enum
 
 	cmd_create_channel,					//创建通道
 	cmd_create_channel_ack,
+	/*发送消息命令*/
+	cmd_interchannel_broadcast,			//通道内广播
+	cmd_interchannel_broadcast_ack,
 
 	cmd_monitor_instruction,			//monitor监视指令
 	cmd_monitor_instruction_ack,

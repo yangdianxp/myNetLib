@@ -25,7 +25,6 @@ private:
 	std::size_t m_port;
 
 	tcp::acceptor m_acceptor;
-	std::set<std::shared_ptr<common_client>> m_clients;
 };
 
 #endif

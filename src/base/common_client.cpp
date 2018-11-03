@@ -235,6 +235,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_request_vid_range_ack, "gateway request vid range respond" },
 	{ cmd_create_channel, "user create channel" },
 	{ cmd_create_channel_ack, "user create channel respond" },
+	{ cmd_interchannel_broadcast, "user broadcast msg in channel" },
+	{ cmd_interchannel_broadcast_ack, "user broadcast msg in channel ack" },
 	{ cmd_monitor_instruction, "monitor console instruction" },
 	{ cmd_monitor_instruction_ack, "monitor console instruction respond" },
 	{ cmd_monitor_route, "monitor request route info" },

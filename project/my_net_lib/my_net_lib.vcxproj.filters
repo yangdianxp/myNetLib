@@ -239,6 +239,9 @@
     <ClCompile Include="..\..\src\balance\balance_route.cpp">
       <Filter>src\balance</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\media\media_client.cpp">
+      <Filter>src\media</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -336,6 +339,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\common\hash_function.h">
       <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\media\media_client.h">
+      <Filter>src\media</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

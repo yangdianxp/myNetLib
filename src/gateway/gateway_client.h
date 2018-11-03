@@ -14,6 +14,9 @@ public:
 	virtual void handle_module_logon_ack(proto_msg& msg);
 	void handle_request_vid_range_ack(proto_msg& msg);
 	void handle_create_channel(proto_msg& msg);
+	void handle_create_channel_ack(proto_msg& msg);
+	void handle_interchannel_broadcast(proto_msg& msg);
+	void handle_interchannel_broadcast_ack(proto_msg& msg);
 	
 	void init(std::shared_ptr<base_server>);
 private:

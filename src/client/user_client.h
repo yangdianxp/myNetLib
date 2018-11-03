@@ -10,7 +10,13 @@ public:
 	user_client(boost::asio::io_context& io_context, tcp::socket socket);
 
 	void handle_connect_succ();
+	void handle_create_channel_ack(proto_msg& msg);
+	void handle_interchannel_broadcast_ack(proto_msg& msg);
+	void init(std::shared_ptr<base_server> server);
 private:
+	std::size_t m_type = module_media_type;
+	std::size_t m_tid = 1000;
+	std::size_t m_uid = 10000;
 };
 
 #endif

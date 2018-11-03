@@ -15,12 +15,19 @@ gateway_client::gateway_client(boost::asio::io_context& io_context, tcp::socket 
 
 void gateway_client::handle_error_aux()
 {
-	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
-	if (server)
+	if (m_type == module_user_type)
 	{
-		server->del_vid(m_id);
+		auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+		if (server)
+		{
+			auto route = server->get_route();
+			route->delete_vid(std::dynamic_pointer_cast<common_client>(shared_from_this()));
+			server->del_vid(m_id);
+		}
 	}
-	common_client::handle_error_aux();
+	else {
+		common_client::handle_error_aux();
+	}
 }
 
 void gateway_client::handle_module_logon_ack(proto_msg& msg)
@@ -58,8 +65,8 @@ void gateway_client::handle_create_channel(proto_msg& msg)
 		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 		if (!route->find_node(n))
 		{
+			route->add_node(std::shared_ptr<common_client>(), n);
 			msg.serialize_msg(modify);
-			route->add_node(std::dynamic_pointer_cast<common_client>(shared_from_this()), node);
 			auto client = route->get_first_client(module_balance_type);
 			if (client)
 			{
@@ -76,6 +83,61 @@ void gateway_client::handle_create_channel(proto_msg& msg)
 	}
 }
 
+void gateway_client::handle_create_channel_ack(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		pb::external::modify_channel modify;
+		msg.parse(modify);
+		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
+		route->delete_node(n);
+		if (modify.rslt() == pb::external::modify_channel::rslt_succ)
+		{
+			auto media = route->get_client(modify.src());
+			if (media)
+			{
+				route->add_node(media, n);
+			}
+		}
+		auto client = route->get_vid(modify.vid());
+		if (client)
+		{
+			client->write((char *)&msg, msg.size());
+		}
+	}
+}
+void gateway_client::handle_interchannel_broadcast(proto_msg& msg)
+{
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
+	{
+		msg.m_vid = m_id;
+		auto route = server->get_route();
+		route::node n(msg.m_type, msg.m_tid, msg.m_uid, msg.m_vid);
+		auto media = route->get_node(n);
+		if (media)
+		{
+			media->write((char *)&msg, msg.size());
+		}
+	}
+}
+void gateway_client::handle_interchannel_broadcast_ack(proto_msg& msg)
+{
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		auto client = route->get_vid(msg.m_vid);
+		if (client)
+		{
+			client->write((char *)&msg, msg.size());
+		}
+	}
+}
+
 void gateway_client::init(std::shared_ptr<base_server> server)
 {
 	common_client::init(server);
@@ -85,5 +147,8 @@ void gateway_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_module_logon_ack] = std::bind(&gateway_client::handle_module_logon_ack, client, std::placeholders::_1);
 		m_function_set[cmd_request_vid_range_ack] = std::bind(&gateway_client::handle_request_vid_range_ack, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel] = std::bind(&gateway_client::handle_create_channel, client, std::placeholders::_1);
+		m_function_set[cmd_create_channel_ack] = std::bind(&gateway_client::handle_create_channel_ack, client, std::placeholders::_1);
+		m_function_set[cmd_interchannel_broadcast] = std::bind(&gateway_client::handle_interchannel_broadcast, client, std::placeholders::_1);
+		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&gateway_client::handle_interchannel_broadcast_ack, client, std::placeholders::_1);
 	}
 }

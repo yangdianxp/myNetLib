@@ -21,26 +21,30 @@ void balance_route::delete_module(std::shared_ptr<common_client> client)
 std::shared_ptr<common_client> balance_route::get_first_media(std::size_t type)
 {
 	std::shared_ptr<common_client> index;
-	std::size_t cnt = 0;
-	for (auto n : m_ref)
+	if (!m_ref.empty())
 	{
-		if (n.first->get_type() == type)
+		index = m_ref.begin()->first;
+		std::size_t cnt = m_ref.begin()->second;
+		for (auto n : m_ref)
 		{
-			if (n.second <= cnt)
+			if (n.first->get_type() == type)
 			{
-				index = n.first;
-				cnt = n.second;
-				if (cnt == 0)
+				if (n.second < cnt)
 				{
-					m_ref[index]++;
-					return index;
+					index = n.first;
+					cnt = n.second;
+					if (cnt == 0)
+					{
+						m_ref[index]++;
+						return index;
+					}
 				}
 			}
 		}
-	}
-	if (index)
-	{
-		m_ref[index]++;
+		if (index)
+		{
+			m_ref[index]++;
+		}
 	}
 	return index;
 }

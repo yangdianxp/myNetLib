@@ -48,6 +48,7 @@ void InitDefaults() {
 }
 
 ::google::protobuf::Metadata file_level_metadata[1];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -61,6 +62,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::external::modify_channel, vid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::external::modify_channel, src_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::external::modify_channel, dst_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::external::modify_channel, rslt_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::pb::external::modify_channel)},
@@ -74,7 +76,7 @@ void protobuf_AssignDescriptors() {
   AddDescriptors();
   AssignDescriptors(
       "external.proto", schemas, file_default_instances, TableStruct::offsets,
-      file_level_metadata, NULL, NULL);
+      file_level_metadata, file_level_enum_descriptors, NULL);
 }
 
 void protobuf_AssignDescriptorsOnce() {
@@ -91,13 +93,15 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\016external.proto\022\013pb.external\"_\n\016modify_"
-      "channel\022\014\n\004type\030\001 \001(\005\022\013\n\003tid\030\002 \001(\005\022\013\n\003ui"
-      "d\030\003 \001(\005\022\013\n\003vid\030\004 \001(\005\022\013\n\003src\030\005 \001(\005\022\013\n\003dst"
-      "\030\006 \001(\005b\006proto3"
+      "\n\016external.proto\022\013pb.external\"\247\001\n\016modify"
+      "_channel\022\014\n\004type\030\001 \001(\005\022\013\n\003tid\030\002 \001(\005\022\013\n\003u"
+      "id\030\003 \001(\005\022\013\n\003vid\030\004 \001(\005\022\013\n\003src\030\005 \001(\005\022\013\n\003ds"
+      "t\030\006 \001(\005\022\014\n\004rslt\030\007 \001(\005\"8\n\trslt_type\022\r\n\trs"
+      "lt_none\020\000\022\r\n\trslt_succ\020\001\022\r\n\trslt_fail\020\002b"
+      "\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 134);
+      descriptor, 207);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "external.proto", &protobuf_RegisterTypes);
 }
@@ -115,6 +119,29 @@ struct StaticDescriptorInitializer {
 }  // namespace protobuf_external_2eproto
 namespace pb {
 namespace external {
+const ::google::protobuf::EnumDescriptor* modify_channel_rslt_type_descriptor() {
+  protobuf_external_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_external_2eproto::file_level_enum_descriptors[0];
+}
+bool modify_channel_rslt_type_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const modify_channel_rslt_type modify_channel::rslt_none;
+const modify_channel_rslt_type modify_channel::rslt_succ;
+const modify_channel_rslt_type modify_channel::rslt_fail;
+const modify_channel_rslt_type modify_channel::rslt_type_MIN;
+const modify_channel_rslt_type modify_channel::rslt_type_MAX;
+const int modify_channel::rslt_type_ARRAYSIZE;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 // ===================================================================
 
@@ -127,6 +154,7 @@ const int modify_channel::kUidFieldNumber;
 const int modify_channel::kVidFieldNumber;
 const int modify_channel::kSrcFieldNumber;
 const int modify_channel::kDstFieldNumber;
+const int modify_channel::kRsltFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 modify_channel::modify_channel()
@@ -141,15 +169,15 @@ modify_channel::modify_channel(const modify_channel& from)
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&type_, &from.type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&dst_) -
-    reinterpret_cast<char*>(&type_)) + sizeof(dst_));
+    static_cast<size_t>(reinterpret_cast<char*>(&rslt_) -
+    reinterpret_cast<char*>(&type_)) + sizeof(rslt_));
   // @@protoc_insertion_point(copy_constructor:pb.external.modify_channel)
 }
 
 void modify_channel::SharedCtor() {
   ::memset(&type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&dst_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(dst_));
+      reinterpret_cast<char*>(&rslt_) -
+      reinterpret_cast<char*>(&type_)) + sizeof(rslt_));
 }
 
 modify_channel::~modify_channel() {
@@ -181,8 +209,8 @@ void modify_channel::Clear() {
   (void) cached_has_bits;
 
   ::memset(&type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&dst_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(dst_));
+      reinterpret_cast<char*>(&rslt_) -
+      reinterpret_cast<char*>(&type_)) + sizeof(rslt_));
   _internal_metadata_.Clear();
 }
 
@@ -280,6 +308,20 @@ bool modify_channel::MergePartialFromCodedStream(
         break;
       }
 
+      // int32 rslt = 7;
+      case 7: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &rslt_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -336,6 +378,11 @@ void modify_channel::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->dst(), output);
   }
 
+  // int32 rslt = 7;
+  if (this->rslt() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->rslt(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -378,6 +425,11 @@ void modify_channel::SerializeWithCachedSizes(
   // int32 dst = 6;
   if (this->dst() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->dst(), target);
+  }
+
+  // int32 rslt = 7;
+  if (this->rslt() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->rslt(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -439,6 +491,13 @@ size_t modify_channel::ByteSizeLong() const {
         this->dst());
   }
 
+  // int32 rslt = 7;
+  if (this->rslt() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->rslt());
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -484,6 +543,9 @@ void modify_channel::MergeFrom(const modify_channel& from) {
   if (from.dst() != 0) {
     set_dst(from.dst());
   }
+  if (from.rslt() != 0) {
+    set_rslt(from.rslt());
+  }
 }
 
 void modify_channel::CopyFrom(const ::google::protobuf::Message& from) {
@@ -516,6 +578,7 @@ void modify_channel::InternalSwap(modify_channel* other) {
   swap(vid_, other->vid_);
   swap(src_, other->src_);
   swap(dst_, other->dst_);
+  swap(rslt_, other->rslt_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

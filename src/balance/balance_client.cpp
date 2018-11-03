@@ -22,8 +22,47 @@ void balance_client::handle_create_channel(proto_msg& msg)
 	if (server)
 	{
 		auto route = std::dynamic_pointer_cast<balance_route>(server->get_route());
-		auto client = route->get_first_media(modify.type());
-		//client->write();
+		route::ttnode ttn(modify.type(), modify.tid());
+		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
+		auto media = route->get_ttnode(ttn);
+		if (media)
+		{
+			route->add_node(media, n);
+			media->write((char *)&msg, msg.size());
+			return;
+		}
+		auto media1 = route->get_first_media(modify.type());
+		if (media1)
+		{
+			route->add_node(media1, n);
+			media1->write((char *)&msg, msg.size());
+			return;
+		}
+	}
+}
+void balance_client::handle_create_channel_ack(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::external::modify_channel modify;
+	msg.parse(modify);
+	SLOG_DEBUG << modify.DebugString();
+	auto server = std::dynamic_pointer_cast<balance_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		auto gateway = route->get_client(modify.dst());
+		if (gateway)
+		{
+			if (modify.rslt() == pb::external::modify_channel::rslt_succ)
+			{
+				gateway->write((char *)&msg, msg.size());
+			}
+			else {
+				route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
+				route->delete_node(n);
+				gateway->write((char *)&msg, msg.size());
+			}
+		}
 	}
 }
 
@@ -34,5 +73,6 @@ void balance_client::init(std::shared_ptr<base_server> server)
 	if (client)
 	{
 		m_function_set[cmd_create_channel] = std::bind(&balance_client::handle_create_channel, client, std::placeholders::_1);
+		m_function_set[cmd_create_channel_ack] = std::bind(&balance_client::handle_create_channel_ack, client, std::placeholders::_1);
 	}
 }

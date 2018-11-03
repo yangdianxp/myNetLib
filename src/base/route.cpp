@@ -7,7 +7,7 @@ void route::add_client(std::shared_ptr<common_client> client)
 
 void route::add_module(std::shared_ptr<common_client> client, uint32_t type, uint32_t mid)
 {
-	m_mid_clients.left.insert(bm_mid::left_value_type(mid, client));
+	m_mid_clients.left.insert(bm_size_t::left_value_type(mid, client));
 	m_type_clients.left.insert(bm_type::left_value_type(type, client));
 }
 void route::delete_client(std::shared_ptr<common_client> client)
@@ -60,25 +60,90 @@ std::size_t route::for_each_type(uint32_t type, std::function<void(std::shared_p
 	}
 	return cnt;
 }
+std::shared_ptr<common_client> route::get_vid(std::size_t vid)
+{
+	auto it = m_vid_clients.left.find(vid);
+	if (it != m_vid_clients.left.end())
+	{
+		return it->second;
+	}
+	return std::shared_ptr<common_client>();
+}
 void route::add_vid(std::shared_ptr<common_client> client, std::size_t vid)
 {
-	m_node_clients.left.insert(std::make_pair(vid, client));
+	m_vid_clients.left.insert(std::make_pair(vid, client));
 }
 void route::delete_vid(std::shared_ptr<common_client> client)
 {
-	m_node_clients.right.erase(client);
+	m_vid_clients.right.erase(client);
 }
-void route::add_node(std::shared_ptr<common_client> client, node n)
+void route::add_node(std::shared_ptr<common_client> client, node& n)
 {
 	m_node_clients.left.insert(std::make_pair(n, client));
+	ttnode ttn(n.type, n.tid);
+	m_ttnode_node.left.insert(std::make_pair(ttn, n));
+	m_vid_node.left.insert(std::make_pair(n.vid, n));
 }
 void route::delete_node(std::shared_ptr<common_client> client)
 {
+	auto range = m_node_clients.right.equal_range(client);
+	auto it_end = range.second;
+	for (auto it = range.first; it != it_end; ++it)
+	{
+		m_ttnode_node.right.erase(it->second);
+		m_vid_node.right.erase(it->second);
+	}
 	m_node_clients.right.erase(client);
 }
-bool route::find_node(node n)
+void route::delete_node(node& n)
+{
+	m_node_clients.left.erase(n);
+	m_ttnode_node.right.erase(n);
+	m_vid_node.right.erase(n);
+}
+void route::delete_node(std::size_t vid)
+{
+	auto range = m_vid_node.left.equal_range(vid);
+	auto it_end = range.second;
+	for (auto it = range.first; it != it_end; ++it)
+	{
+		m_node_clients.left.erase(it->second);
+		m_ttnode_node.right.erase(it->second);
+	}
+	m_vid_node.left.erase(vid);
+}
+bool route::find_node(node& n)
 {
 	return (m_node_clients.left.find(n) != m_node_clients.left.end());
+}
+std::shared_ptr<common_client> route::get_node(const node& n)
+{
+	auto it = m_node_clients.left.find(n);
+	if (it != m_node_clients.left.end())
+	{
+		return it->second;
+	}
+	return std::shared_ptr<common_client>();
+}
+std::shared_ptr<common_client> route::get_ttnode(ttnode& ttn)
+{
+	auto it = m_ttnode_node.left.find(ttn);
+	if (it != m_ttnode_node.left.end())
+	{
+		return get_node(it->second);
+	}
+	return std::shared_ptr<common_client>();
+}
+std::size_t route::for_each_ttnode(ttnode& ttn, std::function<void(std::shared_ptr<common_client>, const node&)> fn)
+{
+	std::size_t cnt = 0;
+	auto range = m_ttnode_node.left.equal_range(ttn);
+	for (auto it = range.first; it != range.second; ++it, ++cnt)
+	{
+		auto it_c = m_node_clients.left.find(it->second);
+		fn(it_c->second, it->second);
+	}
+	return cnt;
 }
 
 std::size_t route::get_clients_size()
