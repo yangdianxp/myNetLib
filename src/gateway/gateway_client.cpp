@@ -22,6 +22,18 @@ void gateway_client::handle_error_aux()
 		{
 			auto route = server->get_route();
 			route->delete_vid(std::dynamic_pointer_cast<common_client>(shared_from_this()));
+			std::set<std::shared_ptr<common_client>> clients;
+			auto self = shared_from_this();
+			auto fn = [self, &clients](std::shared_ptr<common_client> client)
+			{
+				clients.insert(client);
+			};
+			route->for_each_vid(m_id, fn);
+			for (auto client : clients)
+			{
+
+			}
+			route->delete_node(m_id);
 			server->del_vid(m_id);
 		}
 	}

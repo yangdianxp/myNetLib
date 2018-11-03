@@ -82,6 +82,7 @@ public:
 	std::shared_ptr<common_client> get_node(const node& n);
 	std::shared_ptr<common_client> get_ttnode(ttnode& ttn);
 	std::size_t for_each_ttnode(ttnode& ttn, std::function<void(std::shared_ptr<common_client>, const node&)> fn);
+	std::size_t for_each_vid(std::size_t vid, std::function<void(std::shared_ptr<common_client>)> fn);
 
 	std::size_t get_clients_size();
 	std::size_t get_type_clients_size();

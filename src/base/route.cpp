@@ -145,6 +145,17 @@ std::size_t route::for_each_ttnode(ttnode& ttn, std::function<void(std::shared_p
 	}
 	return cnt;
 }
+std::size_t route::for_each_vid(std::size_t vid, std::function<void(std::shared_ptr<common_client>)> fn)
+{
+	std::size_t cnt = 0;
+	auto range = m_vid_node.left.equal_range(vid);
+	for (auto it = range.first; it != range.second; ++it, ++cnt)
+	{
+		auto it_c = m_node_clients.left.find(it->second);
+		fn(it_c->second);
+	}
+	return cnt;
+}
 
 std::size_t route::get_clients_size()
 {
