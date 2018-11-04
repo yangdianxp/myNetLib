@@ -48,7 +48,7 @@
     <ClCompile Include="..\..\src\central\central.cpp" />
     <ClCompile Include="..\..\src\central\central_client.cpp" />
     <ClCompile Include="..\..\src\central\central_server.cpp" />
-    <ClCompile Include="..\..\src\central\vid_manage.cpp" />
+    <ClCompile Include="..\..\src\central\range_manage.cpp" />
     <ClCompile Include="..\..\src\client\main.cpp" />
     <ClCompile Include="..\..\src\client\user_client.cpp" />
     <ClCompile Include="..\..\src\common\config_settings.cpp" />
@@ -90,7 +90,7 @@
     <ClInclude Include="..\..\src\base\unique_code.h" />
     <ClInclude Include="..\..\src\central\central_client.h" />
     <ClInclude Include="..\..\src\central\central_server.h" />
-    <ClInclude Include="..\..\src\central\vid_manage.h" />
+    <ClInclude Include="..\..\src\central\range_manage.h" />
     <ClInclude Include="..\..\src\client\user_client.h" />
     <ClInclude Include="..\..\src\common\common.h" />
     <ClInclude Include="..\..\src\common\config_settings.h" />

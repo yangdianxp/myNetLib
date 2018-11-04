@@ -1,10 +1,10 @@
-#ifndef __VID_MANAGE_H__
-#define __VID_MANAGE_H__
+#ifndef __RANGE_MANAGE_H__
+#define __RANGE_MANAGE_H__
 #include <map>
 #include <set>
 #include <functional>
 
-class vid_manage
+class range_manage
 {
 public:
 	using vid_pair = std::pair<std::size_t, std::size_t>;

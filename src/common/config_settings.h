@@ -50,6 +50,8 @@ private:
 	std::vector<uint32_t> m_balance_link_type;
 	/*login连接的模块类型*/
 	std::vector<uint32_t> m_login_link_type;
+	/*balance负责的tid范围大小*/
+	uint32_t m_blance_tid_range = 0;
 
 	bimap<unordered_set_of<std::string>, unordered_set_of<uint32_t>> m_type_glossary;
 	

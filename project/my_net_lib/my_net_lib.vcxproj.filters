@@ -311,9 +311,6 @@
     <ClCompile Include="..\..\src\media\media_server.cpp">
       <Filter>src\media</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\central\vid_manage.cpp">
-      <Filter>src\central</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\vid_manage_test\main.cpp">
       <Filter>test\vid_manage_test</Filter>
     </ClCompile>
@@ -358,6 +355,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\media\media_client.cpp">
       <Filter>src\media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\central\range_manage.cpp">
+      <Filter>src\central</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -418,9 +418,6 @@
     <ClInclude Include="..\..\src\media\media_server.h">
       <Filter>src\media</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\central\vid_manage.h">
-      <Filter>src\central</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\test\vid_manage_test\vid_manage.h">
       <Filter>test\vid_manage_test</Filter>
     </ClInclude>
@@ -459,6 +456,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\media\media_client.h">
       <Filter>src\media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\central\range_manage.h">
+      <Filter>src\central</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -599,13 +599,13 @@
     <None Include="..\..\src\run\copy.sh">
       <Filter>src\run</Filter>
     </None>
-    <None Include="..\..\src\run\ff.sh">
-      <Filter>src\run</Filter>
-    </None>
     <None Include="..\..\src\run\laqi.sh">
       <Filter>src\run</Filter>
     </None>
     <None Include="..\..\src\run\bkill.sh">
+      <Filter>src\run</Filter>
+    </None>
+    <None Include="..\..\src\run\ff.sh">
       <Filter>src\run</Filter>
     </None>
   </ItemGroup>

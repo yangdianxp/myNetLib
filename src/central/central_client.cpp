@@ -179,7 +179,7 @@ void central_client::handle_request_vid_range(proto_msg& msg)
 	std::shared_ptr<central_server> server = std::dynamic_pointer_cast<central_server>(m_server);
 	if (server)
 	{
-		vid_manage::vid_pair pair = server->get_vid_range(m_id);
+		range_manage::vid_pair pair = server->get_vid_range(m_id);
 		proto_msg msg(cmd_request_vid_range_ack);
 		pb::internal::vid_range range;
 		range.set_begin(pair.first);
@@ -199,14 +199,14 @@ void central_client::handle_monitor_vid_manage(proto_msg& msg)
 		pb::monitor::vid_manage manage;
 		manage.set_index(m.get_index());
 		manage.set_unit_size(m.get_unit_size());
-		auto f1 = [&manage](vid_manage::vid_pair& p)
+		auto f1 = [&manage](range_manage::vid_pair& p)
 		{
 			pb::internal::vid_range* r = manage.add_inventory();
 			r->set_begin(p.first);
 			r->set_end(p.second);
 		};
 		m.for_each_inventory(f1);
-		auto f2 = [&manage](std::pair<const std::size_t, vid_manage::vid_pair>& p)
+		auto f2 = [&manage](std::pair<const std::size_t, range_manage::vid_pair>& p)
 		{
 			pb::monitor::mid_vid_range* mr = manage.add_already_assigned();
 			mr->set_mid(p.first);
