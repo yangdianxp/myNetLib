@@ -44,16 +44,10 @@ message module_list
 	repeated vid_node vid_node = 7;
 }
 
-message mid_vid_range
-{
-	int32 mid = 1;
-	internal.vid_range range = 2;
-}
-
 message vid_manage
 {
 	int32 index = 1;
 	int32 unit_size = 2;
-	repeated internal.vid_range inventory = 3;
-	repeated mid_vid_range already_assigned = 4;
+	repeated internal.range inventory = 3;
+	repeated internal.mid_range already_assigned = 4;
 }

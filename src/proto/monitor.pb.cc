@@ -20,13 +20,13 @@
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_internal_2eproto {
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_internal_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_range;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_internal_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_register_info;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_internal_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_vid_range;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_internal_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_mid_range;
 }  // namespace protobuf_internal_2eproto
 namespace protobuf_monitor_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_monitor_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_node;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_monitor_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ttnode;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_monitor_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_mid_vid_range;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_monitor_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_vid_node;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_monitor_2eproto ::google::protobuf::internal::SCCInfo<2> scc_info_ttnode_node;
 }  // namespace protobuf_monitor_2eproto
@@ -62,11 +62,6 @@ class module_listDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<module_list>
       _instance;
 } _module_list_default_instance_;
-class mid_vid_rangeDefaultTypeInternal {
- public:
-  ::google::protobuf::internal::ExplicitlyConstructed<mid_vid_range>
-      _instance;
-} _mid_vid_range_default_instance_;
 class vid_manageDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<vid_manage>
@@ -166,21 +161,6 @@ static void InitDefaultsmodule_list() {
       &protobuf_monitor_2eproto::scc_info_ttnode_node.base,
       &protobuf_monitor_2eproto::scc_info_vid_node.base,}};
 
-static void InitDefaultsmid_vid_range() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::pb::monitor::_mid_vid_range_default_instance_;
-    new (ptr) ::pb::monitor::mid_vid_range();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::pb::monitor::mid_vid_range::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<1> scc_info_mid_vid_range =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsmid_vid_range}, {
-      &protobuf_internal_2eproto::scc_info_vid_range.base,}};
-
 static void InitDefaultsvid_manage() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -194,8 +174,8 @@ static void InitDefaultsvid_manage() {
 
 ::google::protobuf::internal::SCCInfo<2> scc_info_vid_manage =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsvid_manage}, {
-      &protobuf_internal_2eproto::scc_info_vid_range.base,
-      &protobuf_monitor_2eproto::scc_info_mid_vid_range.base,}};
+      &protobuf_internal_2eproto::scc_info_range.base,
+      &protobuf_internal_2eproto::scc_info_mid_range.base,}};
 
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_cmd.base);
@@ -204,11 +184,10 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_ttnode_node.base);
   ::google::protobuf::internal::InitSCC(&scc_info_vid_node.base);
   ::google::protobuf::internal::InitSCC(&scc_info_module_list.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_mid_vid_range.base);
   ::google::protobuf::internal::InitSCC(&scc_info_vid_manage.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[8];
+::google::protobuf::Metadata file_level_metadata[7];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -260,13 +239,6 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::module_list, ttnode_node_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::module_list, vid_node_),
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::mid_vid_range, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::mid_vid_range, mid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::mid_vid_range, range_),
-  ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::vid_manage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -283,8 +255,7 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 22, -1, sizeof(::pb::monitor::ttnode_node)},
   { 29, -1, sizeof(::pb::monitor::vid_node)},
   { 36, -1, sizeof(::pb::monitor::module_list)},
-  { 48, -1, sizeof(::pb::monitor::mid_vid_range)},
-  { 55, -1, sizeof(::pb::monitor::vid_manage)},
+  { 48, -1, sizeof(::pb::monitor::vid_manage)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -294,7 +265,6 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_ttnode_node_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_vid_node_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_module_list_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_mid_vid_range_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_vid_manage_default_instance_),
 };
 
@@ -313,7 +283,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 8);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 7);
 }
 
 void AddDescriptorsImpl() {
@@ -332,16 +302,14 @@ void AddDescriptorsImpl() {
       "ister_info\022\023\n\013vid_clients\030\004 \003(\005\022&\n\014node_"
       "clients\030\005 \003(\0132\020.pb.monitor.node\022,\n\013ttnod"
       "e_node\030\006 \003(\0132\027.pb.monitor.ttnode_node\022&\n"
-      "\010vid_node\030\007 \003(\0132\024.pb.monitor.vid_node\"C\n"
-      "\rmid_vid_range\022\013\n\003mid\030\001 \001(\005\022%\n\005range\030\002 \001"
-      "(\0132\026.pb.internal.vid_range\"\216\001\n\nvid_manag"
-      "e\022\r\n\005index\030\001 \001(\005\022\021\n\tunit_size\030\002 \001(\005\022)\n\ti"
-      "nventory\030\003 \003(\0132\026.pb.internal.vid_range\0223"
-      "\n\020already_assigned\030\004 \003(\0132\031.pb.monitor.mi"
-      "d_vid_rangeb\006proto3"
+      "\010vid_node\030\007 \003(\0132\024.pb.monitor.vid_node\"\207\001"
+      "\n\nvid_manage\022\r\n\005index\030\001 \001(\005\022\021\n\tunit_size"
+      "\030\002 \001(\005\022%\n\tinventory\030\003 \003(\0132\022.pb.internal."
+      "range\0220\n\020already_assigned\030\004 \003(\0132\026.pb.int"
+      "ernal.mid_rangeb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 779);
+      descriptor, 703);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "monitor.proto", &protobuf_RegisterTypes);
   ::protobuf_internal_2eproto::AddDescriptors();
@@ -2278,290 +2246,13 @@ void module_list::InternalSwap(module_list* other) {
 
 // ===================================================================
 
-void mid_vid_range::InitAsDefaultInstance() {
-  ::pb::monitor::_mid_vid_range_default_instance_._instance.get_mutable()->range_ = const_cast< ::pb::internal::vid_range*>(
-      ::pb::internal::vid_range::internal_default_instance());
-}
-void mid_vid_range::clear_range() {
-  if (GetArenaNoVirtual() == NULL && range_ != NULL) {
-    delete range_;
-  }
-  range_ = NULL;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int mid_vid_range::kMidFieldNumber;
-const int mid_vid_range::kRangeFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-mid_vid_range::mid_vid_range()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_monitor_2eproto::scc_info_mid_vid_range.base);
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:pb.monitor.mid_vid_range)
-}
-mid_vid_range::mid_vid_range(const mid_vid_range& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_range()) {
-    range_ = new ::pb::internal::vid_range(*from.range_);
-  } else {
-    range_ = NULL;
-  }
-  mid_ = from.mid_;
-  // @@protoc_insertion_point(copy_constructor:pb.monitor.mid_vid_range)
-}
-
-void mid_vid_range::SharedCtor() {
-  ::memset(&range_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&mid_) -
-      reinterpret_cast<char*>(&range_)) + sizeof(mid_));
-}
-
-mid_vid_range::~mid_vid_range() {
-  // @@protoc_insertion_point(destructor:pb.monitor.mid_vid_range)
-  SharedDtor();
-}
-
-void mid_vid_range::SharedDtor() {
-  if (this != internal_default_instance()) delete range_;
-}
-
-void mid_vid_range::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const ::google::protobuf::Descriptor* mid_vid_range::descriptor() {
-  ::protobuf_monitor_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_monitor_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
-const mid_vid_range& mid_vid_range::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_monitor_2eproto::scc_info_mid_vid_range.base);
-  return *internal_default_instance();
-}
-
-
-void mid_vid_range::Clear() {
-// @@protoc_insertion_point(message_clear_start:pb.monitor.mid_vid_range)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  if (GetArenaNoVirtual() == NULL && range_ != NULL) {
-    delete range_;
-  }
-  range_ = NULL;
-  mid_ = 0;
-  _internal_metadata_.Clear();
-}
-
-bool mid_vid_range::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:pb.monitor.mid_vid_range)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // int32 mid = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &mid_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // .pb.internal.vid_range range = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_range()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:pb.monitor.mid_vid_range)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:pb.monitor.mid_vid_range)
-  return false;
-#undef DO_
-}
-
-void mid_vid_range::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:pb.monitor.mid_vid_range)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 mid = 1;
-  if (this->mid() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->mid(), output);
-  }
-
-  // .pb.internal.vid_range range = 2;
-  if (this->has_range()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->_internal_range(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:pb.monitor.mid_vid_range)
-}
-
-::google::protobuf::uint8* mid_vid_range::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:pb.monitor.mid_vid_range)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 mid = 1;
-  if (this->mid() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->mid(), target);
-  }
-
-  // .pb.internal.vid_range range = 2;
-  if (this->has_range()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        2, this->_internal_range(), deterministic, target);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:pb.monitor.mid_vid_range)
-  return target;
-}
-
-size_t mid_vid_range::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:pb.monitor.mid_vid_range)
-  size_t total_size = 0;
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
-  // .pb.internal.vid_range range = 2;
-  if (this->has_range()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *range_);
-  }
-
-  // int32 mid = 1;
-  if (this->mid() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->mid());
-  }
-
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void mid_vid_range::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:pb.monitor.mid_vid_range)
-  GOOGLE_DCHECK_NE(&from, this);
-  const mid_vid_range* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const mid_vid_range>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.monitor.mid_vid_range)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.monitor.mid_vid_range)
-    MergeFrom(*source);
-  }
-}
-
-void mid_vid_range::MergeFrom(const mid_vid_range& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:pb.monitor.mid_vid_range)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.has_range()) {
-    mutable_range()->::pb::internal::vid_range::MergeFrom(from.range());
-  }
-  if (from.mid() != 0) {
-    set_mid(from.mid());
-  }
-}
-
-void mid_vid_range::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:pb.monitor.mid_vid_range)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void mid_vid_range::CopyFrom(const mid_vid_range& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:pb.monitor.mid_vid_range)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool mid_vid_range::IsInitialized() const {
-  return true;
-}
-
-void mid_vid_range::Swap(mid_vid_range* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void mid_vid_range::InternalSwap(mid_vid_range* other) {
-  using std::swap;
-  swap(range_, other->range_);
-  swap(mid_, other->mid_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-}
-
-::google::protobuf::Metadata mid_vid_range::GetMetadata() const {
-  protobuf_monitor_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_monitor_2eproto::file_level_metadata[kIndexInFileMessages];
-}
-
-
-// ===================================================================
-
 void vid_manage::InitAsDefaultInstance() {
 }
 void vid_manage::clear_inventory() {
   inventory_.Clear();
+}
+void vid_manage::clear_already_assigned() {
+  already_assigned_.Clear();
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int vid_manage::kIndexFieldNumber;
@@ -2669,7 +2360,7 @@ bool vid_manage::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .pb.internal.vid_range inventory = 3;
+      // repeated .pb.internal.range inventory = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
@@ -2681,7 +2372,7 @@ bool vid_manage::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .pb.monitor.mid_vid_range already_assigned = 4;
+      // repeated .pb.internal.mid_range already_assigned = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
@@ -2729,7 +2420,7 @@ void vid_manage::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->unit_size(), output);
   }
 
-  // repeated .pb.internal.vid_range inventory = 3;
+  // repeated .pb.internal.range inventory = 3;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->inventory_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
@@ -2738,7 +2429,7 @@ void vid_manage::SerializeWithCachedSizes(
       output);
   }
 
-  // repeated .pb.monitor.mid_vid_range already_assigned = 4;
+  // repeated .pb.internal.mid_range already_assigned = 4;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->already_assigned_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
@@ -2771,7 +2462,7 @@ void vid_manage::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->unit_size(), target);
   }
 
-  // repeated .pb.internal.vid_range inventory = 3;
+  // repeated .pb.internal.range inventory = 3;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->inventory_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
@@ -2779,7 +2470,7 @@ void vid_manage::SerializeWithCachedSizes(
         3, this->inventory(static_cast<int>(i)), deterministic, target);
   }
 
-  // repeated .pb.monitor.mid_vid_range already_assigned = 4;
+  // repeated .pb.internal.mid_range already_assigned = 4;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->already_assigned_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
@@ -2804,7 +2495,7 @@ size_t vid_manage::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .pb.internal.vid_range inventory = 3;
+  // repeated .pb.internal.range inventory = 3;
   {
     unsigned int count = static_cast<unsigned int>(this->inventory_size());
     total_size += 1UL * count;
@@ -2815,7 +2506,7 @@ size_t vid_manage::ByteSizeLong() const {
     }
   }
 
-  // repeated .pb.monitor.mid_vid_range already_assigned = 4;
+  // repeated .pb.internal.mid_range already_assigned = 4;
   {
     unsigned int count = static_cast<unsigned int>(this->already_assigned_size());
     total_size += 1UL * count;
@@ -2936,9 +2627,6 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::vid_node* Arena::Cr
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::module_list* Arena::CreateMaybeMessage< ::pb::monitor::module_list >(Arena* arena) {
   return Arena::CreateInternal< ::pb::monitor::module_list >(arena);
-}
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::mid_vid_range* Arena::CreateMaybeMessage< ::pb::monitor::mid_vid_range >(Arena* arena) {
-  return Arena::CreateInternal< ::pb::monitor::mid_vid_range >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::vid_manage* Arena::CreateMaybeMessage< ::pb::monitor::vid_manage >(Arena* arena) {
   return Arena::CreateInternal< ::pb::monitor::vid_manage >(arena);

@@ -271,6 +271,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_register_info, "register module info" },
 	{ cmd_request_vid_range, "gateway request vid range" },
 	{ cmd_request_vid_range_ack, "gateway request vid range respond" },
+	{ cmd_update_balance_list, "central notice gateway update balance list" },
+	{ cmd_update_balance_list_ack, "central notice gateway update balance list respond" },
 	{ cmd_create_channel, "user create channel" },
 	{ cmd_create_channel_ack, "user create channel respond" },
 	{ cmd_user_disconnection, "user offline" },

@@ -38,7 +38,7 @@ namespace protobuf_internal_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[5];
+  static const ::google::protobuf::internal::ParseTable schema[6];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -56,12 +56,15 @@ extern logonDefaultTypeInternal _logon_default_instance_;
 class logon_ack;
 class logon_ackDefaultTypeInternal;
 extern logon_ackDefaultTypeInternal _logon_ack_default_instance_;
+class mid_range;
+class mid_rangeDefaultTypeInternal;
+extern mid_rangeDefaultTypeInternal _mid_range_default_instance_;
+class range;
+class rangeDefaultTypeInternal;
+extern rangeDefaultTypeInternal _range_default_instance_;
 class register_info;
 class register_infoDefaultTypeInternal;
 extern register_infoDefaultTypeInternal _register_info_default_instance_;
-class vid_range;
-class vid_rangeDefaultTypeInternal;
-extern vid_rangeDefaultTypeInternal _vid_range_default_instance_;
 }  // namespace internal
 }  // namespace pb
 namespace google {
@@ -69,8 +72,9 @@ namespace protobuf {
 template<> ::pb::internal::addr* Arena::CreateMaybeMessage<::pb::internal::addr>(Arena*);
 template<> ::pb::internal::logon* Arena::CreateMaybeMessage<::pb::internal::logon>(Arena*);
 template<> ::pb::internal::logon_ack* Arena::CreateMaybeMessage<::pb::internal::logon_ack>(Arena*);
+template<> ::pb::internal::mid_range* Arena::CreateMaybeMessage<::pb::internal::mid_range>(Arena*);
+template<> ::pb::internal::range* Arena::CreateMaybeMessage<::pb::internal::range>(Arena*);
 template<> ::pb::internal::register_info* Arena::CreateMaybeMessage<::pb::internal::register_info>(Arena*);
-template<> ::pb::internal::vid_range* Arena::CreateMaybeMessage<::pb::internal::vid_range>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace pb {
@@ -583,24 +587,24 @@ class register_info : public ::google::protobuf::Message /* @@protoc_insertion_p
 };
 // -------------------------------------------------------------------
 
-class vid_range : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.vid_range) */ {
+class range : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.range) */ {
  public:
-  vid_range();
-  virtual ~vid_range();
+  range();
+  virtual ~range();
 
-  vid_range(const vid_range& from);
+  range(const range& from);
 
-  inline vid_range& operator=(const vid_range& from) {
+  inline range& operator=(const range& from) {
     CopyFrom(from);
     return *this;
   }
   #if LANG_CXX11
-  vid_range(vid_range&& from) noexcept
-    : vid_range() {
+  range(range&& from) noexcept
+    : range() {
     *this = ::std::move(from);
   }
 
-  inline vid_range& operator=(vid_range&& from) noexcept {
+  inline range& operator=(range&& from) noexcept {
     if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -610,34 +614,34 @@ class vid_range : public ::google::protobuf::Message /* @@protoc_insertion_point
   }
   #endif
   static const ::google::protobuf::Descriptor* descriptor();
-  static const vid_range& default_instance();
+  static const range& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const vid_range* internal_default_instance() {
-    return reinterpret_cast<const vid_range*>(
-               &_vid_range_default_instance_);
+  static inline const range* internal_default_instance() {
+    return reinterpret_cast<const range*>(
+               &_range_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  void Swap(vid_range* other);
-  friend void swap(vid_range& a, vid_range& b) {
+  void Swap(range* other);
+  friend void swap(range& a, range& b) {
     a.Swap(&b);
   }
 
   // implements Message ----------------------------------------------
 
-  inline vid_range* New() const final {
-    return CreateMaybeMessage<vid_range>(NULL);
+  inline range* New() const final {
+    return CreateMaybeMessage<range>(NULL);
   }
 
-  vid_range* New(::google::protobuf::Arena* arena) const final {
-    return CreateMaybeMessage<vid_range>(arena);
+  range* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<range>(arena);
   }
   void CopyFrom(const ::google::protobuf::Message& from) final;
   void MergeFrom(const ::google::protobuf::Message& from) final;
-  void CopyFrom(const vid_range& from);
-  void MergeFrom(const vid_range& from);
+  void CopyFrom(const range& from);
+  void MergeFrom(const range& from);
   void Clear() final;
   bool IsInitialized() const final;
 
@@ -654,7 +658,7 @@ class vid_range : public ::google::protobuf::Message /* @@protoc_insertion_point
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(vid_range* other);
+  void InternalSwap(range* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return NULL;
@@ -682,12 +686,128 @@ class vid_range : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::int32 end() const;
   void set_end(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:pb.internal.vid_range)
+  // @@protoc_insertion_point(class_scope:pb.internal.range)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::int32 begin_;
   ::google::protobuf::int32 end_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_internal_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class mid_range : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.mid_range) */ {
+ public:
+  mid_range();
+  virtual ~mid_range();
+
+  mid_range(const mid_range& from);
+
+  inline mid_range& operator=(const mid_range& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  mid_range(mid_range&& from) noexcept
+    : mid_range() {
+    *this = ::std::move(from);
+  }
+
+  inline mid_range& operator=(mid_range&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const mid_range& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const mid_range* internal_default_instance() {
+    return reinterpret_cast<const mid_range*>(
+               &_mid_range_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  void Swap(mid_range* other);
+  friend void swap(mid_range& a, mid_range& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline mid_range* New() const final {
+    return CreateMaybeMessage<mid_range>(NULL);
+  }
+
+  mid_range* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<mid_range>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const mid_range& from);
+  void MergeFrom(const mid_range& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(mid_range* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .pb.internal.range range = 2;
+  bool has_range() const;
+  void clear_range();
+  static const int kRangeFieldNumber = 2;
+  private:
+  const ::pb::internal::range& _internal_range() const;
+  public:
+  const ::pb::internal::range& range() const;
+  ::pb::internal::range* release_range();
+  ::pb::internal::range* mutable_range();
+  void set_allocated_range(::pb::internal::range* range);
+
+  // int32 mid = 1;
+  void clear_mid();
+  static const int kMidFieldNumber = 1;
+  ::google::protobuf::int32 mid() const;
+  void set_mid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.internal.mid_range)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::pb::internal::range* range_;
+  ::google::protobuf::int32 mid_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
@@ -1031,39 +1151,113 @@ inline void register_info::set_port(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
-// vid_range
+// range
 
 // int32 begin = 1;
-inline void vid_range::clear_begin() {
+inline void range::clear_begin() {
   begin_ = 0;
 }
-inline ::google::protobuf::int32 vid_range::begin() const {
-  // @@protoc_insertion_point(field_get:pb.internal.vid_range.begin)
+inline ::google::protobuf::int32 range::begin() const {
+  // @@protoc_insertion_point(field_get:pb.internal.range.begin)
   return begin_;
 }
-inline void vid_range::set_begin(::google::protobuf::int32 value) {
+inline void range::set_begin(::google::protobuf::int32 value) {
   
   begin_ = value;
-  // @@protoc_insertion_point(field_set:pb.internal.vid_range.begin)
+  // @@protoc_insertion_point(field_set:pb.internal.range.begin)
 }
 
 // int32 end = 2;
-inline void vid_range::clear_end() {
+inline void range::clear_end() {
   end_ = 0;
 }
-inline ::google::protobuf::int32 vid_range::end() const {
-  // @@protoc_insertion_point(field_get:pb.internal.vid_range.end)
+inline ::google::protobuf::int32 range::end() const {
+  // @@protoc_insertion_point(field_get:pb.internal.range.end)
   return end_;
 }
-inline void vid_range::set_end(::google::protobuf::int32 value) {
+inline void range::set_end(::google::protobuf::int32 value) {
   
   end_ = value;
-  // @@protoc_insertion_point(field_set:pb.internal.vid_range.end)
+  // @@protoc_insertion_point(field_set:pb.internal.range.end)
+}
+
+// -------------------------------------------------------------------
+
+// mid_range
+
+// int32 mid = 1;
+inline void mid_range::clear_mid() {
+  mid_ = 0;
+}
+inline ::google::protobuf::int32 mid_range::mid() const {
+  // @@protoc_insertion_point(field_get:pb.internal.mid_range.mid)
+  return mid_;
+}
+inline void mid_range::set_mid(::google::protobuf::int32 value) {
+  
+  mid_ = value;
+  // @@protoc_insertion_point(field_set:pb.internal.mid_range.mid)
+}
+
+// .pb.internal.range range = 2;
+inline bool mid_range::has_range() const {
+  return this != internal_default_instance() && range_ != NULL;
+}
+inline void mid_range::clear_range() {
+  if (GetArenaNoVirtual() == NULL && range_ != NULL) {
+    delete range_;
+  }
+  range_ = NULL;
+}
+inline const ::pb::internal::range& mid_range::_internal_range() const {
+  return *range_;
+}
+inline const ::pb::internal::range& mid_range::range() const {
+  const ::pb::internal::range* p = range_;
+  // @@protoc_insertion_point(field_get:pb.internal.mid_range.range)
+  return p != NULL ? *p : *reinterpret_cast<const ::pb::internal::range*>(
+      &::pb::internal::_range_default_instance_);
+}
+inline ::pb::internal::range* mid_range::release_range() {
+  // @@protoc_insertion_point(field_release:pb.internal.mid_range.range)
+  
+  ::pb::internal::range* temp = range_;
+  range_ = NULL;
+  return temp;
+}
+inline ::pb::internal::range* mid_range::mutable_range() {
+  
+  if (range_ == NULL) {
+    auto* p = CreateMaybeMessage<::pb::internal::range>(GetArenaNoVirtual());
+    range_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:pb.internal.mid_range.range)
+  return range_;
+}
+inline void mid_range::set_allocated_range(::pb::internal::range* range) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete range_;
+  }
+  if (range) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      range = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, range, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  range_ = range;
+  // @@protoc_insertion_point(field_set_allocated:pb.internal.mid_range.range)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

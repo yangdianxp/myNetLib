@@ -146,12 +146,33 @@ void central_client::broadcast_module_logon()
 			route->for_each_type(module_gateway_type, fn);
 			break;
 		case module_balance_type:
+		{
 			route->for_each_type(module_gateway_type, fn);
 			for (int i = module_media_type; i < module_end_type; ++i)
 			{
 				route->for_each_type(i, fn);
 			}
+			auto& tid_manage = server->get_tid_manage();
+			tid_manage.get(m_id);
+			pb::internal::balance_list list;
+			auto f1 = [&list](std::pair<const std::size_t, range_manage::vid_pair>& p)
+			{
+				pb::internal::mid_range* mr = list.add_range();
+				mr->set_mid(p.first);
+				pb::internal::range* r = mr->mutable_range();
+				r->set_begin(p.second.first);
+				r->set_end(p.second.second);
+			};
+			tid_manage.for_each_already_assigned(f1);
+			proto_msg msg_list(cmd_update_balance_list);
+			msg_list.serialize_msg(list);
+			auto f2 = [self, &msg_list](std::shared_ptr<common_client> client)
+			{
+				client->write((char *)&msg_list, msg_list.size());
+			};
+			route->for_each_type(module_gateway_type, f2);
 			break;
+		}
 		case module_monitor_type:
 			route->for_each_type(module_gateway_type, fn);
 			route->for_each_type(module_login_type, fn);
@@ -181,7 +202,7 @@ void central_client::handle_request_vid_range(proto_msg& msg)
 	{
 		range_manage::vid_pair pair = server->get_vid_range(m_id);
 		proto_msg msg(cmd_request_vid_range_ack);
-		pb::internal::vid_range range;
+		pb::internal::range range;
 		range.set_begin(pair.first);
 		range.set_end(pair.second);
 		msg.serialize_msg(range);
@@ -201,16 +222,16 @@ void central_client::handle_monitor_vid_manage(proto_msg& msg)
 		manage.set_unit_size(m.get_unit_size());
 		auto f1 = [&manage](range_manage::vid_pair& p)
 		{
-			pb::internal::vid_range* r = manage.add_inventory();
+			pb::internal::range* r = manage.add_inventory();
 			r->set_begin(p.first);
 			r->set_end(p.second);
 		};
 		m.for_each_inventory(f1);
 		auto f2 = [&manage](std::pair<const std::size_t, range_manage::vid_pair>& p)
 		{
-			pb::monitor::mid_vid_range* mr = manage.add_already_assigned();
+			pb::internal::mid_range* mr = manage.add_already_assigned();
 			mr->set_mid(p.first);
-			pb::internal::vid_range* r = mr->mutable_range();
+			pb::internal::range* r = mr->mutable_range();
 			r->set_begin(p.second.first);
 			r->set_end(p.second.second);
 		};

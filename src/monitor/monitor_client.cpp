@@ -72,13 +72,13 @@ void monitor_client::handle_monitor_vid_manage_ack(proto_msg& msg)
 	SLOG_INFO << "inventory_size:" << manage.inventory_size();
 	for (int i = 0; i < manage.inventory_size(); ++i)
 	{
-		const pb::internal::vid_range& r = manage.inventory(i);
+		const pb::internal::range& r = manage.inventory(i);
 		SLOG_INFO << i << " begin:" << r.begin() << " end:" << r.end();
 	}
 	SLOG_INFO << "already_assigned_size:" << manage.already_assigned_size();
 	for (int i = 0; i < manage.already_assigned_size(); ++i)
 	{
-		const pb::monitor::mid_vid_range& r = manage.already_assigned(i);
+		const pb::internal::mid_range& r = manage.already_assigned(i);
 		SLOG_INFO << i << " mid:" << r.mid() << " begin:" << r.range().begin() 
 			<< " end:" << r.range().end();
 	}

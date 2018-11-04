@@ -39,7 +39,7 @@ namespace protobuf_monitor_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[8];
+  static const ::google::protobuf::internal::ParseTable schema[7];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -51,9 +51,6 @@ namespace monitor {
 class cmd;
 class cmdDefaultTypeInternal;
 extern cmdDefaultTypeInternal _cmd_default_instance_;
-class mid_vid_range;
-class mid_vid_rangeDefaultTypeInternal;
-extern mid_vid_rangeDefaultTypeInternal _mid_vid_range_default_instance_;
 class module_list;
 class module_listDefaultTypeInternal;
 extern module_listDefaultTypeInternal _module_list_default_instance_;
@@ -77,7 +74,6 @@ extern vid_nodeDefaultTypeInternal _vid_node_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::pb::monitor::cmd* Arena::CreateMaybeMessage<::pb::monitor::cmd>(Arena*);
-template<> ::pb::monitor::mid_vid_range* Arena::CreateMaybeMessage<::pb::monitor::mid_vid_range>(Arena*);
 template<> ::pb::monitor::module_list* Arena::CreateMaybeMessage<::pb::monitor::module_list>(Arena*);
 template<> ::pb::monitor::node* Arena::CreateMaybeMessage<::pb::monitor::node>(Arena*);
 template<> ::pb::monitor::ttnode* Arena::CreateMaybeMessage<::pb::monitor::ttnode>(Arena*);
@@ -850,122 +846,6 @@ class module_list : public ::google::protobuf::Message /* @@protoc_insertion_poi
 };
 // -------------------------------------------------------------------
 
-class mid_vid_range : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.mid_vid_range) */ {
- public:
-  mid_vid_range();
-  virtual ~mid_vid_range();
-
-  mid_vid_range(const mid_vid_range& from);
-
-  inline mid_vid_range& operator=(const mid_vid_range& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  #if LANG_CXX11
-  mid_vid_range(mid_vid_range&& from) noexcept
-    : mid_vid_range() {
-    *this = ::std::move(from);
-  }
-
-  inline mid_vid_range& operator=(mid_vid_range&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-  #endif
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const mid_vid_range& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const mid_vid_range* internal_default_instance() {
-    return reinterpret_cast<const mid_vid_range*>(
-               &_mid_vid_range_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    6;
-
-  void Swap(mid_vid_range* other);
-  friend void swap(mid_vid_range& a, mid_vid_range& b) {
-    a.Swap(&b);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline mid_vid_range* New() const final {
-    return CreateMaybeMessage<mid_vid_range>(NULL);
-  }
-
-  mid_vid_range* New(::google::protobuf::Arena* arena) const final {
-    return CreateMaybeMessage<mid_vid_range>(arena);
-  }
-  void CopyFrom(const ::google::protobuf::Message& from) final;
-  void MergeFrom(const ::google::protobuf::Message& from) final;
-  void CopyFrom(const mid_vid_range& from);
-  void MergeFrom(const mid_vid_range& from);
-  void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input) final;
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const final;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* target) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(mid_vid_range* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return NULL;
-  }
-  inline void* MaybeArenaPtr() const {
-    return NULL;
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // .pb.internal.vid_range range = 2;
-  bool has_range() const;
-  void clear_range();
-  static const int kRangeFieldNumber = 2;
-  private:
-  const ::pb::internal::vid_range& _internal_range() const;
-  public:
-  const ::pb::internal::vid_range& range() const;
-  ::pb::internal::vid_range* release_range();
-  ::pb::internal::vid_range* mutable_range();
-  void set_allocated_range(::pb::internal::vid_range* range);
-
-  // int32 mid = 1;
-  void clear_mid();
-  static const int kMidFieldNumber = 1;
-  ::google::protobuf::int32 mid() const;
-  void set_mid(::google::protobuf::int32 value);
-
-  // @@protoc_insertion_point(class_scope:pb.monitor.mid_vid_range)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::pb::internal::vid_range* range_;
-  ::google::protobuf::int32 mid_;
-  mutable ::google::protobuf::internal::CachedSize _cached_size_;
-  friend struct ::protobuf_monitor_2eproto::TableStruct;
-};
-// -------------------------------------------------------------------
-
 class vid_manage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.vid_manage) */ {
  public:
   vid_manage();
@@ -1001,7 +881,7 @@ class vid_manage : public ::google::protobuf::Message /* @@protoc_insertion_poin
                &_vid_manage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    6;
 
   void Swap(vid_manage* other);
   friend void swap(vid_manage& a, vid_manage& b) {
@@ -1053,28 +933,28 @@ class vid_manage : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // repeated .pb.internal.vid_range inventory = 3;
+  // repeated .pb.internal.range inventory = 3;
   int inventory_size() const;
   void clear_inventory();
   static const int kInventoryFieldNumber = 3;
-  ::pb::internal::vid_range* mutable_inventory(int index);
-  ::google::protobuf::RepeatedPtrField< ::pb::internal::vid_range >*
+  ::pb::internal::range* mutable_inventory(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::range >*
       mutable_inventory();
-  const ::pb::internal::vid_range& inventory(int index) const;
-  ::pb::internal::vid_range* add_inventory();
-  const ::google::protobuf::RepeatedPtrField< ::pb::internal::vid_range >&
+  const ::pb::internal::range& inventory(int index) const;
+  ::pb::internal::range* add_inventory();
+  const ::google::protobuf::RepeatedPtrField< ::pb::internal::range >&
       inventory() const;
 
-  // repeated .pb.monitor.mid_vid_range already_assigned = 4;
+  // repeated .pb.internal.mid_range already_assigned = 4;
   int already_assigned_size() const;
   void clear_already_assigned();
   static const int kAlreadyAssignedFieldNumber = 4;
-  ::pb::monitor::mid_vid_range* mutable_already_assigned(int index);
-  ::google::protobuf::RepeatedPtrField< ::pb::monitor::mid_vid_range >*
+  ::pb::internal::mid_range* mutable_already_assigned(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >*
       mutable_already_assigned();
-  const ::pb::monitor::mid_vid_range& already_assigned(int index) const;
-  ::pb::monitor::mid_vid_range* add_already_assigned();
-  const ::google::protobuf::RepeatedPtrField< ::pb::monitor::mid_vid_range >&
+  const ::pb::internal::mid_range& already_assigned(int index) const;
+  ::pb::internal::mid_range* add_already_assigned();
+  const ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >&
       already_assigned() const;
 
   // int32 index = 1;
@@ -1093,8 +973,8 @@ class vid_manage : public ::google::protobuf::Message /* @@protoc_insertion_poin
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::pb::internal::vid_range > inventory_;
-  ::google::protobuf::RepeatedPtrField< ::pb::monitor::mid_vid_range > already_assigned_;
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::range > inventory_;
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range > already_assigned_;
   ::google::protobuf::int32 index_;
   ::google::protobuf::int32 unit_size_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1621,72 +1501,6 @@ module_list::vid_node() const {
 
 // -------------------------------------------------------------------
 
-// mid_vid_range
-
-// int32 mid = 1;
-inline void mid_vid_range::clear_mid() {
-  mid_ = 0;
-}
-inline ::google::protobuf::int32 mid_vid_range::mid() const {
-  // @@protoc_insertion_point(field_get:pb.monitor.mid_vid_range.mid)
-  return mid_;
-}
-inline void mid_vid_range::set_mid(::google::protobuf::int32 value) {
-  
-  mid_ = value;
-  // @@protoc_insertion_point(field_set:pb.monitor.mid_vid_range.mid)
-}
-
-// .pb.internal.vid_range range = 2;
-inline bool mid_vid_range::has_range() const {
-  return this != internal_default_instance() && range_ != NULL;
-}
-inline const ::pb::internal::vid_range& mid_vid_range::_internal_range() const {
-  return *range_;
-}
-inline const ::pb::internal::vid_range& mid_vid_range::range() const {
-  const ::pb::internal::vid_range* p = range_;
-  // @@protoc_insertion_point(field_get:pb.monitor.mid_vid_range.range)
-  return p != NULL ? *p : *reinterpret_cast<const ::pb::internal::vid_range*>(
-      &::pb::internal::_vid_range_default_instance_);
-}
-inline ::pb::internal::vid_range* mid_vid_range::release_range() {
-  // @@protoc_insertion_point(field_release:pb.monitor.mid_vid_range.range)
-  
-  ::pb::internal::vid_range* temp = range_;
-  range_ = NULL;
-  return temp;
-}
-inline ::pb::internal::vid_range* mid_vid_range::mutable_range() {
-  
-  if (range_ == NULL) {
-    auto* p = CreateMaybeMessage<::pb::internal::vid_range>(GetArenaNoVirtual());
-    range_ = p;
-  }
-  // @@protoc_insertion_point(field_mutable:pb.monitor.mid_vid_range.range)
-  return range_;
-}
-inline void mid_vid_range::set_allocated_range(::pb::internal::vid_range* range) {
-  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == NULL) {
-    delete reinterpret_cast< ::google::protobuf::MessageLite*>(range_);
-  }
-  if (range) {
-    ::google::protobuf::Arena* submessage_arena = NULL;
-    if (message_arena != submessage_arena) {
-      range = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, range, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  range_ = range;
-  // @@protoc_insertion_point(field_set_allocated:pb.monitor.mid_vid_range.range)
-}
-
-// -------------------------------------------------------------------
-
 // vid_manage
 
 // int32 index = 1;
@@ -1717,58 +1531,55 @@ inline void vid_manage::set_unit_size(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:pb.monitor.vid_manage.unit_size)
 }
 
-// repeated .pb.internal.vid_range inventory = 3;
+// repeated .pb.internal.range inventory = 3;
 inline int vid_manage::inventory_size() const {
   return inventory_.size();
 }
-inline ::pb::internal::vid_range* vid_manage::mutable_inventory(int index) {
+inline ::pb::internal::range* vid_manage::mutable_inventory(int index) {
   // @@protoc_insertion_point(field_mutable:pb.monitor.vid_manage.inventory)
   return inventory_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::pb::internal::vid_range >*
+inline ::google::protobuf::RepeatedPtrField< ::pb::internal::range >*
 vid_manage::mutable_inventory() {
   // @@protoc_insertion_point(field_mutable_list:pb.monitor.vid_manage.inventory)
   return &inventory_;
 }
-inline const ::pb::internal::vid_range& vid_manage::inventory(int index) const {
+inline const ::pb::internal::range& vid_manage::inventory(int index) const {
   // @@protoc_insertion_point(field_get:pb.monitor.vid_manage.inventory)
   return inventory_.Get(index);
 }
-inline ::pb::internal::vid_range* vid_manage::add_inventory() {
+inline ::pb::internal::range* vid_manage::add_inventory() {
   // @@protoc_insertion_point(field_add:pb.monitor.vid_manage.inventory)
   return inventory_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::pb::internal::vid_range >&
+inline const ::google::protobuf::RepeatedPtrField< ::pb::internal::range >&
 vid_manage::inventory() const {
   // @@protoc_insertion_point(field_list:pb.monitor.vid_manage.inventory)
   return inventory_;
 }
 
-// repeated .pb.monitor.mid_vid_range already_assigned = 4;
+// repeated .pb.internal.mid_range already_assigned = 4;
 inline int vid_manage::already_assigned_size() const {
   return already_assigned_.size();
 }
-inline void vid_manage::clear_already_assigned() {
-  already_assigned_.Clear();
-}
-inline ::pb::monitor::mid_vid_range* vid_manage::mutable_already_assigned(int index) {
+inline ::pb::internal::mid_range* vid_manage::mutable_already_assigned(int index) {
   // @@protoc_insertion_point(field_mutable:pb.monitor.vid_manage.already_assigned)
   return already_assigned_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::pb::monitor::mid_vid_range >*
+inline ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >*
 vid_manage::mutable_already_assigned() {
   // @@protoc_insertion_point(field_mutable_list:pb.monitor.vid_manage.already_assigned)
   return &already_assigned_;
 }
-inline const ::pb::monitor::mid_vid_range& vid_manage::already_assigned(int index) const {
+inline const ::pb::internal::mid_range& vid_manage::already_assigned(int index) const {
   // @@protoc_insertion_point(field_get:pb.monitor.vid_manage.already_assigned)
   return already_assigned_.Get(index);
 }
-inline ::pb::monitor::mid_vid_range* vid_manage::add_already_assigned() {
+inline ::pb::internal::mid_range* vid_manage::add_already_assigned() {
   // @@protoc_insertion_point(field_add:pb.monitor.vid_manage.already_assigned)
   return already_assigned_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::pb::monitor::mid_vid_range >&
+inline const ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >&
 vid_manage::already_assigned() const {
   // @@protoc_insertion_point(field_list:pb.monitor.vid_manage.already_assigned)
   return already_assigned_;
@@ -1777,8 +1588,6 @@ vid_manage::already_assigned() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

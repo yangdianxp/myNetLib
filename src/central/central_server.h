@@ -14,9 +14,12 @@ public:
 	void del_unique_mid(std::size_t mid);
 	range_manage::vid_pair get_vid_range(std::size_t mid);
 	range_manage& get_vid_manage();
+	range_manage& get_tid_manage();
 private:
 	unique_code m_unique_mid;
 	range_manage m_vid_manage;
+	/*这是分配给balance的，但只传给gateway使用*/
+	range_manage m_tid_manage;
 };
 
 

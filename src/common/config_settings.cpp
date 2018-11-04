@@ -193,6 +193,10 @@ std::vector<uint32_t>& config_settings::get_login_link_type()
 {
 	return m_login_link_type;
 }
+uint32_t config_settings::get_blance_tid_range()
+{
+	return m_blance_tid_range;
+}
 
 std::string config_settings::get_module_name(uint32_t type)
 {

@@ -28,8 +28,19 @@ message register_info
 	int32 port = 4;
 }
 
-message vid_range
+message range
 {
 	int32 begin = 1;
 	int32 end = 2;
+}
+
+message mid_range
+{
+	int32 mid = 1;
+	range range = 2;
+}
+
+message balance_list
+{
+	repeated mid_range range = 1;
 }

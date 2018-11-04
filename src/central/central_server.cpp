@@ -10,6 +10,7 @@ central_server::central_server(boost::asio::io_context& io_context, short port) 
 	m_unique_mid.init(mid_begin, mid_end);
 	m_id = get_unique_mid();
 	m_vid_manage.set_unit_size(config_reader.get_vid_unit_size());
+	m_tid_manage.set_unit_size(config_reader.get_blance_tid_range());
 }
 
 uint32_t central_server::get_unique_mid()
@@ -28,4 +29,8 @@ range_manage::vid_pair central_server::get_vid_range(std::size_t mid)
 range_manage& central_server::get_vid_manage()
 {
 	return m_vid_manage;
+}
+range_manage& central_server::get_tid_manage()
+{
+	return m_tid_manage;
 }

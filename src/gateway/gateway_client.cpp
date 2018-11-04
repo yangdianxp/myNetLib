@@ -58,7 +58,7 @@ void gateway_client::handle_module_logon_ack(proto_msg& msg)
 
 void gateway_client::handle_request_vid_range_ack(proto_msg& msg)
 {
-	pb::internal::vid_range range;
+	pb::internal::range range;
 	msg.parse(range);
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", vid range begin:" << range.begin()
 		<< ", end:" << range.end();

@@ -68,6 +68,8 @@ enum cmd_enum
 	cmd_register_info_ack,
 	cmd_request_vid_range,				//gateway请求vid范围
 	cmd_request_vid_range_ack,
+	cmd_update_balance_list,			//更新balance列表
+	cmd_update_balance_list_ack,
 
 	cmd_create_channel,					//创建通道
 	cmd_create_channel_ack,

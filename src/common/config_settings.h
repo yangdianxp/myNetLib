@@ -27,6 +27,7 @@ public:
 	std::vector<uint32_t>& get_media_link_type();
 	std::vector<uint32_t>& get_balance_link_type();
 	std::vector<uint32_t>& get_login_link_type();
+	uint32_t get_blance_tid_range();
 
 	std::string get_module_name(uint32_t type);
 private:
