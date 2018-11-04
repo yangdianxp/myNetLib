@@ -11,6 +11,7 @@ public:
 
 	void handle_create_channel(proto_msg& msg);
 	void handle_create_channel_ack(proto_msg& msg);
+	void handle_user_disconnection(proto_msg& msg);
 
 	void init(std::shared_ptr<base_server>);
 private:

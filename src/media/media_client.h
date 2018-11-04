@@ -9,6 +9,7 @@ public:
 	media_client(boost::asio::io_context& io_context, tcp::socket socket);
 
 	void handle_create_channel(proto_msg& msg);
+	void handle_user_disconnection(proto_msg& msg);
 	void handle_interchannel_broadcast(proto_msg& msg);
 	void init(std::shared_ptr<base_server>);
 

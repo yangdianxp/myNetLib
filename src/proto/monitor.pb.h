@@ -39,7 +39,7 @@ namespace protobuf_monitor_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[4];
+  static const ::google::protobuf::internal::ParseTable schema[8];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -57,9 +57,21 @@ extern mid_vid_rangeDefaultTypeInternal _mid_vid_range_default_instance_;
 class module_list;
 class module_listDefaultTypeInternal;
 extern module_listDefaultTypeInternal _module_list_default_instance_;
+class node;
+class nodeDefaultTypeInternal;
+extern nodeDefaultTypeInternal _node_default_instance_;
+class ttnode;
+class ttnodeDefaultTypeInternal;
+extern ttnodeDefaultTypeInternal _ttnode_default_instance_;
+class ttnode_node;
+class ttnode_nodeDefaultTypeInternal;
+extern ttnode_nodeDefaultTypeInternal _ttnode_node_default_instance_;
 class vid_manage;
 class vid_manageDefaultTypeInternal;
 extern vid_manageDefaultTypeInternal _vid_manage_default_instance_;
+class vid_node;
+class vid_nodeDefaultTypeInternal;
+extern vid_nodeDefaultTypeInternal _vid_node_default_instance_;
 }  // namespace monitor
 }  // namespace pb
 namespace google {
@@ -67,7 +79,11 @@ namespace protobuf {
 template<> ::pb::monitor::cmd* Arena::CreateMaybeMessage<::pb::monitor::cmd>(Arena*);
 template<> ::pb::monitor::mid_vid_range* Arena::CreateMaybeMessage<::pb::monitor::mid_vid_range>(Arena*);
 template<> ::pb::monitor::module_list* Arena::CreateMaybeMessage<::pb::monitor::module_list>(Arena*);
+template<> ::pb::monitor::node* Arena::CreateMaybeMessage<::pb::monitor::node>(Arena*);
+template<> ::pb::monitor::ttnode* Arena::CreateMaybeMessage<::pb::monitor::ttnode>(Arena*);
+template<> ::pb::monitor::ttnode_node* Arena::CreateMaybeMessage<::pb::monitor::ttnode_node>(Arena*);
 template<> ::pb::monitor::vid_manage* Arena::CreateMaybeMessage<::pb::monitor::vid_manage>(Arena*);
+template<> ::pb::monitor::vid_node* Arena::CreateMaybeMessage<::pb::monitor::vid_node>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace pb {
@@ -186,6 +202,478 @@ class cmd : public ::google::protobuf::Message /* @@protoc_insertion_point(class
 };
 // -------------------------------------------------------------------
 
+class node : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.node) */ {
+ public:
+  node();
+  virtual ~node();
+
+  node(const node& from);
+
+  inline node& operator=(const node& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  node(node&& from) noexcept
+    : node() {
+    *this = ::std::move(from);
+  }
+
+  inline node& operator=(node&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const node& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const node* internal_default_instance() {
+    return reinterpret_cast<const node*>(
+               &_node_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(node* other);
+  friend void swap(node& a, node& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline node* New() const final {
+    return CreateMaybeMessage<node>(NULL);
+  }
+
+  node* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<node>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const node& from);
+  void MergeFrom(const node& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(node* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 type = 1;
+  void clear_type();
+  static const int kTypeFieldNumber = 1;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
+  // int32 tid = 2;
+  void clear_tid();
+  static const int kTidFieldNumber = 2;
+  ::google::protobuf::int32 tid() const;
+  void set_tid(::google::protobuf::int32 value);
+
+  // int32 uid = 3;
+  void clear_uid();
+  static const int kUidFieldNumber = 3;
+  ::google::protobuf::int32 uid() const;
+  void set_uid(::google::protobuf::int32 value);
+
+  // int32 vid = 4;
+  void clear_vid();
+  static const int kVidFieldNumber = 4;
+  ::google::protobuf::int32 vid() const;
+  void set_vid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.monitor.node)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 tid_;
+  ::google::protobuf::int32 uid_;
+  ::google::protobuf::int32 vid_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_monitor_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class ttnode : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.ttnode) */ {
+ public:
+  ttnode();
+  virtual ~ttnode();
+
+  ttnode(const ttnode& from);
+
+  inline ttnode& operator=(const ttnode& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ttnode(ttnode&& from) noexcept
+    : ttnode() {
+    *this = ::std::move(from);
+  }
+
+  inline ttnode& operator=(ttnode&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ttnode& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ttnode* internal_default_instance() {
+    return reinterpret_cast<const ttnode*>(
+               &_ttnode_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  void Swap(ttnode* other);
+  friend void swap(ttnode& a, ttnode& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ttnode* New() const final {
+    return CreateMaybeMessage<ttnode>(NULL);
+  }
+
+  ttnode* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<ttnode>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const ttnode& from);
+  void MergeFrom(const ttnode& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ttnode* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 type = 1;
+  void clear_type();
+  static const int kTypeFieldNumber = 1;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
+  // int32 tid = 2;
+  void clear_tid();
+  static const int kTidFieldNumber = 2;
+  ::google::protobuf::int32 tid() const;
+  void set_tid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.monitor.ttnode)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 tid_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_monitor_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class ttnode_node : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.ttnode_node) */ {
+ public:
+  ttnode_node();
+  virtual ~ttnode_node();
+
+  ttnode_node(const ttnode_node& from);
+
+  inline ttnode_node& operator=(const ttnode_node& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ttnode_node(ttnode_node&& from) noexcept
+    : ttnode_node() {
+    *this = ::std::move(from);
+  }
+
+  inline ttnode_node& operator=(ttnode_node&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ttnode_node& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ttnode_node* internal_default_instance() {
+    return reinterpret_cast<const ttnode_node*>(
+               &_ttnode_node_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  void Swap(ttnode_node* other);
+  friend void swap(ttnode_node& a, ttnode_node& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ttnode_node* New() const final {
+    return CreateMaybeMessage<ttnode_node>(NULL);
+  }
+
+  ttnode_node* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<ttnode_node>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const ttnode_node& from);
+  void MergeFrom(const ttnode_node& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ttnode_node* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .pb.monitor.ttnode ttn = 1;
+  bool has_ttn() const;
+  void clear_ttn();
+  static const int kTtnFieldNumber = 1;
+  private:
+  const ::pb::monitor::ttnode& _internal_ttn() const;
+  public:
+  const ::pb::monitor::ttnode& ttn() const;
+  ::pb::monitor::ttnode* release_ttn();
+  ::pb::monitor::ttnode* mutable_ttn();
+  void set_allocated_ttn(::pb::monitor::ttnode* ttn);
+
+  // .pb.monitor.node n = 2;
+  bool has_n() const;
+  void clear_n();
+  static const int kNFieldNumber = 2;
+  private:
+  const ::pb::monitor::node& _internal_n() const;
+  public:
+  const ::pb::monitor::node& n() const;
+  ::pb::monitor::node* release_n();
+  ::pb::monitor::node* mutable_n();
+  void set_allocated_n(::pb::monitor::node* n);
+
+  // @@protoc_insertion_point(class_scope:pb.monitor.ttnode_node)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::pb::monitor::ttnode* ttn_;
+  ::pb::monitor::node* n_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_monitor_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class vid_node : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.vid_node) */ {
+ public:
+  vid_node();
+  virtual ~vid_node();
+
+  vid_node(const vid_node& from);
+
+  inline vid_node& operator=(const vid_node& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  vid_node(vid_node&& from) noexcept
+    : vid_node() {
+    *this = ::std::move(from);
+  }
+
+  inline vid_node& operator=(vid_node&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const vid_node& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const vid_node* internal_default_instance() {
+    return reinterpret_cast<const vid_node*>(
+               &_vid_node_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  void Swap(vid_node* other);
+  friend void swap(vid_node& a, vid_node& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline vid_node* New() const final {
+    return CreateMaybeMessage<vid_node>(NULL);
+  }
+
+  vid_node* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<vid_node>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const vid_node& from);
+  void MergeFrom(const vid_node& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(vid_node* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .pb.monitor.node n = 2;
+  bool has_n() const;
+  void clear_n();
+  static const int kNFieldNumber = 2;
+  private:
+  const ::pb::monitor::node& _internal_n() const;
+  public:
+  const ::pb::monitor::node& n() const;
+  ::pb::monitor::node* release_n();
+  ::pb::monitor::node* mutable_n();
+  void set_allocated_n(::pb::monitor::node* n);
+
+  // int32 vid = 1;
+  void clear_vid();
+  static const int kVidFieldNumber = 1;
+  ::google::protobuf::int32 vid() const;
+  void set_vid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:pb.monitor.vid_node)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::pb::monitor::node* n_;
+  ::google::protobuf::int32 vid_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_monitor_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class module_list : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.monitor.module_list) */ {
  public:
   module_list();
@@ -221,7 +709,7 @@ class module_list : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_module_list_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    5;
 
   void Swap(module_list* other);
   friend void swap(module_list& a, module_list& b) {
@@ -285,6 +773,54 @@ class module_list : public ::google::protobuf::Message /* @@protoc_insertion_poi
   const ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info >&
       mid_clients() const;
 
+  // repeated int32 vid_clients = 4;
+  int vid_clients_size() const;
+  void clear_vid_clients();
+  static const int kVidClientsFieldNumber = 4;
+  ::google::protobuf::int32 vid_clients(int index) const;
+  void set_vid_clients(int index, ::google::protobuf::int32 value);
+  void add_vid_clients(::google::protobuf::int32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+      vid_clients() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+      mutable_vid_clients();
+
+  // repeated .pb.monitor.node node_clients = 5;
+  int node_clients_size() const;
+  void clear_node_clients();
+  static const int kNodeClientsFieldNumber = 5;
+  ::pb::monitor::node* mutable_node_clients(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::monitor::node >*
+      mutable_node_clients();
+  const ::pb::monitor::node& node_clients(int index) const;
+  ::pb::monitor::node* add_node_clients();
+  const ::google::protobuf::RepeatedPtrField< ::pb::monitor::node >&
+      node_clients() const;
+
+  // repeated .pb.monitor.ttnode_node ttnode_node = 6;
+  int ttnode_node_size() const;
+  void clear_ttnode_node();
+  static const int kTtnodeNodeFieldNumber = 6;
+  ::pb::monitor::ttnode_node* mutable_ttnode_node(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::monitor::ttnode_node >*
+      mutable_ttnode_node();
+  const ::pb::monitor::ttnode_node& ttnode_node(int index) const;
+  ::pb::monitor::ttnode_node* add_ttnode_node();
+  const ::google::protobuf::RepeatedPtrField< ::pb::monitor::ttnode_node >&
+      ttnode_node() const;
+
+  // repeated .pb.monitor.vid_node vid_node = 7;
+  int vid_node_size() const;
+  void clear_vid_node();
+  static const int kVidNodeFieldNumber = 7;
+  ::pb::monitor::vid_node* mutable_vid_node(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::monitor::vid_node >*
+      mutable_vid_node();
+  const ::pb::monitor::vid_node& vid_node(int index) const;
+  ::pb::monitor::vid_node* add_vid_node();
+  const ::google::protobuf::RepeatedPtrField< ::pb::monitor::vid_node >&
+      vid_node() const;
+
   // int32 clients_size = 1;
   void clear_clients_size();
   static const int kClientsSizeFieldNumber = 1;
@@ -302,6 +838,11 @@ class module_list : public ::google::protobuf::Message /* @@protoc_insertion_poi
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info > mid_clients_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > vid_clients_;
+  mutable int _vid_clients_cached_byte_size_;
+  ::google::protobuf::RepeatedPtrField< ::pb::monitor::node > node_clients_;
+  ::google::protobuf::RepeatedPtrField< ::pb::monitor::ttnode_node > ttnode_node_;
+  ::google::protobuf::RepeatedPtrField< ::pb::monitor::vid_node > vid_node_;
   ::google::protobuf::int32 clients_size_;
   ::google::protobuf::int32 type_clients_size_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -344,7 +885,7 @@ class mid_vid_range : public ::google::protobuf::Message /* @@protoc_insertion_p
                &_mid_vid_range_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    6;
 
   void Swap(mid_vid_range* other);
   friend void swap(mid_vid_range& a, mid_vid_range& b) {
@@ -460,7 +1001,7 @@ class vid_manage : public ::google::protobuf::Message /* @@protoc_insertion_poin
                &_vid_manage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    7;
 
   void Swap(vid_manage* other);
   friend void swap(vid_manage& a, vid_manage& b) {
@@ -625,6 +1166,282 @@ inline void cmd::set_allocated_content(::std::string* content) {
 
 // -------------------------------------------------------------------
 
+// node
+
+// int32 type = 1;
+inline void node::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 node::type() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.node.type)
+  return type_;
+}
+inline void node::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.node.type)
+}
+
+// int32 tid = 2;
+inline void node::clear_tid() {
+  tid_ = 0;
+}
+inline ::google::protobuf::int32 node::tid() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.node.tid)
+  return tid_;
+}
+inline void node::set_tid(::google::protobuf::int32 value) {
+  
+  tid_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.node.tid)
+}
+
+// int32 uid = 3;
+inline void node::clear_uid() {
+  uid_ = 0;
+}
+inline ::google::protobuf::int32 node::uid() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.node.uid)
+  return uid_;
+}
+inline void node::set_uid(::google::protobuf::int32 value) {
+  
+  uid_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.node.uid)
+}
+
+// int32 vid = 4;
+inline void node::clear_vid() {
+  vid_ = 0;
+}
+inline ::google::protobuf::int32 node::vid() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.node.vid)
+  return vid_;
+}
+inline void node::set_vid(::google::protobuf::int32 value) {
+  
+  vid_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.node.vid)
+}
+
+// -------------------------------------------------------------------
+
+// ttnode
+
+// int32 type = 1;
+inline void ttnode::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 ttnode::type() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.ttnode.type)
+  return type_;
+}
+inline void ttnode::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.ttnode.type)
+}
+
+// int32 tid = 2;
+inline void ttnode::clear_tid() {
+  tid_ = 0;
+}
+inline ::google::protobuf::int32 ttnode::tid() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.ttnode.tid)
+  return tid_;
+}
+inline void ttnode::set_tid(::google::protobuf::int32 value) {
+  
+  tid_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.ttnode.tid)
+}
+
+// -------------------------------------------------------------------
+
+// ttnode_node
+
+// .pb.monitor.ttnode ttn = 1;
+inline bool ttnode_node::has_ttn() const {
+  return this != internal_default_instance() && ttn_ != NULL;
+}
+inline void ttnode_node::clear_ttn() {
+  if (GetArenaNoVirtual() == NULL && ttn_ != NULL) {
+    delete ttn_;
+  }
+  ttn_ = NULL;
+}
+inline const ::pb::monitor::ttnode& ttnode_node::_internal_ttn() const {
+  return *ttn_;
+}
+inline const ::pb::monitor::ttnode& ttnode_node::ttn() const {
+  const ::pb::monitor::ttnode* p = ttn_;
+  // @@protoc_insertion_point(field_get:pb.monitor.ttnode_node.ttn)
+  return p != NULL ? *p : *reinterpret_cast<const ::pb::monitor::ttnode*>(
+      &::pb::monitor::_ttnode_default_instance_);
+}
+inline ::pb::monitor::ttnode* ttnode_node::release_ttn() {
+  // @@protoc_insertion_point(field_release:pb.monitor.ttnode_node.ttn)
+  
+  ::pb::monitor::ttnode* temp = ttn_;
+  ttn_ = NULL;
+  return temp;
+}
+inline ::pb::monitor::ttnode* ttnode_node::mutable_ttn() {
+  
+  if (ttn_ == NULL) {
+    auto* p = CreateMaybeMessage<::pb::monitor::ttnode>(GetArenaNoVirtual());
+    ttn_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:pb.monitor.ttnode_node.ttn)
+  return ttn_;
+}
+inline void ttnode_node::set_allocated_ttn(::pb::monitor::ttnode* ttn) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete ttn_;
+  }
+  if (ttn) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      ttn = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, ttn, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ttn_ = ttn;
+  // @@protoc_insertion_point(field_set_allocated:pb.monitor.ttnode_node.ttn)
+}
+
+// .pb.monitor.node n = 2;
+inline bool ttnode_node::has_n() const {
+  return this != internal_default_instance() && n_ != NULL;
+}
+inline void ttnode_node::clear_n() {
+  if (GetArenaNoVirtual() == NULL && n_ != NULL) {
+    delete n_;
+  }
+  n_ = NULL;
+}
+inline const ::pb::monitor::node& ttnode_node::_internal_n() const {
+  return *n_;
+}
+inline const ::pb::monitor::node& ttnode_node::n() const {
+  const ::pb::monitor::node* p = n_;
+  // @@protoc_insertion_point(field_get:pb.monitor.ttnode_node.n)
+  return p != NULL ? *p : *reinterpret_cast<const ::pb::monitor::node*>(
+      &::pb::monitor::_node_default_instance_);
+}
+inline ::pb::monitor::node* ttnode_node::release_n() {
+  // @@protoc_insertion_point(field_release:pb.monitor.ttnode_node.n)
+  
+  ::pb::monitor::node* temp = n_;
+  n_ = NULL;
+  return temp;
+}
+inline ::pb::monitor::node* ttnode_node::mutable_n() {
+  
+  if (n_ == NULL) {
+    auto* p = CreateMaybeMessage<::pb::monitor::node>(GetArenaNoVirtual());
+    n_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:pb.monitor.ttnode_node.n)
+  return n_;
+}
+inline void ttnode_node::set_allocated_n(::pb::monitor::node* n) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete n_;
+  }
+  if (n) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      n = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, n, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  n_ = n;
+  // @@protoc_insertion_point(field_set_allocated:pb.monitor.ttnode_node.n)
+}
+
+// -------------------------------------------------------------------
+
+// vid_node
+
+// int32 vid = 1;
+inline void vid_node::clear_vid() {
+  vid_ = 0;
+}
+inline ::google::protobuf::int32 vid_node::vid() const {
+  // @@protoc_insertion_point(field_get:pb.monitor.vid_node.vid)
+  return vid_;
+}
+inline void vid_node::set_vid(::google::protobuf::int32 value) {
+  
+  vid_ = value;
+  // @@protoc_insertion_point(field_set:pb.monitor.vid_node.vid)
+}
+
+// .pb.monitor.node n = 2;
+inline bool vid_node::has_n() const {
+  return this != internal_default_instance() && n_ != NULL;
+}
+inline void vid_node::clear_n() {
+  if (GetArenaNoVirtual() == NULL && n_ != NULL) {
+    delete n_;
+  }
+  n_ = NULL;
+}
+inline const ::pb::monitor::node& vid_node::_internal_n() const {
+  return *n_;
+}
+inline const ::pb::monitor::node& vid_node::n() const {
+  const ::pb::monitor::node* p = n_;
+  // @@protoc_insertion_point(field_get:pb.monitor.vid_node.n)
+  return p != NULL ? *p : *reinterpret_cast<const ::pb::monitor::node*>(
+      &::pb::monitor::_node_default_instance_);
+}
+inline ::pb::monitor::node* vid_node::release_n() {
+  // @@protoc_insertion_point(field_release:pb.monitor.vid_node.n)
+  
+  ::pb::monitor::node* temp = n_;
+  n_ = NULL;
+  return temp;
+}
+inline ::pb::monitor::node* vid_node::mutable_n() {
+  
+  if (n_ == NULL) {
+    auto* p = CreateMaybeMessage<::pb::monitor::node>(GetArenaNoVirtual());
+    n_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:pb.monitor.vid_node.n)
+  return n_;
+}
+inline void vid_node::set_allocated_n(::pb::monitor::node* n) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete n_;
+  }
+  if (n) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      n = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, n, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  n_ = n;
+  // @@protoc_insertion_point(field_set_allocated:pb.monitor.vid_node.n)
+}
+
+// -------------------------------------------------------------------
+
 // module_list
 
 // int32 clients_size = 1;
@@ -680,6 +1497,126 @@ inline const ::google::protobuf::RepeatedPtrField< ::pb::internal::register_info
 module_list::mid_clients() const {
   // @@protoc_insertion_point(field_list:pb.monitor.module_list.mid_clients)
   return mid_clients_;
+}
+
+// repeated int32 vid_clients = 4;
+inline int module_list::vid_clients_size() const {
+  return vid_clients_.size();
+}
+inline void module_list::clear_vid_clients() {
+  vid_clients_.Clear();
+}
+inline ::google::protobuf::int32 module_list::vid_clients(int index) const {
+  // @@protoc_insertion_point(field_get:pb.monitor.module_list.vid_clients)
+  return vid_clients_.Get(index);
+}
+inline void module_list::set_vid_clients(int index, ::google::protobuf::int32 value) {
+  vid_clients_.Set(index, value);
+  // @@protoc_insertion_point(field_set:pb.monitor.module_list.vid_clients)
+}
+inline void module_list::add_vid_clients(::google::protobuf::int32 value) {
+  vid_clients_.Add(value);
+  // @@protoc_insertion_point(field_add:pb.monitor.module_list.vid_clients)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+module_list::vid_clients() const {
+  // @@protoc_insertion_point(field_list:pb.monitor.module_list.vid_clients)
+  return vid_clients_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+module_list::mutable_vid_clients() {
+  // @@protoc_insertion_point(field_mutable_list:pb.monitor.module_list.vid_clients)
+  return &vid_clients_;
+}
+
+// repeated .pb.monitor.node node_clients = 5;
+inline int module_list::node_clients_size() const {
+  return node_clients_.size();
+}
+inline void module_list::clear_node_clients() {
+  node_clients_.Clear();
+}
+inline ::pb::monitor::node* module_list::mutable_node_clients(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.monitor.module_list.node_clients)
+  return node_clients_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::pb::monitor::node >*
+module_list::mutable_node_clients() {
+  // @@protoc_insertion_point(field_mutable_list:pb.monitor.module_list.node_clients)
+  return &node_clients_;
+}
+inline const ::pb::monitor::node& module_list::node_clients(int index) const {
+  // @@protoc_insertion_point(field_get:pb.monitor.module_list.node_clients)
+  return node_clients_.Get(index);
+}
+inline ::pb::monitor::node* module_list::add_node_clients() {
+  // @@protoc_insertion_point(field_add:pb.monitor.module_list.node_clients)
+  return node_clients_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::pb::monitor::node >&
+module_list::node_clients() const {
+  // @@protoc_insertion_point(field_list:pb.monitor.module_list.node_clients)
+  return node_clients_;
+}
+
+// repeated .pb.monitor.ttnode_node ttnode_node = 6;
+inline int module_list::ttnode_node_size() const {
+  return ttnode_node_.size();
+}
+inline void module_list::clear_ttnode_node() {
+  ttnode_node_.Clear();
+}
+inline ::pb::monitor::ttnode_node* module_list::mutable_ttnode_node(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.monitor.module_list.ttnode_node)
+  return ttnode_node_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::pb::monitor::ttnode_node >*
+module_list::mutable_ttnode_node() {
+  // @@protoc_insertion_point(field_mutable_list:pb.monitor.module_list.ttnode_node)
+  return &ttnode_node_;
+}
+inline const ::pb::monitor::ttnode_node& module_list::ttnode_node(int index) const {
+  // @@protoc_insertion_point(field_get:pb.monitor.module_list.ttnode_node)
+  return ttnode_node_.Get(index);
+}
+inline ::pb::monitor::ttnode_node* module_list::add_ttnode_node() {
+  // @@protoc_insertion_point(field_add:pb.monitor.module_list.ttnode_node)
+  return ttnode_node_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::pb::monitor::ttnode_node >&
+module_list::ttnode_node() const {
+  // @@protoc_insertion_point(field_list:pb.monitor.module_list.ttnode_node)
+  return ttnode_node_;
+}
+
+// repeated .pb.monitor.vid_node vid_node = 7;
+inline int module_list::vid_node_size() const {
+  return vid_node_.size();
+}
+inline void module_list::clear_vid_node() {
+  vid_node_.Clear();
+}
+inline ::pb::monitor::vid_node* module_list::mutable_vid_node(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.monitor.module_list.vid_node)
+  return vid_node_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::pb::monitor::vid_node >*
+module_list::mutable_vid_node() {
+  // @@protoc_insertion_point(field_mutable_list:pb.monitor.module_list.vid_node)
+  return &vid_node_;
+}
+inline const ::pb::monitor::vid_node& module_list::vid_node(int index) const {
+  // @@protoc_insertion_point(field_get:pb.monitor.module_list.vid_node)
+  return vid_node_.Get(index);
+}
+inline ::pb::monitor::vid_node* module_list::add_vid_node() {
+  // @@protoc_insertion_point(field_add:pb.monitor.module_list.vid_node)
+  return vid_node_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::pb::monitor::vid_node >&
+module_list::vid_node() const {
+  // @@protoc_insertion_point(field_list:pb.monitor.module_list.vid_node)
+  return vid_node_;
 }
 
 // -------------------------------------------------------------------
@@ -840,6 +1777,14 @@ vid_manage::already_assigned() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -77,6 +77,16 @@ void route::delete_vid(std::shared_ptr<common_client> client)
 {
 	m_vid_clients.right.erase(client);
 }
+std::size_t route::for_each_vid_clients(std::function<void(const std::size_t, std::shared_ptr<common_client>)> fn)
+{
+	std::size_t cnt = 0;
+	for (auto pair : m_vid_clients.left)
+	{
+		fn(pair.first, pair.second);
+		++cnt;
+	}
+	return cnt;
+}
 void route::add_node(std::shared_ptr<common_client> client, node& n)
 {
 	m_node_clients.left.insert(std::make_pair(n, client));
@@ -125,6 +135,16 @@ std::shared_ptr<common_client> route::get_node(const node& n)
 	}
 	return std::shared_ptr<common_client>();
 }
+std::size_t route::for_each_node_clients(std::function<void(const node&, std::shared_ptr<common_client>)> fn)
+{
+	std::size_t cnt = 0;
+	for (auto pair : m_node_clients.left)
+	{
+		fn(pair.first, pair.second);
+		++cnt;
+	}
+	return cnt;
+}
 std::shared_ptr<common_client> route::get_ttnode(ttnode& ttn)
 {
 	auto it = m_ttnode_node.left.find(ttn);
@@ -145,6 +165,16 @@ std::size_t route::for_each_ttnode(ttnode& ttn, std::function<void(std::shared_p
 	}
 	return cnt;
 }
+std::size_t route::for_each_ttnode_node(std::function<void(const ttnode&, const node&)> fn)
+{
+	std::size_t cnt = 0;
+	for (auto pair : m_ttnode_node.left)
+	{
+		fn(pair.first, pair.second);
+		++cnt;
+	}
+	return cnt;
+}
 std::size_t route::for_each_vid(std::size_t vid, std::function<void(std::shared_ptr<common_client>)> fn)
 {
 	std::size_t cnt = 0;
@@ -153,6 +183,16 @@ std::size_t route::for_each_vid(std::size_t vid, std::function<void(std::shared_
 	{
 		auto it_c = m_node_clients.left.find(it->second);
 		fn(it_c->second);
+	}
+	return cnt;
+}
+std::size_t route::for_each_vid_node(std::function<void(const std::size_t, const node&)> fn)
+{
+	std::size_t cnt = 0;
+	for (auto pair : m_vid_node.left)
+	{
+		fn(pair.first, pair.second);
+		++cnt;
 	}
 	return cnt;
 }

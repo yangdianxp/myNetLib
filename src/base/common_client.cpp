@@ -218,6 +218,44 @@ void common_client::handle_monitor_route(proto_msg& msg)
 			r->set_port(client->get_port());
 		};
 		route->for_each_mid(fn);
+		auto fn1 = [self, &info](const std::size_t vid, std::shared_ptr<common_client> client)
+		{
+			info.add_vid_clients(vid);
+		};
+		route->for_each_vid_clients(fn1);
+		auto fn2 = [self, &info](const route::node& n, std::shared_ptr<common_client> client)
+		{
+			pb::monitor::node* node = info.add_node_clients();
+			node->set_type(n.type);
+			node->set_tid(n.tid);
+			node->set_uid(n.uid);
+			node->set_vid(n.vid);
+		};
+		route->for_each_node_clients(fn2);
+		auto fn3 = [self, &info](const route::ttnode& ttn, const route::node& n)
+		{
+			pb::monitor::ttnode_node* ttnn = info.add_ttnode_node();
+			pb::monitor::ttnode* ttnode = ttnn->mutable_ttn();
+			ttnode->set_type(ttn.type);
+			ttnode->set_tid(ttn.tid);
+			pb::monitor::node* node = ttnn->mutable_n();
+			node->set_type(n.type);
+			node->set_tid(n.tid);
+			node->set_uid(n.uid);
+			node->set_vid(n.vid);
+		};
+		route->for_each_ttnode_node(fn3);
+		auto fn4 = [self, &info](const std::size_t vid, const route::node& n)
+		{
+			pb::monitor::vid_node* vnode = info.add_vid_node();
+			vnode->set_vid(vid);
+			pb::monitor::node* node = vnode->mutable_n();
+			node->set_type(n.type);
+			node->set_tid(n.tid);
+			node->set_uid(n.uid);
+			node->set_vid(n.vid);
+		};
+		route->for_each_vid_node(fn4);
 		msg.serialize_msg(info);
 		write((char *)&msg, msg.size());
 	}
@@ -235,6 +273,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_request_vid_range_ack, "gateway request vid range respond" },
 	{ cmd_create_channel, "user create channel" },
 	{ cmd_create_channel_ack, "user create channel respond" },
+	{ cmd_user_disconnection, "user offline" },
+	{ cmd_user_disconnection_ack, "user offline respond" },
 	{ cmd_interchannel_broadcast, "user broadcast msg in channel" },
 	{ cmd_interchannel_broadcast_ack, "user broadcast msg in channel ack" },
 	{ cmd_monitor_instruction, "monitor console instruction" },

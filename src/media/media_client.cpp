@@ -43,6 +43,16 @@ void media_client::handle_create_channel(proto_msg& msg)
 	ack.serialize_msg(modify);
 	write((char *)&ack, ack.size());
 }
+void media_client::handle_user_disconnection(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", vid" << msg.m_vid;
+	auto server = std::dynamic_pointer_cast<media_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		route->delete_node(msg.m_vid);
+	}
+}
 void media_client::handle_interchannel_broadcast(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
@@ -77,5 +87,6 @@ void media_client::init(std::shared_ptr<base_server> server)
 	{
 		m_function_set[cmd_create_channel] = std::bind(&media_client::handle_create_channel, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast] = std::bind(&media_client::handle_interchannel_broadcast, client, std::placeholders::_1);
+		m_function_set[cmd_user_disconnection] = std::bind(&media_client::handle_user_disconnection, client, std::placeholders::_1);
 	}
 }

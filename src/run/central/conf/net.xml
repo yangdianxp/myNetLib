@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2006 Marcin Kalicinski
+Distributed under the Boost Software License, Version 1.0.
+See http://www.boost.org/LICENSE_1_0.txt
+-->
+<conf>
+  <log_filename>common.log</log_filename>
+  <local_ip>127.0.0.1</local_ip>
+	<local_port>20000</local_port>
+  <!--自己的类型-->
+  <type>central</type>
+  <vid_unit_size>10000</vid_unit_size>
+  <!--mid范围-->
+  <mid_range>
+    <begin>1</begin>
+    <end>10000</end>
+  </mid_range>
+  <!--gateway要连接的模块类型-->
+  <link_type>
+    <gateway>
+      <item>login</item>
+      <item>media</item>
+      <item>balance</item>
+      <item>monitor</item>
+    </gateway>
+    <media>
+      <item>balance</item>
+      <item>monitor</item>
+    </media>
+    <balance>
+      <item>monitor</item>
+    </balance>
+    <login>
+      <item>monitor</item>
+    </login>
+  </link_type>
+</conf>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2006 Marcin Kalicinski
+Distributed under the Boost Software License, Version 1.0.
+See http://www.boost.org/LICENSE_1_0.txt
+-->
+<conf>
+  <log_filename>common.log</log_filename>
+  <local_ip>127.0.0.1</local_ip>
+	<local_port>21002</local_port>
+	<remote_ip>127.0.0.1</remote_ip>
+	<remote_port>20000</remote_port>
+  <!--自己的类型-->
+  <type>gateway</type>
+</conf>

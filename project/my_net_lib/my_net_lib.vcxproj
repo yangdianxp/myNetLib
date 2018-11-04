@@ -120,6 +120,25 @@
     <Xml Include="..\..\src\login\conf\net.xml" />
     <Xml Include="..\..\src\media\conf\net.xml" />
     <Xml Include="..\..\src\monitor\conf\net.xml" />
+    <Xml Include="..\..\src\run\balance1\conf\net.xml" />
+    <Xml Include="..\..\src\run\balance2\conf\net.xml" />
+    <Xml Include="..\..\src\run\balance3\conf\net.xml" />
+    <Xml Include="..\..\src\run\balance\conf\net.xml" />
+    <Xml Include="..\..\src\run\central\conf\net.xml" />
+    <Xml Include="..\..\src\run\client1\conf\net.xml" />
+    <Xml Include="..\..\src\run\client2\conf\net.xml" />
+    <Xml Include="..\..\src\run\client3\conf\net.xml" />
+    <Xml Include="..\..\src\run\client\conf\net.xml" />
+    <Xml Include="..\..\src\run\gateway1\conf\net.xml" />
+    <Xml Include="..\..\src\run\gateway2\conf\net.xml" />
+    <Xml Include="..\..\src\run\gateway3\conf\net.xml" />
+    <Xml Include="..\..\src\run\gateway\conf\net.xml" />
+    <Xml Include="..\..\src\run\login\conf\net.xml" />
+    <Xml Include="..\..\src\run\media1\conf\net.xml" />
+    <Xml Include="..\..\src\run\media2\conf\net.xml" />
+    <Xml Include="..\..\src\run\media3\conf\net.xml" />
+    <Xml Include="..\..\src\run\media\conf\net.xml" />
+    <Xml Include="..\..\src\run\monitor\conf\net.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\balance\laqi.sh" />
@@ -140,6 +159,10 @@
     <None Include="..\..\src\proto\prebuild.sh" />
     <None Include="..\..\src\proto\proc.proto" />
     <None Include="..\..\src\rebuild.sh" />
+    <None Include="..\..\src\run\bkill.sh" />
+    <None Include="..\..\src\run\copy.sh" />
+    <None Include="..\..\src\run\ff.sh" />
+    <None Include="..\..\src\run\laqi.sh" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

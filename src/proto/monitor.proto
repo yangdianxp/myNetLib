@@ -7,11 +7,41 @@ message cmd
 	string content = 1;
 }
 
+message node
+{
+	int32 type = 1;
+	int32 tid = 2;
+	int32 uid = 3;
+	int32 vid = 4;
+}
+
+message ttnode
+{
+	int32 type = 1;
+	int32 tid = 2;
+}
+
+message ttnode_node
+{
+	ttnode ttn = 1;
+	node n = 2;
+}
+
+message vid_node
+{
+	int32 vid = 1;
+	node n = 2;
+}
+
 message module_list
 {
 	int32 clients_size = 1;
 	int32 type_clients_size = 2;
 	repeated internal.register_info mid_clients = 3;
+	repeated int32 vid_clients = 4;
+	repeated node node_clients = 5;
+	repeated ttnode_node ttnode_node = 6;
+	repeated vid_node vid_node = 7;
 }
 
 message mid_vid_range

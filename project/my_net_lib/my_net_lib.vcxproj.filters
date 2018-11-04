@@ -58,12 +58,6 @@
     <Filter Include="test\vid_manage_test">
       <UniqueIdentifier>{5413fb4e-4288-42b8-8a8e-e5aac73cac74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\monitor">
-      <UniqueIdentifier>{8d1eda86-fb61-4f97-b235-75f6c7272b40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\monitor\conf">
-      <UniqueIdentifier>{2ba4d470-88a6-4f2b-8dfa-18e9a68f7222}</UniqueIdentifier>
-    </Filter>
     <Filter Include="test\boost_log_test">
       <UniqueIdentifier>{5d27e218-00ea-42f5-b459-a4960ed380a8}</UniqueIdentifier>
     </Filter>
@@ -72,6 +66,129 @@
     </Filter>
     <Filter Include="test\boost_bimap_test">
       <UniqueIdentifier>{8b06f385-e6f4-4fad-a5c5-e4f09a7cd7e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run">
+      <UniqueIdentifier>{1f2328be-b1e1-46eb-b2b8-822957f4e25e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\monitor">
+      <UniqueIdentifier>{8d1eda86-fb61-4f97-b235-75f6c7272b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\monitor\conf">
+      <UniqueIdentifier>{2ba4d470-88a6-4f2b-8dfa-18e9a68f7222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance">
+      <UniqueIdentifier>{9cb243fd-95bc-4a3c-b54e-831c48848d3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance1">
+      <UniqueIdentifier>{ce4882a0-4ea0-449c-8af0-5cb82ee4cd96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance2">
+      <UniqueIdentifier>{5e101835-3a69-4705-930f-269a25de01c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance3">
+      <UniqueIdentifier>{c54e478c-4a2d-454e-9da0-8d46d7570769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\central">
+      <UniqueIdentifier>{73ebee50-f948-481d-a057-518c44d7ab9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client">
+      <UniqueIdentifier>{016a4e2a-d721-42a9-aa80-0209d2c3f5a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client1">
+      <UniqueIdentifier>{c60b3640-aada-4481-8b44-75b10840b8e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client2">
+      <UniqueIdentifier>{2f48cbb9-4d17-40b3-9ef8-008b11a68a42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client3">
+      <UniqueIdentifier>{0676d8ce-1545-4cf2-a5a5-5a63e27f7e50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway">
+      <UniqueIdentifier>{bf5dbd4b-3e57-416f-8e61-b58d203d64b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway1">
+      <UniqueIdentifier>{54336b5a-9434-4dc8-acf3-f35268273b36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway2">
+      <UniqueIdentifier>{039327f6-00fb-49d3-9b51-dfccff2c1f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway3">
+      <UniqueIdentifier>{fb5b85c4-f420-4d74-8bc7-29ad00bd7266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\login">
+      <UniqueIdentifier>{b1167050-923d-4af1-a75d-61ef61cc98a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media">
+      <UniqueIdentifier>{062e3b96-feba-4335-ba93-7490266c68ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media1">
+      <UniqueIdentifier>{7fb243ba-3d06-4592-a373-d6a3bd1da838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media2">
+      <UniqueIdentifier>{9a30339e-ab28-43c6-96f1-3b64f753d68c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media3">
+      <UniqueIdentifier>{d807b7d2-959b-4b2c-953f-08668ffd641e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\monitor">
+      <UniqueIdentifier>{dd6bce9e-f1a4-40ce-acb9-4d66bf645b03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance\conf">
+      <UniqueIdentifier>{551c4c84-11d5-4a17-895e-faf24b51b4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance1\conf">
+      <UniqueIdentifier>{7553e36f-c1cd-4827-8f49-7dba617846bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance2\conf">
+      <UniqueIdentifier>{e1d78c72-d8fe-408b-8a92-a2ddc1f1f823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\balance3\conf">
+      <UniqueIdentifier>{5ff71102-2013-4667-8b64-8f89fff2ad2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\central\conf">
+      <UniqueIdentifier>{032409e3-1f32-4ffc-afe7-6701edef3ea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client\conf">
+      <UniqueIdentifier>{46787edd-9e5d-4bbf-92ed-788bbfc8f2f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client1\conf">
+      <UniqueIdentifier>{2680037c-6a22-470f-b824-d1ae5ba769db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client2\conf">
+      <UniqueIdentifier>{6d2a051a-ca78-4a9e-a6c4-ca945af8f3c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\client3\conf">
+      <UniqueIdentifier>{ea023103-74b8-41ed-b79c-8a26da3c8272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway\conf">
+      <UniqueIdentifier>{a2862bb0-35ca-4e71-b8cb-5ee05464e9eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway1\conf">
+      <UniqueIdentifier>{70bbf6ad-535f-4ac3-854a-73335ea0ec11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway2\conf">
+      <UniqueIdentifier>{3dfeeb25-a857-471c-a14f-1696b1516ae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\gataway3\conf">
+      <UniqueIdentifier>{a9c70f52-6616-4ba3-b61d-9ae3dd064f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\login\conf">
+      <UniqueIdentifier>{2591b8aa-6191-4f6d-bbae-927fe26e9dfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media\conf">
+      <UniqueIdentifier>{ec852054-5846-49e8-905e-7552feafe012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media1\conf">
+      <UniqueIdentifier>{bb0220b3-85b8-42a4-80f6-99c314834abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media2\conf">
+      <UniqueIdentifier>{6bbcd446-b16a-4378-87e9-fd3c8b671791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\media3\conf">
+      <UniqueIdentifier>{790b290d-561e-4785-a34f-6c9add5296d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\run\monitor\conf">
+      <UniqueIdentifier>{58745c0d-9a60-4c6d-ad97-b49cecd7ef79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -366,6 +483,63 @@
     <Xml Include="..\..\src\monitor\conf\net.xml">
       <Filter>src\monitor\conf</Filter>
     </Xml>
+    <Xml Include="..\..\src\run\balance\conf\net.xml">
+      <Filter>src\run\balance\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\balance1\conf\net.xml">
+      <Filter>src\run\balance1\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\balance2\conf\net.xml">
+      <Filter>src\run\balance2</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\balance3\conf\net.xml">
+      <Filter>src\run\balance3\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\central\conf\net.xml">
+      <Filter>src\run\central\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\client\conf\net.xml">
+      <Filter>src\run\client\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\client1\conf\net.xml">
+      <Filter>src\run\client1\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\client2\conf\net.xml">
+      <Filter>src\run\client2\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\client3\conf\net.xml">
+      <Filter>src\run\client3\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\gateway\conf\net.xml">
+      <Filter>src\run\gataway\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\gateway1\conf\net.xml">
+      <Filter>src\run\gataway1\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\gateway2\conf\net.xml">
+      <Filter>src\run\gataway2\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\gateway3\conf\net.xml">
+      <Filter>src\run\gataway3\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\login\conf\net.xml">
+      <Filter>src\run\login\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\media\conf\net.xml">
+      <Filter>src\run\media\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\media1\conf\net.xml">
+      <Filter>src\run\media1\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\media2\conf\net.xml">
+      <Filter>src\run\media2\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\media3\conf\net.xml">
+      <Filter>src\run\media3\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\monitor\conf\net.xml">
+      <Filter>src\run\monitor\conf</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\proto\internal.proto">
@@ -421,6 +595,18 @@
     </None>
     <None Include="..\..\src\proto\external.proto">
       <Filter>src\proto</Filter>
+    </None>
+    <None Include="..\..\src\run\copy.sh">
+      <Filter>src\run</Filter>
+    </None>
+    <None Include="..\..\src\run\ff.sh">
+      <Filter>src\run</Filter>
+    </None>
+    <None Include="..\..\src\run\laqi.sh">
+      <Filter>src\run</Filter>
+    </None>
+    <None Include="..\..\src\run\bkill.sh">
+      <Filter>src\run</Filter>
     </None>
   </ItemGroup>
 </Project>

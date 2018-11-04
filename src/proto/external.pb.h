@@ -39,7 +39,7 @@ namespace protobuf_external_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[1];
+  static const ::google::protobuf::internal::ParseTable schema[2];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -48,6 +48,9 @@ void AddDescriptors();
 }  // namespace protobuf_external_2eproto
 namespace pb {
 namespace external {
+class info;
+class infoDefaultTypeInternal;
+extern infoDefaultTypeInternal _info_default_instance_;
 class modify_channel;
 class modify_channelDefaultTypeInternal;
 extern modify_channelDefaultTypeInternal _modify_channel_default_instance_;
@@ -55,6 +58,7 @@ extern modify_channelDefaultTypeInternal _modify_channel_default_instance_;
 }  // namespace pb
 namespace google {
 namespace protobuf {
+template<> ::pb::external::info* Arena::CreateMaybeMessage<::pb::external::info>(Arena*);
 template<> ::pb::external::modify_channel* Arena::CreateMaybeMessage<::pb::external::modify_channel>(Arena*);
 }  // namespace protobuf
 }  // namespace google
@@ -256,6 +260,117 @@ class modify_channel : public ::google::protobuf::Message /* @@protoc_insertion_
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_external_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class info : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.external.info) */ {
+ public:
+  info();
+  virtual ~info();
+
+  info(const info& from);
+
+  inline info& operator=(const info& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  info(info&& from) noexcept
+    : info() {
+    *this = ::std::move(from);
+  }
+
+  inline info& operator=(info&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const info& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const info* internal_default_instance() {
+    return reinterpret_cast<const info*>(
+               &_info_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(info* other);
+  friend void swap(info& a, info& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline info* New() const final {
+    return CreateMaybeMessage<info>(NULL);
+  }
+
+  info* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<info>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const info& from);
+  void MergeFrom(const info& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(info* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes data = 1;
+  void clear_data();
+  static const int kDataFieldNumber = 1;
+  const ::std::string& data() const;
+  void set_data(const ::std::string& value);
+  #if LANG_CXX11
+  void set_data(::std::string&& value);
+  #endif
+  void set_data(const char* value);
+  void set_data(const void* value, size_t size);
+  ::std::string* mutable_data();
+  ::std::string* release_data();
+  void set_allocated_data(::std::string* data);
+
+  // @@protoc_insertion_point(class_scope:pb.external.info)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr data_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_external_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -365,9 +480,68 @@ inline void modify_channel::set_rslt(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:pb.external.modify_channel.rslt)
 }
 
+// -------------------------------------------------------------------
+
+// info
+
+// bytes data = 1;
+inline void info::clear_data() {
+  data_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& info::data() const {
+  // @@protoc_insertion_point(field_get:pb.external.info.data)
+  return data_.GetNoArena();
+}
+inline void info::set_data(const ::std::string& value) {
+  
+  data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:pb.external.info.data)
+}
+#if LANG_CXX11
+inline void info::set_data(::std::string&& value) {
+  
+  data_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:pb.external.info.data)
+}
+#endif
+inline void info::set_data(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb.external.info.data)
+}
+inline void info::set_data(const void* value, size_t size) {
+  
+  data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:pb.external.info.data)
+}
+inline ::std::string* info::mutable_data() {
+  
+  // @@protoc_insertion_point(field_mutable:pb.external.info.data)
+  return data_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* info::release_data() {
+  // @@protoc_insertion_point(field_release:pb.external.info.data)
+  
+  return data_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void info::set_allocated_data(::std::string* data) {
+  if (data != NULL) {
+    
+  } else {
+    
+  }
+  data_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), data);
+  // @@protoc_insertion_point(field_set_allocated:pb.external.info.data)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

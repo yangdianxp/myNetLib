@@ -22,16 +22,22 @@ void gateway_client::handle_error_aux()
 		{
 			auto route = server->get_route();
 			route->delete_vid(std::dynamic_pointer_cast<common_client>(shared_from_this()));
-			std::set<std::shared_ptr<common_client>> clients;
+			std::set<std::shared_ptr<common_client>> medias;
 			auto self = shared_from_this();
-			auto fn = [self, &clients](std::shared_ptr<common_client> client)
+			auto fn = [self, &medias](std::shared_ptr<common_client> client)
 			{
-				clients.insert(client);
+				medias.insert(client);
 			};
 			route->for_each_vid(m_id, fn);
-			for (auto client : clients)
+			proto_msg msg(cmd_user_disconnection, m_id);
+			for (auto media : medias)
 			{
-
+				media->write((char *)&msg, msg.size());
+			}
+			auto balance = route->get_first_client(module_balance_type);
+			if (balance)
+			{
+				balance->write((char *)&msg, msg.size());
 			}
 			route->delete_node(m_id);
 			server->del_vid(m_id);

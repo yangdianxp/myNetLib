@@ -29,6 +29,37 @@ void monitor_client::handle_monitor_route_ack(proto_msg& msg)
 		SLOG_INFO << i << " mid:" << r.id() << " type:" << config_settings::instance().get_module_name(r.type()) 
 			<< " ip:" << r.ip() << " port:" << r.port();
 	}
+	SLOG_INFO << "vid_clients_size:" << info.vid_clients_size();
+	for (int i = 0; i < info.vid_clients_size(); ++i)
+	{
+		SLOG_INFO << i << " vid:" << info.vid_clients(i);
+	}
+	SLOG_INFO << "node_clients_size:" << info.node_clients_size();
+	for (int i = 0; i < info.node_clients_size(); ++i)
+	{
+		const pb::monitor::node& n = info.node_clients(i);
+		SLOG_INFO << i << " type:" << n.type() << " tid:" << n.tid() << " uid:" 
+			<< n.uid() << " vid:" << n.vid();
+	}
+	SLOG_INFO << "ttnode_node_size:" << info.ttnode_node_size();
+	for (int i = 0; i < info.ttnode_node_size(); ++i)
+	{
+		const pb::monitor::ttnode_node& ttnn = info.ttnode_node(i);
+		const pb::monitor::ttnode& ttn = ttnn.ttn();
+		const pb::monitor::node& n = ttnn.n();
+		SLOG_INFO << i << " type:" << ttn.type() << " tid:" << ttn.tid() << " --->"
+			<< " type:" << n.type() << " tid:" << n.tid() << " uid:"
+			<< n.uid() << " vid:" << n.vid();
+	}
+	SLOG_INFO << "vid_node_size:" << info.vid_node_size();
+	for (int i = 0; i < info.vid_node_size(); ++i)
+	{
+		const pb::monitor::vid_node& vnode = info.vid_node(i);
+		const pb::monitor::node& n = vnode.n();
+		SLOG_INFO << i << " vid:" << vnode.vid()  << " --->"
+			<< " type:" << n.type() << " tid:" << n.tid() << " uid:"
+			<< n.uid() << " vid:" << n.vid();
+	}
 }
 void monitor_client::handle_monitor_vid_manage_ack(proto_msg& msg)
 {

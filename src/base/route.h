@@ -74,15 +74,19 @@ public:
 	std::shared_ptr<common_client> get_vid(std::size_t vid);
 	void add_vid(std::shared_ptr<common_client> client, std::size_t vid);
 	void delete_vid(std::shared_ptr<common_client> client);
+	std::size_t for_each_vid_clients(std::function<void(const std::size_t, std::shared_ptr<common_client>)>);
 	void add_node(std::shared_ptr<common_client> client, node& n);
 	void delete_node(std::shared_ptr<common_client> client);
 	void delete_node(node& n);
 	void delete_node(std::size_t vid);
 	bool find_node(node& n);
 	std::shared_ptr<common_client> get_node(const node& n);
+	std::size_t for_each_node_clients(std::function<void(const node&, std::shared_ptr<common_client>)>);
 	std::shared_ptr<common_client> get_ttnode(ttnode& ttn);
 	std::size_t for_each_ttnode(ttnode& ttn, std::function<void(std::shared_ptr<common_client>, const node&)> fn);
+	std::size_t for_each_ttnode_node(std::function<void(const ttnode&, const node&)>);
 	std::size_t for_each_vid(std::size_t vid, std::function<void(std::shared_ptr<common_client>)> fn);
+	std::size_t for_each_vid_node(std::function<void(const std::size_t, const node&)>);
 
 	std::size_t get_clients_size();
 	std::size_t get_type_clients_size();

@@ -21,6 +21,7 @@ struct proto_msg : public proto_header
 {
 	proto_msg() {}
 	proto_msg(uint32_t cmd) { m_cmd = cmd; }
+	proto_msg(uint32_t cmd, uint32_t vid) { m_cmd = cmd; m_vid = vid; }
 	proto_msg(uint32_t cmd, uint32_t type, uint32_t tid, uint32_t uid)
 	{
 		m_cmd = cmd; m_type = type; m_tid = tid; m_uid = uid;
@@ -70,6 +71,8 @@ enum cmd_enum
 
 	cmd_create_channel,					//创建通道
 	cmd_create_channel_ack,
+	cmd_user_disconnection,
+	cmd_user_disconnection_ack,
 	/*发送消息命令*/
 	cmd_interchannel_broadcast,			//通道内广播
 	cmd_interchannel_broadcast_ack,
