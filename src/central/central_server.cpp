@@ -22,7 +22,7 @@ void central_server::del_unique_mid(std::size_t mid)
 	m_unique_mid.del(mid);
 }
 
-range_manage::vid_pair central_server::get_vid_range(std::size_t mid)
+range_manage::pair central_server::get_vid_range(std::size_t mid)
 {
 	return m_vid_manage.get(mid);
 }

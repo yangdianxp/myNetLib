@@ -22,6 +22,7 @@
 namespace protobuf_internal_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_internal_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_addr;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_internal_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_range;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_internal_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_mid_range;
 }  // namespace protobuf_internal_2eproto
 namespace pb {
 namespace internal {
@@ -55,6 +56,11 @@ class mid_rangeDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<mid_range>
       _instance;
 } _mid_range_default_instance_;
+class balance_listDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<balance_list>
+      _instance;
+} _balance_list_default_instance_;
 }  // namespace internal
 }  // namespace pb
 namespace protobuf_internal_2eproto {
@@ -144,6 +150,21 @@ static void InitDefaultsmid_range() {
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsmid_range}, {
       &protobuf_internal_2eproto::scc_info_range.base,}};
 
+static void InitDefaultsbalance_list() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::pb::internal::_balance_list_default_instance_;
+    new (ptr) ::pb::internal::balance_list();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::pb::internal::balance_list::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_balance_list =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsbalance_list}, {
+      &protobuf_internal_2eproto::scc_info_mid_range.base,}};
+
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_logon.base);
   ::google::protobuf::internal::InitSCC(&scc_info_addr.base);
@@ -151,9 +172,10 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_register_info.base);
   ::google::protobuf::internal::InitSCC(&scc_info_range.base);
   ::google::protobuf::internal::InitSCC(&scc_info_mid_range.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_balance_list.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[6];
+::google::protobuf::Metadata file_level_metadata[7];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -203,6 +225,12 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::mid_range, mid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::mid_range, range_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::balance_list, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::internal::balance_list, range_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::pb::internal::logon)},
@@ -211,6 +239,7 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 24, -1, sizeof(::pb::internal::register_info)},
   { 33, -1, sizeof(::pb::internal::range)},
   { 40, -1, sizeof(::pb::internal::mid_range)},
+  { 47, -1, sizeof(::pb::internal::balance_list)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -220,6 +249,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::internal::_register_info_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::internal::_range_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::internal::_mid_range_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::pb::internal::_balance_list_default_instance_),
 };
 
 void protobuf_AssignDescriptors() {
@@ -237,7 +267,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 6);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 7);
 }
 
 void AddDescriptorsImpl() {
@@ -252,10 +282,11 @@ void AddDescriptorsImpl() {
       "\n\004type\030\002 \001(\005\022\n\n\002ip\030\003 \001(\t\022\014\n\004port\030\004 \001(\005\"#"
       "\n\005range\022\r\n\005begin\030\001 \001(\005\022\013\n\003end\030\002 \001(\005\";\n\tm"
       "id_range\022\013\n\003mid\030\001 \001(\005\022!\n\005range\030\002 \001(\0132\022.p"
-      "b.internal.rangeb\006proto3"
+      "b.internal.range\"5\n\014balance_list\022%\n\005rang"
+      "e\030\001 \003(\0132\026.pb.internal.mid_rangeb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 384);
+      descriptor, 439);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "internal.proto", &protobuf_RegisterTypes);
 }
@@ -2128,6 +2159,235 @@ void mid_range::InternalSwap(mid_range* other) {
 }
 
 
+// ===================================================================
+
+void balance_list::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int balance_list::kRangeFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+balance_list::balance_list()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_internal_2eproto::scc_info_balance_list.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:pb.internal.balance_list)
+}
+balance_list::balance_list(const balance_list& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      range_(from.range_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:pb.internal.balance_list)
+}
+
+void balance_list::SharedCtor() {
+}
+
+balance_list::~balance_list() {
+  // @@protoc_insertion_point(destructor:pb.internal.balance_list)
+  SharedDtor();
+}
+
+void balance_list::SharedDtor() {
+}
+
+void balance_list::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* balance_list::descriptor() {
+  ::protobuf_internal_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_internal_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const balance_list& balance_list::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_internal_2eproto::scc_info_balance_list.base);
+  return *internal_default_instance();
+}
+
+
+void balance_list::Clear() {
+// @@protoc_insertion_point(message_clear_start:pb.internal.balance_list)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  range_.Clear();
+  _internal_metadata_.Clear();
+}
+
+bool balance_list::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:pb.internal.balance_list)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .pb.internal.mid_range range = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_range()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:pb.internal.balance_list)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:pb.internal.balance_list)
+  return false;
+#undef DO_
+}
+
+void balance_list::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:pb.internal.balance_list)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .pb.internal.mid_range range = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->range_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1,
+      this->range(static_cast<int>(i)),
+      output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:pb.internal.balance_list)
+}
+
+::google::protobuf::uint8* balance_list::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:pb.internal.balance_list)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .pb.internal.mid_range range = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->range_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->range(static_cast<int>(i)), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:pb.internal.balance_list)
+  return target;
+}
+
+size_t balance_list::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:pb.internal.balance_list)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .pb.internal.mid_range range = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->range_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->range(static_cast<int>(i)));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void balance_list::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:pb.internal.balance_list)
+  GOOGLE_DCHECK_NE(&from, this);
+  const balance_list* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const balance_list>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.internal.balance_list)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.internal.balance_list)
+    MergeFrom(*source);
+  }
+}
+
+void balance_list::MergeFrom(const balance_list& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:pb.internal.balance_list)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  range_.MergeFrom(from.range_);
+}
+
+void balance_list::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:pb.internal.balance_list)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void balance_list::CopyFrom(const balance_list& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:pb.internal.balance_list)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool balance_list::IsInitialized() const {
+  return true;
+}
+
+void balance_list::Swap(balance_list* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void balance_list::InternalSwap(balance_list* other) {
+  using std::swap;
+  CastToBase(&range_)->InternalSwap(CastToBase(&other->range_));
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata balance_list::GetMetadata() const {
+  protobuf_internal_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_internal_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace internal
 }  // namespace pb
@@ -2150,6 +2410,9 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::internal::range* Arena::Crea
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::internal::mid_range* Arena::CreateMaybeMessage< ::pb::internal::mid_range >(Arena* arena) {
   return Arena::CreateInternal< ::pb::internal::mid_range >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::internal::balance_list* Arena::CreateMaybeMessage< ::pb::internal::balance_list >(Arena* arena) {
+  return Arena::CreateInternal< ::pb::internal::balance_list >(arena);
 }
 }  // namespace protobuf
 }  // namespace google

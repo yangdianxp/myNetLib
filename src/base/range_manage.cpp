@@ -1,8 +1,8 @@
 #include "range_manage.h"
 
-range_manage::vid_pair range_manage::get(std::size_t mid)
+range_manage::pair range_manage::get(std::size_t mid)
 {
-	vid_pair pair;
+	pair pair;
 	if (!m_inventory.empty())
 	{
 		auto it = m_inventory.begin();
@@ -42,7 +42,7 @@ std::size_t range_manage::get_unit_size()
 {
 	return m_unit_size;
 }
-std::size_t range_manage::for_each_inventory(std::function<void(vid_pair&)> fn)
+std::size_t range_manage::for_each_inventory(std::function<void(pair&)> fn)
 {
 	int cnt = 0;
 	for (auto n : m_inventory)
@@ -52,7 +52,7 @@ std::size_t range_manage::for_each_inventory(std::function<void(vid_pair&)> fn)
 	}
 	return cnt;
 }
-std::size_t range_manage::for_each_already_assigned(std::function<void(std::pair<const std::size_t, vid_pair>&)> fn)
+std::size_t range_manage::for_each_already_assigned(std::function<void(std::pair<const std::size_t, pair>&)> fn)
 {
 	int cnt = 0;
 	for (auto n : m_already_assigned)

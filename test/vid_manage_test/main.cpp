@@ -6,7 +6,7 @@ int main()
 	vid_manage manage;
 	for (int i = 1; i < 10; ++i)
 	{
-		vid_manage::vid_pair pair = manage.get(i);
+		vid_manage::pair pair = manage.get(i);
 		std::cout << "begin:" << pair.first 
 			<< " end:" << pair.second << std::endl;
 	}
@@ -16,7 +16,7 @@ int main()
 	}
 	for (int i = 1; i < 10; ++i)
 	{
-		vid_manage::vid_pair pair = manage.get(i);
+		vid_manage::pair pair = manage.get(i);
 		std::cout << "begin:" << pair.first
 			<< " end:" << pair.second << std::endl;
 	}

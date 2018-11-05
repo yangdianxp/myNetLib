@@ -25,6 +25,11 @@ void central_client::handle_error_aux()
 			auto& manage = server->get_vid_manage();
 			manage.repay(m_id);
 		}
+		else if (m_type == module_balance_type)
+		{
+			auto& manage = server->get_tid_manage();
+			manage.repay(m_id);
+		}
 	}
 	common_client::handle_error_aux();
 }
@@ -81,6 +86,20 @@ void central_client::module_logon_reply()
 			{
 				route->for_each_type(*it, fn);
 			}
+			pb::internal::balance_list list;
+			auto& tid_manage = server->get_tid_manage();
+			auto f1 = [self, &list](std::pair<const std::size_t, range_manage::pair>& p)
+			{
+				pb::internal::mid_range* mr = list.add_range();
+				mr->set_mid(p.first);
+				pb::internal::range* r = mr->mutable_range();
+				r->set_begin(p.second.first);
+				r->set_end(p.second.second);
+			};
+			tid_manage.for_each_already_assigned(f1);
+			proto_msg msg_list(cmd_update_balance_list);
+			msg_list.serialize_msg(list);
+			write((char *)&msg_list, msg_list.size());
 			break;
 		}
 		case module_login_type:
@@ -153,24 +172,20 @@ void central_client::broadcast_module_logon()
 				route->for_each_type(i, fn);
 			}
 			auto& tid_manage = server->get_tid_manage();
-			tid_manage.get(m_id);
+			range_manage::pair pair = tid_manage.get(m_id);
 			pb::internal::balance_list list;
-			auto f1 = [&list](std::pair<const std::size_t, range_manage::vid_pair>& p)
-			{
-				pb::internal::mid_range* mr = list.add_range();
-				mr->set_mid(p.first);
-				pb::internal::range* r = mr->mutable_range();
-				r->set_begin(p.second.first);
-				r->set_end(p.second.second);
-			};
-			tid_manage.for_each_already_assigned(f1);
+			pb::internal::mid_range* mr = list.add_range();
+			mr->set_mid(m_id);
+			pb::internal::range* r = mr->mutable_range();
+			r->set_begin(pair.first);
+			r->set_end(pair.second);
 			proto_msg msg_list(cmd_update_balance_list);
 			msg_list.serialize_msg(list);
-			auto f2 = [self, &msg_list](std::shared_ptr<common_client> client)
+			auto f1 = [self, &msg_list](std::shared_ptr<common_client> client)
 			{
 				client->write((char *)&msg_list, msg_list.size());
 			};
-			route->for_each_type(module_gateway_type, f2);
+			route->for_each_type(module_gateway_type, f1);
 			break;
 		}
 		case module_monitor_type:
@@ -200,7 +215,7 @@ void central_client::handle_request_vid_range(proto_msg& msg)
 	std::shared_ptr<central_server> server = std::dynamic_pointer_cast<central_server>(m_server);
 	if (server)
 	{
-		range_manage::vid_pair pair = server->get_vid_range(m_id);
+		range_manage::pair pair = server->get_vid_range(m_id);
 		proto_msg msg(cmd_request_vid_range_ack);
 		pb::internal::range range;
 		range.set_begin(pair.first);
@@ -220,14 +235,14 @@ void central_client::handle_monitor_vid_manage(proto_msg& msg)
 		pb::monitor::vid_manage manage;
 		manage.set_index(m.get_index());
 		manage.set_unit_size(m.get_unit_size());
-		auto f1 = [&manage](range_manage::vid_pair& p)
+		auto f1 = [&manage](range_manage::pair& p)
 		{
 			pb::internal::range* r = manage.add_inventory();
 			r->set_begin(p.first);
 			r->set_end(p.second);
 		};
 		m.for_each_inventory(f1);
-		auto f2 = [&manage](std::pair<const std::size_t, range_manage::vid_pair>& p)
+		auto f2 = [&manage](std::pair<const std::size_t, range_manage::pair>& p)
 		{
 			pb::internal::mid_range* mr = manage.add_already_assigned();
 			mr->set_mid(p.first);

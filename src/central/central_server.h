@@ -12,7 +12,7 @@ public:
 
 	uint32_t get_unique_mid();
 	void del_unique_mid(std::size_t mid);
-	range_manage::vid_pair get_vid_range(std::size_t mid);
+	range_manage::pair get_vid_range(std::size_t mid);
 	range_manage& get_vid_manage();
 	range_manage& get_tid_manage();
 private:

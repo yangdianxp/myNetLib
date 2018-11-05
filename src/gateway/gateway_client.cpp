@@ -34,16 +34,20 @@ void gateway_client::handle_error_aux()
 			{
 				media->write((char *)&msg, msg.size());
 			}
-			auto balance = route->get_first_client(module_balance_type);
-			if (balance)
+			auto f1 = [self, &msg](std::shared_ptr<common_client> client)
 			{
-				balance->write((char *)&msg, msg.size());
-			}
+				client->write((char *)&msg, msg.size());
+			};
+			route->for_each_type(module_balance_type, f1);
 			route->delete_node(m_id);
 			server->del_vid(m_id);
 		}
 	}
 	else {
+		if (m_type == module_balance_type)
+		{
+			m_balance_list.erase(m_id);
+		}
 		common_client::handle_error_aux();
 	}
 }
@@ -66,6 +70,18 @@ void gateway_client::handle_request_vid_range_ack(proto_msg& msg)
 	if (server)
 	{
 		server->set_vid_range(range.begin(), range.end());
+	}
+}
+void gateway_client::handle_update_balance_list(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::internal::balance_list list;
+	msg.parse(list);
+	for (int i = 0; i < list.range_size(); ++i)
+	{
+		const pb::internal::mid_range& mid_range = list.range(i);
+		const pb::internal::range& range = mid_range.range();
+		m_balance_list.insert(std::make_pair(mid_range.mid(), std::make_pair(range.begin(), range.end())));
 	}
 }
 void gateway_client::handle_create_channel(proto_msg& msg)
@@ -164,6 +180,7 @@ void gateway_client::init(std::shared_ptr<base_server> server)
 	{
 		m_function_set[cmd_module_logon_ack] = std::bind(&gateway_client::handle_module_logon_ack, client, std::placeholders::_1);
 		m_function_set[cmd_request_vid_range_ack] = std::bind(&gateway_client::handle_request_vid_range_ack, client, std::placeholders::_1);
+		m_function_set[cmd_update_balance_list] = std::bind(&gateway_client::handle_update_balance_list, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel] = std::bind(&gateway_client::handle_create_channel, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel_ack] = std::bind(&gateway_client::handle_create_channel_ack, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast] = std::bind(&gateway_client::handle_interchannel_broadcast, client, std::placeholders::_1);

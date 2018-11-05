@@ -1,8 +1,8 @@
 #include "vid_manage.h"
 
-vid_manage::vid_pair vid_manage::get(std::size_t mid)
+vid_manage::pair vid_manage::get(std::size_t mid)
 {
-	vid_pair pair;
+	pair pair;
 	if (!m_inventory.empty())
 	{
 		auto it = m_inventory.begin();

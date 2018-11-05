@@ -38,7 +38,7 @@ namespace protobuf_internal_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[6];
+  static const ::google::protobuf::internal::ParseTable schema[7];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -50,6 +50,9 @@ namespace internal {
 class addr;
 class addrDefaultTypeInternal;
 extern addrDefaultTypeInternal _addr_default_instance_;
+class balance_list;
+class balance_listDefaultTypeInternal;
+extern balance_listDefaultTypeInternal _balance_list_default_instance_;
 class logon;
 class logonDefaultTypeInternal;
 extern logonDefaultTypeInternal _logon_default_instance_;
@@ -70,6 +73,7 @@ extern register_infoDefaultTypeInternal _register_info_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::pb::internal::addr* Arena::CreateMaybeMessage<::pb::internal::addr>(Arena*);
+template<> ::pb::internal::balance_list* Arena::CreateMaybeMessage<::pb::internal::balance_list>(Arena*);
 template<> ::pb::internal::logon* Arena::CreateMaybeMessage<::pb::internal::logon>(Arena*);
 template<> ::pb::internal::logon_ack* Arena::CreateMaybeMessage<::pb::internal::logon_ack>(Arena*);
 template<> ::pb::internal::mid_range* Arena::CreateMaybeMessage<::pb::internal::mid_range>(Arena*);
@@ -811,6 +815,115 @@ class mid_range : public ::google::protobuf::Message /* @@protoc_insertion_point
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_internal_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class balance_list : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb.internal.balance_list) */ {
+ public:
+  balance_list();
+  virtual ~balance_list();
+
+  balance_list(const balance_list& from);
+
+  inline balance_list& operator=(const balance_list& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  balance_list(balance_list&& from) noexcept
+    : balance_list() {
+    *this = ::std::move(from);
+  }
+
+  inline balance_list& operator=(balance_list&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const balance_list& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const balance_list* internal_default_instance() {
+    return reinterpret_cast<const balance_list*>(
+               &_balance_list_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  void Swap(balance_list* other);
+  friend void swap(balance_list& a, balance_list& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline balance_list* New() const final {
+    return CreateMaybeMessage<balance_list>(NULL);
+  }
+
+  balance_list* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<balance_list>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const balance_list& from);
+  void MergeFrom(const balance_list& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(balance_list* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .pb.internal.mid_range range = 1;
+  int range_size() const;
+  void clear_range();
+  static const int kRangeFieldNumber = 1;
+  ::pb::internal::mid_range* mutable_range(int index);
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >*
+      mutable_range();
+  const ::pb::internal::mid_range& range(int index) const;
+  ::pb::internal::mid_range* add_range();
+  const ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >&
+      range() const;
+
+  // @@protoc_insertion_point(class_scope:pb.internal.balance_list)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range > range_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_internal_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -1253,9 +1366,45 @@ inline void mid_range::set_allocated_range(::pb::internal::range* range) {
   // @@protoc_insertion_point(field_set_allocated:pb.internal.mid_range.range)
 }
 
+// -------------------------------------------------------------------
+
+// balance_list
+
+// repeated .pb.internal.mid_range range = 1;
+inline int balance_list::range_size() const {
+  return range_.size();
+}
+inline void balance_list::clear_range() {
+  range_.Clear();
+}
+inline ::pb::internal::mid_range* balance_list::mutable_range(int index) {
+  // @@protoc_insertion_point(field_mutable:pb.internal.balance_list.range)
+  return range_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >*
+balance_list::mutable_range() {
+  // @@protoc_insertion_point(field_mutable_list:pb.internal.balance_list.range)
+  return &range_;
+}
+inline const ::pb::internal::mid_range& balance_list::range(int index) const {
+  // @@protoc_insertion_point(field_get:pb.internal.balance_list.range)
+  return range_.Get(index);
+}
+inline ::pb::internal::mid_range* balance_list::add_range() {
+  // @@protoc_insertion_point(field_add:pb.internal.balance_list.range)
+  return range_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::pb::internal::mid_range >&
+balance_list::range() const {
+  // @@protoc_insertion_point(field_list:pb.internal.balance_list.range)
+  return range_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

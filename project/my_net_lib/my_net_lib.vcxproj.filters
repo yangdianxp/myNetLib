@@ -356,8 +356,8 @@
     <ClCompile Include="..\..\src\media\media_client.cpp">
       <Filter>src\media</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\central\range_manage.cpp">
-      <Filter>src\central</Filter>
+    <ClCompile Include="..\..\src\base\range_manage.cpp">
+      <Filter>src\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -457,8 +457,8 @@
     <ClInclude Include="..\..\src\media\media_client.h">
       <Filter>src\media</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\central\range_manage.h">
-      <Filter>src\central</Filter>
+    <ClInclude Include="..\..\src\base\range_manage.h">
+      <Filter>src\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
