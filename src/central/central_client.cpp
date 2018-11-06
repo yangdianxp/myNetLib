@@ -256,6 +256,10 @@ void central_client::handle_monitor_vid_manage(proto_msg& msg)
 		write((char *)&msg, msg.size());
 	}
 }
+void central_client::handle_monitor_tid_manage(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+}
 
 void central_client::init(std::shared_ptr<base_server> server)
 {

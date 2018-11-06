@@ -285,6 +285,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_monitor_route_ack, "monitor request route info respond" },
 	{ cmd_monitor_vid_manage, "monitor request central vid management info" },
 	{ cmd_monitor_vid_manage_ack, "monitor request central vid management info respond" },
+	{ cmd_monitor_tid_manage, "monitor request balance tid management info" },
+	{ cmd_monitor_tid_manage_ack, "monitor request balance tid management info respond" },
 };
 
 void common_client::init(std::shared_ptr<base_server> server)
