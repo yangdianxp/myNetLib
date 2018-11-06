@@ -23,7 +23,7 @@ public:
 	
 	void init(std::shared_ptr<base_server>);
 private:
-	std::map<std::size_t, range_manage::pair> m_balance_list;
+	
 };
 
 #endif

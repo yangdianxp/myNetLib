@@ -29,3 +29,22 @@ void gateway_server::del_vid(uint32_t id)
 {
 	m_vid_range.del(id);
 }
+
+std::map<std::size_t, range_manage::pair>& gateway_server::get_balance_list()
+{
+	return m_balance_list;
+}
+
+std::size_t gateway_server::get_balance(std::size_t tid)
+{
+	std::size_t mid = 0;
+	for (auto n : m_balance_list)
+	{
+		if (tid >= n.second.first && tid <= n.second.second)
+		{
+			mid = n.first;
+			break;
+		}
+	}
+	return mid;
+}

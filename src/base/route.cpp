@@ -30,15 +30,6 @@ std::shared_ptr<common_client> route::get_client(std::size_t mid)
 	}
 	return std::shared_ptr<common_client>();
 }
-std::shared_ptr<common_client> route::get_first_client(std::size_t type)
-{
-	auto it = m_type_clients.left.find(type);
-	if (it != m_type_clients.left.end())
-	{
-		return it->second;
-	}
-	return std::shared_ptr<common_client>();
-}
 std::size_t route::for_each_mid(std::function<void(std::shared_ptr<common_client>)> fn)
 {
 	std::size_t cnt = 0;

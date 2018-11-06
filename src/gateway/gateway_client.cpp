@@ -15,10 +15,10 @@ gateway_client::gateway_client(boost::asio::io_context& io_context, tcp::socket 
 
 void gateway_client::handle_error_aux()
 {
-	if (m_type == module_user_type)
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
 	{
-		auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
-		if (server)
+		if (m_type == module_user_type)
 		{
 			auto route = server->get_route();
 			route->delete_vid(std::dynamic_pointer_cast<common_client>(shared_from_this()));
@@ -34,21 +34,27 @@ void gateway_client::handle_error_aux()
 			{
 				media->write((char *)&msg, msg.size());
 			}
-			auto f1 = [self, &msg](std::shared_ptr<common_client> client)
+			/*此处可以优化，不必向每个balance发*/
+			auto balance_list = server->get_balance_list();
+			for (auto n : balance_list)
 			{
-				client->write((char *)&msg, msg.size());
-			};
-			route->for_each_type(module_balance_type, f1);
+				auto balance = route->get_client(n.first);
+				if (balance)
+				{
+					return balance->write((char *)&msg, msg.size());
+				}
+			}
 			route->delete_node(m_id);
 			server->del_vid(m_id);
 		}
-	}
-	else {
-		if (m_type == module_balance_type)
-		{
-			m_balance_list.erase(m_id);
+		else {
+			if (m_type == module_balance_type)
+			{
+				auto balance_list = server->get_balance_list();
+				balance_list.erase(m_id);
+			}
+			common_client::handle_error_aux();
 		}
-		common_client::handle_error_aux();
 	}
 }
 
@@ -75,13 +81,18 @@ void gateway_client::handle_request_vid_range_ack(proto_msg& msg)
 void gateway_client::handle_update_balance_list(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
-	pb::internal::balance_list list;
-	msg.parse(list);
-	for (int i = 0; i < list.range_size(); ++i)
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
 	{
-		const pb::internal::mid_range& mid_range = list.range(i);
-		const pb::internal::range& range = mid_range.range();
-		m_balance_list.insert(std::make_pair(mid_range.mid(), std::make_pair(range.begin(), range.end())));
+		pb::internal::balance_list list;
+		msg.parse(list);
+		for (int i = 0; i < list.range_size(); ++i)
+		{
+			const pb::internal::mid_range& mid_range = list.range(i);
+			const pb::internal::range& range = mid_range.range();
+			auto balance_list = server->get_balance_list();
+			balance_list.insert(std::make_pair(mid_range.mid(), std::make_pair(range.begin(), range.end())));
+		}
 	}
 }
 void gateway_client::handle_create_channel(proto_msg& msg)
@@ -101,10 +112,11 @@ void gateway_client::handle_create_channel(proto_msg& msg)
 		{
 			route->add_node(std::shared_ptr<common_client>(), n);
 			msg.serialize_msg(modify);
-			auto client = route->get_first_client(module_balance_type);
-			if (client)
+			auto id = server->get_balance(modify.tid());
+			auto balance = route->get_client(id);
+			if (balance)
 			{
-				client->write((char *)&msg, msg.size());
+				balance->write((char *)&msg, msg.size());
 			}
 		}
 		else {

@@ -66,8 +66,6 @@ public:
 	virtual void delete_client(std::shared_ptr<common_client> client);
 	virtual void delete_module(std::shared_ptr<common_client> client);
 	std::shared_ptr<common_client> get_client(std::size_t mid);
-	/*获取第一个这种类型的模块*/
-	std::shared_ptr<common_client> get_first_client(std::size_t type);
 	std::size_t for_each_mid(std::function<void(std::shared_ptr<common_client>)> fn);
 	std::size_t for_each_type(uint32_t type, std::function<void(std::shared_ptr<common_client>)> fn);
 
