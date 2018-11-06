@@ -81,7 +81,7 @@ void config_settings::load(const std::string &filename)
 	{
 		SLOG_ERROR << "Exception: " << e.what();
 	}
-	m_blance_tid_range = tree.get("conf.blance_tid_ranged", 0);
+	m_blance_tid_range = tree.get("conf.blance_tid_range", 0);
 }
 
 void config_settings::print()
@@ -114,7 +114,7 @@ void config_settings::print()
 	{
 		SLOG_INFO << "login link type:" << *it << " " << get_module_name(*it);
 	}
-	SLOG_INFO << "m_blance_tid_range" << m_blance_tid_range;
+	SLOG_INFO << "m_blance_tid_range:" << m_blance_tid_range;
 }
 
 void config_settings::init()

@@ -1,4 +1,4 @@
-#!/in/sh
+#!/bin/sh
 killall central
 killall client
 killall gateway

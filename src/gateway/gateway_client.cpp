@@ -35,7 +35,7 @@ void gateway_client::handle_error_aux()
 				media->write((char *)&msg, msg.size());
 			}
 			/*此处可以优化，不必向每个balance发*/
-			auto balance_list = server->get_balance_list();
+			auto& balance_list = server->get_balance_list();
 			for (auto n : balance_list)
 			{
 				auto balance = route->get_client(n.first);
@@ -50,7 +50,7 @@ void gateway_client::handle_error_aux()
 		else {
 			if (m_type == module_balance_type)
 			{
-				auto balance_list = server->get_balance_list();
+				auto& balance_list = server->get_balance_list();
 				balance_list.erase(m_id);
 			}
 			common_client::handle_error_aux();
@@ -90,7 +90,7 @@ void gateway_client::handle_update_balance_list(proto_msg& msg)
 		{
 			const pb::internal::mid_range& mid_range = list.range(i);
 			const pb::internal::range& range = mid_range.range();
-			auto balance_list = server->get_balance_list();
+			auto& balance_list = server->get_balance_list();
 			balance_list.insert(std::make_pair(mid_range.mid(), std::make_pair(range.begin(), range.end())));
 		}
 	}
