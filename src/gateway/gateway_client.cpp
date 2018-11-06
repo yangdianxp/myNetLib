@@ -41,7 +41,7 @@ void gateway_client::handle_error_aux()
 				auto balance = route->get_client(n.first);
 				if (balance)
 				{
-					return balance->write((char *)&msg, msg.size());
+					balance->write((char *)&msg, msg.size());
 				}
 			}
 			route->delete_node(m_id);
