@@ -62,11 +62,11 @@ class module_listDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<module_list>
       _instance;
 } _module_list_default_instance_;
-class vid_manageDefaultTypeInternal {
+class range_manageDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<vid_manage>
+  ::google::protobuf::internal::ExplicitlyConstructed<range_manage>
       _instance;
-} _vid_manage_default_instance_;
+} _range_manage_default_instance_;
 }  // namespace monitor
 }  // namespace pb
 namespace protobuf_monitor_2eproto {
@@ -161,19 +161,19 @@ static void InitDefaultsmodule_list() {
       &protobuf_monitor_2eproto::scc_info_ttnode_node.base,
       &protobuf_monitor_2eproto::scc_info_vid_node.base,}};
 
-static void InitDefaultsvid_manage() {
+static void InitDefaultsrange_manage() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::pb::monitor::_vid_manage_default_instance_;
-    new (ptr) ::pb::monitor::vid_manage();
+    void* ptr = &::pb::monitor::_range_manage_default_instance_;
+    new (ptr) ::pb::monitor::range_manage();
     ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::pb::monitor::vid_manage::InitAsDefaultInstance();
+  ::pb::monitor::range_manage::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<2> scc_info_vid_manage =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsvid_manage}, {
+::google::protobuf::internal::SCCInfo<2> scc_info_range_manage =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsrange_manage}, {
       &protobuf_internal_2eproto::scc_info_range.base,
       &protobuf_internal_2eproto::scc_info_mid_range.base,}};
 
@@ -184,7 +184,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_ttnode_node.base);
   ::google::protobuf::internal::InitSCC(&scc_info_vid_node.base);
   ::google::protobuf::internal::InitSCC(&scc_info_module_list.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_vid_manage.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_range_manage.base);
 }
 
 ::google::protobuf::Metadata file_level_metadata[7];
@@ -239,14 +239,14 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::module_list, ttnode_node_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::module_list, vid_node_),
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::vid_manage, _internal_metadata_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::range_manage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::vid_manage, index_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::vid_manage, unit_size_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::vid_manage, inventory_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::vid_manage, already_assigned_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::range_manage, index_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::range_manage, unit_size_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::range_manage, inventory_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pb::monitor::range_manage, already_assigned_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::pb::monitor::cmd)},
@@ -255,7 +255,7 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 22, -1, sizeof(::pb::monitor::ttnode_node)},
   { 29, -1, sizeof(::pb::monitor::vid_node)},
   { 36, -1, sizeof(::pb::monitor::module_list)},
-  { 48, -1, sizeof(::pb::monitor::vid_manage)},
+  { 48, -1, sizeof(::pb::monitor::range_manage)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -265,7 +265,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_ttnode_node_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_vid_node_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_module_list_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_vid_manage_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::pb::monitor::_range_manage_default_instance_),
 };
 
 void protobuf_AssignDescriptors() {
@@ -302,14 +302,14 @@ void AddDescriptorsImpl() {
       "ister_info\022\023\n\013vid_clients\030\004 \003(\005\022&\n\014node_"
       "clients\030\005 \003(\0132\020.pb.monitor.node\022,\n\013ttnod"
       "e_node\030\006 \003(\0132\027.pb.monitor.ttnode_node\022&\n"
-      "\010vid_node\030\007 \003(\0132\024.pb.monitor.vid_node\"\207\001"
-      "\n\nvid_manage\022\r\n\005index\030\001 \001(\005\022\021\n\tunit_size"
-      "\030\002 \001(\005\022%\n\tinventory\030\003 \003(\0132\022.pb.internal."
-      "range\0220\n\020already_assigned\030\004 \003(\0132\026.pb.int"
-      "ernal.mid_rangeb\006proto3"
+      "\010vid_node\030\007 \003(\0132\024.pb.monitor.vid_node\"\211\001"
+      "\n\014range_manage\022\r\n\005index\030\001 \001(\005\022\021\n\tunit_si"
+      "ze\030\002 \001(\005\022%\n\tinventory\030\003 \003(\0132\022.pb.interna"
+      "l.range\0220\n\020already_assigned\030\004 \003(\0132\026.pb.i"
+      "nternal.mid_rangeb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 703);
+      descriptor, 705);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "monitor.proto", &protobuf_RegisterTypes);
   ::protobuf_internal_2eproto::AddDescriptors();
@@ -2246,29 +2246,29 @@ void module_list::InternalSwap(module_list* other) {
 
 // ===================================================================
 
-void vid_manage::InitAsDefaultInstance() {
+void range_manage::InitAsDefaultInstance() {
 }
-void vid_manage::clear_inventory() {
+void range_manage::clear_inventory() {
   inventory_.Clear();
 }
-void vid_manage::clear_already_assigned() {
+void range_manage::clear_already_assigned() {
   already_assigned_.Clear();
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int vid_manage::kIndexFieldNumber;
-const int vid_manage::kUnitSizeFieldNumber;
-const int vid_manage::kInventoryFieldNumber;
-const int vid_manage::kAlreadyAssignedFieldNumber;
+const int range_manage::kIndexFieldNumber;
+const int range_manage::kUnitSizeFieldNumber;
+const int range_manage::kInventoryFieldNumber;
+const int range_manage::kAlreadyAssignedFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-vid_manage::vid_manage()
+range_manage::range_manage()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   ::google::protobuf::internal::InitSCC(
-      &protobuf_monitor_2eproto::scc_info_vid_manage.base);
+      &protobuf_monitor_2eproto::scc_info_range_manage.base);
   SharedCtor();
-  // @@protoc_insertion_point(constructor:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(constructor:pb.monitor.range_manage)
 }
-vid_manage::vid_manage(const vid_manage& from)
+range_manage::range_manage(const range_manage& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       inventory_(from.inventory_),
@@ -2277,39 +2277,39 @@ vid_manage::vid_manage(const vid_manage& from)
   ::memcpy(&index_, &from.index_,
     static_cast<size_t>(reinterpret_cast<char*>(&unit_size_) -
     reinterpret_cast<char*>(&index_)) + sizeof(unit_size_));
-  // @@protoc_insertion_point(copy_constructor:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(copy_constructor:pb.monitor.range_manage)
 }
 
-void vid_manage::SharedCtor() {
+void range_manage::SharedCtor() {
   ::memset(&index_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&unit_size_) -
       reinterpret_cast<char*>(&index_)) + sizeof(unit_size_));
 }
 
-vid_manage::~vid_manage() {
-  // @@protoc_insertion_point(destructor:pb.monitor.vid_manage)
+range_manage::~range_manage() {
+  // @@protoc_insertion_point(destructor:pb.monitor.range_manage)
   SharedDtor();
 }
 
-void vid_manage::SharedDtor() {
+void range_manage::SharedDtor() {
 }
 
-void vid_manage::SetCachedSize(int size) const {
+void range_manage::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* vid_manage::descriptor() {
+const ::google::protobuf::Descriptor* range_manage::descriptor() {
   ::protobuf_monitor_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_monitor_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
-const vid_manage& vid_manage::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_monitor_2eproto::scc_info_vid_manage.base);
+const range_manage& range_manage::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_monitor_2eproto::scc_info_range_manage.base);
   return *internal_default_instance();
 }
 
 
-void vid_manage::Clear() {
-// @@protoc_insertion_point(message_clear_start:pb.monitor.vid_manage)
+void range_manage::Clear() {
+// @@protoc_insertion_point(message_clear_start:pb.monitor.range_manage)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -2322,11 +2322,11 @@ void vid_manage::Clear() {
   _internal_metadata_.Clear();
 }
 
-bool vid_manage::MergePartialFromCodedStream(
+bool range_manage::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(parse_start:pb.monitor.range_manage)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
@@ -2396,17 +2396,17 @@ bool vid_manage::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(parse_success:pb.monitor.range_manage)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(parse_failure:pb.monitor.range_manage)
   return false;
 #undef DO_
 }
 
-void vid_manage::SerializeWithCachedSizes(
+void range_manage::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(serialize_start:pb.monitor.range_manage)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2442,13 +2442,13 @@ void vid_manage::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
   }
-  // @@protoc_insertion_point(serialize_end:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(serialize_end:pb.monitor.range_manage)
 }
 
-::google::protobuf::uint8* vid_manage::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* range_manage::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(serialize_to_array_start:pb.monitor.range_manage)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2482,12 +2482,12 @@ void vid_manage::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(serialize_to_array_end:pb.monitor.range_manage)
   return target;
 }
 
-size_t vid_manage::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:pb.monitor.vid_manage)
+size_t range_manage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:pb.monitor.range_manage)
   size_t total_size = 0;
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2536,23 +2536,23 @@ size_t vid_manage::ByteSizeLong() const {
   return total_size;
 }
 
-void vid_manage::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:pb.monitor.vid_manage)
+void range_manage::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:pb.monitor.range_manage)
   GOOGLE_DCHECK_NE(&from, this);
-  const vid_manage* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const vid_manage>(
+  const range_manage* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const range_manage>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pb.monitor.range_manage)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.monitor.vid_manage)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:pb.monitor.range_manage)
     MergeFrom(*source);
   }
 }
 
-void vid_manage::MergeFrom(const vid_manage& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:pb.monitor.vid_manage)
+void range_manage::MergeFrom(const range_manage& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:pb.monitor.range_manage)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::google::protobuf::uint32 cached_has_bits = 0;
@@ -2568,29 +2568,29 @@ void vid_manage::MergeFrom(const vid_manage& from) {
   }
 }
 
-void vid_manage::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:pb.monitor.vid_manage)
+void range_manage::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:pb.monitor.range_manage)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void vid_manage::CopyFrom(const vid_manage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:pb.monitor.vid_manage)
+void range_manage::CopyFrom(const range_manage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:pb.monitor.range_manage)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool vid_manage::IsInitialized() const {
+bool range_manage::IsInitialized() const {
   return true;
 }
 
-void vid_manage::Swap(vid_manage* other) {
+void range_manage::Swap(range_manage* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void vid_manage::InternalSwap(vid_manage* other) {
+void range_manage::InternalSwap(range_manage* other) {
   using std::swap;
   CastToBase(&inventory_)->InternalSwap(CastToBase(&other->inventory_));
   CastToBase(&already_assigned_)->InternalSwap(CastToBase(&other->already_assigned_));
@@ -2599,7 +2599,7 @@ void vid_manage::InternalSwap(vid_manage* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
-::google::protobuf::Metadata vid_manage::GetMetadata() const {
+::google::protobuf::Metadata range_manage::GetMetadata() const {
   protobuf_monitor_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_monitor_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -2628,8 +2628,8 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::vid_node* Arena::Cr
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::module_list* Arena::CreateMaybeMessage< ::pb::monitor::module_list >(Arena* arena) {
   return Arena::CreateInternal< ::pb::monitor::module_list >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::vid_manage* Arena::CreateMaybeMessage< ::pb::monitor::vid_manage >(Arena* arena) {
-  return Arena::CreateInternal< ::pb::monitor::vid_manage >(arena);
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pb::monitor::range_manage* Arena::CreateMaybeMessage< ::pb::monitor::range_manage >(Arena* arena) {
+  return Arena::CreateInternal< ::pb::monitor::range_manage >(arena);
 }
 }  // namespace protobuf
 }  // namespace google
