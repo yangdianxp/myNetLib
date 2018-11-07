@@ -87,6 +87,8 @@ enum cmd_enum
 	cmd_monitor_vid_manage_ack,
 	cmd_monitor_tid_manage,				//请求gateway  central的balance tid管理信息
 	cmd_monitor_tid_manage_ack,
+	cmd_monitor_balance,				//请求balance balance信息
+	cmd_monitor_balance_ack,
 	cmd_end
 };
 

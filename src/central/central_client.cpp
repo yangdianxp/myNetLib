@@ -261,11 +261,11 @@ void central_client::handle_monitor_tv_manage(proto_msg& msg)
 		};
 		m.for_each_already_assigned(f2);
 		proto_msg ack_msg;
-		if (ack_msg.m_cmd == cmd_monitor_vid_manage)
+		if (msg.m_cmd == cmd_monitor_vid_manage)
 		{
 			ack_msg.m_cmd = cmd_monitor_vid_manage_ack;
 		}
-		else if (ack_msg.m_cmd == cmd_monitor_tid_manage){
+		else if (msg.m_cmd == cmd_monitor_tid_manage){
 			ack_msg.m_cmd = cmd_monitor_tid_manage_ack;
 		}
 		ack_msg.serialize_msg(manage);

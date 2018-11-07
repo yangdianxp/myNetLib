@@ -35,4 +35,6 @@ See http://www.boost.org/LICENSE_1_0.txt
       <item>monitor</item>
     </login>
   </link_type>
+  <!--balance负责的tid范围大小-->
+  <blance_tid_range>100000</blance_tid_range>
 </conf>

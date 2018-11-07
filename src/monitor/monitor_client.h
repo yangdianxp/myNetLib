@@ -18,6 +18,7 @@ public:
 	void handle_monitor_list();
 	void handle_monitor_route(int id);
 	void handle_monitor_tvmanage(int id, std::string cmd);
+	void handle_monitor_balance(int id);
 
 	void init(std::shared_ptr<base_server>);
 private:

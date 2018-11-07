@@ -111,7 +111,8 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 			<< "list" << std::endl
 			<< "route [id]" << std::endl
 			<< "vmanage [id] --->just for central" << std::endl
-			<< "tmanage [id] --->just for central and gateway";
+			<< "tmanage [id] --->just for central and gateway" << std::endl 
+			<< "balance [id] --->just for balance";
 	}
 	else if (id < 0)
 	{
@@ -128,6 +129,10 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 	else if (cmd == "tmanage")
 	{
 		handle_monitor_tvmanage(id, cmd);
+	}
+	else if (cmd == "balance")
+	{
+		handle_monitor_balance(id);
 	}
 	else
 	{
@@ -206,6 +211,30 @@ void monitor_client::handle_monitor_tvmanage(int id, std::string cmd)
 		}
 		else {
 			SLOG_WARNING << "module does not exist.";
+		}
+	}
+}
+void monitor_client::handle_monitor_balance(int id)
+{
+	std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		auto client = route->get_client(id);
+		if (client)
+		{
+			auto client1 = std::dynamic_pointer_cast<monitor_client>(client);
+			if (client1)
+			{
+				if (client1->get_type() == module_balance_type)
+				{
+					proto_msg msg(cmd_monitor_balance);
+					client1->write((char *)&msg, msg.size());
+				}
+				else {
+					SLOG_WARNING << "module is not balance.";
+				}
+			}
 		}
 	}
 }

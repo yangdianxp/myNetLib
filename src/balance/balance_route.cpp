@@ -48,3 +48,14 @@ std::shared_ptr<common_client> balance_route::get_first_media(std::size_t type)
 	}
 	return index;
 }
+
+std::size_t balance_route::for_each_ref(std::function<void(std::shared_ptr<common_client> client, const std::size_t)> fn)
+{
+	std::size_t cnt = 0;
+	for (auto n : m_ref)
+	{
+		fn(n.first, n.second);
+		++cnt;
+	}
+	return cnt;
+}

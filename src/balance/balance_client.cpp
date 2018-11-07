@@ -76,6 +76,12 @@ void balance_client::handle_user_disconnection(proto_msg& msg)
 	}
 }
 
+void balance_client::handle_monitor_balance(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	
+}
+
 void balance_client::init(std::shared_ptr<base_server> server)
 {
 	common_client::init(server);
@@ -85,5 +91,6 @@ void balance_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_create_channel] = std::bind(&balance_client::handle_create_channel, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel_ack] = std::bind(&balance_client::handle_create_channel_ack, client, std::placeholders::_1);
 		m_function_set[cmd_user_disconnection] = std::bind(&balance_client::handle_user_disconnection, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_balance] = std::bind(&balance_client::handle_monitor_balance, client, std::placeholders::_1);
 	}
 }
