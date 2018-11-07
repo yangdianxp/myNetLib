@@ -44,7 +44,7 @@ message module_list
 	repeated vid_node vid_node = 7;
 }
 
-message vid_manage
+message range_manage
 {
 	int32 index = 1;
 	int32 unit_size = 2;

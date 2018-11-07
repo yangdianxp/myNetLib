@@ -61,10 +61,10 @@ void monitor_client::handle_monitor_route_ack(proto_msg& msg)
 			<< n.uid() << " vid:" << n.vid();
 	}
 }
-void monitor_client::handle_monitor_vid_manage_ack(proto_msg& msg)
+void monitor_client::handle_monitor_tv_manage_ack(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
-	pb::monitor::vid_manage manage;
+	pb::monitor::range_manage manage;
 	msg.parse(manage);
 	SLOG_INFO << std::endl
 		<< "index:" << manage.index() << std::endl
@@ -110,7 +110,8 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 			<< "==============help==============" << std::endl
 			<< "list" << std::endl
 			<< "route [id]" << std::endl
-			<< "vmanage [id] --->just for central";
+			<< "vmanage [id] --->just for central" << std::endl
+			<< "tmanage [id] --->just for central and gateway";
 	}
 	else if (id < 0)
 	{
@@ -122,7 +123,11 @@ void monitor_client::monitor_instruction_proc(std::string cmd, int id)
 	}
 	else if (cmd == "vmanage")
 	{
-		handle_monitor_vmanage(id);
+		handle_monitor_tvmanage(id, cmd);
+	}
+	else if (cmd == "tmanage")
+	{
+		handle_monitor_tvmanage(id, cmd);
 	}
 	else
 	{
@@ -162,7 +167,7 @@ void monitor_client::handle_monitor_route(int id)
 		}
 	}
 }
-void monitor_client::handle_monitor_vmanage(int id)
+void monitor_client::handle_monitor_tvmanage(int id, std::string cmd)
 {
 	std::shared_ptr<monitor_server> server = std::dynamic_pointer_cast<monitor_server>(m_server);
 	if (server)
@@ -174,14 +179,29 @@ void monitor_client::handle_monitor_vmanage(int id)
 			auto client1 = std::dynamic_pointer_cast<monitor_client>(client);
 			if (client1)
 			{
-				if (client1->get_type() == module_central_type)
+				if (cmd == "vmanage")
 				{
-					proto_msg msg(cmd_monitor_vid_manage);
-					client1->write((char *)&msg, msg.size());
+					if (client1->get_type() == module_central_type)
+					{
+						proto_msg msg(cmd_monitor_vid_manage);
+						client1->write((char *)&msg, msg.size());
+					}
+					else {
+						SLOG_WARNING << "module is not central.";
+					}
 				}
-				else {
-					SLOG_WARNING << "module is not central.";
+				else if (cmd == "tmanage")
+				{
+					if (client1->get_type() == module_central_type || client1->get_type() == module_gateway_type)
+					{
+						proto_msg msg(cmd_monitor_tid_manage);
+						client1->write((char *)&msg, msg.size());
+					}
+					else {
+						SLOG_WARNING << "module is not central or gateway.";
+					}
 				}
+				
 			}
 		}
 		else {
@@ -198,6 +218,7 @@ void monitor_client::init(std::shared_ptr<base_server> server)
 	{
 		m_function_set[cmd_monitor_instruction] = std::bind(&monitor_client::handle_cmd_monitor_instruction, client, std::placeholders::_1);
 		m_function_set[cmd_monitor_route_ack] = std::bind(&monitor_client::handle_monitor_route_ack, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_vid_manage_ack] = std::bind(&monitor_client::handle_monitor_vid_manage_ack, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_vid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_tid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, client, std::placeholders::_1);
 	}
 }

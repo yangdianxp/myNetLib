@@ -183,6 +183,27 @@ void gateway_client::handle_interchannel_broadcast_ack(proto_msg& msg)
 		}
 	}
 }
+void gateway_client::handle_monitor_tid_manage(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
+	{
+		auto& list = server->get_balance_list();
+		pb::monitor::range_manage manage;
+		for (auto n : list)
+		{
+			pb::internal::mid_range* m_r = manage.add_already_assigned();
+			m_r->set_mid(n.first);
+			pb::internal::range* r = m_r->mutable_range();
+			r->set_begin(n.second.first);
+			r->set_end(n.second.second);
+		}
+		proto_msg ack_msg(cmd_monitor_tid_manage_ack);
+		ack_msg.serialize_msg(manage);
+		write((char *)&ack_msg, ack_msg.size());
+	}
+}
 
 void gateway_client::init(std::shared_ptr<base_server> server)
 {
@@ -197,5 +218,6 @@ void gateway_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_create_channel_ack] = std::bind(&gateway_client::handle_create_channel_ack, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast] = std::bind(&gateway_client::handle_interchannel_broadcast, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&gateway_client::handle_interchannel_broadcast_ack, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_tid_manage] = std::bind(&gateway_client::handle_monitor_tid_manage, client, std::placeholders::_1);
 	}
 }

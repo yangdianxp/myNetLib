@@ -16,8 +16,7 @@ public:
 	void broadcast_module_logon();
 	void handle_request_vid_range(proto_msg& msg);
 	
-	void handle_monitor_vid_manage(proto_msg& msg);
-	void handle_monitor_tid_manage(proto_msg& msg);
+	void handle_monitor_tv_manage(proto_msg& msg);
 	void init(std::shared_ptr<base_server>);
 private:
 };

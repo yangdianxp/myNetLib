@@ -21,6 +21,7 @@ public:
 	void handle_interchannel_broadcast(proto_msg& msg);
 	void handle_interchannel_broadcast_ack(proto_msg& msg);
 	
+	void handle_monitor_tid_manage(proto_msg& msg);
 	void init(std::shared_ptr<base_server>);
 private:
 	

@@ -225,14 +225,23 @@ void central_client::handle_request_vid_range(proto_msg& msg)
 	}
 }
 
-void central_client::handle_monitor_vid_manage(proto_msg& msg)
+void central_client::handle_monitor_tv_manage(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 	auto server = std::dynamic_pointer_cast<central_server>(m_server);
 	if (server)
 	{
-		auto& m = server->get_vid_manage();
-		pb::monitor::vid_manage manage;
+		std::function<range_manage&()> fn;
+		if (msg.m_cmd == cmd_monitor_vid_manage)
+		{
+			fn = std::bind(&central_server::get_vid_manage, server);
+		}
+		else if (msg.m_cmd == cmd_monitor_tid_manage)
+		{
+			fn = std::bind(&central_server::get_tid_manage, server);
+		}
+		auto& m = fn();
+		pb::monitor::range_manage manage;
 		manage.set_index(m.get_index());
 		manage.set_unit_size(m.get_unit_size());
 		auto f1 = [&manage](range_manage::pair& p)
@@ -251,14 +260,17 @@ void central_client::handle_monitor_vid_manage(proto_msg& msg)
 			r->set_end(p.second.second);
 		};
 		m.for_each_already_assigned(f2);
-		proto_msg msg(cmd_monitor_vid_manage_ack);
-		msg.serialize_msg(manage);
-		write((char *)&msg, msg.size());
+		proto_msg ack_msg;
+		if (ack_msg.m_cmd == cmd_monitor_vid_manage)
+		{
+			ack_msg.m_cmd = cmd_monitor_vid_manage_ack;
+		}
+		else if (ack_msg.m_cmd == cmd_monitor_tid_manage){
+			ack_msg.m_cmd = cmd_monitor_tid_manage_ack;
+		}
+		ack_msg.serialize_msg(manage);
+		write((char *)&ack_msg, ack_msg.size());
 	}
-}
-void central_client::handle_monitor_tid_manage(proto_msg& msg)
-{
-	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 }
 
 void central_client::init(std::shared_ptr<base_server> server)
@@ -270,7 +282,8 @@ void central_client::init(std::shared_ptr<base_server> server)
 	{
 		m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, client, std::placeholders::_1);
 		m_function_set[cmd_request_vid_range] = std::bind(&central_client::handle_request_vid_range, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_vid_manage] = std::bind(&central_client::handle_monitor_vid_manage, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_vid_manage] = std::bind(&central_client::handle_monitor_tv_manage, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_tid_manage] = std::bind(&central_client::handle_monitor_tv_manage, client, std::placeholders::_1);
 	}
 }
 
