@@ -73,6 +73,8 @@ enum cmd_enum
 
 	cmd_create_channel,					//创建通道
 	cmd_create_channel_ack,
+	cmd_delete_channel,					//删除通道
+	cmd_delete_channel_ack,
 	cmd_user_disconnection,
 	cmd_user_disconnection_ack,
 	/*发送消息命令*/

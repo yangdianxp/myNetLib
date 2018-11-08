@@ -12,11 +12,15 @@ public:
 	void handle_connect_succ();
 	void handle_create_channel_ack(proto_msg& msg);
 	void handle_interchannel_broadcast_ack(proto_msg& msg);
+
+	void handle_task_timer();
 	void init(std::shared_ptr<base_server> server);
 private:
 	std::size_t m_type = module_media_type;
 	std::size_t m_tid = 1000;
 	std::size_t m_uid = 10000;
+
+	boost::asio::steady_timer m_task_timer;
 };
 
 #endif

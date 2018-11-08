@@ -275,6 +275,8 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 	{ cmd_update_balance_list_ack, "central notice gateway update balance list respond" },
 	{ cmd_create_channel, "user create channel" },
 	{ cmd_create_channel_ack, "user create channel respond" },
+	{ cmd_delete_channel, "user delete channel" },
+	{ cmd_delete_channel_ack, "user delete channel respond" },
 	{ cmd_user_disconnection, "user offline" },
 	{ cmd_user_disconnection_ack, "user offline respond" },
 	{ cmd_interchannel_broadcast, "user broadcast msg in channel" },

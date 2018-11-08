@@ -1,13 +1,14 @@
+#include <sstream>
 #include "user_client.h"
 
 user_client::user_client(boost::asio::io_context& io_context,
 	std::string remote_ip, std::string remote_port) :
-	common_client(io_context, remote_ip, remote_port)
+	common_client(io_context, remote_ip, remote_port), m_task_timer(io_context)
 {
 
 }
 user_client::user_client(boost::asio::io_context& io_context, tcp::socket socket) :
-	common_client(io_context, std::move(socket))
+	common_client(io_context, std::move(socket)), m_task_timer(io_context)
 {
 
 }
@@ -31,10 +32,18 @@ void user_client::handle_create_channel_ack(proto_msg& msg)
 	if (modify.rslt() == pb::external::modify_channel::rslt_succ)
 	{
 		proto_msg msg(cmd_interchannel_broadcast, m_type, m_tid, m_uid);
+		std::stringstream ss;
+		ss << "hello world. ";
 		pb::external::info info;
 		info.set_data("hello world.");
 		msg.serialize_msg(info);
-		write((char *)&msg, msg.size());
+		for (int i = 0; i < 10; ++i)
+		{
+			write((char *)&msg, msg.size());
+		}
+		m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(5000));
+		m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer, 
+			std::dynamic_pointer_cast<user_client>(shared_from_this())));
 	}
 }
 void user_client::handle_interchannel_broadcast_ack(proto_msg& msg)
@@ -43,6 +52,12 @@ void user_client::handle_interchannel_broadcast_ack(proto_msg& msg)
 	pb::external::info info;
 	msg.parse(info);
 	SLOG_DEBUG << info.DebugString();
+}
+
+void user_client::handle_task_timer()
+{
+	SLOG_DEBUG << "handle_task_timer";
+
 }
 
 void user_client::init(std::shared_ptr<base_server> server)
