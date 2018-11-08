@@ -72,14 +72,49 @@ void balance_client::handle_user_disconnection(proto_msg& msg)
 	if (server)
 	{
 		auto route = server->get_route();
+		auto self = shared_from_this();
+		std::vector<route::ttnode> ttnodes;
+		auto fn = [self, &ttnodes](const route::ttnode& tt)
+		{
+			ttnodes.push_back(tt);
+		};
+		route->for_each_vid_ttnode(msg.m_vid, fn);
 		route->delete_node(msg.m_vid);
+		for (auto n : ttnodes)
+		{
+			auto client = route->get_ttnode(n);
+			if (!client)
+			{
+
+			}
+		}
 	}
 }
 
 void balance_client::handle_monitor_balance(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
-	
+	auto server = std::dynamic_pointer_cast<balance_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		auto b_route = std::dynamic_pointer_cast<balance_route>(route);
+		if (b_route)
+		{
+			pb::monitor::balance_info binfo;
+			auto self = shared_from_this();
+			auto fn = [self, &binfo](std::shared_ptr<common_client> client, const std::size_t ref)
+			{
+				pb::monitor::mid_ref* mr = binfo.add_info();
+				mr->set_mid(client->get_id());
+				mr->set_ref(ref);
+			};
+			b_route->for_each_ref(fn);
+			proto_msg ack_msg(cmd_monitor_balance_ack);
+			ack_msg.serialize_msg(binfo);
+			write((char *)&ack_msg, ack_msg.size());
+		}
+	}
 }
 
 void balance_client::init(std::shared_ptr<base_server> server)

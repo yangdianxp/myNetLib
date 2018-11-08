@@ -187,6 +187,17 @@ std::size_t route::for_each_vid_node(std::function<void(const std::size_t, const
 	}
 	return cnt;
 }
+std::size_t route::for_each_vid_ttnode(std::size_t vid, std::function<void(const ttnode&)> fn)
+{
+	std::size_t cnt = 0;
+	auto range = m_vid_node.left.equal_range(vid);
+	for (auto it = range.first; it != range.second; ++it, ++cnt)
+	{
+		auto it_tt = m_ttnode_node.right.find(it->second);
+		fn(it_tt->second);
+	}
+	return cnt;
+}
 
 std::size_t route::get_clients_size()
 {

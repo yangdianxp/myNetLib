@@ -51,3 +51,14 @@ message range_manage
 	repeated internal.range inventory = 3;
 	repeated internal.mid_range already_assigned = 4;
 }
+
+message mid_ref
+{
+	int32 mid = 1;
+	int32 ref = 2;
+}
+
+message balance_info
+{
+	repeated mid_ref info = 1;
+}

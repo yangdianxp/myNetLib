@@ -11,6 +11,7 @@ public:
 
 	void handle_monitor_route_ack(proto_msg& msg);
 	void handle_monitor_tv_manage_ack(proto_msg& msg);
+	void handle_monitor_balance_ack(proto_msg& msg);
 
 	void handle_cmd_monitor_instruction(proto_msg& msg);
 	/*控制台命令处理程序*/

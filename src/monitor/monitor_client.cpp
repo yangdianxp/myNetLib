@@ -84,6 +84,19 @@ void monitor_client::handle_monitor_tv_manage_ack(proto_msg& msg)
 	}
 }
 
+void monitor_client::handle_monitor_balance_ack(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::monitor::balance_info binfo;
+	msg.parse(binfo);
+	SLOG_INFO << "info_size:" << binfo.info_size();
+	for (int i = 0; i < binfo.info_size(); ++i)
+	{
+		const pb::monitor::mid_ref& mr = binfo.info(i);
+		SLOG_INFO << i << " mid:" << mr.mid() << " ref:" << mr.ref();
+	}
+}
+
 void monitor_client::handle_cmd_monitor_instruction(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
@@ -249,5 +262,6 @@ void monitor_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_monitor_route_ack] = std::bind(&monitor_client::handle_monitor_route_ack, client, std::placeholders::_1);
 		m_function_set[cmd_monitor_vid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, client, std::placeholders::_1);
 		m_function_set[cmd_monitor_tid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_balance_ack] = std::bind(&monitor_client::handle_monitor_balance_ack, client, std::placeholders::_1);
 	}
 }
