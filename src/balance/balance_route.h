@@ -13,6 +13,7 @@ public:
 
 	std::shared_ptr<common_client> get_first_media(std::size_t type);
 	std::size_t for_each_ref(std::function<void(std::shared_ptr<common_client> client, const std::size_t)>);
+	void reduce_ref(std::shared_ptr<common_client> client, std::size_t cnt = 1);
 private:
 	/*media模块上通道数记录*/
 	m_size_t m_ref;

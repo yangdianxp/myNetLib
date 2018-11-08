@@ -59,3 +59,11 @@ std::size_t balance_route::for_each_ref(std::function<void(std::shared_ptr<commo
 	}
 	return cnt;
 }
+
+void balance_route::reduce_ref(std::shared_ptr<common_client> client, std::size_t cnt)
+{
+	if (m_ref[client] >= cnt)
+	{
+		m_ref[client] -= cnt;
+	}
+}

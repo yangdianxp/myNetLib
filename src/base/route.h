@@ -85,7 +85,7 @@ public:
 	std::size_t for_each_ttnode_node(std::function<void(const ttnode&, const node&)>);
 	std::size_t for_each_vid(std::size_t vid, std::function<void(std::shared_ptr<common_client>)> fn);
 	std::size_t for_each_vid_node(std::function<void(const std::size_t, const node&)>);
-	std::size_t for_each_vid_ttnode(std::size_t vid, std::function<void(const ttnode&)>);
+	std::size_t for_each_vid_ttnode(std::size_t vid, std::function<void(std::shared_ptr<common_client>, const ttnode&)>);
 
 	std::size_t get_clients_size();
 	std::size_t get_type_clients_size();

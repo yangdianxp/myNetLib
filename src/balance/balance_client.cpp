@@ -1,3 +1,4 @@
+#include <unordered_map>
 #include "balance_client.h"
 #include "balance_server.h"
 
@@ -67,25 +68,29 @@ void balance_client::handle_create_channel_ack(proto_msg& msg)
 }
 void balance_client::handle_user_disconnection(proto_msg& msg)
 {
-	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", vid" << msg.m_vid;
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", vid:" << msg.m_vid;
 	auto server = std::dynamic_pointer_cast<balance_server>(m_server);
 	if (server)
 	{
 		auto route = server->get_route();
-		auto self = shared_from_this();
-		std::vector<route::ttnode> ttnodes;
-		auto fn = [self, &ttnodes](const route::ttnode& tt)
+		auto b_route = std::dynamic_pointer_cast<balance_route>(route);
+		if (b_route)
 		{
-			ttnodes.push_back(tt);
-		};
-		route->for_each_vid_ttnode(msg.m_vid, fn);
-		route->delete_node(msg.m_vid);
-		for (auto n : ttnodes)
-		{
-			auto client = route->get_ttnode(n);
-			if (!client)
+			auto self = shared_from_this();
+			std::unordered_multimap<std::shared_ptr<common_client>, route::ttnode> ttnodes;
+			auto fn = [self, &ttnodes](std::shared_ptr<common_client> client, const route::ttnode& tt)
 			{
-
+				ttnodes.insert(std::make_pair(client, tt));
+			};
+			route->for_each_vid_ttnode(msg.m_vid, fn);
+			route->delete_node(msg.m_vid);
+			for (auto n : ttnodes)
+			{
+				auto client = route->get_ttnode(n.second);
+				if (!client)
+				{
+					b_route->reduce_ref(n.first);
+				}
 			}
 		}
 	}
