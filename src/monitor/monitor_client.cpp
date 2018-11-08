@@ -249,6 +249,9 @@ void monitor_client::handle_monitor_balance(int id)
 				}
 			}
 		}
+		else {
+			SLOG_WARNING << "module does not exist.";
+		}
 	}
 }
 
