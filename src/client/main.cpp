@@ -1,6 +1,6 @@
 #include <iostream>
-#include <set>
 #include <boost/asio.hpp>
+#include <list>
 
 #include "user_client.h"
 
@@ -18,10 +18,17 @@ int main(int argc, char* argv[])
 		boost::asio::io_context io_context;
 		std::string remote_ip = config_reader.get_remote_ip();
 		std::string remote_port = std::to_string(config_reader.get_remote_port());
-		auto client = std::make_shared<user_client>(io_context, remote_ip, remote_port);
-		client->set_reconnect_time(3000);
-		client->init(std::shared_ptr<base_server>());
-		client->set_active_type(module_user_type);
+		std::string ports[4] = {"21000", "21001", "21002", "21003"};
+		std::list<std::shared_ptr<user_client>> users;
+		for (int i = 10000; i < 20000; ++i)
+		{
+			auto client = std::make_shared<user_client>(io_context, remote_ip, ports[i % 4]);
+			client->set_reconnect_time(3000);
+			client->init(std::shared_ptr<base_server>());
+			client->set_active_type(module_gateway_type);
+			client->set_user_info(i / 3, i);
+			users.push_back(client);
+		}
 		std::shared_ptr<boost::asio::io_service::work> work
 			= std::make_shared<boost::asio::io_service::work>(io_context);
 		io_context.run();

@@ -58,6 +58,7 @@ void media_client::handle_delete_channel(proto_msg& msg)
 		route->delete_node(n);
 		modify.set_rslt(pb::external::modify_channel::rslt_succ);
 	}
+	msg.m_cmd = cmd_delete_channel_ack;
 	msg.serialize_msg(modify);
 	write((char *)&msg, msg.size());
 }

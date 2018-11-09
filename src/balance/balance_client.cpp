@@ -107,6 +107,7 @@ void balance_client::handle_delete_channel(proto_msg& msg)
 			modify.set_rslt(pb::external::modify_channel::rslt_succ);
 		}
 	}
+	msg.m_cmd = cmd_delete_channel_ack;
 	msg.serialize_msg(modify);
 	write((char *)&msg, msg.size());
 }

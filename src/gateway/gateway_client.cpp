@@ -191,9 +191,15 @@ void gateway_client::handle_delete_channel(proto_msg& msg)
 			SLOG_WARNING << "this channel does not exist.";
 			modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
 		}
+		msg.m_cmd = cmd_delete_channel_ack;
 		msg.serialize_msg(modify);
 		write((char *)&msg, msg.size());
 	}
+}
+void gateway_client::handle_delete_channel_ack(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] 
+		<< ", mid:" << m_id << ", type info:" << config_settings::instance().get_module_name(m_type);
 }
 void gateway_client::handle_interchannel_broadcast(proto_msg& msg)
 {
@@ -257,6 +263,7 @@ void gateway_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_create_channel] = std::bind(&gateway_client::handle_create_channel, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel_ack] = std::bind(&gateway_client::handle_create_channel_ack, client, std::placeholders::_1);
 		m_function_set[cmd_delete_channel] = std::bind(&gateway_client::handle_delete_channel, client, std::placeholders::_1);
+		m_function_set[cmd_delete_channel_ack] = std::bind(&gateway_client::handle_delete_channel_ack, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast] = std::bind(&gateway_client::handle_interchannel_broadcast, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&gateway_client::handle_interchannel_broadcast_ack, client, std::placeholders::_1);
 		m_function_set[cmd_monitor_tid_manage] = std::bind(&gateway_client::handle_monitor_tid_manage, client, std::placeholders::_1);

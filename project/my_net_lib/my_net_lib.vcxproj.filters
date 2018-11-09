@@ -608,5 +608,8 @@
     <None Include="..\..\src\run\ff.sh">
       <Filter>src\run</Filter>
     </None>
+    <None Include="..\..\src\run\rm_logs.sh">
+      <Filter>src\run</Filter>
+    </None>
   </ItemGroup>
 </Project>

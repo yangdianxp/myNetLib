@@ -11,10 +11,12 @@ public:
 
 	void handle_connect_succ();
 	void handle_create_channel_ack(proto_msg& msg);
+	void handle_delete_channel_ack(proto_msg& msg);
 	void handle_interchannel_broadcast_ack(proto_msg& msg);
 
 	void handle_task_timer();
 	void init(std::shared_ptr<base_server> server);
+	void set_user_info(std::size_t tid, std::size_t uid);
 private:
 	std::size_t m_type = module_media_type;
 	std::size_t m_tid = 1000;

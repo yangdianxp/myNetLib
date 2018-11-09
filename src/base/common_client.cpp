@@ -209,30 +209,42 @@ void common_client::handle_monitor_route(proto_msg& msg)
 		info.set_clients_size(route->get_clients_size());
 		info.set_type_clients_size(route->get_type_clients_size());
 		auto self = shared_from_this();
-		auto fn = [self, &info](std::shared_ptr<common_client> client)
+		auto f_check = [self, this, &info, &msg]()
+		{
+			if (info.ByteSize() > proto_msg::msg_data_length / 2)
+			{
+				msg.serialize_msg(info);
+				write((char *)&msg, msg.size());
+				info.Clear();
+			}
+		};
+		auto fn = [self, &info, f_check](std::shared_ptr<common_client> client)
 		{
 			pb::internal::register_info* r = info.add_mid_clients();
 			r->set_id(client->get_id());
 			r->set_type(client->get_type());
 			r->set_ip(client->get_ip());
 			r->set_port(client->get_port());
+			f_check();
 		};
 		route->for_each_mid(fn);
-		auto fn1 = [self, &info](const std::size_t vid, std::shared_ptr<common_client> client)
+		auto fn1 = [self, &info, f_check](const std::size_t vid, std::shared_ptr<common_client> client)
 		{
 			info.add_vid_clients(vid);
+			f_check();
 		};
 		route->for_each_vid_clients(fn1);
-		auto fn2 = [self, &info](const route::node& n, std::shared_ptr<common_client> client)
+		auto fn2 = [self, &info, f_check](const route::node& n, std::shared_ptr<common_client> client)
 		{
 			pb::monitor::node* node = info.add_node_clients();
 			node->set_type(n.type);
 			node->set_tid(n.tid);
 			node->set_uid(n.uid);
 			node->set_vid(n.vid);
+			f_check();
 		};
 		route->for_each_node_clients(fn2);
-		auto fn3 = [self, &info](const route::ttnode& ttn, const route::node& n)
+		auto fn3 = [self, &info, f_check](const route::ttnode& ttn, const route::node& n)
 		{
 			pb::monitor::ttnode_node* ttnn = info.add_ttnode_node();
 			pb::monitor::ttnode* ttnode = ttnn->mutable_ttn();
@@ -243,9 +255,10 @@ void common_client::handle_monitor_route(proto_msg& msg)
 			node->set_tid(n.tid);
 			node->set_uid(n.uid);
 			node->set_vid(n.vid);
+			f_check();
 		};
 		route->for_each_ttnode_node(fn3);
-		auto fn4 = [self, &info](const std::size_t vid, const route::node& n)
+		auto fn4 = [self, &info, f_check](const std::size_t vid, const route::node& n)
 		{
 			pb::monitor::vid_node* vnode = info.add_vid_node();
 			vnode->set_vid(vid);
@@ -254,6 +267,7 @@ void common_client::handle_monitor_route(proto_msg& msg)
 			node->set_tid(n.tid);
 			node->set_uid(n.uid);
 			node->set_vid(n.vid);
+			f_check();
 		};
 		route->for_each_vid_node(fn4);
 		msg.serialize_msg(info);

@@ -163,6 +163,7 @@
     <None Include="..\..\src\run\copy.sh" />
     <None Include="..\..\src\run\ff.sh" />
     <None Include="..\..\src\run\laqi.sh" />
+    <None Include="..\..\src\run\rm_logs.sh" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
