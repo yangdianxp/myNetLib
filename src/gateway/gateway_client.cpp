@@ -122,13 +122,12 @@ void gateway_client::handle_create_channel(proto_msg& msg)
 		else {
 			SLOG_WARNING << "this channel already exists. type:" << modify.type() << " tid:" << modify.tid()
 				<< " uid:" << modify.uid() << " vid:" << modify.vid();
-			modify.set_rslt(pb::external::modify_channel::rslt_succ);
+			modify.set_rslt(pb::external::modify_channel::rslt_already_exist);
 			msg.serialize_msg(modify);
 			write((char *)&msg, msg.size());
 		}
 	}
 }
-
 void gateway_client::handle_create_channel_ack(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
@@ -153,6 +152,47 @@ void gateway_client::handle_create_channel_ack(proto_msg& msg)
 		{
 			client->write((char *)&msg, msg.size());
 		}
+	}
+}
+void gateway_client::handle_delete_channel(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	pb::external::modify_channel modify;
+	msg.parse(modify);
+	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
+	if (server)
+	{
+		auto route = server->get_route();
+		modify.set_vid(m_id);
+		modify.set_src(server->get_id());
+		SLOG_DEBUG << modify.DebugString();
+		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
+		if (route->find_node(n))
+		{
+			msg.serialize_msg(modify);
+			/*向balance发送*/
+			auto id = server->get_balance(modify.tid());
+			auto balance = route->get_client(id);
+			if (balance)
+			{
+				balance->write((char *)&msg, msg.size());
+			}
+			/*向media发送*/
+			auto media = route->get_node(n);
+			if (media)
+			{
+				media->write((char *)&msg, msg.size());
+			}
+			//删除通道
+			route->delete_node(n);
+			modify.set_rslt(pb::external::modify_channel::rslt_succ);
+		}
+		else {
+			SLOG_WARNING << "this channel does not exist.";
+			modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
+		}
+		msg.serialize_msg(modify);
+		write((char *)&msg, msg.size());
 	}
 }
 void gateway_client::handle_interchannel_broadcast(proto_msg& msg)
@@ -216,6 +256,7 @@ void gateway_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_update_balance_list] = std::bind(&gateway_client::handle_update_balance_list, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel] = std::bind(&gateway_client::handle_create_channel, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel_ack] = std::bind(&gateway_client::handle_create_channel_ack, client, std::placeholders::_1);
+		m_function_set[cmd_delete_channel] = std::bind(&gateway_client::handle_delete_channel, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast] = std::bind(&gateway_client::handle_interchannel_broadcast, client, std::placeholders::_1);
 		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&gateway_client::handle_interchannel_broadcast_ack, client, std::placeholders::_1);
 		m_function_set[cmd_monitor_tid_manage] = std::bind(&gateway_client::handle_monitor_tid_manage, client, std::placeholders::_1);

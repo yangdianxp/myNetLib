@@ -6,8 +6,10 @@ message modify_channel
 	enum rslt_type
 	{
 		rslt_none = 0;
-		rslt_succ = 1;
-		rslt_fail = 2;
+		rslt_succ = 1;		//成功
+		rslt_fail = 2;		//失败
+		rslt_already_exist = 3; //通道已经存在
+		rslt_not_exist = 4;
 	}
 	int32 type = 1;
 	int32 tid = 2;

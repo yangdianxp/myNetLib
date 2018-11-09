@@ -18,6 +18,7 @@ public:
 	void handle_update_balance_list(proto_msg& msg);
 	void handle_create_channel(proto_msg& msg);
 	void handle_create_channel_ack(proto_msg& msg);
+	void handle_delete_channel(proto_msg& msg);
 	void handle_interchannel_broadcast(proto_msg& msg);
 	void handle_interchannel_broadcast_ack(proto_msg& msg);
 	

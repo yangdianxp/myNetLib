@@ -121,15 +121,16 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\016external.proto\022\013pb.external\"\247\001\n\016modify"
+      "\n\016external.proto\022\013pb.external\"\323\001\n\016modify"
       "_channel\022\014\n\004type\030\001 \001(\005\022\013\n\003tid\030\002 \001(\005\022\013\n\003u"
       "id\030\003 \001(\005\022\013\n\003vid\030\004 \001(\005\022\013\n\003src\030\005 \001(\005\022\013\n\003ds"
-      "t\030\006 \001(\005\022\014\n\004rslt\030\007 \001(\005\"8\n\trslt_type\022\r\n\trs"
-      "lt_none\020\000\022\r\n\trslt_succ\020\001\022\r\n\trslt_fail\020\002\""
-      "\024\n\004info\022\014\n\004data\030\001 \001(\014b\006proto3"
+      "t\030\006 \001(\005\022\014\n\004rslt\030\007 \001(\005\"d\n\trslt_type\022\r\n\trs"
+      "lt_none\020\000\022\r\n\trslt_succ\020\001\022\r\n\trslt_fail\020\002\022"
+      "\026\n\022rslt_already_exist\020\003\022\022\n\016rslt_not_exis"
+      "t\020\004\"\024\n\004info\022\014\n\004data\030\001 \001(\014b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 229);
+      descriptor, 273);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "external.proto", &protobuf_RegisterTypes);
 }
@@ -156,6 +157,8 @@ bool modify_channel_rslt_type_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+    case 3:
+    case 4:
       return true;
     default:
       return false;
@@ -166,6 +169,8 @@ bool modify_channel_rslt_type_IsValid(int value) {
 const modify_channel_rslt_type modify_channel::rslt_none;
 const modify_channel_rslt_type modify_channel::rslt_succ;
 const modify_channel_rslt_type modify_channel::rslt_fail;
+const modify_channel_rslt_type modify_channel::rslt_already_exist;
+const modify_channel_rslt_type modify_channel::rslt_not_exist;
 const modify_channel_rslt_type modify_channel::rslt_type_MIN;
 const modify_channel_rslt_type modify_channel::rslt_type_MAX;
 const int modify_channel::rslt_type_ARRAYSIZE;

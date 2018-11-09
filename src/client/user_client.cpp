@@ -57,7 +57,13 @@ void user_client::handle_interchannel_broadcast_ack(proto_msg& msg)
 void user_client::handle_task_timer()
 {
 	SLOG_DEBUG << "handle_task_timer";
-
+	pb::external::modify_channel modify;
+	modify.set_type(m_type);
+	modify.set_tid(m_tid);
+	modify.set_uid(m_uid);
+	proto_msg msg(cmd_delete_channel);
+	msg.serialize_msg(modify);
+	write((char *)&msg, msg.size());
 }
 
 void user_client::init(std::shared_ptr<base_server> server)

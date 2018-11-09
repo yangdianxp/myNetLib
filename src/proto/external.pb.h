@@ -69,12 +69,14 @@ enum modify_channel_rslt_type {
   modify_channel_rslt_type_rslt_none = 0,
   modify_channel_rslt_type_rslt_succ = 1,
   modify_channel_rslt_type_rslt_fail = 2,
+  modify_channel_rslt_type_rslt_already_exist = 3,
+  modify_channel_rslt_type_rslt_not_exist = 4,
   modify_channel_rslt_type_modify_channel_rslt_type_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   modify_channel_rslt_type_modify_channel_rslt_type_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool modify_channel_rslt_type_IsValid(int value);
 const modify_channel_rslt_type modify_channel_rslt_type_rslt_type_MIN = modify_channel_rslt_type_rslt_none;
-const modify_channel_rslt_type modify_channel_rslt_type_rslt_type_MAX = modify_channel_rslt_type_rslt_fail;
+const modify_channel_rslt_type modify_channel_rslt_type_rslt_type_MAX = modify_channel_rslt_type_rslt_not_exist;
 const int modify_channel_rslt_type_rslt_type_ARRAYSIZE = modify_channel_rslt_type_rslt_type_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* modify_channel_rslt_type_descriptor();
@@ -181,6 +183,10 @@ class modify_channel : public ::google::protobuf::Message /* @@protoc_insertion_
     modify_channel_rslt_type_rslt_succ;
   static const rslt_type rslt_fail =
     modify_channel_rslt_type_rslt_fail;
+  static const rslt_type rslt_already_exist =
+    modify_channel_rslt_type_rslt_already_exist;
+  static const rslt_type rslt_not_exist =
+    modify_channel_rslt_type_rslt_not_exist;
   static inline bool rslt_type_IsValid(int value) {
     return modify_channel_rslt_type_IsValid(value);
   }
