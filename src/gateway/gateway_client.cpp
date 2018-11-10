@@ -1,3 +1,4 @@
+#include <set>
 #include "gateway_client.h"
 #include "gateway_server.h"
 gateway_client::gateway_client(boost::asio::io_context& io_context, \
@@ -225,9 +226,21 @@ void gateway_client::handle_interchannel_broadcast_ack(proto_msg& msg)
 	if (server)
 	{
 		auto route = server->get_route();
-		auto client = route->get_vid(msg.m_vid);
-		if (client)
+		route::ttnode ttn(msg.m_type, msg.m_tid);
+		std::set<std::size_t> vids;
+		auto self = shared_from_this();
+		auto fn = [self, &vids, msg](std::shared_ptr<common_client> client, const route::node& n)
 		{
+			/*如果client为空，则表示通道还没有完全建立好*/
+			if (client && n.vid != msg.m_vid)
+			{
+				vids.insert(n.vid);
+			}
+		};
+		route->for_each_ttnode(ttn, fn);
+		for (auto n : vids)
+		{
+			auto client = route->get_vid(n);
 			client->write((char *)&msg, msg.size());
 		}
 	}

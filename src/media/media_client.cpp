@@ -1,3 +1,4 @@
+#include <set>
 #include "media_client.h"
 #include "media_server.h"
 
@@ -84,17 +85,20 @@ void media_client::handle_interchannel_broadcast(proto_msg& msg)
 		auto route = server->get_route();
 		route::ttnode ttn(msg.m_type, msg.m_tid);
 		msg.m_cmd = cmd_interchannel_broadcast_ack;
-		route::node original(msg.m_type, msg.m_tid, msg.m_uid, msg.m_vid);
+		std::set<std::shared_ptr<common_client>> gateways;
 		auto self = shared_from_this();
-		auto fn = [self, &msg, original](std::shared_ptr<common_client> client, const route::node& n)
+		auto fn = [self, &gateways, msg](std::shared_ptr<common_client> client, const route::node& n)
 		{
-			if (!(original == n))
+			if (msg.m_vid != n.vid)
 			{
-				msg.m_vid = n.vid;
-				client->write((char *)&msg, msg.size());
+				gateways.insert(client);
 			}
 		};
 		route->for_each_ttnode(ttn, fn);
+		for (auto n : gateways)
+		{
+			n->write((char *)&msg, msg.size());
+		}
 	}
 }
 
