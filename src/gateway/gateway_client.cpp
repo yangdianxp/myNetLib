@@ -26,7 +26,10 @@ void gateway_client::handle_error_aux()
 			auto self = shared_from_this();
 			auto fn = [self, &medias](std::shared_ptr<common_client> client)
 			{
-				medias.insert(client);
+				if (client)
+				{
+					medias.insert(client);
+				}
 			};
 			route->for_each_vid(m_id, fn);
 			proto_msg msg(cmd_user_disconnection, m_id);
