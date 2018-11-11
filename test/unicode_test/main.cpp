@@ -1,20 +1,54 @@
 #include <iostream>
+#include <deque>
 #include "unique_code.h"
 
 int main()
 {
-	unique_code my_unique(1, 1000000);
-	int tmp = 0;
-	while ((tmp = my_unique.get()))
+	unique_code my_unique(1, 20000);
+	std::deque<std::size_t> unique_nums;
+	for (int i = 0; i < 15000; i++)
 	{
-		std::cout << tmp << " ";
+		std::size_t num = my_unique.get();
+		std::cout << num << " ";
+		unique_nums.push_back(num);
 	}
-	std::cout << std::endl;
+	std::cout << std::endl << "=======================" << std::endl;
+	for (auto n : unique_nums)
+	{
+		my_unique.del(n);
+	}
+	unique_nums.clear();
+	for (int i = 0; i < 15000; i++)
+	{
+		std::size_t num = my_unique.get();
+		std::cout << num << " ";
+		unique_nums.push_back(num);
+	}
+	std::cout << std::endl << "=======================" << std::endl;
+	for (auto n : unique_nums)
+	{
+		my_unique.del(n);
+	}
+	for (int i = 0; i < 15000; i++)
+	{
+		std::size_t num = my_unique.get();
+		std::cout << num << " ";
+		unique_nums.push_back(num);
+	}
+	std::cout << std::endl << "=======================" << std::endl;
 	
 	return 0;
 }
 
 #if 0
+
+int tmp = 0;
+while ((tmp = my_unique.get()))
+{
+	std::cout << tmp << " ";
+}
+std::cout << std::endl;
+
 my_unique.del(500);
 my_unique.del(520);
 my_unique.del(2);

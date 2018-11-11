@@ -1,13 +1,17 @@
 #ifndef __BASE_CLIENT_H__
 #define __BASE_CLIENT_H__
+#include <deque>
+#include <string>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include "common.h"
+#include "base_server.h"
 
 using boost::asio::io_context;
 using boost::asio::ip::tcp;
 
+class base_server;
 class base_client : public std::enable_shared_from_this<base_client>
 {
 	static const unsigned char msg_header_length = sizeof(proto_header);
@@ -18,6 +22,7 @@ public:
 	virtual ~base_client();
 
 	void write(const char *data, int size);
+	void do_write();
 	virtual void dispatch(proto_msg& msg);
 	virtual void do_read_header();
 	virtual void do_read_body();
@@ -28,6 +33,7 @@ public:
 	virtual void handle_msg_header_error(int length);
 	virtual void handle_read_error(boost::system::error_code& ec);
 
+	virtual void init(std::shared_ptr<base_server>);
 	void set_reconnect_time(unsigned int ms);
 
 	std::string get_ip();
@@ -35,6 +41,7 @@ public:
 protected:
 	tcp::socket m_socket;
 	proto_msg m_msg;
+	std::deque<std::string> m_send_msgs;
 
 	enum client_type {
 		passive_conn = 1,  //被动连接

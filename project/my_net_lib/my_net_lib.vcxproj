@@ -35,6 +35,8 @@
     <Text Include="..\..\test\vid_manage_test\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\example\asio\cpp11\chat\chat_client.cpp" />
+    <ClCompile Include="..\..\example\asio\cpp11\chat\chat_server.cpp" />
     <ClCompile Include="..\..\src\balance\balance.cpp" />
     <ClCompile Include="..\..\src\balance\balance_client.cpp" />
     <ClCompile Include="..\..\src\balance\balance_route.cpp" />
@@ -78,6 +80,7 @@
     <ClCompile Include="..\..\test\vid_manage_test\vid_manage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\example\asio\cpp11\chat\chat_message.hpp" />
     <ClInclude Include="..\..\src\balance\balance_client.h" />
     <ClInclude Include="..\..\src\balance\balance_route.h" />
     <ClInclude Include="..\..\src\balance\balance_server.h" />

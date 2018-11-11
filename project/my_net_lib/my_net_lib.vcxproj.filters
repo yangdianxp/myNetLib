@@ -190,6 +190,18 @@
     <Filter Include="src\run\monitor\conf">
       <UniqueIdentifier>{58745c0d-9a60-4c6d-ad97-b49cecd7ef79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="example">
+      <UniqueIdentifier>{af634076-d0f9-4556-8b32-eb984a1cc395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="example\asio">
+      <UniqueIdentifier>{c16d8c5e-eb96-4358-86a4-754f368cfa65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="example\asio\cpp11">
+      <UniqueIdentifier>{0914153d-3b73-4b7b-8d53-c79817fff90c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="example\asio\cpp11\chat">
+      <UniqueIdentifier>{102f6e42-63fe-4878-b7eb-5ff05d279900}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -359,6 +371,12 @@
     <ClCompile Include="..\..\src\base\range_manage.cpp">
       <Filter>src\base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\example\asio\cpp11\chat\chat_client.cpp">
+      <Filter>example\asio\cpp11\chat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\example\asio\cpp11\chat\chat_server.cpp">
+      <Filter>example\asio\cpp11\chat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\unicode_test\unique_code.h">
@@ -459,6 +477,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\base\range_manage.h">
       <Filter>src\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\example\asio\cpp11\chat\chat_message.hpp">
+      <Filter>example\asio\cpp11\chat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

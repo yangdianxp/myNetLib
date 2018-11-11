@@ -10,14 +10,13 @@ base_client::base_client(boost::asio::io_context& io_context,
 	m_port = std::stoi(remote_port);
 	tcp::resolver resolver(io_context);
 	m_endpoints = resolver.resolve(remote_ip, remote_port);
-	do_connect(m_endpoints);
 }
 
 base_client::base_client(boost::asio::io_context& io_context, tcp::socket socket)
 	: m_socket(std::move(socket)), m_conn_type(passive_conn), m_io_context(io_context),
 	m_reconnect_timer(io_context)
 {
-	do_read_header();
+	
 }
 
 base_client::~base_client()
@@ -27,13 +26,28 @@ base_client::~base_client()
 
 void base_client::write(const char *data, int size)
 {
-	boost::asio::async_write(m_socket,
-		boost::asio::buffer(data, size),
-		[this](boost::system::error_code ec, std::size_t /*length*/)
+	bool is_empty = m_send_msgs.empty();
+	m_send_msgs.push_back(std::string(data, size));
+	if (is_empty)
+	{
+		do_write();
+	}
+	
+}
+void base_client::do_write()
+{
+	auto self(shared_from_this());
+	boost::asio::async_write(m_socket, boost::asio::buffer(m_send_msgs.front()),
+		[this, self](boost::system::error_code ec, std::size_t /*length*/)
 	{
 		if (!ec)
 		{
 			handle_write_succ();
+			m_send_msgs.pop_front();
+			if (!m_send_msgs.empty())
+			{
+				do_write();
+			}
 		}
 		else
 		{
@@ -50,9 +64,10 @@ void base_client::dispatch(proto_msg& msg)
 
 void base_client::do_read_header()
 {
+	auto self(shared_from_this());
 	boost::asio::async_read(m_socket,
 		boost::asio::buffer(&m_msg, msg_header_length),
-		[this](boost::system::error_code ec, std::size_t length)
+		[this, self](boost::system::error_code ec, std::size_t length)
 	{
 		if (!ec)
 		{
@@ -74,9 +89,10 @@ void base_client::do_read_header()
 
 void base_client::do_read_body()
 {
+	auto self(shared_from_this());
 	boost::asio::async_read(m_socket,
 		boost::asio::buffer(m_msg.m_data, m_msg.m_length),
-		[this](boost::system::error_code ec, std::size_t)
+		[this, self](boost::system::error_code ec, std::size_t)
 	{
 		if (!ec)
 		{
@@ -121,6 +137,17 @@ void base_client::handle_read_error(boost::system::error_code& ec)
 	SLOG_ERROR << ec.message();
 }
 
+void base_client::init(std::shared_ptr<base_server>)
+{
+	if (active_conn == m_conn_type)
+	{
+		do_connect(m_endpoints);
+	}
+	else if (passive_conn == m_conn_type){
+		do_read_header();
+	}
+}
+
 void base_client::set_reconnect_time(unsigned int ms)
 {
 	if (active_conn == m_conn_type)
@@ -141,8 +168,9 @@ uint32_t base_client::get_port()
 
 void base_client::do_connect(const tcp::resolver::results_type& endpoints)
 {
+	auto self(shared_from_this());
 	boost::asio::async_connect(m_socket, endpoints,
-		[this](boost::system::error_code ec, tcp::endpoint)
+		[this, self](boost::system::error_code ec, tcp::endpoint)
 	{
 		if (!ec)
 		{

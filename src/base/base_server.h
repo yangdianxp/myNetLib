@@ -2,9 +2,11 @@
 #define __BASE_SERVER__
 #include <set>
 #include <boost/asio.hpp>
-#include "common_client.h"
+#include "common.h"
 
-class common_client;
+using boost::asio::io_context;
+using boost::asio::ip::tcp;
+
 class base_server : public std::enable_shared_from_this<base_server>
 {
 public:

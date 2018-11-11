@@ -10,7 +10,7 @@ See http://www.boost.org/LICENSE_1_0.txt
 	<local_port>20000</local_port>
   <!--自己的类型-->
   <type>central</type>
-  <vid_unit_size>10000</vid_unit_size>
+  <vid_unit_size>20000</vid_unit_size>
   <!--mid范围-->
   <mid_range>
     <begin>1</begin>

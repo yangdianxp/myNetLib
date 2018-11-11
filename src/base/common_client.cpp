@@ -309,6 +309,7 @@ std::map<int, std::string> common_client::m_cmd_desc = {
 
 void common_client::init(std::shared_ptr<base_server> server)
 {
+	base_client::init(server);
 	set_server(server);
 	std::shared_ptr<common_client> client = std::dynamic_pointer_cast<common_client>(shared_from_this());
 	if (client)

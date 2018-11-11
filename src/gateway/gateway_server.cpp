@@ -8,7 +8,7 @@ gateway_server::gateway_server(boost::asio::io_context& io_context, short port) 
 }
 void gateway_server::handle_accept_succ(tcp::socket& socket)
 {
-	if (m_ready)
+	if (m_ready && !m_vid_range.empty())
 	{
 		std::shared_ptr<gateway_client> client = std::make_shared<gateway_client>(get_io_context(), std::move(socket));
 		client->init(shared_from_this());

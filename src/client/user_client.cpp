@@ -38,9 +38,9 @@ void user_client::handle_create_channel_ack(proto_msg& msg)
 		info.set_data(ss.str());
 		msg.serialize_msg(info);
 		write((char *)&msg, msg.size());*/
-		m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(2000));
+		/*m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(10000));
 		m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer,
-			std::dynamic_pointer_cast<user_client>(shared_from_this())));
+			std::dynamic_pointer_cast<user_client>(shared_from_this())));*/
 	}
 }
 void user_client::handle_delete_channel_ack(proto_msg& msg)
@@ -76,9 +76,9 @@ void user_client::handle_task_timer()
 	msg.serialize_msg(info);
 	write((char *)&msg, msg.size());
 
-	/*m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(1));
+	m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(5000));
 	m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer,
-		std::dynamic_pointer_cast<user_client>(shared_from_this())));*/
+		std::dynamic_pointer_cast<user_client>(shared_from_this())));
 }
 
 void user_client::init(std::shared_ptr<base_server> server)
