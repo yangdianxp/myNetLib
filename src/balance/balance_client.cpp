@@ -54,12 +54,18 @@ void balance_client::handle_create_channel_ack(proto_msg& msg)
 		auto gateway = route->get_client(modify.dst());
 		if (gateway)
 		{
+			route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 			if (modify.rslt() == pb::external::modify_channel::rslt_succ)
 			{
+				/*如果通道已经被删除了，则要回创建失败*/
+				if (!route->find_node(n))
+				{
+					modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
+					msg.serialize_msg(modify);
+				}
 				gateway->write((char *)&msg, msg.size());
 			}
 			else {
-				route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 				route::ttnode ttn(modify.type(), modify.tid());
 				auto client = route->get_node(n);
 				route->delete_node(n);
@@ -94,6 +100,8 @@ void balance_client::handle_delete_channel(proto_msg& msg)
 			route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 			route::ttnode ttn(modify.type(), modify.tid());
 			auto client = route->get_node(n);
+			/*向media发送*/
+			client->write((char *)&msg, msg.size());
 			route->delete_node(n);
 			auto client1 = route->get_ttnode(ttn);
 			if (!client1)
@@ -111,6 +119,11 @@ void balance_client::handle_delete_channel(proto_msg& msg)
 	msg.serialize_msg(modify);
 	write((char *)&msg, msg.size());
 }
+void balance_client::handle_delete_channel_ack(proto_msg& msg)
+{
+	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd]
+		<< ", mid:" << m_id << ", type info:" << config_settings::instance().get_module_name(m_type);
+}
 void balance_client::handle_user_disconnection(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", vid:" << msg.m_vid;
@@ -123,9 +136,11 @@ void balance_client::handle_user_disconnection(proto_msg& msg)
 		{
 			auto self = shared_from_this();
 			std::unordered_multimap<std::shared_ptr<common_client>, route::ttnode> ttnodes;
-			auto fn = [self, &ttnodes](std::shared_ptr<common_client> client, const route::ttnode& tt)
+			std::set<std::shared_ptr<common_client>> medias;
+			auto fn = [self, &ttnodes, &medias](std::shared_ptr<common_client> client, const route::ttnode& tt)
 			{
 				ttnodes.insert(std::make_pair(client, tt));
+				medias.insert(client);
 			};
 			route->for_each_vid_ttnode(msg.m_vid, fn);
 			route->delete_node(msg.m_vid);
@@ -136,6 +151,11 @@ void balance_client::handle_user_disconnection(proto_msg& msg)
 				{
 					b_route->reduce_ref(n.first);
 				}
+			}
+			/*向media发送*/
+			for (auto m : medias)
+			{
+				m->write((char *)&msg, msg.size());
 			}
 		}
 	}
@@ -176,6 +196,7 @@ void balance_client::init(std::shared_ptr<base_server> server)
 		m_function_set[cmd_create_channel] = std::bind(&balance_client::handle_create_channel, client, std::placeholders::_1);
 		m_function_set[cmd_create_channel_ack] = std::bind(&balance_client::handle_create_channel_ack, client, std::placeholders::_1);
 		m_function_set[cmd_delete_channel] = std::bind(&balance_client::handle_delete_channel, client, std::placeholders::_1);
+		m_function_set[cmd_delete_channel_ack] = std::bind(&balance_client::handle_delete_channel_ack, client, std::placeholders::_1);
 		m_function_set[cmd_user_disconnection] = std::bind(&balance_client::handle_user_disconnection, client, std::placeholders::_1);
 		m_function_set[cmd_monitor_balance] = std::bind(&balance_client::handle_monitor_balance, client, std::placeholders::_1);
 	}

@@ -56,8 +56,14 @@ void media_client::handle_delete_channel(proto_msg& msg)
 	{
 		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 		auto route = server->get_route();
-		route->delete_node(n);
-		modify.set_rslt(pb::external::modify_channel::rslt_succ);
+		if (route->find_node(n))
+		{
+			route->delete_node(n);
+			modify.set_rslt(pb::external::modify_channel::rslt_succ);
+		}
+		else {
+			modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
+		}
 	}
 	msg.m_cmd = cmd_delete_channel_ack;
 	msg.serialize_msg(modify);

@@ -12,6 +12,7 @@ public:
 	void handle_create_channel(proto_msg& msg);
 	void handle_create_channel_ack(proto_msg& msg);
 	void handle_delete_channel(proto_msg& msg);
+	void handle_delete_channel_ack(proto_msg& msg);
 	void handle_user_disconnection(proto_msg& msg);
 
 	void handle_monitor_balance(proto_msg& msg);

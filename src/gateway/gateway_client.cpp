@@ -22,30 +22,27 @@ void gateway_client::handle_error_aux()
 		if (m_type == module_user_type)
 		{
 			auto route = server->get_route();
-			std::set<std::shared_ptr<common_client>> medias;
-			auto self = shared_from_this();
-			auto fn = [self, &medias](std::shared_ptr<common_client> client)
+			std::set<std::size_t> tids;
+			auto self(shared_from_this());
+			auto fn = [self, &tids](const std::size_t vid, const route::node& n)
 			{
-				if (client)
-				{
-					medias.insert(client);
-				}
+				tids.insert(n.tid);
 			};
-			route->for_each_vid(m_id, fn);
-			proto_msg msg(cmd_user_disconnection, m_id);
-			for (auto media : medias)
+			route->for_each_vid_node(m_id, fn);
+			std::set<std::shared_ptr<common_client>> balances;
+			for (auto n : tids)
 			{
-				media->write((char *)&msg, msg.size());
-			}
-			/*此处可以优化，不必向每个balance发*/
-			auto& balance_list = server->get_balance_list();
-			for (auto n : balance_list)
-			{
-				auto balance = route->get_client(n.first);
+				auto id = server->get_balance(n);
+				auto balance = route->get_client(id);
 				if (balance)
 				{
-					balance->write((char *)&msg, msg.size());
+					balances.insert(balance);
 				}
+			}
+			proto_msg msg(cmd_user_disconnection, m_id);
+			for (auto n : balances)
+			{
+				n->write((char *)&msg, msg.size());
 			}
 			route->delete_node(m_id);
 			server->del_vid(m_id);
@@ -143,14 +140,21 @@ void gateway_client::handle_create_channel_ack(proto_msg& msg)
 		pb::external::modify_channel modify;
 		msg.parse(modify);
 		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
-		route->delete_node(n);
-		if (modify.rslt() == pb::external::modify_channel::rslt_succ)
+		if (route->find_node(n))
 		{
-			auto media = route->get_client(modify.src());
-			if (media)
+			route->delete_node(n);
+			if (modify.rslt() == pb::external::modify_channel::rslt_succ)
 			{
-				route->add_node(media, n);
+				auto media = route->get_client(modify.src());
+				if (media)
+				{
+					route->add_node(media, n);
+				}
 			}
+		}
+		else {
+			modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
+			msg.serialize_msg(modify);
 		}
 		auto client = route->get_vid(modify.vid());
 		if (client)
@@ -181,12 +185,6 @@ void gateway_client::handle_delete_channel(proto_msg& msg)
 			if (balance)
 			{
 				balance->write((char *)&msg, msg.size());
-			}
-			/*向media发送*/
-			auto media = route->get_node(n);
-			if (media)
-			{
-				media->write((char *)&msg, msg.size());
 			}
 			//删除通道
 			route->delete_node(n);
