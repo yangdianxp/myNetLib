@@ -22,7 +22,6 @@ void gateway_client::handle_error_aux()
 		if (m_type == module_user_type)
 		{
 			auto route = server->get_route();
-			route->delete_vid(std::dynamic_pointer_cast<common_client>(shared_from_this()));
 			std::set<std::shared_ptr<common_client>> medias;
 			auto self = shared_from_this();
 			auto fn = [self, &medias](std::shared_ptr<common_client> client)
@@ -50,6 +49,8 @@ void gateway_client::handle_error_aux()
 			}
 			route->delete_node(m_id);
 			server->del_vid(m_id);
+			/*做完所有工作，最后再删自己*/
+			route->delete_vid(std::dynamic_pointer_cast<common_client>(shared_from_this()));
 		}
 		else {
 			if (m_type == module_balance_type)

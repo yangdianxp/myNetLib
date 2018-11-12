@@ -1,5 +1,7 @@
 #include <iostream>
 #include <deque>
+#include <random>
+#include <ctime>
 #include "unique_code.h"
 
 int main()
@@ -13,7 +15,32 @@ int main()
 		unique_nums.push_back(num);
 	}
 	std::cout << std::endl << "=======================" << std::endl;
-	for (auto n : unique_nums)
+	while (!my_unique.empty())
+	{
+		std::size_t num = my_unique.get();
+		std::cout << num << " ";
+		unique_nums.push_back(num);
+	}
+	std::cout << std::endl << "=======================" << std::endl;
+
+	std::default_random_engine engine(time(nullptr));
+	std::uniform_int_distribution<> dis(1, 20000);
+	for (int i = 0; i < 10; i++)
+	{
+		std::size_t num = dis(engine);
+		std::cout << num << " ";
+		my_unique.del(num);
+	}
+	std::cout << std::endl << "=======================" << std::endl;
+	while (!my_unique.empty())
+	{
+		std::size_t num = my_unique.get();
+		std::cout << num << " ";
+		unique_nums.push_back(num);
+	}
+	std::cout << std::endl << "=======================" << std::endl;
+
+	/*for (auto n : unique_nums)
 	{
 		my_unique.del(n);
 	}
@@ -35,7 +62,7 @@ int main()
 		std::cout << num << " ";
 		unique_nums.push_back(num);
 	}
-	std::cout << std::endl << "=======================" << std::endl;
+	std::cout << std::endl << "=======================" << std::endl;*/
 	
 	return 0;
 }

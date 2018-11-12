@@ -21,7 +21,7 @@ base_client::base_client(boost::asio::io_context& io_context, tcp::socket socket
 
 base_client::~base_client()
 {
-
+	m_socket.close();
 }
 
 void base_client::write(const char *data, int size)
