@@ -1,7 +1,7 @@
 #include <iostream>
 #include <boost/asio.hpp>
 #include <list>
-
+#include "signal_process.h"
 #include "user_client.h"
 
 int main(int argc, char* argv[])
@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
 
 		SLOG_INFO << "client start.";
 		boost::asio::io_context io_context;
+		signal_init(io_context);
 		std::string remote_ip = config_reader.get_remote_ip();
 		std::string remote_port = std::to_string(config_reader.get_remote_port());
 		std::string ports[4] = {"21000", "21001", "21002", "21003"};

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <boost/asio.hpp>
 
+#include "signal_process.h"
 #include "common.h"
 #include "monitor_server.h"
 #include "cmd_thread.h"
@@ -17,6 +18,7 @@ int main(int argc, char* argv[])
 
 		SLOG_INFO << "server start.";
 		boost::asio::io_service io_context;
+		signal_init(io_context);
 		std::shared_ptr<monitor_server> server =
 			std::make_shared<monitor_server>(io_context, config_reader.get_local_port());
 		server->connect_remote(config_reader.get_remote_ip(), std::to_string(config_reader.get_remote_port()),

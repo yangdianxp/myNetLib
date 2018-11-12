@@ -47,6 +47,7 @@
     <ClCompile Include="..\..\src\base\module.cpp" />
     <ClCompile Include="..\..\src\base\range_manage.cpp" />
     <ClCompile Include="..\..\src\base\route.cpp" />
+    <ClCompile Include="..\..\src\base\signal_process.h" />
     <ClCompile Include="..\..\src\base\unique_code.cpp" />
     <ClCompile Include="..\..\src\central\central.cpp" />
     <ClCompile Include="..\..\src\central\central_client.cpp" />
