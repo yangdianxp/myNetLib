@@ -31,16 +31,16 @@ void user_client::handle_create_channel_ack(proto_msg& msg)
 	SLOG_DEBUG << modify.DebugString();
 	if (modify.rslt() == pb::external::modify_channel::rslt_succ)
 	{
-		/*proto_msg msg(cmd_interchannel_broadcast, m_type, m_tid, m_uid);
+		proto_msg msg(cmd_interchannel_broadcast, m_type, m_tid, m_uid);
 		std::stringstream ss;
 		ss << "hello world. " << m_uid;
 		pb::external::info info;
 		info.set_data(ss.str());
 		msg.serialize_msg(info);
-		write((char *)&msg, msg.size());*/
-		/*m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(10000));
+		write((char *)&msg, msg.size());
+		m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(10000));
 		m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer,
-			std::dynamic_pointer_cast<user_client>(shared_from_this())));*/
+			std::dynamic_pointer_cast<user_client>(shared_from_this())));
 	}
 }
 void user_client::handle_delete_channel_ack(proto_msg& msg)

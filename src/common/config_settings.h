@@ -19,6 +19,7 @@ public:
 	std::string get_remote_ip();
 	uint32_t get_remote_port();
 	std::string get_log_filename();
+	std::size_t get_log_level();
 	uint32_t get_type();
 	uint32_t get_vid_unit_size();
 	uint32_t get_mid_begin();
@@ -35,6 +36,7 @@ private:
 	uint32_t convert_type(std::string& str_type);
 
 	std::string m_log_filename;
+	std::size_t m_log_level = 7;
 	std::string m_local_ip;
 	uint32_t m_local_port = 0;
 	std::string m_remote_ip;

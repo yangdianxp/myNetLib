@@ -13,7 +13,6 @@ void signal_handler(const boost::system::error_code& ec, int signal_number)
 
 void signal_init(boost::asio::io_context& io_context)
 {
-	signal(SIGPIPE, SIG_IGN);
 	boost::asio::signal_set signals(io_context, SIGPIPE, SIGHUP, SIGINT);
 	signals.async_wait(std::bind(signal_handler, std::placeholders::_1, std::placeholders::_2));
 }

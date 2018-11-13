@@ -1,23 +1,16 @@
 #include <iostream>
-#include <boost/asio.hpp>
 
-#include "signal_process.h"
-#include "common.h"
 #include "balance_server.h"
+#include "main_start.h"
 
 int main(int argc, char* argv[])
 {
 	try
 	{
-		config_settings& config_reader = config_settings::instance();
-		config_reader.load("conf/net.xml");
-		config_reader.print();
-		SLog::InitLog(config_reader.get_log_filename());
-		SLog::SetLevel(slog_debug);
-
 		SLOG_INFO << "server start.";
 		boost::asio::io_service io_context;
-		signal_init(io_context);
+		main_start(io_context);
+		config_settings& config_reader = config_settings::instance();
 		std::shared_ptr<balance_server> server =
 			std::make_shared<balance_server>(io_context, config_reader.get_local_port());
 		server->connect_remote(config_reader.get_remote_ip(), std::to_string(config_reader.get_remote_port()),

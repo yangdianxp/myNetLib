@@ -81,10 +81,10 @@ void media_client::handle_user_disconnection(proto_msg& msg)
 }
 void media_client::handle_interchannel_broadcast(proto_msg& msg)
 {
-	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	SLOG_DEBUG << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 	pb::external::info info;
 	msg.parse(info);
-	SLOG_INFO << info.DebugString();
+	SLOG_DEBUG << info.DebugString();
 	auto server = std::dynamic_pointer_cast<media_server>(m_server);
 	if (server)
 	{

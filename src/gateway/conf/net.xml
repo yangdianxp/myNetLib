@@ -6,6 +6,8 @@ See http://www.boost.org/LICENSE_1_0.txt
 -->
 <conf>
   <log_filename>common.log</log_filename>
+  <!--7:debug 6:info 5:notice 4:warning 3:error 2:critical 1:alert 0:emergency-->
+  <log_level>4</log_level>
   <local_ip>127.0.0.1</local_ip>
 	<local_port>21000</local_port>
 	<remote_ip>127.0.0.1</remote_ip>

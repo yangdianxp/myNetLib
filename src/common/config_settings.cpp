@@ -31,6 +31,7 @@ void config_settings::load(const std::string &filename)
 	// Use the throwing version of get to find the debug filename.
 	// If the path cannot be resolved, an exception is thrown.
 	m_log_filename = tree.get<std::string>("conf.log_filename", "common.log");
+	m_log_level = tree.get("conf.log_level", 7);
 	m_local_ip = tree.get("conf.local_ip", "127.0.0.1");
 	m_local_port = tree.get("conf.local_port", 0);
 	m_remote_ip = tree.get("conf.remote_ip", "127.0.0.1");
@@ -87,6 +88,7 @@ void config_settings::load(const std::string &filename)
 void config_settings::print()
 {
 	SLOG_INFO << "m_log_filename:" << m_log_filename << std::endl
+		<< "m_log_level:" << m_log_level << std::endl
 		<< "m_local_ip:" << m_local_ip << std::endl
 		<< "m_local_port:" << m_local_port << std::endl
 		<< "m_remote_ip:" << m_remote_ip << std::endl
@@ -152,6 +154,11 @@ uint32_t config_settings::get_remote_port()
 std::string config_settings::get_log_filename()
 {
 	return m_log_filename;
+}
+
+std::size_t config_settings::get_log_level()
+{
+	return m_log_level;
 }
 
 uint32_t config_settings::get_type()

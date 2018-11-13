@@ -484,6 +484,9 @@
     <ClInclude Include="..\..\example\asio\cpp11\chat\chat_message.hpp">
       <Filter>example\asio\cpp11\chat</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\common\main_start.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\src\central\conf\net.xml">
@@ -512,9 +515,6 @@
     </Xml>
     <Xml Include="..\..\src\run\balance1\conf\net.xml">
       <Filter>src\run\balance1\conf</Filter>
-    </Xml>
-    <Xml Include="..\..\src\run\balance2\conf\net.xml">
-      <Filter>src\run\balance2</Filter>
     </Xml>
     <Xml Include="..\..\src\run\balance3\conf\net.xml">
       <Filter>src\run\balance3\conf</Filter>
@@ -563,6 +563,9 @@
     </Xml>
     <Xml Include="..\..\src\run\monitor\conf\net.xml">
       <Filter>src\run\monitor\conf</Filter>
+    </Xml>
+    <Xml Include="..\..\src\run\balance2\conf\net.xml">
+      <Filter>src\run\balance2\conf</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
