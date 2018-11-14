@@ -202,6 +202,21 @@
     <Filter Include="example\asio\cpp11\chat">
       <UniqueIdentifier>{102f6e42-63fe-4878-b7eb-5ff05d279900}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\boost_test_test">
+      <UniqueIdentifier>{be821566-6ab2-4456-93d0-4fd512c6d8d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_test_test\test1">
+      <UniqueIdentifier>{52b8f6e4-3d1a-4e17-b5fd-244fc22e4d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_test_test\test2">
+      <UniqueIdentifier>{159414df-a40d-4abd-91e6-e6743791689f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_test_test\test3">
+      <UniqueIdentifier>{d8f1b6ac-d27f-4608-a778-733ed6fa1a7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_test_test\test4">
+      <UniqueIdentifier>{4d62e50e-e8d7-44d5-b675-7b5aebef45f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -245,6 +260,18 @@
     </Text>
     <Text Include="..\..\test\boost_bimap_test\CMakeLists.txt">
       <Filter>test\boost_bimap_test</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_test_test\test1\CMakeLists.txt">
+      <Filter>test\boost_test_test\test1</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_test_test\test2\CMakeLists.txt">
+      <Filter>test\boost_test_test\test2</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_test_test\test3\CMakeLists.txt">
+      <Filter>test\boost_test_test\test3</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_test_test\test4\CMakeLists.txt">
+      <Filter>test\boost_test_test\test4</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -379,6 +406,18 @@
     </ClCompile>
     <ClCompile Include="..\..\src\base\signal_process.h">
       <Filter>src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_test_test\test1\main.cpp">
+      <Filter>test\boost_test_test\test1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_test_test\test2\main.cpp">
+      <Filter>test\boost_test_test\test2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_test_test\test3\main.cpp">
+      <Filter>test\boost_test_test\test3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_test_test\test4\main.cpp">
+      <Filter>test\boost_test_test\test4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
