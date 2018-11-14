@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 	{
 		SLOG_INFO << "server start.";
 		boost::asio::io_service io_context;
-		main_start(io_context);
+		main_start(io_context, true);
 		config_settings& config_reader = config_settings::instance();
 		std::shared_ptr<monitor_server> server =
 			std::make_shared<monitor_server>(io_context, config_reader.get_local_port());
