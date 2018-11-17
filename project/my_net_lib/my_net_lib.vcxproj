@@ -35,6 +35,7 @@
     <Text Include="..\..\test\boost_test_test\test2\CMakeLists.txt" />
     <Text Include="..\..\test\boost_test_test\test3\CMakeLists.txt" />
     <Text Include="..\..\test\boost_test_test\test4\CMakeLists.txt" />
+    <Text Include="..\..\test\mpi_test\CMakeLists.txt" />
     <Text Include="..\..\test\unicode_test\CMakeLists.txt" />
     <Text Include="..\..\test\vid_manage_test\CMakeLists.txt" />
   </ItemGroup>
@@ -83,6 +84,7 @@
     <ClCompile Include="..\..\test\boost_test_test\test2\main.cpp" />
     <ClCompile Include="..\..\test\boost_test_test\test3\main.cpp" />
     <ClCompile Include="..\..\test\boost_test_test\test4\main.cpp" />
+    <ClCompile Include="..\..\test\mpi_test\main.cpp" />
     <ClCompile Include="..\..\test\unicode_test\main.cpp" />
     <ClCompile Include="..\..\test\unicode_test\unique_code.cpp" />
     <ClCompile Include="..\..\test\vid_manage_test\main.cpp" />

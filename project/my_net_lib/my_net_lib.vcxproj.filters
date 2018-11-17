@@ -217,6 +217,9 @@
     <Filter Include="test\boost_test_test\test4">
       <UniqueIdentifier>{4d62e50e-e8d7-44d5-b675-7b5aebef45f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\mpi_test">
+      <UniqueIdentifier>{a6c3fff7-38f3-49c2-bdb7-cacba5f204a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -272,6 +275,9 @@
     </Text>
     <Text Include="..\..\test\boost_test_test\test4\CMakeLists.txt">
       <Filter>test\boost_test_test\test4</Filter>
+    </Text>
+    <Text Include="..\..\test\mpi_test\CMakeLists.txt">
+      <Filter>test\mpi_test</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="..\..\test\boost_test_test\test4\main.cpp">
       <Filter>test\boost_test_test\test4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\mpi_test\main.cpp">
+      <Filter>test\mpi_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
