@@ -220,6 +220,9 @@
     <Filter Include="test\mpi_test">
       <UniqueIdentifier>{a6c3fff7-38f3-49c2-bdb7-cacba5f204a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\allocator_test">
+      <UniqueIdentifier>{704e450d-31bc-47a9-b257-6c1f964708d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -427,6 +430,9 @@
     </ClCompile>
     <ClCompile Include="..\..\test\mpi_test\main.cpp">
       <Filter>test\mpi_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\allocator_test\main.cpp">
+      <Filter>test\allocator_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

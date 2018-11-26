@@ -78,6 +78,7 @@
     <ClCompile Include="..\..\src\proto\internal.pb.cc" />
     <ClCompile Include="..\..\src\proto\monitor.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
+    <ClCompile Include="..\..\test\allocator_test\main.cpp" />
     <ClCompile Include="..\..\test\boost_bimap_test\main.cpp" />
     <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_logging.cpp" />
     <ClCompile Include="..\..\test\boost_test_test\test1\main.cpp" />
