@@ -8,7 +8,7 @@
 // 通过这个参数获取当前触发的信号值
 void signal_handler(const boost::system::error_code& ec, int signal_number)
 {
-	SLOG_ERROR << "signal_number:" << " " << signal_number << ec.message();
+	SLOG_ERROR << "signal_number:" << " " << signal_number << " " << ec.message();
 }
 
 void signal_init(boost::asio::io_context& io_context)

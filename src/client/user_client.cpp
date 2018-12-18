@@ -14,13 +14,13 @@ user_client::user_client(boost::asio::io_context& io_context, tcp::socket socket
 }
 void user_client::handle_connect_succ()
 {
-	pb::external::modify_channel modify;
+	/*pb::external::modify_channel modify;
 	modify.set_type(m_type);
 	modify.set_tid(m_tid);
 	modify.set_uid(m_uid);
 	proto_msg msg(cmd_create_channel);
 	msg.serialize_msg(modify);
-	write((char *)&msg, msg.size());
+	write((char *)&msg, msg.size());*/
 }
 
 void user_client::handle_create_channel_ack(proto_msg& msg)
@@ -31,7 +31,7 @@ void user_client::handle_create_channel_ack(proto_msg& msg)
 	SLOG_DEBUG << modify.DebugString();
 	if (modify.rslt() == pb::external::modify_channel::rslt_succ)
 	{
-		proto_msg msg(cmd_interchannel_broadcast, m_type, m_tid, m_uid);
+		/*proto_msg msg(cmd_interchannel_broadcast, m_type, m_tid, m_uid);
 		std::stringstream ss;
 		ss << "hello world. " << m_uid;
 		pb::external::info info;
@@ -40,7 +40,7 @@ void user_client::handle_create_channel_ack(proto_msg& msg)
 		write((char *)&msg, msg.size());
 		m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(10000));
 		m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer,
-			std::dynamic_pointer_cast<user_client>(shared_from_this())));
+			std::dynamic_pointer_cast<user_client>(shared_from_this())));*/
 	}
 }
 void user_client::handle_delete_channel_ack(proto_msg& msg)
@@ -76,7 +76,7 @@ void user_client::handle_task_timer()
 	msg.serialize_msg(info);
 	write((char *)&msg, msg.size());
 
-	m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(5000));
+	m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(100));
 	m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer,
 		std::dynamic_pointer_cast<user_client>(shared_from_this())));
 }

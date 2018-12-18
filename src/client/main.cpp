@@ -4,6 +4,7 @@
 #include "user_client.h"
 #include "main_start.h"
 
+
 int main(int argc, char* argv[])
 {
 	try
@@ -11,6 +12,7 @@ int main(int argc, char* argv[])
 		SLOG_INFO << "client start.";
 		boost::asio::io_context io_context;
 		main_start(io_context);
+		SLOG_ERROR << "client start1.";
 		config_settings& config_reader = config_settings::instance();
 		std::string remote_ip = config_reader.get_remote_ip();
 		std::string remote_port = std::to_string(config_reader.get_remote_port());
@@ -23,9 +25,10 @@ int main(int argc, char* argv[])
 			client->set_reconnect_time(3000);
 			client->init(std::shared_ptr<base_server>());
 			client->set_active_type(module_gateway_type);
-			client->set_user_info(i / 2 + tids[(i - 10000) / 500], i);
+			client->set_user_info(i / 2/* + tids[(i - 10000) / 1250]*/, i);
 			users.push_back(client);
 		}
+		
 		std::shared_ptr<boost::asio::io_service::work> work
 			= std::make_shared<boost::asio::io_service::work>(io_context);
 		io_context.run();
