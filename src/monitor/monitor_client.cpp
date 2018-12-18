@@ -276,10 +276,10 @@ void monitor_client::init(std::shared_ptr<base_server> server)
 	std::shared_ptr<monitor_client> client = std::dynamic_pointer_cast<monitor_client>(shared_from_this());
 	if (client)
 	{
-		m_function_set[cmd_monitor_instruction] = std::bind(&monitor_client::handle_cmd_monitor_instruction, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_route_ack] = std::bind(&monitor_client::handle_monitor_route_ack, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_vid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_tid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_balance_ack] = std::bind(&monitor_client::handle_monitor_balance_ack, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_instruction] = std::bind(&monitor_client::handle_cmd_monitor_instruction, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_route_ack] = std::bind(&monitor_client::handle_monitor_route_ack, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_vid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_tid_manage_ack] = std::bind(&monitor_client::handle_monitor_tv_manage_ack, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_balance_ack] = std::bind(&monitor_client::handle_monitor_balance_ack, this, std::placeholders::_1);
 	}
 }

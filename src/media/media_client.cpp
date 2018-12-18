@@ -114,9 +114,9 @@ void media_client::init(std::shared_ptr<base_server> server)
 	std::shared_ptr<media_client> client = std::dynamic_pointer_cast<media_client>(shared_from_this());
 	if (client)
 	{
-		m_function_set[cmd_create_channel] = std::bind(&media_client::handle_create_channel, client, std::placeholders::_1);
-		m_function_set[cmd_delete_channel] = std::bind(&media_client::handle_delete_channel, client, std::placeholders::_1);
-		m_function_set[cmd_interchannel_broadcast] = std::bind(&media_client::handle_interchannel_broadcast, client, std::placeholders::_1);
-		m_function_set[cmd_user_disconnection] = std::bind(&media_client::handle_user_disconnection, client, std::placeholders::_1);
+		m_function_set[cmd_create_channel] = std::bind(&media_client::handle_create_channel, this, std::placeholders::_1);
+		m_function_set[cmd_delete_channel] = std::bind(&media_client::handle_delete_channel, this, std::placeholders::_1);
+		m_function_set[cmd_interchannel_broadcast] = std::bind(&media_client::handle_interchannel_broadcast, this, std::placeholders::_1);
+		m_function_set[cmd_user_disconnection] = std::bind(&media_client::handle_user_disconnection, this, std::placeholders::_1);
 	}
 }

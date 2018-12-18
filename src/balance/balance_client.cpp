@@ -193,11 +193,11 @@ void balance_client::init(std::shared_ptr<base_server> server)
 	std::shared_ptr<balance_client> client = std::dynamic_pointer_cast<balance_client>(shared_from_this());
 	if (client)
 	{
-		m_function_set[cmd_create_channel] = std::bind(&balance_client::handle_create_channel, client, std::placeholders::_1);
-		m_function_set[cmd_create_channel_ack] = std::bind(&balance_client::handle_create_channel_ack, client, std::placeholders::_1);
-		m_function_set[cmd_delete_channel] = std::bind(&balance_client::handle_delete_channel, client, std::placeholders::_1);
-		m_function_set[cmd_delete_channel_ack] = std::bind(&balance_client::handle_delete_channel_ack, client, std::placeholders::_1);
-		m_function_set[cmd_user_disconnection] = std::bind(&balance_client::handle_user_disconnection, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_balance] = std::bind(&balance_client::handle_monitor_balance, client, std::placeholders::_1);
+		m_function_set[cmd_create_channel] = std::bind(&balance_client::handle_create_channel, this, std::placeholders::_1);
+		m_function_set[cmd_create_channel_ack] = std::bind(&balance_client::handle_create_channel_ack, this, std::placeholders::_1);
+		m_function_set[cmd_delete_channel] = std::bind(&balance_client::handle_delete_channel, this, std::placeholders::_1);
+		m_function_set[cmd_delete_channel_ack] = std::bind(&balance_client::handle_delete_channel_ack, this, std::placeholders::_1);
+		m_function_set[cmd_user_disconnection] = std::bind(&balance_client::handle_user_disconnection, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_balance] = std::bind(&balance_client::handle_monitor_balance, this, std::placeholders::_1);
 	}
 }

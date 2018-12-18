@@ -316,14 +316,14 @@ void common_client::init(std::shared_ptr<base_server> server)
 	{
 		for (int i = 0; i < cmd_end; i++)
 		{
-			m_function_set[i] = std::bind(&common_client::handle_nothing, client, std::placeholders::_1);
+			m_function_set[i] = std::bind(&common_client::handle_nothing, this, std::placeholders::_1);
 		}
-		m_function_set[cmd_module_logon_ack] = std::bind(&common_client::handle_module_logon_ack, client, std::placeholders::_1);
-		m_function_set[cmd_broadcast_module_logon] = std::bind(&common_client::handle_broadcast_module_logon, client, std::placeholders::_1);
-		m_function_set[cmd_register_info] = std::bind(&common_client::handle_register_info, client, std::placeholders::_1);
-		m_function_set[cmd_register_info_ack] = std::bind(&common_client::handle_register_info_ack, client, std::placeholders::_1);
+		m_function_set[cmd_module_logon_ack] = std::bind(&common_client::handle_module_logon_ack, this, std::placeholders::_1);
+		m_function_set[cmd_broadcast_module_logon] = std::bind(&common_client::handle_broadcast_module_logon, this, std::placeholders::_1);
+		m_function_set[cmd_register_info] = std::bind(&common_client::handle_register_info, this, std::placeholders::_1);
+		m_function_set[cmd_register_info_ack] = std::bind(&common_client::handle_register_info_ack, this, std::placeholders::_1);
 
-		m_function_set[cmd_monitor_route] = std::bind(&common_client::handle_monitor_route, client, std::placeholders::_1);
+		m_function_set[cmd_monitor_route] = std::bind(&common_client::handle_monitor_route, this, std::placeholders::_1);
 	}
 	
 }

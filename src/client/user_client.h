@@ -22,6 +22,9 @@ private:
 	std::size_t m_tid = 1000;
 	std::size_t m_uid = 10000;
 
+	std::size_t m_send_cnt = 0;
+	std::size_t m_recv_cnt = 0;
+
 	boost::asio::steady_timer m_task_timer;
 };
 

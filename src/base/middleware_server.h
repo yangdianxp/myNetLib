@@ -13,6 +13,7 @@ public:
 	}
 	virtual void handle_accept_succ(tcp::socket& socket)
 	{
+		SLOG_DEBUG << "accept succ.";
 		std::shared_ptr<Client> client = std::make_shared<Client>(get_io_context(), std::move(socket));
 		client->init(shared_from_this());
 		m_route->add_client(client);

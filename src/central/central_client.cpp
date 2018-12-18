@@ -280,10 +280,10 @@ void central_client::init(std::shared_ptr<base_server> server)
 	std::shared_ptr<central_client> client = std::dynamic_pointer_cast<central_client>(shared_from_this());
 	if (client)
 	{
-		m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, client, std::placeholders::_1);
-		m_function_set[cmd_request_vid_range] = std::bind(&central_client::handle_request_vid_range, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_vid_manage] = std::bind(&central_client::handle_monitor_tv_manage, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_tid_manage] = std::bind(&central_client::handle_monitor_tv_manage, client, std::placeholders::_1);
+		m_function_set[cmd_module_logon] = std::bind(&central_client::handle_module_logon, this, std::placeholders::_1);
+		m_function_set[cmd_request_vid_range] = std::bind(&central_client::handle_request_vid_range, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_vid_manage] = std::bind(&central_client::handle_monitor_tv_manage, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_tid_manage] = std::bind(&central_client::handle_monitor_tv_manage, this, std::placeholders::_1);
 	}
 }
 

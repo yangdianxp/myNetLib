@@ -272,15 +272,15 @@ void gateway_client::init(std::shared_ptr<base_server> server)
 	std::shared_ptr<gateway_client> client = std::dynamic_pointer_cast<gateway_client>(shared_from_this());
 	if (client)
 	{
-		m_function_set[cmd_module_logon_ack] = std::bind(&gateway_client::handle_module_logon_ack, client, std::placeholders::_1);
-		m_function_set[cmd_request_vid_range_ack] = std::bind(&gateway_client::handle_request_vid_range_ack, client, std::placeholders::_1);
-		m_function_set[cmd_update_balance_list] = std::bind(&gateway_client::handle_update_balance_list, client, std::placeholders::_1);
-		m_function_set[cmd_create_channel] = std::bind(&gateway_client::handle_create_channel, client, std::placeholders::_1);
-		m_function_set[cmd_create_channel_ack] = std::bind(&gateway_client::handle_create_channel_ack, client, std::placeholders::_1);
-		m_function_set[cmd_delete_channel] = std::bind(&gateway_client::handle_delete_channel, client, std::placeholders::_1);
-		m_function_set[cmd_delete_channel_ack] = std::bind(&gateway_client::handle_delete_channel_ack, client, std::placeholders::_1);
-		m_function_set[cmd_interchannel_broadcast] = std::bind(&gateway_client::handle_interchannel_broadcast, client, std::placeholders::_1);
-		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&gateway_client::handle_interchannel_broadcast_ack, client, std::placeholders::_1);
-		m_function_set[cmd_monitor_tid_manage] = std::bind(&gateway_client::handle_monitor_tid_manage, client, std::placeholders::_1);
+		m_function_set[cmd_module_logon_ack] = std::bind(&gateway_client::handle_module_logon_ack, this, std::placeholders::_1);
+		m_function_set[cmd_request_vid_range_ack] = std::bind(&gateway_client::handle_request_vid_range_ack, this, std::placeholders::_1);
+		m_function_set[cmd_update_balance_list] = std::bind(&gateway_client::handle_update_balance_list, this, std::placeholders::_1);
+		m_function_set[cmd_create_channel] = std::bind(&gateway_client::handle_create_channel, this, std::placeholders::_1);
+		m_function_set[cmd_create_channel_ack] = std::bind(&gateway_client::handle_create_channel_ack, this, std::placeholders::_1);
+		m_function_set[cmd_delete_channel] = std::bind(&gateway_client::handle_delete_channel, this, std::placeholders::_1);
+		m_function_set[cmd_delete_channel_ack] = std::bind(&gateway_client::handle_delete_channel_ack, this, std::placeholders::_1);
+		m_function_set[cmd_interchannel_broadcast] = std::bind(&gateway_client::handle_interchannel_broadcast, this, std::placeholders::_1);
+		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&gateway_client::handle_interchannel_broadcast_ack, this, std::placeholders::_1);
+		m_function_set[cmd_monitor_tid_manage] = std::bind(&gateway_client::handle_monitor_tid_manage, this, std::placeholders::_1);
 	}
 }

@@ -38,6 +38,7 @@ void user_client::handle_create_channel_ack(proto_msg& msg)
 		info.set_data(ss.str());
 		msg.serialize_msg(info);
 		write((char *)&msg, msg.size());
+		m_send_cnt++;
 		m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(10000));
 		m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer,
 			std::dynamic_pointer_cast<user_client>(shared_from_this())));
@@ -52,10 +53,16 @@ void user_client::handle_delete_channel_ack(proto_msg& msg)
 }
 void user_client::handle_interchannel_broadcast_ack(proto_msg& msg)
 {
-	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	//SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 	pb::external::info info;
 	msg.parse(info);
-	SLOG_DEBUG << "self uid:" << m_uid << " " << info.DebugString();
+	//SLOG_DEBUG << "self uid:" << m_uid << " " << info.DebugString();
+	m_recv_cnt++;
+
+	if (m_uid == 10001 && m_recv_cnt % 30 == 0)
+	{
+		SLOG_DEBUG << "recv cnt " << m_recv_cnt;
+	}
 }
 
 void user_client::handle_task_timer()
@@ -75,10 +82,14 @@ void user_client::handle_task_timer()
 	info.set_data(ss.str());
 	msg.serialize_msg(info);
 	write((char *)&msg, msg.size());
-
+	m_send_cnt++;
 	m_task_timer.expires_from_now(boost::asio::chrono::milliseconds(100));
 	m_task_timer.async_wait(boost::bind(&user_client::handle_task_timer,
 		std::dynamic_pointer_cast<user_client>(shared_from_this())));
+	if (m_uid == 10000 && m_send_cnt % 30 == 0)
+	{
+		SLOG_DEBUG << "send cnt " << m_send_cnt;
+	}
 }
 
 void user_client::init(std::shared_ptr<base_server> server)
@@ -87,9 +98,9 @@ void user_client::init(std::shared_ptr<base_server> server)
 	std::shared_ptr<user_client> client = std::dynamic_pointer_cast<user_client>(shared_from_this());
 	if (client)
 	{
-		m_function_set[cmd_create_channel_ack] = std::bind(&user_client::handle_create_channel_ack, client, std::placeholders::_1);
-		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&user_client::handle_interchannel_broadcast_ack, client, std::placeholders::_1);
-		m_function_set[cmd_delete_channel_ack] = std::bind(&user_client::handle_delete_channel_ack, client, std::placeholders::_1);
+		m_function_set[cmd_create_channel_ack] = std::bind(&user_client::handle_create_channel_ack, this, std::placeholders::_1);
+		m_function_set[cmd_interchannel_broadcast_ack] = std::bind(&user_client::handle_interchannel_broadcast_ack, this, std::placeholders::_1);
+		m_function_set[cmd_delete_channel_ack] = std::bind(&user_client::handle_delete_channel_ack, this, std::placeholders::_1);
 	}
 }
 
