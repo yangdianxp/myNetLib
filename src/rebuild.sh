@@ -2,50 +2,50 @@
 cd proto
 cmake .
 make clean
-make
+make -j
 cd ..
 cd common
 cmake .
 make clean
-make
+make -j
 cd ..
 cd base
 cmake .
 make clean
-make
+make -j
 cd ..
 cd client
 cmake .
 make clean
-make
+make -j
 cd ..
 cd central
 cmake .
 make clean
-make
+make -j
 cd ..
 cd gateway
 cmake .
 make clean
-make 
+make -j
 cd ..
 cd login
 cmake .
 make clean
-make 
+make -j 
 cd ..
 cd balance
 cmake .
 make clean
-make 
+make -j 
 cd ..
 cd media
 cmake .
 make clean
-make 
+make -j 
 cd ..
 cd monitor
 cmake .
 make clean
-make 
+make -j 
 cd ..

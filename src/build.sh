@@ -1,41 +1,41 @@
 #!/bin/sh
 cd proto
 cmake .
-make
+make -j
 cd ..
 cd common
 cmake .
-make
+make -j
 cd ..
 cd base
 cmake .
-make
+make -j
 cd ..
 cd client
 cmake .
-make
+make -j
 cd ..
 cd central
 cmake .
-make
+make -j
 cd ..
 cd gateway
 cmake .
-make
+make -j
 cd ..
 cd login
 cmake .
-make
+make -j
 cd ..
 cd balance
 cmake .
-make
+make -j
 cd ..
 cd media
 cmake .
-make
+make -j
 cd ..
 cd monitor
 cmake .
-make
+make -j
 cd ..

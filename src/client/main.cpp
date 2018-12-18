@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 		SLOG_INFO << "client start.";
 		boost::asio::io_context io_context;
 		main_start(io_context);
-		SLOG_ERROR << "client start1.";
+		//SLOG_ERROR << "client start1.";
 		config_settings& config_reader = config_settings::instance();
 		std::string remote_ip = config_reader.get_remote_ip();
 		std::string remote_port = std::to_string(config_reader.get_remote_port());
@@ -21,11 +21,11 @@ int main(int argc, char* argv[])
 		std::list<std::shared_ptr<user_client>> users;
 		for (int i = 10000; i < 12000; ++i)
 		{
-			auto client = std::make_shared<user_client>(io_context, remote_ip, ports[i % 4]);
+			auto client = std::make_shared<user_client>(io_context, remote_ip, ports[0/*i % 4*/]);
 			client->set_reconnect_time(3000);
 			client->init(std::shared_ptr<base_server>());
 			client->set_active_type(module_gateway_type);
-			client->set_user_info(i / 2/* + tids[(i - 10000) / 1250]*/, i);
+			client->set_user_info(i / 2 + tids[(i - 10000) / 1250], i);
 			users.push_back(client);
 		}
 		

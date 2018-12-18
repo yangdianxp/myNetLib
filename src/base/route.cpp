@@ -38,6 +38,8 @@ std::size_t route::for_each_mid(std::function<void(std::shared_ptr<common_client
 		fn(pair.second);
 		++cnt;
 	}
+	SLOG_DEBUG << "m_mid_clients.left.size " << m_mid_clients.left.size()
+		<< " m_mid_clients.right.size " << m_mid_clients.right.size();
 	return cnt;
 }
 
@@ -76,6 +78,8 @@ std::size_t route::for_each_vid_clients(std::function<void(const std::size_t, st
 		fn(pair.first, pair.second);
 		++cnt;
 	}
+	SLOG_DEBUG << "m_vid_clients.left.size " << m_vid_clients.left.size()
+		<< " m_vid_clients.right.size " << m_vid_clients.right.size();
 	return cnt;
 }
 void route::add_node(std::shared_ptr<common_client> client, node& n)
@@ -134,6 +138,8 @@ std::size_t route::for_each_node_clients(std::function<void(const node&, std::sh
 		fn(pair.first, pair.second);
 		++cnt;
 	}
+	SLOG_DEBUG << "m_node_clients.left.size " << m_node_clients.left.size()
+		<< " m_node_clients.right.size " << m_node_clients.right.size();
 	return cnt;
 }
 std::shared_ptr<common_client> route::get_ttnode(ttnode& ttn)
@@ -164,6 +170,8 @@ std::size_t route::for_each_ttnode_node(std::function<void(const ttnode&, const 
 		fn(pair.first, pair.second);
 		++cnt;
 	}
+	SLOG_DEBUG << "m_ttnode_node.left.size " << m_ttnode_node.left.size()
+		<< " m_ttnode_node.right.size " << m_ttnode_node.right.size();
 	return cnt;
 }
 std::size_t route::for_each_vid(std::size_t vid, std::function<void(std::shared_ptr<common_client>)> fn)
@@ -185,6 +193,8 @@ std::size_t route::for_each_vid_node(std::function<void(const std::size_t, const
 		fn(pair.first, pair.second);
 		++cnt;
 	}
+	SLOG_DEBUG << "m_vid_node.left.size " << m_vid_node.left.size()
+		<< " m_vid_node.right.size " << m_vid_node.right.size();
 	return cnt;
 }
 std::size_t route::for_each_vid_node(std::size_t vid, std::function<void(const std::size_t, const node&)> fn)

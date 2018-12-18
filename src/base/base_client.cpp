@@ -64,6 +64,8 @@ void base_client::dispatch(proto_msg& msg)
 
 void base_client::do_read_header()
 {
+	//m_socket.async_read_some();
+
 	auto self(shared_from_this());
 	boost::asio::async_read(m_socket,
 		boost::asio::buffer(&m_msg, msg_header_length),
