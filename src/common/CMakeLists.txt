@@ -9,7 +9,7 @@ SET(CMAKE_CXX_COMPILER "g++")
 
 SET(LIBRARY_OUTPUT_PATH ./)
 
-ADD_DEFINITIONS(-ggdb -O0 -W -Wall -Wno-deprecated -Wno-unused-parameter -Wno-unused-variable -std=c++11 -fstack-protector-all -DBOOST_LOG_DYN_LINK)  
+ADD_DEFINITIONS(-ggdb -O3 -W -Wall -Wno-deprecated -Wno-unused-parameter -Wno-unused-variable -std=c++11 -fstack-protector-all -DBOOST_LOG_DYN_LINK)  
 
 INCLUDE_DIRECTORIES(./ ../proto)
 

@@ -64,10 +64,51 @@ void base_client::dispatch(proto_msg& msg)
 
 void base_client::do_read_header()
 {
-	//m_socket.async_read_some();
-
 	auto self(shared_from_this());
-	boost::asio::async_read(m_socket,
+	m_socket.async_read_some(boost::asio::buffer(&m_recv_buffer[m_recv_index], buffer_len - m_recv_index),
+		[this, self](boost::system::error_code ec, std::size_t length)
+	{
+		if (!ec)
+		{
+			m_recv_index += length;
+			std::size_t index = 0;
+			while (index + sizeof(proto_header) <= m_recv_index)
+			{
+				proto_msg* msg = (proto_msg*)&m_recv_buffer[index];
+				if (msg->check_msg())
+				{
+					if (index + msg->size() <= m_recv_index)
+					{
+						proto_msg msg_cp;
+						memcpy(&msg_cp, msg, msg->size());
+						dispatch(msg_cp);
+						index += msg->size();
+					}
+					else {
+						break;
+					}
+				}
+				else {
+					handle_msg_header_error(length);
+					return;
+				}
+			}
+			if (index > 0)
+			{
+				m_recv_index = m_recv_index - index;
+				memcpy(m_recv_buffer, &m_recv_buffer[index], m_recv_index);
+			}
+			do_read_header();
+		}
+		else
+		{
+			handle_read_error(ec);
+			handle_error();
+		}
+	});
+
+	
+	/*boost::asio::async_read(m_socket,
 		boost::asio::buffer(&m_msg, msg_header_length),
 		[this, self](boost::system::error_code ec, std::size_t length)
 	{
@@ -86,12 +127,12 @@ void base_client::do_read_header()
 			handle_read_error(ec);
 			handle_error();
 		}
-	});
+	});*/
 }
 
 void base_client::do_read_body()
 {
-	auto self(shared_from_this());
+	/*auto self(shared_from_this());
 	boost::asio::async_read(m_socket,
 		boost::asio::buffer(m_msg.m_data, m_msg.m_length),
 		[this, self](boost::system::error_code ec, std::size_t)
@@ -106,7 +147,7 @@ void base_client::do_read_body()
 			handle_read_error(ec);
 			handle_error();
 		}
-	});
+	});*/
 }
 
 void base_client::handle_connect_succ()

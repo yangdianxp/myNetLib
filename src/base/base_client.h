@@ -15,6 +15,7 @@ class base_server;
 class base_client : public std::enable_shared_from_this<base_client>
 {
 	static const unsigned char msg_header_length = sizeof(proto_header);
+	static const uint32_t buffer_len = 1024 * 64;
 public:
 	base_client(boost::asio::io_context& io_context,
 		std::string remote_ip, std::string remote_port);
@@ -40,7 +41,8 @@ public:
 	uint32_t get_port();
 protected:
 	tcp::socket m_socket;
-	proto_msg m_msg;
+	char m_recv_buffer[buffer_len];
+	std::size_t m_recv_index = 0;
 	std::deque<std::string> m_send_msgs;
 
 	enum client_type {
