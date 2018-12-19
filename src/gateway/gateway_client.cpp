@@ -109,24 +109,26 @@ void gateway_client::handle_create_channel(proto_msg& msg)
 		modify.set_vid(m_id);
 		modify.set_src(server->get_id());
 		SLOG_DEBUG << modify.DebugString();
+		proto_msg r_msg;
+		memcpy(&r_msg, &msg, sizeof(proto_header));
 		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 		if (!route->find_node(n))
 		{
 			route->add_node(std::shared_ptr<common_client>(), n);
-			msg.serialize_msg(modify);
+			r_msg.serialize_msg(modify);
 			auto id = server->get_balance(modify.tid());
 			auto balance = route->get_client(id);
 			if (balance)
 			{
-				balance->write((char *)&msg, msg.size());
+				balance->write((char *)&r_msg, r_msg.size());
 			}
 		}
 		else {
 			SLOG_WARNING << "this channel already exists. type:" << modify.type() << " tid:" << modify.tid()
 				<< " uid:" << modify.uid() << " vid:" << modify.vid();
 			modify.set_rslt(pb::external::modify_channel::rslt_already_exist);
-			msg.serialize_msg(modify);
-			write((char *)&msg, msg.size());
+			r_msg.serialize_msg(modify);
+			write((char *)&r_msg, r_msg.size());
 		}
 	}
 }
@@ -139,6 +141,8 @@ void gateway_client::handle_create_channel_ack(proto_msg& msg)
 		auto route = server->get_route();
 		pb::external::modify_channel modify;
 		msg.parse(modify);
+		proto_msg r_msg;
+		memcpy(&r_msg, &msg, msg.size());
 		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 		if (route->find_node(n))
 		{
@@ -154,12 +158,12 @@ void gateway_client::handle_create_channel_ack(proto_msg& msg)
 		}
 		else {
 			modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
-			msg.serialize_msg(modify);
+			r_msg.serialize_msg(modify);
 		}
 		auto client = route->get_vid(modify.vid());
 		if (client)
 		{
-			client->write((char *)&msg, msg.size());
+			client->write((char *)&r_msg, r_msg.size());
 		}
 	}
 }
@@ -168,6 +172,8 @@ void gateway_client::handle_delete_channel(proto_msg& msg)
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
 	pb::external::modify_channel modify;
 	msg.parse(modify);
+	proto_msg r_msg;
+	memcpy(&r_msg, &msg, sizeof(proto_header));
 	auto server = std::dynamic_pointer_cast<gateway_server>(m_server);
 	if (server)
 	{
@@ -178,13 +184,13 @@ void gateway_client::handle_delete_channel(proto_msg& msg)
 		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());
 		if (route->find_node(n))
 		{
-			msg.serialize_msg(modify);
+			r_msg.serialize_msg(modify);
 			/*向balance发送*/
 			auto id = server->get_balance(modify.tid());
 			auto balance = route->get_client(id);
 			if (balance)
 			{
-				balance->write((char *)&msg, msg.size());
+				balance->write((char *)&r_msg, r_msg.size());
 			}
 			//删除通道
 			route->delete_node(n);
@@ -194,9 +200,9 @@ void gateway_client::handle_delete_channel(proto_msg& msg)
 			SLOG_WARNING << "this channel does not exist.";
 			modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
 		}
-		msg.m_cmd = cmd_delete_channel_ack;
-		msg.serialize_msg(modify);
-		write((char *)&msg, msg.size());
+		r_msg.m_cmd = cmd_delete_channel_ack;
+		r_msg.serialize_msg(modify);
+		write((char *)&r_msg, r_msg.size());
 	}
 }
 void gateway_client::handle_delete_channel_ack(proto_msg& msg)

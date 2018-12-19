@@ -58,12 +58,14 @@ void balance_client::handle_create_channel_ack(proto_msg& msg)
 			if (modify.rslt() == pb::external::modify_channel::rslt_succ)
 			{
 				/*如果通道已经被删除了，则要回创建失败*/
+				proto_msg r_msg;
+				memcpy(&r_msg, &msg, sizeof(proto_header));
 				if (!route->find_node(n))
 				{
 					modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
-					msg.serialize_msg(modify);
+					r_msg.serialize_msg(modify);
 				}
-				gateway->write((char *)&msg, msg.size());
+				gateway->write((char *)&r_msg, r_msg.size());
 			}
 			else {
 				route::ttnode ttn(modify.type(), modify.tid());
@@ -115,9 +117,11 @@ void balance_client::handle_delete_channel(proto_msg& msg)
 			modify.set_rslt(pb::external::modify_channel::rslt_succ);
 		}
 	}
-	msg.m_cmd = cmd_delete_channel_ack;
-	msg.serialize_msg(modify);
-	write((char *)&msg, msg.size());
+	proto_msg r_msg;
+	memcpy(&r_msg, &msg, sizeof(proto_header));
+	r_msg.m_cmd = cmd_delete_channel_ack;
+	r_msg.serialize_msg(modify);
+	write((char *)&r_msg, r_msg.size());
 }
 void balance_client::handle_delete_channel_ack(proto_msg& msg)
 {

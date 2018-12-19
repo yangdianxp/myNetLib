@@ -49,6 +49,8 @@ void media_client::handle_delete_channel(proto_msg& msg)
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd] << ", vid:" << msg.m_vid;
 	pb::external::modify_channel modify;
 	msg.parse(modify);
+	proto_msg r_msg;
+	memcpy(&r_msg, &msg, sizeof(proto_header));
 	SLOG_DEBUG << modify.DebugString();
 	modify.set_rslt(pb::external::modify_channel::rslt_fail);
 	auto server = std::dynamic_pointer_cast<media_server>(m_server);
@@ -65,9 +67,9 @@ void media_client::handle_delete_channel(proto_msg& msg)
 			modify.set_rslt(pb::external::modify_channel::rslt_not_exist);
 		}
 	}
-	msg.m_cmd = cmd_delete_channel_ack;
-	msg.serialize_msg(modify);
-	write((char *)&msg, msg.size());
+	r_msg.m_cmd = cmd_delete_channel_ack;
+	r_msg.serialize_msg(modify);
+	write((char *)&r_msg, r_msg.size());
 }
 void media_client::handle_user_disconnection(proto_msg& msg)
 {

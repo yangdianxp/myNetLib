@@ -204,17 +204,17 @@ void common_client::handle_monitor_route(proto_msg& msg)
 	if (server)
 	{
 		auto route = server->get_route();
-		proto_msg msg(cmd_monitor_route_ack);
+		proto_msg r_msg(cmd_monitor_route_ack);
 		pb::monitor::module_list info;
 		info.set_clients_size(route->get_clients_size());
 		info.set_type_clients_size(route->get_type_clients_size());
 		auto self = shared_from_this();
-		auto f_check = [self, this, &info, &msg]()
+		auto f_check = [self, this, &info, &r_msg]()
 		{
 			if (info.ByteSize() > proto_msg::msg_data_length / 2)
 			{
-				msg.serialize_msg(info);
-				write((char *)&msg, msg.size());
+				r_msg.serialize_msg(info);
+				write((char *)&r_msg, r_msg.size());
 				info.Clear();
 			}
 		};
@@ -270,8 +270,8 @@ void common_client::handle_monitor_route(proto_msg& msg)
 			f_check();
 		};
 		route->for_each_vid_node(fn4);
-		msg.serialize_msg(info);
-		write((char *)&msg, msg.size());
+		r_msg.serialize_msg(info);
+		write((char *)&r_msg, r_msg.size());
 	}
 }
 

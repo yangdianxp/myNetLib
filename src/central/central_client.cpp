@@ -216,12 +216,12 @@ void central_client::handle_request_vid_range(proto_msg& msg)
 	if (server)
 	{
 		range_manage::pair pair = server->get_vid_range(m_id);
-		proto_msg msg(cmd_request_vid_range_ack);
+		proto_msg r_msg(cmd_request_vid_range_ack);
 		pb::internal::range range;
 		range.set_begin(pair.first);
 		range.set_end(pair.second);
-		msg.serialize_msg(range);
-		write((char *)&msg, msg.size());
+		r_msg.serialize_msg(range);
+		write((char *)&r_msg, r_msg.size());
 	}
 }
 
