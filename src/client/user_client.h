@@ -17,6 +17,8 @@ public:
 	void handle_task_timer();
 	void init(std::shared_ptr<base_server> server);
 	void set_user_info(std::size_t tid, std::size_t uid);
+
+	void set_tmp_send_msg();
 private:
 	std::size_t m_type = module_media_type;
 	std::size_t m_tid = 1000;
@@ -24,6 +26,7 @@ private:
 
 	std::size_t m_send_cnt = 0;
 	std::size_t m_recv_cnt = 0;
+	proto_msg m_tmp_send_msg;
 
 	boost::asio::steady_timer m_task_timer;
 };

@@ -44,6 +44,7 @@ protected:
 	char m_recv_buffer[buffer_len];
 	std::size_t m_recv_index = 0;
 	std::deque<std::string> m_send_msgs;
+	std::string m_send_buffer;
 
 	enum client_type {
 		passive_conn = 1,  //被动连接

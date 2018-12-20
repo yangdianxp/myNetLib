@@ -19,13 +19,15 @@ int main(int argc, char* argv[])
 		std::string ports[4] = {"21000", "21001", "21002", "21003"};
 		std::size_t tids[4] = { 0, 100000, 200000, 300000 };
 		std::list<std::shared_ptr<user_client>> users;
-		for (int i = 10000; i < 13000; ++i)
+		int uid_max = 14000;
+		for (int i = 10000; i < uid_max; ++i)
 		{
 			auto client = std::make_shared<user_client>(io_context, remote_ip, ports[0/*i % 4*/]);
 			client->set_reconnect_time(3000);
 			client->init(std::shared_ptr<base_server>());
 			client->set_active_type(module_gateway_type);
-			client->set_user_info(i / 2 + tids[(i - 10000) / 1250], i);
+			client->set_user_info(i / 2 + tids[(i - 10000) / ((uid_max - 10000) / 4)], i);
+			client->set_tmp_send_msg();
 			users.push_back(client);
 		}
 		

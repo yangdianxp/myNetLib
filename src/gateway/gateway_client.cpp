@@ -141,6 +141,7 @@ void gateway_client::handle_create_channel_ack(proto_msg& msg)
 		auto route = server->get_route();
 		pb::external::modify_channel modify;
 		msg.parse(modify);
+		SLOG_DEBUG << modify.DebugString();
 		proto_msg r_msg;
 		memcpy(&r_msg, &msg, msg.size());
 		route::node n(modify.type(), modify.tid(), modify.uid(), modify.vid());

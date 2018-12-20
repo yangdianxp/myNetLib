@@ -59,7 +59,7 @@ void balance_client::handle_create_channel_ack(proto_msg& msg)
 			{
 				/*如果通道已经被删除了，则要回创建失败*/
 				proto_msg r_msg;
-				memcpy(&r_msg, &msg, sizeof(proto_header));
+				memcpy(&r_msg, &msg, msg.size());
 				if (!route->find_node(n))
 				{
 					modify.set_rslt(pb::external::modify_channel::rslt_not_exist);

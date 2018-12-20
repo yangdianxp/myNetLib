@@ -26,9 +26,8 @@ base_client::~base_client()
 
 void base_client::write(const char *data, int size)
 {
-	bool is_empty = m_send_msgs.empty();
 	m_send_msgs.push_back(std::string(data, size));
-	if (is_empty)
+	if (m_send_buffer.empty())
 	{
 		do_write();
 	}
@@ -37,13 +36,18 @@ void base_client::write(const char *data, int size)
 void base_client::do_write()
 {
 	auto self(shared_from_this());
-	boost::asio::async_write(m_socket, boost::asio::buffer(m_send_msgs.front()),
+	for (auto n : m_send_msgs)
+	{
+		m_send_buffer += n;
+	}
+	m_send_msgs.clear();
+	boost::asio::async_write(m_socket, boost::asio::buffer(m_send_buffer),
 		[this, self](boost::system::error_code ec, std::size_t /*length*/)
 	{
 		if (!ec)
 		{
 			handle_write_succ();
-			m_send_msgs.pop_front();
+			m_send_buffer.clear();
 			if (!m_send_msgs.empty())
 			{
 				do_write();
@@ -79,9 +83,7 @@ void base_client::do_read_header()
 				{
 					if (index + msg->size() <= m_recv_index)
 					{
-						proto_msg msg_cp;
-						memcpy(&msg_cp, msg, msg->size());
-						dispatch(msg_cp);
+						dispatch(*msg);
 						index += msg->size();
 					}
 					else {

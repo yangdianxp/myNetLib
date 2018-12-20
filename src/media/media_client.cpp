@@ -35,6 +35,7 @@ void media_client::handle_create_channel(proto_msg& msg)
 			modify.set_src(server->get_id());
 			modify.set_dst(dst);
 			modify.set_rslt(pb::external::modify_channel::rslt_succ);
+			SLOG_DEBUG << modify.DebugString();
 			ack.serialize_msg(modify);
 			write((char *)&ack, ack.size());
 			return;
