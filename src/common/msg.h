@@ -58,9 +58,13 @@ struct proto_msg : public proto_header
 
 enum cmd_enum
 {
-	cmd_login_request = 1,
+	cmd_begin,
 
-	cmd_module_logon,                //登录central服务器
+	cmd_heartbeat,						//发送心跳
+	cmd_heartbeat_ack,					//发送心跳返回
+	cmd_login_request,
+	cmd_login_request_ack,
+	cmd_module_logon,					//登录central服务器
 	cmd_module_logon_ack,
 	cmd_broadcast_module_logon,
 	cmd_broadcast_module_logon_ack,

@@ -28,7 +28,7 @@ private:
 	std::size_t m_recv_cnt = 0;
 	proto_msg m_tmp_send_msg;
 
-	boost::asio::steady_timer m_task_timer;
+	std::shared_ptr<boost::asio::steady_timer> m_task_timer;
 };
 
 #endif

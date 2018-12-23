@@ -3,8 +3,7 @@
 
 base_client::base_client(boost::asio::io_context& io_context,
 	std::string remote_ip, std::string remote_port)
-	: m_socket(io_context), m_conn_type(active_conn), m_io_context(io_context),
-	m_reconnect_timer(io_context)
+	: m_socket(io_context), m_conn_type(active_conn), m_io_context(io_context)
 {
 	m_ip = remote_ip;
 	m_port = std::stoi(remote_port);
@@ -13,15 +12,13 @@ base_client::base_client(boost::asio::io_context& io_context,
 }
 
 base_client::base_client(boost::asio::io_context& io_context, tcp::socket socket)
-	: m_socket(std::move(socket)), m_conn_type(passive_conn), m_io_context(io_context),
-	m_reconnect_timer(io_context)
+	: m_socket(std::move(socket)), m_conn_type(passive_conn), m_io_context(io_context)
 {
 	
 }
 
 base_client::~base_client()
 {
-	m_socket.close();
 }
 
 void base_client::write(const char *data, int size)
@@ -184,6 +181,7 @@ void base_client::handle_read_error(boost::system::error_code& ec)
 
 void base_client::init(std::shared_ptr<base_server>)
 {
+	m_reconnect_timer = std::make_shared<boost::asio::steady_timer>(m_io_context);
 	if (active_conn == m_conn_type)
 	{
 		do_connect(m_endpoints);
@@ -234,14 +232,17 @@ void base_client::handle_error()
 	m_socket.close();
 	if (m_reconnect_time > 0)
 	{
-		m_reconnect_timer.expires_from_now(boost::asio::chrono::milliseconds(m_reconnect_time));
-		m_reconnect_timer.async_wait(boost::bind(&base_client::reconnect, shared_from_this()));
+		m_reconnect_timer->expires_from_now(boost::asio::chrono::milliseconds(m_reconnect_time));
+		m_reconnect_timer->async_wait(boost::bind(&base_client::reconnect, shared_from_this(), _1));
 	}
 }
 
-void base_client::reconnect()
+void base_client::reconnect(const boost::system::error_code& ec)
 {
-	SLOG_INFO << "start reconnect";
-	do_connect(m_endpoints);
+	if (!ec)
+	{
+		SLOG_INFO << "start reconnect";
+		do_connect(m_endpoints);
+	}
 }
 

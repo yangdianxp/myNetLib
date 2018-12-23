@@ -61,10 +61,10 @@ protected:
 private:
 	void do_connect(const tcp::resolver::results_type& endpoints);
 	void handle_error();
-	void reconnect();
+	void reconnect(const boost::system::error_code& ec);
 
 	tcp::resolver::results_type m_endpoints;
-	boost::asio::steady_timer m_reconnect_timer;
+	std::shared_ptr<boost::asio::steady_timer> m_reconnect_timer;
 };
 
 #endif

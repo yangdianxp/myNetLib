@@ -29,6 +29,7 @@
     <Text Include="..\..\src\media\CMakeLists.txt" />
     <Text Include="..\..\src\monitor\CMakeLists.txt" />
     <Text Include="..\..\src\proto\CMakeLists.txt" />
+    <Text Include="..\..\test\boost_asio_steady_time_test\CMakeLists.txt" />
     <Text Include="..\..\test\boost_bimap_test\CMakeLists.txt" />
     <Text Include="..\..\test\boost_log_test\log_study\CMakeLists.txt" />
     <Text Include="..\..\test\boost_test_test\test1\CMakeLists.txt" />
@@ -79,6 +80,7 @@
     <ClCompile Include="..\..\src\proto\monitor.pb.cc" />
     <ClCompile Include="..\..\src\proto\proc.pb.cc" />
     <ClCompile Include="..\..\test\allocator_test\main.cpp" />
+    <ClCompile Include="..\..\test\boost_asio_steady_time_test\main.cpp" />
     <ClCompile Include="..\..\test\boost_bimap_test\main.cpp" />
     <ClCompile Include="..\..\test\boost_log_test\log_study\tutorial_logging.cpp" />
     <ClCompile Include="..\..\test\boost_test_test\test1\main.cpp" />

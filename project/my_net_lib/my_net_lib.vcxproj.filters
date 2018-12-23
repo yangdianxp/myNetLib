@@ -223,6 +223,9 @@
     <Filter Include="test\allocator_test">
       <UniqueIdentifier>{704e450d-31bc-47a9-b257-6c1f964708d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\boost_asio_steady_time_test">
+      <UniqueIdentifier>{83a8ed6f-d6e5-4a79-b33d-70cc4faf05cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -281,6 +284,9 @@
     </Text>
     <Text Include="..\..\test\mpi_test\CMakeLists.txt">
       <Filter>test\mpi_test</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_asio_steady_time_test\CMakeLists.txt">
+      <Filter>test\boost_asio_steady_time_test</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="..\..\test\allocator_test\main.cpp">
       <Filter>test\allocator_test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_asio_steady_time_test\main.cpp">
+      <Filter>test\boost_asio_steady_time_test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

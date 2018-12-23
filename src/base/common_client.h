@@ -7,6 +7,7 @@
 class base_server;
 class common_client : public base_client
 {
+	static const std::size_t heartbeat_time = 60000;
 public:
 	common_client(boost::asio::io_context& io_context,
 		std::string remote_ip, std::string remote_port);
@@ -22,12 +23,15 @@ public:
 	virtual void handle_error_aux();
 
 	void handle_nothing(proto_msg& msg);
+
 	virtual void handle_module_logon_ack(proto_msg& msg);
 	void module_logon();
 	void handle_broadcast_module_logon(proto_msg& msg);
 	void register_info();
 	void handle_register_info(proto_msg& msg);
 	void handle_register_info_ack(proto_msg& msg);
+	void handle_heartbeat(proto_msg& msg);
+	void handle_heartbeat_ack(proto_msg& msg);
 
 	virtual void handle_monitor_route(proto_msg& msg);
 
@@ -38,6 +42,7 @@ public:
 	uint32_t get_id();
 	void set_type(uint32_t type);
 	void set_id(uint32_t id);
+	void send_heartbeat(const boost::system::error_code& ec);
 protected:
 	/*从属于服务器*/
 	std::shared_ptr<base_server> m_server;
@@ -52,6 +57,8 @@ protected:
 private:
 	/*client主动连接模块的类型*/
 	uint32_t m_active_type = module_none_type;
+	std::shared_ptr<boost::asio::steady_timer> m_heartbeat_timer;
+	bool m_wait_heartbeat = false;
 };
 
 #endif

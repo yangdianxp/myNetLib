@@ -69,6 +69,10 @@ void common_client::handle_error_aux()
 			route->delete_module(std::dynamic_pointer_cast<common_client>(shared_from_this()));
 		}
 	}
+	if (m_conn_type == passive_conn)
+	{
+		m_heartbeat_timer->cancel();
+	}
 }
 void common_client::handle_nothing(proto_msg& msg)
 {
@@ -197,6 +201,19 @@ void common_client::handle_register_info_ack(proto_msg& msg)
 	}
 }
 
+void common_client::handle_heartbeat(proto_msg& msg)
+{
+	SLOG_DEBUG << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	proto_msg r_msg(cmd_heartbeat_ack);
+	write((char *)&r_msg, r_msg.size());
+}
+
+void common_client::handle_heartbeat_ack(proto_msg& msg)
+{
+	SLOG_DEBUG << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
+	m_wait_heartbeat = false;
+}
+
 void common_client::handle_monitor_route(proto_msg& msg)
 {
 	SLOG_INFO << "cmd:" << msg.m_cmd << ", info:" << m_cmd_desc[msg.m_cmd];
@@ -277,6 +294,8 @@ void common_client::handle_monitor_route(proto_msg& msg)
 
 /*ÏûÏ¢ÃèÊö*/
 std::map<int, std::string> common_client::m_cmd_desc = {
+	{ cmd_heartbeat, "heartbeat request" },
+	{ cmd_heartbeat_ack, "heartbeat respond" },
 	{ cmd_login_request, "client login request" },
 	{ cmd_module_logon, "module logon request" },
 	{ cmd_module_logon_ack, "module logon respond" },
@@ -311,6 +330,13 @@ void common_client::init(std::shared_ptr<base_server> server)
 {
 	base_client::init(server);
 	set_server(server);
+	if (m_conn_type == passive_conn)
+	{
+		m_heartbeat_timer = std::make_shared<boost::asio::steady_timer>(m_io_context);
+		m_heartbeat_timer->expires_from_now(boost::asio::chrono::milliseconds(heartbeat_time));
+		m_heartbeat_timer->async_wait(boost::bind(&common_client::send_heartbeat, 
+			std::dynamic_pointer_cast<common_client>(shared_from_this()), _1));
+	}
 	std::shared_ptr<common_client> client = std::dynamic_pointer_cast<common_client>(shared_from_this());
 	if (client)
 	{
@@ -318,11 +344,13 @@ void common_client::init(std::shared_ptr<base_server> server)
 		{
 			m_function_set[i] = std::bind(&common_client::handle_nothing, this, std::placeholders::_1);
 		}
+		m_function_set[cmd_heartbeat] = std::bind(&common_client::handle_heartbeat, this, std::placeholders::_1);
+		m_function_set[cmd_heartbeat_ack] = std::bind(&common_client::handle_heartbeat_ack, this, std::placeholders::_1);
 		m_function_set[cmd_module_logon_ack] = std::bind(&common_client::handle_module_logon_ack, this, std::placeholders::_1);
 		m_function_set[cmd_broadcast_module_logon] = std::bind(&common_client::handle_broadcast_module_logon, this, std::placeholders::_1);
 		m_function_set[cmd_register_info] = std::bind(&common_client::handle_register_info, this, std::placeholders::_1);
 		m_function_set[cmd_register_info_ack] = std::bind(&common_client::handle_register_info_ack, this, std::placeholders::_1);
-
+		
 		m_function_set[cmd_monitor_route] = std::bind(&common_client::handle_monitor_route, this, std::placeholders::_1);
 	}
 	
@@ -354,4 +382,20 @@ void common_client::set_type(uint32_t type)
 void common_client::set_id(uint32_t id)
 {
 	m_id = id;
+}
+void common_client::send_heartbeat(const boost::system::error_code& ec)
+{
+	if (!ec)
+	{
+		if (!m_wait_heartbeat)
+		{
+			SLOG_DEBUG << "send_heartbeat";
+			proto_msg msg(cmd_heartbeat);
+			write((char *)&msg, msg.size());
+			m_wait_heartbeat = true;
+			m_heartbeat_timer->expires_from_now(boost::asio::chrono::milliseconds(heartbeat_time));
+			m_heartbeat_timer->async_wait(boost::bind(&common_client::send_heartbeat,
+				std::dynamic_pointer_cast<common_client>(shared_from_this()), _1));
+		}
+	}
 }
