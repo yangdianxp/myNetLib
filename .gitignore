@@ -1,0 +1,9 @@
+/vsproject/
+/project/my_net_lib/.vs/
+/project/my_net_lib/x64/
+/x64/
+my_net_lib.vcxproj.user
+*.o
+*.exe
+block
+*.db

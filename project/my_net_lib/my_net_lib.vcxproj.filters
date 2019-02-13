@@ -232,6 +232,12 @@
     <Filter Include="test\boost_beast_test\http_server_coro">
       <UniqueIdentifier>{5e56f420-91e8-4c9d-a141-c2624033abcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\boost_any_test">
+      <UniqueIdentifier>{d82f424c-28fd-46b4-82e8-cea841d34d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_any_test\test1">
+      <UniqueIdentifier>{6c298c81-3e7d-4719-99ab-0602d1c17e4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -296,6 +302,9 @@
     </Text>
     <Text Include="..\..\test\boost_beast_test\http_server_coro\CMakeLists.txt">
       <Filter>test\boost_beast_test\http_server_coro</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_any_test\test1\CMakeLists.txt">
+      <Filter>test\boost_any_test\test1</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -454,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="..\..\test\boost_beast_test\http_server_coro\http_server_coro.cpp">
       <Filter>test\boost_beast_test\http_server_coro</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_any_test\test1\main.cpp">
+      <Filter>test\boost_any_test\test1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
