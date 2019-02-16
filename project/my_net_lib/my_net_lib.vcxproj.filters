@@ -238,6 +238,12 @@
     <Filter Include="test\boost_any_test\test1">
       <UniqueIdentifier>{6c298c81-3e7d-4719-99ab-0602d1c17e4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test\boost_fiber_test">
+      <UniqueIdentifier>{9e8ed543-9ba3-4f84-80e8-c757874dcf51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\boost_fiber_test\test_adapt_callbacks">
+      <UniqueIdentifier>{538e10f3-0c6f-4b24-90e8-c1cb543c07de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\test\unicode_test\CMakeLists.txt">
@@ -305,6 +311,9 @@
     </Text>
     <Text Include="..\..\test\boost_any_test\test1\CMakeLists.txt">
       <Filter>test\boost_any_test\test1</Filter>
+    </Text>
+    <Text Include="..\..\test\boost_fiber_test\test_adapt_callbacks\CMakeLists.txt">
+      <Filter>test\boost_fiber_test\test_adapt_callbacks</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -466,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="..\..\test\boost_any_test\test1\main.cpp">
       <Filter>test\boost_any_test\test1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\boost_fiber_test\test_adapt_callbacks\adapt_callbacks.cpp">
+      <Filter>test\boost_fiber_test\test_adapt_callbacks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
